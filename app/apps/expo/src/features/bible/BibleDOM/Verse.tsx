@@ -139,7 +139,7 @@ const Wrapper = styled('span')<
   zIndex: 1,
   ...(textDisplay === 'block'
     ? {
-        marginBottom: '5px',
+        marginBottom: '14px',
         contentVisibility: 'auto',
         containIntrinsicSize: 'auto 80px',
       }

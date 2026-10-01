@@ -23,8 +23,8 @@ import {
 import ResourceDownloadWidget from './ResourceDownloadWidget'
 const NaveOfTheDay = ({
   discovery = false,
-  color1 = 'rgb(80, 83, 140)',
-  color2 = 'rgb(48, 51, 107)',
+  color1 = 'rgb(118,118,124)',
+  color2 = 'rgb(62,70,82)',
 }) => {
   const { t } = useTranslation()
   const resources = useResourceAccess()

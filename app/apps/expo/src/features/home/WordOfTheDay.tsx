@@ -29,8 +29,8 @@ import {
 } from '~features/resources/useOfflineResourceRegistry'
 const DictionnaireOfTheDay = ({
   discovery = false,
-  color1 = 'rgba(86,204,242,1)',
-  color2 = 'rgba(47,128,237,1)',
+  color1 = 'rgb(140,131,120)',
+  color2 = 'rgb(98,91,83)',
 }) => {
   const { t } = useTranslation()
   const resources = useResourceAccess()

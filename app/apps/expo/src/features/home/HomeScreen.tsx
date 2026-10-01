@@ -1,8 +1,7 @@
 import HorizontalControlScrollView from '~common/HorizontalControlScrollView'
 import { goBackOrHome } from '~navigation/goBackOrHome'
 import { useResponsiveWorkspace } from '~features/app-switcher/utils/useResponsiveWorkspace'
-import { resolveFontFamily } from '~themes/styleValues'
-import { useTheme as useStylingTheme, useTheme } from '~themes/ThemeProvider'
+import { useTheme } from '~themes/ThemeProvider'
 import Color from 'color'
 import { getAppleReviewing } from '~helpers/getAppleReviewing'
 import React from 'react'
@@ -12,7 +11,6 @@ import Box, { HStack, TouchableBox, VStack } from '~common/ui/Box'
 import Button from '~common/ui/Button'
 import { FeatherIcon } from '~common/ui/Icon'
 import { HomeScrollView } from '~common/ui/ScrollView'
-import Text from '~common/ui/Text'
 import DonationWidget from './DonationWidget'
 import NaveOfTheDay from './NaveOfTheDay'
 import PlanHome from './PlanHome'
@@ -30,7 +28,7 @@ import { useRouter } from 'expo-router'
 import { Events } from './Events'
 import ProfileStats from '~features/profile/components/ProfileStats'
 import PassageMediaLibraryWidget from './PassageMediaLibraryWidget'
-import AccueilLumiere from '~features/empreinte/AccueilLumiere'
+import AccueilLumiere, { Micro } from '~features/empreinte/AccueilLumiere'
 // local react props
 type HomeProps = {
   closeHome: () => void
@@ -38,8 +36,6 @@ type HomeProps = {
 }
 
 export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
-  const stylingTheme = useStylingTheme()
-
   const { t } = useTranslation()
   const theme = useTheme()
   const insets = useSafeAreaInsets()
@@ -57,12 +53,8 @@ export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
         <ProfileStats />
         <LoginPrompt />
         <Box className="overflow-hidden border-continuous pt-[40px] px-[20px]">
-          <Text
-            className="text-[23px] flex-[1]"
-            style={{ fontFamily: resolveFontFamily(stylingTheme.fontFamily.title) }}
-          >
-            {t('Apprendre')}
-          </Text>
+          <Micro>{t('Apprendre')}</Micro>
+          <Box className="h-[10px]" />
           <PassageMediaLibraryWidget />
           <HStack className="overflow-hidden border-continuous mt-[12px] h-[174px] gap-[12px] items-stretch">
             <TheBibleProject />
@@ -70,12 +62,7 @@ export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
           </HStack>
         </Box>
         <Box className="overflow-hidden border-continuous bg-light-grey pt-[40px] px-[20px]">
-          <Text
-            className="text-[23px] flex-[1]"
-            style={{ fontFamily: resolveFontFamily(stylingTheme.fontFamily.title) }}
-          >
-            {t('Étudier')}
-          </Text>
+          <Micro>{t('Étudier')}</Micro>
         </Box>
         <Box className="overflow-hidden border-continuous bg-light-grey pt-[20px]">
           <HorizontalControlScrollView
@@ -89,18 +76,13 @@ export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
             }}
           >
             <StrongOfTheDay type="grec" />
-            <StrongOfTheDay type="hebreu" color1="rgba(248,131,121,1)" color2="rgba(255,77,93,1)" />
+            <StrongOfTheDay type="hebreu" color1="rgb(140,131,120)" color2="rgb(62,70,82)" />
             <NaveOfTheDay />
-            <WordOfTheDay color1="#ffd255" color2="#ffbc00" />
+            <WordOfTheDay />
           </HorizontalControlScrollView>
         </Box>
         <Box className="overflow-hidden border-continuous bg-light-grey pt-[40px] px-[20px]">
-          <Text
-            className="text-[23px] flex-[1]"
-            style={{ fontFamily: resolveFontFamily(stylingTheme.fontFamily.title) }}
-          >
-            {t('Méditer')}
-          </Text>
+          <Micro>{t('Méditer')}</Micro>
         </Box>
         <VStack className="overflow-hidden border-continuous gap-[10px]">
           <Box className="px-[20px] pt-[20px]">
@@ -111,17 +93,12 @@ export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
         </VStack>
 
         <Box className="overflow-hidden border-continuous bg-light-grey px-[20px]">
-          <Text
-            className="text-[23px] flex-[1]"
-            style={{ fontFamily: resolveFontFamily(stylingTheme.fontFamily.title) }}
-          >
-            {t('Aller plus loin')}
-          </Text>
+          <Micro>{t('Aller plus loin')}</Micro>
         </Box>
         {!appleIsReviewing && <DonationWidget />}
         <Box className="overflow-hidden border-continuous bg-light-grey">
           <Box
-            className="overflow-hidden border-continuous bg-reverse flex-row px-[20px] pt-[20px]"
+            className="overflow-hidden border-continuous flex-row px-[20px] pt-[20px]"
             style={[
               { paddingBottom: insets.bottom + 100 },
               { borderTopLeftRadius: 30, borderTopRightRadius: 30 },
@@ -129,13 +106,13 @@ export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
           >
             <Box className="overflow-hidden border-continuous flex-[1]">
               <Button
-                color="#3b5998"
+                reverse
                 onPress={() => Linking.openURL('https://www.facebook.com/fr.bible.strong')}
                 leftIcon={
                   <FeatherIcon
                     name="facebook"
-                    size={20}
-                    color="white"
+                    size={18}
+                    color="default"
                     style={{ marginRight: 10 }}
                   />
                 }
@@ -146,13 +123,12 @@ export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
             <Box className="overflow-hidden border-continuous w-[20px]" />
             <Box className="overflow-hidden border-continuous flex-[1]">
               <Button
-                color="#2ecc71"
                 route="FAQ"
                 leftIcon={
                   <FeatherIcon
                     name="help-circle"
-                    size={20}
-                    color="white"
+                    size={18}
+                    color="reverse"
                     style={{ marginRight: 10 }}
                   />
                 }
@@ -180,16 +156,16 @@ export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
             />
           </Box>
           <TouchableBox
-            className="overflow-hidden border-continuous items-center justify-center w-[50px] h-[50px] rounded-[30px] bg-reverse"
+            className="overflow-hidden border-continuous items-center justify-center w-[50px] h-[50px] rounded-[30px] bg-reverse/60 border border-reverse/90"
             accessibilityLabel={t('Fermer')}
             accessibilityRole="button"
             activeOpacity={0.8}
             onPress={closeHome}
             style={{
-              shadowColor: 'rgb(89,131,240)',
-              shadowOffset: { width: 0, height: 2 },
-              shadowOpacity: 0.1,
-              shadowRadius: 7,
+              shadowColor: '#111113',
+              shadowOffset: { width: 0, height: 8 },
+              shadowOpacity: 0.06,
+              shadowRadius: 24,
               elevation: 1,
               overflow: 'visible',
             }}

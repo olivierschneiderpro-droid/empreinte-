@@ -15,6 +15,15 @@ jest.mock('~common/ui/Box', () => ({
 }))
 jest.mock('~common/ui/Text', () => ({ __esModule: true, default: 'Text' }))
 jest.mock('~common/ui/Icon', () => ({ FeatherIcon: 'FeatherIcon' }))
+jest.mock('~features/empreinte/icones', () => ({ Icone: 'Icone' }))
+jest.mock('~features/empreinte/lumiere', () => ({
+  POLICES: { titre: 'Geist SemiBold' },
+  police: (nom: string) => nom,
+  styleVerre: () => ({}),
+  useVerre: () => ({}),
+}))
+jest.mock('~themes/ThemeProvider', () => ({ useTheme: () => ({ colors: {} }) }))
+jest.mock('~themes/colorValues', () => ({ colorWithOpacity: () => undefined }))
 
 describe('Header in the public shell', () => {
   let renderer: ReactTestRenderer

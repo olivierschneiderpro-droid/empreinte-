@@ -84,7 +84,7 @@ const PlanHome = ({ compact = false }: { compact?: boolean }) => {
     return (
       <Box className={compact ? '' : 'bg-light-grey px-[20px] pt-[20px]'}>
         <Link route="Plans" accessibilityLabel={t('readingPlans.explorePlans')}>
-          <Box className="bg-reverse rounded-[20px] p-[18px] flex-row items-center gap-[14px]">
+          <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[18px] flex-row items-center gap-[14px]">
             <Box className="w-[48px] h-[48px] rounded-[14px] bg-light-grey items-center justify-center">
               <FeatherIcon name="book-open" size={24} color="primary" />
             </Box>

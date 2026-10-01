@@ -13,6 +13,8 @@ import { twMerge } from '~common/ui/classNames'
 import Link, { LinkProps } from '~common/Link'
 import type { Theme as AppTheme } from '~themes'
 import { useTheme as useAppTheme } from '~themes/ThemeProvider'
+import { colorWithOpacity } from '~themes/colorValues'
+import { POLICES, police } from '~features/empreinte/lumiere'
 
 import Box from '~common/ui/Box'
 import Text from '~common/ui/Text'
@@ -57,15 +59,23 @@ const buttonStyles = ({
   success,
   fullWidth,
 }: WrapperButtonProps): ViewStyle => ({
-  backgroundColor: reverse ? theme.colors.reverse : theme.colors.primary,
+  // Empreinte : bouton de la maquette (.btn) — pilule noire de 52, ou verre clair (reverse).
+  backgroundColor: reverse ? colorWithOpacity(theme.colors.reverse, 0.7) : theme.colors.primary,
   borderWidth: reverse ? 1 : 0,
-  borderColor: theme.colors.border,
-  borderRadius: 24,
-  height: 48,
+  borderColor: reverse ? colorWithOpacity(theme.colors.reverse, 0.95) : theme.colors.border,
+  ...(reverse && {
+    shadowColor: '#111113',
+    shadowOpacity: 0.06,
+    shadowRadius: 18,
+    shadowOffset: { width: 0, height: 6 },
+  }),
+  borderRadius: 26,
+  height: 52,
   alignItems: 'center',
   justifyContent: 'center',
-  paddingLeft: 15,
-  paddingRight: 15,
+  paddingLeft: 20,
+  paddingRight: 20,
+  gap: 8,
   flexDirection: 'row',
 
   ...(fullWidth && {}),
@@ -80,7 +90,8 @@ const buttonStyles = ({
   }),
 
   ...(small && {
-    height: 30,
+    height: 32,
+    borderRadius: 16,
     minWidth: 100,
     paddingLeft: 5,
     paddingRight: 5,
@@ -158,7 +169,7 @@ const TextButton = (
   const { theme: themeOverride, className, ...props } = componentProps
   const theme = themeOverride ?? contextTheme
   const { small, reverse } = props
-  const resolvedClassName = twMerge('font-bold text-[16px]', className)
+  const resolvedClassName = twMerge('text-[15px]', className)
   return (
     <Text
       {...props}
@@ -166,7 +177,8 @@ const TextButton = (
       style={
         [
           {
-            color: reverse ? theme?.colors.default : 'white',
+            fontFamily: police(POLICES.titre),
+            color: reverse ? theme?.colors.default : theme?.colors.reverse,
             ...(small && {
               fontSize: 14,
             }),

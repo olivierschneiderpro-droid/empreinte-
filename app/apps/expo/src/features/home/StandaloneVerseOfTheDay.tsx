@@ -125,7 +125,7 @@ const StandaloneVerseOfTheDay = ({
   const notificationModalRef = React.useRef<SheetRef>(null)
   const cardClassName = desktop
     ? 'flex-1 p-[24px] pb-[12px]'
-    : 'overflow-hidden border-continuous px-[20px] rounded-[30px] bg-reverse py-[20px]'
+    : 'overflow-hidden border-continuous px-[20px] rounded-[30px] bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] py-[20px]'
   const cardStyle = desktop ? style : { height: VERSE_CARD_HEIGHT }
   const dayHeader = (
     <Box

@@ -263,6 +263,21 @@ const Container = styled('div')<
   paddingTop: `${headerHeight + 10}px`,
   animation: `${fadeIn} 300ms ease-out`,
   ...(rtl ? { textAlign: 'right' } : {}),
+  // Empreinte : sur téléphone, le texte repose dans un panneau de verre arrondi (maquette).
+  ...(!isParallelVerse
+    ? {
+        '@media (max-width: 767px)': {
+          width: 'calc(100% - 24px)',
+          marginTop: `${headerHeight + 6}px`,
+          paddingTop: '20px',
+          paddingLeft: '20px',
+          paddingRight: '20px',
+          borderRadius: '28px',
+          border: '1px solid rgba(255,255,255,.9)',
+          boxShadow: '0 8px 24px rgba(17,17,19,.06)',
+        },
+      }
+    : {}),
 }))
 
 const RightDirection = styled('div')<RootStyles>(({ settings: { theme, colors } }) => ({
@@ -1619,7 +1634,8 @@ const VersesRendererContent = ({ settings, dispatch, translations, verses, ...re
   }, [])
 
   useEffect(() => {
-    const reverseColor = settings.colors[settings.theme].reverse
+    // Empreinte : fond gris clair autour du panneau de lecture.
+    const reverseColor = settings.colors[settings.theme].lightGrey
     document.documentElement.style.setProperty('--header-height', `${headerHeight}px`)
     document.documentElement.style.setProperty('--safe-area-top', `${rest.safeAreaTop ?? 0}px`)
     document.documentElement.style.backgroundColor = reverseColor
@@ -1629,7 +1645,7 @@ const VersesRendererContent = ({ settings, dispatch, translations, verses, ...re
   // Keep the WebView document background in sync when Expo DOM reuses the same page.
   useEffect(() => {
     if (settings?.theme) {
-      const reverseColor = settings.colors[settings.theme].reverse
+      const reverseColor = settings.colors[settings.theme].lightGrey
       document.documentElement.style.backgroundColor = reverseColor
       document.body.style.backgroundColor = reverseColor
     }

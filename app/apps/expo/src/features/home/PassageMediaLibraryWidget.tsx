@@ -15,7 +15,7 @@ const PassageMediaLibraryWidget = () => {
   return (
     <Box className="overflow-hidden border-continuous bg-light-grey pt-[20px]">
       <TouchableBox
-        className="overflow-hidden border-continuous rounded-[20px] bg-reverse h-[136px] flex-row items-center"
+        className="overflow-hidden border-continuous rounded-[24px] bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] h-[136px] flex-row items-center"
         accessibilityRole="button"
         accessibilityLabel={t('passageMediaLibrary.open')}
         activeOpacity={0.84}
@@ -51,7 +51,7 @@ const PassageMediaLibraryWidget = () => {
             {t('passageMediaLibrary.title')}
           </Text>
           <Box
-            className="overflow-hidden border-continuous absolute right-[14px] bottom-[12px] rounded-[18px] bg-light-primary items-center justify-center"
+            className="overflow-hidden border-continuous absolute right-[14px] bottom-[12px] rounded-[24px] bg-light-primary items-center justify-center"
             style={{ width: 34, height: 34 }}
           >
             <FeatherIcon color="primary" name="chevron-right" size={20} />

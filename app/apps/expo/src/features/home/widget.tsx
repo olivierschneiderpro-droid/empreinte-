@@ -26,7 +26,7 @@ export const WidgetContainer = (props: BoxProps) => {
       className={twMerge(
         'overflow-hidden border-continuous',
         twMerge(
-          'overflow-hidden border-continuous mr-[16px] bg-reverse items-center justify-center rounded-[20px]',
+          'overflow-hidden border-continuous mr-[16px] bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] items-center justify-center rounded-[24px]',
           props.className
         )
       )}

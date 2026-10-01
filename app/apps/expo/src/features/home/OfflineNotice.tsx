@@ -13,7 +13,7 @@ const OfflineNotice = () => {
   }
 
   return (
-    <Box className="overflow-hidden border-continuous flex-row items-center px-[20px] py-[16px] bg-reverse rounded-[28px] mx-[32px] mt-[10px] mb-[32px]">
+    <Box className="overflow-hidden border-continuous flex-row items-center px-[20px] py-[16px] bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[28px] mx-[32px] mt-[10px] mb-[32px]">
       <Box
         className="overflow-hidden border-continuous rounded-[16px] bg-light-grey items-center justify-center"
         style={{ width: 32, height: 32 }}

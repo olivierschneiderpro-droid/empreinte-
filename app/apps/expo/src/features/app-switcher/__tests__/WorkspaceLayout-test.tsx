@@ -36,6 +36,11 @@ jest.mock('~common/ui/Box', () => ({
   TouchableBox: 'TouchableBox',
 }))
 jest.mock('~common/ui/Icon', () => ({ FeatherIcon: 'Icon' }))
+jest.mock('~features/empreinte/lumiere', () => ({
+  Aurore: 'Aurore',
+  styleVerre: () => ({}),
+  useVerre: () => ({}),
+}))
 jest.mock('~features/bible/SharedBibleDOM', () => 'SharedBibleDOM')
 jest.mock('../CachedTabScreens', () => 'CachedTabScreens')
 jest.mock('../WorkspaceSidebar', () => 'WorkspaceSidebar')

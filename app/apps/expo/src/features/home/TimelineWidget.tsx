@@ -26,7 +26,7 @@ const TimelineWidget = () => {
 
   return (
     <Box
-      className="border-continuous overflow-visible flex-[1] rounded-[20px]"
+      className="border-continuous overflow-visible flex-[1] rounded-[24px]"
       style={{
         shadowColor: 'rgb(89,131,240)',
         shadowOffset: { width: 0, height: 2 },
@@ -36,7 +36,10 @@ const TimelineWidget = () => {
         overflow: 'visible',
       }}
     >
-      <LinkBox className="bg-reverse rounded-[20px] flex-[1]" route="TimelineHome">
+      <LinkBox
+        className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] flex-[1]"
+        route="TimelineHome"
+      >
         <Box className="overflow-hidden border-continuous h-[92px] bg-light-grey">
           <Image
             source={require('~assets/images/home/bible-timeline.jpg')}

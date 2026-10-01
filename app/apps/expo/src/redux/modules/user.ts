@@ -656,7 +656,8 @@ const getInitialState = (): UserState => ({
       alignContent: 'left',
       lineHeight: 'normal',
       fontSizeScale: 0,
-      textDisplay: 'inline',
+      // Empreinte : un verset par paragraphe, comme dans la maquette.
+      textDisplay: 'block',
       preferredColorScheme: 'auto',
       preferredLightTheme: 'default',
       preferredDarkTheme: 'dark',

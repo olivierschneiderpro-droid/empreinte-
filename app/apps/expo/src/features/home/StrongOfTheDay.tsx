@@ -38,8 +38,9 @@ type StrongOfTheDayProps = {
 const StrongOfTheDay = ({
   type,
   discovery = false,
-  color1 = 'rgb(69,150,220)',
-  color2 = 'rgb(89,131,240)',
+  // Empreinte : dégradés sobres (encre et ardoise) au lieu du bleu vif.
+  color1 = 'rgb(62,70,82)',
+  color2 = 'rgb(17,17,19)',
 }: StrongOfTheDayProps) => {
   const stylingTheme = useStylingTheme()
 

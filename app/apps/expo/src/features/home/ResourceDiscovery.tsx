@@ -90,7 +90,7 @@ export default function ResourceDiscovery() {
             if (route) pushRoute({ pathname: route })
           }}
         >
-          <Box className="flex-row items-center justify-center gap-[10px] px-[16px] min-h-[44px] rounded-[12px] bg-reverse shadow-[0_2px_7px_rgba(89,131,240,0.1)]">
+          <Box className="flex-row items-center justify-center gap-[10px] px-[16px] min-h-[44px] rounded-[12px] bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
             <Text className="text-[14px] font-medium">{t('home.discovery.allResources')}</Text>
             <FeatherIcon name="chevron-down" size={16} color="grey" />
           </Box>
@@ -101,7 +101,7 @@ export default function ResourceDiscovery() {
           {rows.map(row => (
             <Box
               key={row.id}
-              className="bs-home-discovery-card rounded-[18px] shadow-[0_2px_7px_rgba(89,131,240,0.1)]"
+              className="bs-home-discovery-card rounded-[24px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]"
               style={{ backgroundColor: theme.colors.reverse }}
             >
               <Box className="bs-home-discovery-icon items-center justify-center bg-light-grey rounded-[14px]">

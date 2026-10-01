@@ -17,6 +17,13 @@ it('requests the bundled reading and title faces before completing web font prep
       '16px "Literata Book"',
       '16px "eina-03-bold"',
       '16px "FiraCode"',
+      '16px "Geist"',
+      '16px "Geist Medium"',
+      '16px "Geist SemiBold"',
+      '16px "Geist Bold"',
+      '16px "Geist Mono"',
+      '16px "Geist Mono Medium"',
+      '16px "Doto"',
     ])
   } finally {
     if (original) Object.defineProperty(globalThis, 'document', original)

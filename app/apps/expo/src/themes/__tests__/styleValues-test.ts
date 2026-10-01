@@ -11,7 +11,7 @@ it('resolves palette tokens and preserves custom colors', () => {
 
 it('applies a final alpha rather than multiplying an existing alpha', () => {
   expect(colorWithOpacity(resolveThemeColor({ colors }, 'primary'), 0.2)).toBe(
-    'rgba(89, 131, 240, 0.2)'
+    'rgba(17, 17, 19, 0.2)'
   )
   expect(colorWithOpacity('#ff0000', 0.3)).toBe('rgba(255, 0, 0, 0.3)')
   expect(colorWithOpacity('rgba(10, 20, 30, 0.4)', 0.5)).toBe('rgba(10, 20, 30, 0.5)')

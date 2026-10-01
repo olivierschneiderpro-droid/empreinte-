@@ -15,7 +15,7 @@ const MeditationsHome = () => {
       accessibilityLabel={t('home.meditations.title')}
       accessibilityHint={t('home.meditations.description')}
     >
-      <Box className="bg-reverse rounded-[20px] p-[18px] flex-row items-center gap-[14px]">
+      <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[18px] flex-row items-center gap-[14px]">
         <Box className="w-[48px] h-[48px] rounded-[14px] bg-light-grey items-center justify-center">
           <FeatherIcon name="sunrise" size={24} color="primary" />
         </Box>

@@ -62,7 +62,7 @@ export default function ResumeBookmark({ card = false }: { card?: boolean }) {
   )
   if (!card) return action
   return (
-    <Box className="bg-reverse rounded-[20px] p-[16px] gap-[18px] shadow-[0_2px_7px_rgba(89,131,240,0.1)]">
+    <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[16px] gap-[18px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
       <Text className="font-bold text-[16px]">{t('home.desktop.resumeReading')}</Text>
       <LinkBox
         className="flex-row items-center gap-[16px]"

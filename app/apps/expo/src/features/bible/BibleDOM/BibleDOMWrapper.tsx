@@ -446,6 +446,8 @@ export const BibleDOMWrapper = ({
   const isBibleOverlayOpenRef = useRef(false)
   const wasFullScreenBeforeOverlayRef = useRef(false)
   const theme = useTheme()
+  // Empreinte : fond gris autour du panneau sur téléphone, blanc dans le panneau bureau.
+  const fondLecteur = keepControlsVisible ? theme.colors.reverse : theme.colors.lightGrey
   const insets = useSafeAreaInsets()
   const { t } = useTranslation()
   const confirm = useConfirmDialog()
@@ -1118,7 +1120,7 @@ export const BibleDOMWrapper = ({
     <Box
       className="overflow-hidden border-continuous"
       style={{
-        backgroundColor: theme.colors.reverse,
+        backgroundColor: fondLecteur,
         zIndex: nativeLayerZIndex,
         flex: 1,
         ...webInlineScrollStyle,
@@ -1140,11 +1142,11 @@ export const BibleDOMWrapper = ({
           thirdPartyCookiesEnabled: true,
           style: {
             flex: 1,
-            backgroundColor: theme.colors.reverse,
+            backgroundColor: fondLecteur,
           },
           containerStyle: {
             flex: 1,
-            backgroundColor: theme.colors.reverse,
+            backgroundColor: fondLecteur,
             ...(Platform.OS === 'android' && {
               marginTop: TOP_INSET,
             }),

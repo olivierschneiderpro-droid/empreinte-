@@ -82,7 +82,7 @@ function LearningCard({
     <div className="bs-home-learning-card">
       <LinkBox
         {...props}
-        className="bg-reverse rounded-[18px] overflow-hidden shadow-[0_8px_24px_rgba(17,17,19,0.06)]"
+        className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] overflow-hidden shadow-[0_8px_24px_rgba(17,17,19,0.06)]"
       >
         <div className="bs-home-learning-body">
           <div className="bs-home-learning-image">
@@ -156,7 +156,7 @@ function DailyVerse() {
 
   return (
     <AnimatedVerseHeight>
-      <HStack className="rounded-[20px] bg-reverse overflow-hidden">
+      <HStack className="rounded-[24px] bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] overflow-hidden">
         <VerseOfTheDay
           addDay={VISIBLE_VERSE_OF_THE_DAY_OFFSETS[index]}
           desktop
@@ -189,7 +189,7 @@ export default function DesktopHome() {
           <OfflineNotice />
           <div className="bs-home-grid">
             <div className="bs-home-search">
-              <LoginPrompt className="mx-0 rounded-[20px] px-[16px] py-[16px]" />
+              <LoginPrompt className="mx-0 rounded-[24px] px-[16px] py-[16px]" />
               <LinkBox
                 onPress={event => {
                   if (event?.currentTarget instanceof HTMLElement)
@@ -197,7 +197,7 @@ export default function DesktopHome() {
                   openCommandPalette(true)
                 }}
                 accessibilityLabel={t('commandPalette.label')}
-                className="flex-row items-center gap-[12px] shadow-[0_8px_24px_rgba(17,17,19,0.06)] bg-reverse rounded-[16px] px-[16px] py-[14px]"
+                className="flex-row items-center gap-[12px] bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[16px] px-[16px] py-[14px]"
               >
                 <FeatherIcon name="search" size={19} color="grey" />
                 <Text className="text-grey text-[13px] flex-1 min-w-0" numberOfLines={1}>
@@ -216,7 +216,7 @@ export default function DesktopHome() {
               <CarteVerset large />
               <CartesMissionPlan />
               <DailyVerse />
-              <Box className="bg-reverse rounded-[18px] p-[4px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
+              <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[4px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
                 <ProfileStats desktop />
               </Box>
               <Box>
@@ -252,12 +252,12 @@ export default function DesktopHome() {
               <OuSontLesOriginaux />
               <ResumeBookmark card />
               <MeditationsHome />
-              <Box className="bg-reverse rounded-[20px] p-[16px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
+              <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[16px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
                 <PlanHome compact />
               </Box>
               <LinkBox
                 href="https://click.audibible.app/5nmN/stephane30"
-                className="rounded-[20px] overflow-hidden p-[24px] min-h-[200px]"
+                className="rounded-[24px] overflow-hidden p-[24px] min-h-[200px]"
                 style={{ backgroundColor: '#122B4B' }}
               >
                 <HStack className="gap-[12px] items-center z-10">
