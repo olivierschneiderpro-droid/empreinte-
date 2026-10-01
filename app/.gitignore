@@ -1,0 +1,191 @@
+npm-debug.*
+*.jks
+*.p12
+*.p8
+*.key
+*.pem
+keystore.txt
+*.mobileprovision
+project/*
+config.js
+config.ts
+
+dist/
+!/dist/
+/dist/*
+!/dist/passage-media/
+!/dist/passage-media/*.json
+.expo/
+src/assets/db/
+
+# Xcode
+!**/*.xcodeproj
+!**/*.pbxproj
+!**/*.xcworkspacedata
+!**/*.xcsettings
+!**/*.xcscheme
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.aab
+*.apk
+*.app
+*.tar.gz
+*.xcuserstate
+project.xcworkspace
+ios/build/
+ios/Pods/
+
+# Gradle
+/build/
+/RNTester/android/app/build/
+/RNTester/android/app/gradle/
+/RNTester/android/app/gradlew
+/RNTester/android/app/gradlew.bat
+/ReactAndroid/build/
+
+# Buck
+.buckd
+buck-out
+/ReactAndroid/src/main/jni/prebuilt/lib/
+/ReactAndroid/src/main/gen
+
+# Android Studio
+.project
+.settings
+.classpath
+
+# Watchman
+.watchmanconfig
+
+# Android
+.idea
+.gradle
+local.properties
+*.iml
+android/sentry.properties
+android/build/
+android/app/build/
+android/keystores/
+android/app/src/main/assets/www/
+
+# Node
+node_modules
+*.log
+.nvm
+/bots/node_modules/
+package-lock.json
+pnpm-lock.yaml
+*.tsbuildinfo
+**/.legacy-local/
+
+# Yarn
+.yarn/cache/
+
+# OS X
+.DS_Store
+
+# Test generated files
+/ReactAndroid/src/androidTest/assets/AndroidTestBundle.js
+*.js.meta
+
+/coverage
+/third-party
+
+# Root dir shouldn't have Xcode project
+/*.xcodeproj
+
+# ReactCommon subdir shouldn't have Xcode project
+/ReactCommon/**/*.xcodeproj
+RNTester/build
+
+# Libs that shouldn't have Xcode project
+/Libraries/FBLazyVector/**/*.xcodeproj
+/Libraries/FBReactNativeSpec/**/*.xcodeproj
+/Libraries/RCTRequired/**/*.xcodeproj
+/React/CoreModules/**/*.xcodeproj
+/packages/react-native-codegen/**/*.xcodeproj
+
+# CocoaPods
+/template/ios/Pods/
+/template/ios/Podfile.lock
+/RNTester/Gemfile.lock
+
+# Ignore RNTester specific Pods, but keep the __offline_mirrors__ here.
+RNTester/Pods/*
+!RNTester/Pods/__offline_mirrors
+
+# react-native-codegen
+/ReactCommon/fabric/components/rncore/
+/schema-rncore.json
+
+# Visual studio
+.vscode
+.vs
+
+android/
+ios/
+# Local Expo modules keep their native sources in the repository.
+!apps/expo/modules/*/android/
+!apps/expo/modules/*/ios/
+apps/expo/modules/*/android/build/
+apps/expo/modules/*/android/.gradle/
+# Generated at prebuild from the build environment; contains key material.
+apps/expo/modules/bible-strong-archive/ios/Generated/
+apps/expo/modules/bible-strong-archive/android/src/main/java/expo/modules/biblestrongarchive/generated/
+
+.env
+.env*.local
+.env.resource-publication.local
+
+
+.worktree/
+
+# Agent-generated local reports
+.scratch/architecture/
+.scratch/quality/
+.scratch/logs/
+.scratch/issues/
+.scratch/generated/
+
+# Local browser QA artifacts
+/.playwright-cli/
+/output/playwright/
+
+# Local generated outputs (images, videos, imports). Files already tracked stay tracked.
+/output/
+
+# Argent screen recordings; saved flows under .argent/flows/ remain versioned.
+/.argent/recordings/
+
+# Local Resource service publications and imported artifacts
+/packages/resource-service/.local/
+/packages/resource-service/.wrangler/
+
+# Service account keys
+scripts/google-service-account.json
+/apps/api/functions/helpers/service-account.json
+
+# Study assistant development credentials and Wrangler state
+/packages/ai-service/.dev.vars
+/packages/ai-service/.wrangler/
+/packages/ai-service/dist/
+
+/apps/expo/.scratch/
+
+# Server implementation lives in a separate private repository.
+/packages/ai-service/
+/scripts/gloo-prototype/
+
+/videos/
