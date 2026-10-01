@@ -6,3 +6,11 @@ Ce dossier est un fork complet de [Bible Strong](https://github.com/smontlouis/b
 
 Rien n'a été retiré : l'application, le site, les outils, les ressources et les données
 sont conservés tels quels. Empreinte vient s'y ajouter et lui donner sa nouvelle identité.
+
+## Identité Empreinte dans le code
+
+- Thème par défaut repeint en « Lumière » (`src/themes/colors.ts`) ; les autres thèmes sont intacts.
+- Polices Geist, Geist Mono et Doto (licence SIL OFL 1.1, via `@expo-google-fonts`) dans `src/assets/fonts/`.
+- Module `src/features/empreinte/` et routes `app/empreinte/` : réalités, fiche, vérification, intégration.
+- Carte Empreinte ajoutée en tête des accueils mobile et bureau ; tous les blocs de Bible Strong restent.
+- Le moteur `packages/core` est résolu par metro (`metro.config.js`).

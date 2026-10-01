@@ -26,7 +26,7 @@ const PublicPage = ({
           <TouchableBox
             className="flex-1 flex-row items-center min-w-0"
             accessibilityRole="link"
-            accessibilityLabel="Bible Strong"
+            accessibilityLabel="Empreinte"
             onPress={() => void Linking.openURL('https://bible-strong.app')}
           >
             <Image

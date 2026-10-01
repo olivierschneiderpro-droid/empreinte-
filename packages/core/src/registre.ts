@@ -65,7 +65,7 @@ export class Registre {
   }
 
   exporter(): EtatRegistre {
-    return structuredClone(this.etat)
+    return JSON.parse(JSON.stringify(this.etat)) as EtatRegistre
   }
 
   private maintenant(): string {

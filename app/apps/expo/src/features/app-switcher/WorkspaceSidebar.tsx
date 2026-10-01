@@ -1,4 +1,5 @@
 import SidebarAccountCard from './SidebarAccountCard'
+import { Marque } from '~features/empreinte/lumiere'
 import { resolveUniverseColors } from '~themes/universeColors'
 import {
   SidebarDragProvider,
@@ -13,7 +14,8 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai/react'
 import { collapsedWorkspaceGroupsAtom } from '~state/workspacePreferences'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Image, Platform, ScrollView } from 'react-native'
+import { useRouter } from 'expo-router'
+import { Platform, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import type { SheetRef } from '~common/sheet'
 import Box, { HStack, TouchableBox } from '~common/ui/Box'
@@ -58,6 +60,7 @@ const WorkspaceSidebar = ({
   const stylingTheme = useStylingTheme()
 
   const { t } = useTranslation()
+  const router = useRouter()
   const insets = useSafeAreaInsets()
   const { colorScheme } = useCurrentThemeSelector()
   const rowHeight = Platform.OS === 'web' ? 32 : 44
@@ -111,14 +114,9 @@ const WorkspaceSidebar = ({
               className="flex-1 flex-row items-center min-h-[40px]"
               onPress={openHome}
               accessibilityRole="button"
-              accessibilityLabel={`Bible Strong — ${t('Accueil')}`}
+              accessibilityLabel={`Empreinte — ${t('Accueil')}`}
             >
-              <Image
-                source={require('~assets/images/icon.png')}
-                style={{ width: 24, height: 24, borderRadius: 12 }}
-                accessible={false}
-              />
-              <Text className="flex-1 ml-[10px] font-bold text-[15px]">Bible Strong</Text>
+              <Marque taille={16} />
             </TouchableBox>
             <TouchableBox
               className="overflow-hidden border-continuous items-center justify-center"
@@ -410,6 +408,19 @@ const WorkspaceSidebar = ({
             )}
           </ScrollView>
           <Box className="border-continuous overflow-hidden px-[12px] pt-[8px] pb-[8px] gap-[4px]">
+            <TouchableBox
+              className="overflow-hidden border-continuous flex-row items-center px-[10px] rounded-[8px] hover:bg-reverse"
+              onPress={() => router.push('/empreinte')}
+              accessibilityRole="button"
+              accessibilityLabel="Empreinte — réalités"
+              testID="workspace-empreinte"
+              style={{ minHeight: rowHeight }}
+            >
+              <FeatherIcon name="layers" size={16} color="grey" />
+              <Text className="ml-[8px] text-[13px]" style={labelStyle}>
+                Réalités
+              </Text>
+            </TouchableBox>
             {Platform.OS === 'web' ? (
               <HStack
                 className="bg-reverse rounded-[14px] items-center overflow-hidden shadow-[0_2px_7px_rgba(89,131,240,0.1)]"

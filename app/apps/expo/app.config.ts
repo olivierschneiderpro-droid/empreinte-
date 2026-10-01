@@ -8,7 +8,7 @@ const RUNTIME_VERSION = `${majorVersion}.${minorVersion}`
 
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
-  name: process.env.APP_NAME ?? 'dev - Bible Strong',
+  name: process.env.APP_NAME ?? 'Empreinte',
   description: 'Bible strong for french people',
   slug: 'bible-strong',
   scheme: 'biblestrong',

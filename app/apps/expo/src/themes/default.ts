@@ -7,8 +7,9 @@ const theme = {
     paddingBottom: 30,
   },
   fontFamily: {
-    text: Platform.OS === 'ios' ? 'System' : 'normal',
-    title: 'eina-03-bold',
+    // Empreinte : Geist pour l'interface (eina-03-bold reste chargée).
+    text: 'Geist',
+    title: 'Geist SemiBold',
     titleItalic: Platform.OS === 'ios' ? 'System' : 'normal',
     paragraph: Platform.OS === 'ios' ? 'System' : 'normal',
   },

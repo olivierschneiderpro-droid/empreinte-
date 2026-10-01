@@ -234,4 +234,8 @@ export type MainStackProps = {
   Theme: undefined
   WordAnnotations: undefined
   EntityRelations: { endpoint: string }
+  Empreinte: undefined
+  EmpreinteRealite: { id: string }
+  EmpreinteVerifier: undefined
+  EmpreinteCapturer: undefined
 }

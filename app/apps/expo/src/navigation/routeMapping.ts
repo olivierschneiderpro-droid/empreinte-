@@ -68,6 +68,10 @@ export const routeMapping: Record<keyof MainStackProps, string> = {
   Theme: '/theme',
   WordAnnotations: '/word-annotations',
   EntityRelations: '/entity-relations',
+  Empreinte: '/empreinte',
+  EmpreinteRealite: '/empreinte/realite',
+  EmpreinteVerifier: '/empreinte/verifier',
+  EmpreinteCapturer: '/empreinte/capturer',
 }
 
 /**

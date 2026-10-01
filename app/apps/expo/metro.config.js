@@ -3,7 +3,17 @@ const { getSentryExpoConfig } = require('@sentry/react-native/metro')
 
 const { withUniwindConfig } = require('uniwind/metro')
 
+const path = require('path')
+
 const config = getSentryExpoConfig(__dirname)
+
+// Empreinte : le moteur vit dans packages/core, à la racine du dépôt.
+const moteurEmpreinte = path.resolve(__dirname, '../../../packages/core')
+config.watchFolders = [
+  ...(config.watchFolders ?? []),
+  moteurEmpreinte,
+  path.resolve(__dirname, '../../../packages/bible-references'),
+]
 
 config.resolver = {
   ...config.resolver,
@@ -22,6 +32,11 @@ config.resolver = {
     'html',
     'lottie',
   ],
+  extraNodeModules: {
+    ...config.resolver.extraNodeModules,
+    '@empreinte/core': path.join(moteurEmpreinte, 'src'),
+    '@empreinte/bible-references': path.resolve(__dirname, '../../../packages/bible-references/src/referenceParser.js'),
+  },
 }
 
 config.transformer = {

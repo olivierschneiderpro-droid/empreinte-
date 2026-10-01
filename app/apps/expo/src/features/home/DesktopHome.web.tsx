@@ -29,6 +29,7 @@ import MeditationsHome from './MeditationsHome'
 import ResumeBookmark from './ResumeBookmark'
 import { LoginPrompt } from './UserWidget'
 import VerseOfTheDay from './VerseOfTheDay'
+import EmpreinteWidget from '~features/empreinte/EmpreinteWidget'
 import { VISIBLE_VERSE_OF_THE_DAY_OFFSETS } from './verseOfTheDayPolicy'
 
 const illustrations = {
@@ -200,6 +201,7 @@ export default function DesktopHome() {
               </LinkBox>
             </div>
             <div className="bs-home-main">
+              <EmpreinteWidget />
               <DailyVerse />
               <Box className="bg-reverse rounded-[18px] p-[4px] shadow-[0_2px_7px_rgba(89,131,240,0.1)]">
                 <ProfileStats desktop />
