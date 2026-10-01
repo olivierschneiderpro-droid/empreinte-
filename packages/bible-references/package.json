@@ -1,0 +1,13 @@
+{
+  "name": "@empreinte/bible-references",
+  "version": "3.2.0-bible-strong.2",
+  "description": "Analyseur de références bibliques (FR/EN), copie de l'instantané MIT publié par Bible Strong",
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/referenceParser.d.ts",
+      "default": "./src/referenceParser.js"
+    }
+  },
+  "license": "MIT"
+}

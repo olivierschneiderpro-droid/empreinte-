@@ -1,0 +1,5 @@
+[submodule "vendor/bible-strong"]
+	path = vendor/bible-strong
+	url = https://github.com/smontlouis/bible-strong
+	shallow = true
+	ignore = dirty
