@@ -32,11 +32,24 @@ config.resolver = {
     'html',
     'lottie',
   ],
-  extraNodeModules: {
-    ...config.resolver.extraNodeModules,
-    '@empreinte/core': path.join(moteurEmpreinte, 'src'),
-    '@empreinte/bible-references': path.resolve(__dirname, '../../../packages/bible-references/src/referenceParser.js'),
-  },
+}
+
+// Empreinte : chemins exacts du moteur et de l'analyseur de références.
+const modulesEmpreinte = {
+  '@empreinte/core': path.join(moteurEmpreinte, 'src/index.ts'),
+  '@empreinte/bible-references': path.resolve(
+    __dirname,
+    '../../../packages/bible-references/src/referenceParser.js'
+  ),
+}
+const resolutionParDefaut = config.resolver.resolveRequest
+config.resolver.resolveRequest = (context, moduleName, platform) => {
+  if (modulesEmpreinte[moduleName]) {
+    return { type: 'sourceFile', filePath: modulesEmpreinte[moduleName] }
+  }
+  return resolutionParDefaut
+    ? resolutionParDefaut(context, moduleName, platform)
+    : context.resolveRequest(context, moduleName, platform)
 }
 
 config.transformer = {

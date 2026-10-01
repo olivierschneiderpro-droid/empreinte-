@@ -183,6 +183,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   experiments: {
     reactCompiler: true,
-  },
+    // Empreinte : l'export doit voir packages/core, hors du monorepo de Bible Strong.
+    onDemandFilesystem: false,
+  } as ExpoConfig['experiments'] & { onDemandFilesystem?: boolean },
   runtimeVersion: RUNTIME_VERSION,
 })
