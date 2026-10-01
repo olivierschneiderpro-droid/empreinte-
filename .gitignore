@@ -2,3 +2,4 @@ node_modules/
 .empreinte/
 *.log
 __pycache__/
+empreinte-web.tar.gz

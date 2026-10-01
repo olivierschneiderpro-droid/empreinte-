@@ -97,3 +97,15 @@ docs/VISION.md            la vision d'origine
 - **[node-qrcode](https://github.com/soldair/node-qrcode)** (MIT) : génération des QR codes.
 
 Empreinte est distribué sous **GPL-3.0-or-later**, compatible avec Bible Strong.
+
+## Déployer sur le serveur HP
+
+Sur le serveur (Linux, Node 20 ou plus), dans une copie de ce dépôt :
+
+```bash
+./scripts/deployer-hp.sh archive empreinte-web.tar.gz   # depuis l'archive prête
+./scripts/deployer-hp.sh source                         # ou en compilant depuis le code
+```
+
+L'app est alors servie sur `http://<adresse-du-hp>:8080` (variable `PORT` pour changer).
+Avec `sudo` et systemd, un service `empreinte` est installé et redémarre avec le serveur.
