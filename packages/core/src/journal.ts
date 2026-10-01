@@ -1,11 +1,11 @@
-import { createHash } from 'node:crypto'
+import { sha256 } from './sha256.ts'
 import type { Evenement } from './types.ts'
 
 const ORIGINE = '0'.repeat(64)
 
 function hacher(e: Omit<Evenement, 'hachage'>): string {
   const contenu = JSON.stringify([e.seq, e.le, e.type, e.realiteId ?? null, e.details, e.precedent])
-  return createHash('sha256').update(contenu).digest('hex')
+  return sha256(contenu)
 }
 
 /** Ajoute un événement chaîné au précédent. Le journal n'est jamais réécrit. */
@@ -34,6 +34,7 @@ export function verifierJournal(journal: Evenement[]): number | null {
   return null
 }
 
-export function empreinteContenu(contenu: Buffer | string): string {
-  return createHash('sha256').update(contenu).digest('hex')
+/** Empreinte SHA-256 d'un contenu (texte ou octets d'un fichier). */
+export function empreinteContenu(contenu: Uint8Array | string): string {
+  return sha256(contenu)
 }

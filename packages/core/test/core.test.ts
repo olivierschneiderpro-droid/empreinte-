@@ -202,3 +202,11 @@ test('corriger une manifestation résout l’incohérence et garde la trace', ()
   const correction = registre.journal.find(e => e.type === 'correction')!
   assert.deepEqual(correction.details.avant, { montant: 1520 })
 })
+
+test('sha256 pur identique à node:crypto', async () => {
+  const { createHash } = await import('node:crypto')
+  const { sha256 } = await import('../src/sha256.ts')
+  for (const t of ['', 'abc', 'FAC-2026-0047', 'é'.repeat(200), 'x'.repeat(55), 'x'.repeat(64)]) {
+    assert.equal(sha256(t), createHash('sha256').update(t).digest('hex'))
+  }
+})
