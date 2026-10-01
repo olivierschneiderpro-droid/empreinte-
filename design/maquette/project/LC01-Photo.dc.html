@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Photographier</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;900&amp;family=Geist:wght@400;500;600;700;800&amp;family=Geist+Mono:wght@400;500;600&amp;family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&amp;family=Caveat:wght@600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+.l{width:390px;height:844px;background:#F4F4F2;color:#111113;font:500 15px/1.45 'Geist',system-ui,sans-serif;position:relative;overflow:hidden;letter-spacing:-.005em}
+.aur{position:absolute;border-radius:50%;pointer-events:none}
+.glass{background:rgba(255,255,255,.62);backdrop-filter:blur(22px) saturate(120%);-webkit-backdrop-filter:blur(22px) saturate(120%);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(17,17,19,.07)}
+.dot{font-family:'Doto',monospace;font-weight:900;letter-spacing:-.02em}
+.gm{font-family:'Geist Mono',monospace}
+.micro{font:600 10.5px 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#76767C}
+.ib{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#111113;box-sizing:border-box}
+.tab{position:absolute;left:16px;bottom:26px;height:62px;width:270px;border-radius:31px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;box-sizing:border-box;padding:0 6px}
+.tab a{display:flex;flex-direction:column;align-items:center;gap:1px;font:600 10px 'Geist';color:#5E5E70;text-decoration:none;height:50px;justify-content:center;border-radius:25px}
+.tab a.on{background:rgba(17,17,19,.07);color:#111113}
+.act{position:absolute;right:16px;bottom:26px;width:62px;height:62px;border-radius:31px;display:flex;align-items:center;justify-content:center;color:#FFFFFF;background:#111113;box-shadow:inset 0 1px 1px rgba(255,255,255,.25),0 12px 26px rgba(17,17,19,.28)}.g{background:rgba(255,255,255,.62);backdrop-filter:blur(22px) saturate(120%);-webkit-backdrop-filter:blur(22px) saturate(120%);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(17,17,19,.06);border-radius:24px}
+.gf{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);border-radius:20px;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.h1{font:700 30px/1.08 'Geist',sans-serif;letter-spacing:-.03em;margin:0}
+.h2{font:650 17px/1.25 'Geist',sans-serif;letter-spacing:-.015em;margin:0}
+.sub{font-size:14px;color:#76767C}
+.row{display:flex;align-items:center;gap:12px}
+.col{display:flex;flex-direction:column;min-width:0}
+.btw{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sep{border-top:1px solid rgba(17,17,19,.07)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:15px;font:600 12.5px 'Geist';white-space:nowrap;background:rgba(17,17,19,.06);color:#111113}
+.pill.on{background:#111113;color:#FFFFFF}
+.pill.red{background:rgba(181,67,47,.10);color:#B5432F}
+.pill.grn{background:rgba(79,122,99,.12);color:#3F6A53}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:26px;font:600 15px 'Geist';text-decoration:none;border:none;cursor:pointer;box-sizing:border-box}
+.btn.k{background:#111113;color:#FFFFFF}
+.btn.w{background:rgba(255,255,255,.7);color:#111113;border:1px solid rgba(255,255,255,.95);box-shadow:0 6px 18px rgba(17,17,19,.06)}
+.sq{width:40px;height:40px;border-radius:14px;background:rgba(17,17,19,.05);display:flex;align-items:center;justify-content:center;flex:none;color:#111113}
+.verse{font:400 18px/1.7 'Literata',serif;color:#1C1C26;margin:0}
+.vn{font:500 10px 'Geist Mono',monospace;color:#76767C;vertical-align:super;margin-right:3px}
+.tog{width:46px;height:28px;border-radius:14px;background:rgba(17,17,19,.14);position:relative;flex:none}
+.tog i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:11px;background:#FFFFFF;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tog.on{background:#111113}.tog.on i{left:21px}
+.inp{height:50px;border-radius:16px;background:rgba(255,255,255,.7);border:1px solid rgba(17,17,19,.08);display:flex;align-items:center;padding:0 16px;font:500 15px Geist;box-sizing:border-box}
+
+</style>
+</helmet>
+<div class="l" style="background:#1A1A1C"><div style="position:absolute;inset:0;background:radial-gradient(120% 70% at 50% 40%,#5C5A55 0%,#2A2927 60%,#1A1A1C 100%)"></div>
+<div style="position:absolute;top:54px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center"><a href="#" aria-label="Fermer" style="width:44px;height:44px;border-radius:22px;background:rgba(255,255,255,.14);color:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M6 6l12 12M18 6 6 18"/></svg></a><span style="height:34px;border-radius:17px;padding:0 14px;background:rgba(255,255,255,.14);color:#FFFFFF;display:flex;align-items:center;gap:8px;font:600 12.5px Geist"><span style="width:7px;height:7px;border-radius:4px;background:#7FD1A6;flex:none;display:inline-block"></span>Bords détectés · net</span><a href="#" aria-label="Lampe" style="width:44px;height:44px;border-radius:22px;background:rgba(255,255,255,.14);color:#FFFFFF;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></a></div>
+<div style="position:absolute;left:62px;top:150px;transform:rotate(-3deg)"><div style="position:relative;width:266px;height:353px;background:#FFFEFA;border-radius:3px;transform:rotate(0deg);box-shadow:0 30px 60px rgba(0,0,0,.5);padding:16px 16px 14px;box-sizing:border-box;display:flex;flex-direction:column;gap:6px;color:#3A3530;font:9.5px/1.45 'Literata',Georgia,serif">
+<strong style="font:700 12px 'Literata',serif;color:#1F1A16;letter-spacing:.04em;padding-right:60px">ANTIQUITÉS MARTIN</strong>
+<span style="color:#7A716A">12 quai Saint-Antoine · Lyon</span>
+<strong style="font:700 13px 'Literata',serif;margin-top:14px;color:#1F1A16">Facture n° F-47</strong>
+<span>Client : M. Dupont · 28/09/2026</span>
+<div style="border-top:1px solid #DDD5C8;border-bottom:1px solid #DDD5C8;padding:6px 0;display:flex;flex-direction:column;gap:3px;margin-top:4px"><span style="display:flex;justify-content:space-between"><span>Commode Louis-Philippe</span><span>640,00</span></span><span style="display:flex;justify-content:space-between"><span>Lot de 6 chaises</span><span>401,67</span></span><span style="display:flex;justify-content:space-between;color:#7A716A"><span>TVA 20 %</span><span>208,33</span></span></div>
+<span style="display:flex;justify-content:space-between;font-weight:700;color:#1F1A16;font-size:11px"><span>Total TTC</span><span>1 250,00 €</span></span>
+<span style="margin-top:auto;font-family:'Caveat',cursive;font-size:20px;color:#2B3E8C;transform:rotate(-4deg);align-self:flex-start">J. Martin</span>
+
+</div></div>
+<div style="position:absolute;left:52px;top:140px;width:286px;height:374px;border:2px solid #FFFFFF;border-radius:8px;transform:rotate(-3deg);box-shadow:0 0 0 4000px rgba(0,0,0,.25)"></div>
+<div style="position:absolute;left:0;right:0;top:580px;display:flex;justify-content:center;gap:6px"><span class="pill" style="background:rgba(255,255,255,.14);color:#FFFFFF">Document</span><span class="pill" style="background:#FFFFFF;color:#111113">Facture</span><span class="pill" style="background:rgba(255,255,255,.14);color:#FFFFFF">Livre</span><span class="pill" style="background:rgba(255,255,255,.14);color:#FFFFFF">Objet</span></div>
+<div style="position:absolute;left:0;right:0;bottom:60px;display:flex;align-items:center;justify-content:space-around">
+<span style="width:48px;height:62px;border-radius:8px;background:#FFFEFB;opacity:.85"></span>
+<a href="#" aria-label="Prendre la photo" style="width:78px;height:78px;border-radius:39px;border:4px solid #FFFFFF;display:flex;align-items:center;justify-content:center"><span style="width:62px;height:62px;border-radius:31px;background:#FFFFFF"></span></a>
+<span style="font:600 13px Geist;color:#FFFFFF;width:48px;text-align:center">Recto<br><span style="opacity:.6">1 / 2</span></span></div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

@@ -1,24 +1,11 @@
-# Maquette d'Empreinte
-
-97 écrans sur une seule page, en 9 parcours (style sombre : vert = physique, bleu = numérique, le papier reste clair) :
-1. Fondations
-2. Cycle d'une réalité : la facture F-47
-3. Lien physique ↔ numérique
-4. Vérifier
-5. Domaines de réalité
-6. Bible · lecture
-7. Bible · Strong et ressources
-8. Bible · ma bibliothèque
-9. Compte et système
-
-Les pages 6 à 8 reprennent toutes les fonctions de Bible Strong.
+# Maquette d'Empreinte · direction « Lumière » sobre
 
 Vue en ligne : https://claude.ai/artifact/RCyh3vk9XUGgD9ivr82HBo
 
-Régénérer les écrans (`project/*.dc.html` et `project/canvas.json`) :
+- 3 écrans clés (téléphone), puis ordinateur (1440 × 900) et tablette (1194 × 834).
+- 95 écrans téléphone en 9 parcours : Fondations, cycle de la facture F-47, lien physique ↔ numérique,
+  Vérifier, Domaines de réalité, Bible · lecture, Bible · Strong et ressources, Bible · ma bibliothèque,
+  Compte et système.
 
-```sh
-python3.12 design/maquette/build.py
-```
-
-`base.py` contient le style et les composants, `p1.py` à `p9.py` une page chacun.
+Les sources sont dans `design/lumiere/` (`lum.py` : composants ; `b1.py` à `b9.py` : un parcours chacun).
+Régénérer les écrans : `python3.12 design/lumiere/run.py b1 b2 b3 b4 b5 b6 b7 b8 b9`.
