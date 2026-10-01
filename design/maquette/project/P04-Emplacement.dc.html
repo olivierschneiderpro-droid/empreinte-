@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Emplacement calculé</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500&amp;family=Literata:opsz,wght@7..72,400;7..72,600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:#2E46C2}a:hover{color:#1F3196}
+.app{width:390px;height:844px;box-sizing:border-box;background:#F2F3EF;color:#18211F;font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.45;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:52px 20px 10px;min-height:44px}
+.toptitle{font-weight:600;font-size:16px;text-align:center;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin:0}
+.h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;margin:0}
+.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5B6763}
+.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500}
+.serif{font-family:"Literata",Georgia,serif}
+.scroll{flex:1;overflow:hidden;padding:0 20px 16px;display:flex;flex-direction:column;gap:12px}
+.card{background:#FFFFFF;border:1px solid #DDE0D9;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.row{display:flex;align-items:center;gap:10px}
+.between{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.col{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
+.muted{color:#5B6763;font-size:13px}
+.small{font-size:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;font-size:12.5px;font-weight:600;white-space:nowrap;border:none;font-family:"IBM Plex Sans",sans-serif}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.phy{background:#E3EFE8;color:#17573F}
+.num{background:#E6EAFB;color:#2438A3}
+.crit{background:#FBE5E3;color:#9A1D12}
+.warn{background:#FCEFD9;color:#8A5300}
+.info{background:#E9ECEB;color:#3B4643}
+.ink{background:#18211F;color:#FFFFFF}
+.ghost{background:#FFFFFF;color:#18211F;border:1px solid #DDE0D9}
+.dot{width:8px;height:8px;border-radius:4px;flex:none;display:inline-block}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 16px;border-radius:12px;font:600 15px "IBM Plex Sans",sans-serif;border:none;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.btn-ink{background:#18211F;color:#FFFFFF}
+.btn-line{background:#FFFFFF;color:#18211F;border:1px solid #C9CEC6}
+.btn-sm{height:38px;font-size:13.5px;padding:0 12px;border-radius:10px}
+.icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.ic16{width:16px;height:16px}
+.iconbtn{width:44px;height:44px;border-radius:22px;border:1px solid #DDE0D9;background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#18211F;cursor:pointer;padding:0;flex:none;box-sizing:border-box}
+.nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:#FFFFFF;border-top:1px solid #DDE0D9;padding:8px 6px 26px}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:#5B6763;text-decoration:none;padding-top:4px}
+.nav a.on{color:#18211F;font-weight:600}
+.nav .cap{width:52px;height:52px;border-radius:26px;background:#18211F;color:#FFFFFF;display:flex;align-items:center;justify-content:center;margin-top:-22px;border:4px solid #F2F3EF}
+.path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13.5px}
+.sep{color:#8A948F}
+.bar{height:6px;border-radius:3px;background:#E3E6E0;overflow:hidden;display:block}
+.bar i{display:block;height:6px;border-radius:3px}
+.list{display:flex;flex-direction:column}
+.li{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #E6E8E3;text-decoration:none;color:inherit}
+.li:first-child{border-top:none;padding-top:2px}
+.li:last-child{padding-bottom:2px}
+.sev{width:4px;align-self:stretch;border-radius:2px;flex:none;min-height:34px}
+.tile{background:#FFFFFF;border:1px solid #DDE0D9;border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;text-decoration:none;color:inherit;min-width:0}
+.g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+.g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.ibox{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
+.search{display:flex;align-items:center;gap:8px;height:44px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE0D9;padding:0 12px;color:#5B6763;font-size:14.5px}
+.seg{display:flex;background:#E6E8E3;border-radius:10px;padding:3px;gap:2px}
+.seg span{flex:1;text-align:center;font-size:13px;font-weight:600;padding:6px 0;border-radius:8px;color:#5B6763}
+.seg span.on{background:#FFFFFF;color:#18211F}
+.verse{font-family:"Literata",Georgia,serif;font-size:17.5px;line-height:1.7;color:#1F2523;margin:0}
+.vn{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#5B6763;vertical-align:super;margin-right:3px}
+.sheet{background:#FFFFFF;border-radius:20px 20px 0 0;border-top:1px solid #DDE0D9;padding:16px 20px 30px;display:flex;flex-direction:column;gap:12px}
+.toggle{width:44px;height:26px;border-radius:13px;background:#C9CEC6;position:relative;flex:none}
+.toggle.on{background:#1F6B4F}
+.toggle i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:10px;background:#FFFFFF}
+.toggle.on i{left:21px}
+.field{display:flex;flex-direction:column;gap:4px}
+.field label{font-size:12.5px;color:#5B6763;font-weight:500}
+.input{height:44px;border-radius:10px;border:1px solid #C9CEC6;background:#FFFFFF;padding:0 12px;display:flex;align-items:center;font-size:15px;box-sizing:border-box}
+.hash{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#8A948F}
+</style>
+</helmet>
+<div class="app">
+<div class="top"><a class="iconbtn" href="P02-Etiquette.dc.html" aria-label="Retour"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="toptitle">Où la ranger ?</span><span style="width:44px;flex:none"></span></div><div class="scroll" style="gap:12px"><div class="card" style=""><span class="eyebrow">Selon votre plan D · hybride</span><div class="path"><span>Fournisseurs</span><span class="sep">›</span><span>2026</span><span class="sep">›</span><span>Achats</span></div></div><div class="g3"><div class="tile" style="background:#E3EFE8;color:#18211F"><span class="muted small">Classeur</span><strong class="mono" style="font-size:18px">02</strong></div><div class="tile" style="background:#E3EFE8;color:#18211F"><span class="muted small">Section</span><strong class="mono" style="font-size:18px">B</strong></div><div class="tile" style="background:#18211F;color:#FFFFFF"><span class="small" style="color:#C9D2CE">Pochette</span><strong class="mono" style="font-size:18px">14</strong></div></div><div class="card" style="gap:2px"><div class="between" style="padding:6px 0;border-top:1px solid #EEF0EC"><span class="muted">Occupation de la pochette</span><span style="font-weight:600;text-align:right">7 / 10</span></div><div class="between" style="padding:6px 0;border-top:1px solid #EEF0EC"><span class="muted">Voisins</span><span style="font-weight:600;text-align:right">FAC-2026-0044 · 0045 · 0046</span></div><div class="between" style="padding:6px 0;border-top:1px solid #EEF0EC"><span class="muted">Prochaine pochette</span><span style="font-weight:600;text-align:right">15, à ouvrir après 3 documents</span></div></div><div class="row" style="background:#E6EAFB;color:#2438A3;border-radius:12px;padding:10px 12px;align-items:flex-start;font-size:13.5px"><svg class="icon ic16" viewBox="0 0 24 24" aria-hidden="true" style="margin-top:2px"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 3.5 2.3c-.7.3-1 .9-1 1.7M12 17v.01"/></svg><span>Pourquoi ici ? Domaine Fournisseurs, année 2026, catégorie Achats : la section B de 2026 est déjà attribuée.</span></div><div class="row" style="gap:8px"><button class="btn btn-line" type="button" style="flex:1">Autre endroit</button><a class="btn btn-ink" href="C06-Fiche.dc.html" style="flex:1"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m5 12 4.5 4.5L19 7"/></svg>C’est rangé</a></div></div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
