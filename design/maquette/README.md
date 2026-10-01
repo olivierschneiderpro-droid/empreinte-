@@ -1,6 +1,6 @@
 # Maquette d'Empreinte
 
-97 écrans répartis en 9 pages :
+97 écrans sur une seule page, en 9 parcours (style sombre : vert = physique, bleu = numérique, le papier reste clair) :
 1. Fondations
 2. Cycle d'une réalité : la facture F-47
 3. Lien physique ↔ numérique

@@ -6,920 +6,785 @@
  },
  "title": "Empreinte — maquette",
  "launch": {
-  "view": "canvas",
-  "page": "fondations"
+  "view": "canvas"
  },
- "pages": [
-  {
-   "id": "fondations",
-   "name": "1 · Fondations"
-  },
-  {
-   "id": "cycle",
-   "name": "2 · Cycle d’une réalité (F-47)"
-  },
-  {
-   "id": "physique",
-   "name": "3 · Lien physique ↔ numérique"
-  },
-  {
-   "id": "verifier",
-   "name": "4 · Vérifier"
-  },
-  {
-   "id": "domaines",
-   "name": "5 · Domaines de réalité"
-  },
-  {
-   "id": "bible-lecture",
-   "name": "6 · Bible · lecture (Bible Strong)"
-  },
-  {
-   "id": "strong",
-   "name": "7 · Bible · Strong et ressources"
-  },
-  {
-   "id": "bibliotheque",
-   "name": "8 · Bible · ma bibliothèque"
-  },
-  {
-   "id": "compte",
-   "name": "9 · Compte et système"
-  }
- ],
+ "pages": [],
  "boards": {
   "Main.dc.html": {
    "x": 0,
-   "y": 0,
+   "y": 300,
    "w": 390,
    "h": 844,
    "title": "Aujourd’hui",
-   "page": "fondations",
-   "radius": 28
+   "radius": 36
   },
   "F02-Realites.dc.html": {
    "x": 470,
-   "y": 0,
+   "y": 300,
    "w": 390,
    "h": 844,
    "title": "Réalités",
-   "page": "fondations",
-   "radius": 28
+   "radius": 36
   },
   "F03-Domaines.dc.html": {
    "x": 940,
-   "y": 0,
+   "y": 300,
    "w": 390,
    "h": 844,
    "title": "Domaines de vie",
-   "page": "fondations",
-   "radius": 28
+   "radius": 36
   },
   "F04-Recherche.dc.html": {
    "x": 1410,
-   "y": 0,
+   "y": 300,
    "w": 390,
    "h": 844,
    "title": "Recherche universelle",
-   "page": "fondations",
-   "radius": 28
+   "radius": 36
   },
   "F05-Scanner.dc.html": {
    "x": 1880,
-   "y": 0,
+   "y": 300,
    "w": 390,
    "h": 844,
    "title": "Scanner un code",
-   "page": "fondations",
-   "radius": 28
+   "radius": 36
   },
   "F06-Capturer.dc.html": {
    "x": 2350,
-   "y": 0,
+   "y": 300,
    "w": 390,
    "h": 844,
    "title": "Capturer une réalité",
-   "page": "fondations",
-   "radius": 28
+   "radius": 36
   },
   "F07-Principe.dc.html": {
    "x": 2820,
-   "y": 0,
+   "y": 300,
    "w": 390,
    "h": 844,
    "title": "Le principe",
-   "page": "fondations",
-   "radius": 28
+   "radius": 36
   },
   "F08-Bureau.dc.html": {
    "x": 0,
-   "y": 1004,
+   "y": 1304,
    "w": 1280,
    "h": 820,
    "title": "Empreinte sur ordinateur",
-   "page": "fondations",
    "radius": 0
   },
   "C01-Photo.dc.html": {
    "x": 0,
-   "y": 0,
+   "y": 2684,
    "w": 390,
    "h": 844,
    "title": "Photographier l’original",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C02-Lecture.dc.html": {
    "x": 470,
-   "y": 0,
+   "y": 2684,
    "w": 390,
    "h": 844,
    "title": "Lecture de la facture",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C03-Correspondance.dc.html": {
    "x": 940,
-   "y": 0,
+   "y": 2684,
    "w": 390,
    "h": 844,
    "title": "Correspondance",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C04-Identite.dc.html": {
    "x": 1410,
-   "y": 0,
+   "y": 2684,
    "w": 390,
    "h": 844,
    "title": "Identité",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C05-Contexte.dc.html": {
    "x": 1880,
-   "y": 0,
+   "y": 2684,
    "w": 390,
    "h": 844,
    "title": "Contexte",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C06-Fiche.dc.html": {
    "x": 2350,
-   "y": 0,
+   "y": 2684,
    "w": 390,
    "h": 844,
    "title": "FAC-2026-0047",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C07-Manifestations.dc.html": {
    "x": 2820,
-   "y": 0,
+   "y": 2684,
    "w": 390,
    "h": 844,
    "title": "Manifestations",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C08-Emplacement.dc.html": {
-   "x": 0,
-   "y": 1004,
+   "x": 3290,
+   "y": 2684,
    "w": 390,
    "h": 844,
    "title": "Emplacement",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C09-Etat.dc.html": {
-   "x": 470,
-   "y": 1004,
+   "x": 0,
+   "y": 3688,
    "w": 390,
    "h": 844,
    "title": "État",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C10-Preuves.dc.html": {
-   "x": 940,
-   "y": 1004,
+   "x": 470,
+   "y": 3688,
    "w": 390,
    "h": 844,
    "title": "Preuves",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C11-Relations.dc.html": {
-   "x": 1410,
-   "y": 1004,
+   "x": 940,
+   "y": 3688,
    "w": 390,
    "h": 844,
    "title": "Relations",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C12-Historique.dc.html": {
-   "x": 1880,
-   "y": 1004,
+   "x": 1410,
+   "y": 3688,
    "w": 390,
    "h": 844,
    "title": "Historique",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "C13-Lacunes.dc.html": {
-   "x": 2350,
-   "y": 1004,
+   "x": 1880,
+   "y": 3688,
    "w": 390,
    "h": 844,
    "title": "Lacunes",
-   "page": "cycle",
-   "radius": 28
+   "radius": 36
   },
   "P01-Methodes.dc.html": {
    "x": 0,
-   "y": 0,
+   "y": 5092,
    "w": 390,
    "h": 844,
    "title": "Méthodes de marquage",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "P02-Etiquette.dc.html": {
    "x": 470,
-   "y": 0,
+   "y": 5092,
    "w": 390,
    "h": 844,
    "title": "Étiquette",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "P03-Manuscrit.dc.html": {
    "x": 940,
-   "y": 0,
+   "y": 5092,
    "w": 390,
    "h": 844,
    "title": "Inscrire à la main",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "P04-Emplacement.dc.html": {
    "x": 1410,
-   "y": 0,
+   "y": 5092,
    "w": 390,
    "h": 844,
    "title": "Emplacement calculé",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "P05-PlanRangement.dc.html": {
    "x": 1880,
-   "y": 0,
+   "y": 5092,
    "w": 390,
    "h": 844,
    "title": "Plan de rangement",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "P06-Organisation.dc.html": {
    "x": 2350,
-   "y": 0,
+   "y": 5092,
    "w": 390,
    "h": 844,
    "title": "Organiser",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "P07-Criteres.dc.html": {
    "x": 2820,
-   "y": 0,
+   "y": 5092,
    "w": 390,
    "h": 844,
    "title": "Critères",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "P08-Inventaire.dc.html": {
-   "x": 0,
-   "y": 1004,
+   "x": 3290,
+   "y": 5092,
    "w": 390,
    "h": 844,
    "title": "Inventaire physique",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "P09-NumVersPhys.dc.html": {
-   "x": 470,
-   "y": 1004,
+   "x": 0,
+   "y": 6096,
    "w": 390,
    "h": 844,
    "title": "Du numérique au physique",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "P10-Detenteur.dc.html": {
-   "x": 940,
-   "y": 1004,
+   "x": 470,
+   "y": 6096,
    "w": 390,
    "h": 844,
    "title": "Confier un original",
-   "page": "physique",
-   "radius": 28
+   "radius": 36
   },
   "V01-Verifier.dc.html": {
    "x": 0,
-   "y": 0,
+   "y": 7500,
    "w": 390,
    "h": 844,
    "title": "Vérifier",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "V02-Incoherence.dc.html": {
    "x": 470,
-   "y": 0,
+   "y": 7500,
    "w": 390,
    "h": 844,
    "title": "Montants différents",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "V03-RelationManquante.dc.html": {
    "x": 940,
-   "y": 0,
+   "y": 7500,
    "w": 390,
    "h": 844,
    "title": "Paiement sans justificatif",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "V04-Doublon.dc.html": {
    "x": 1410,
-   "y": 0,
+   "y": 7500,
    "w": 390,
    "h": 844,
    "title": "Doublon possible",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "V05-Introuvable.dc.html": {
    "x": 1880,
-   "y": 0,
+   "y": 7500,
    "w": 390,
    "h": 844,
    "title": "Original introuvable",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "V06-NouvelleRealite.dc.html": {
    "x": 2350,
-   "y": 0,
+   "y": 7500,
    "w": 390,
    "h": 844,
    "title": "Nouvelle réalité",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "V07-TransitionForcee.dc.html": {
    "x": 2820,
-   "y": 0,
+   "y": 7500,
    "w": 390,
    "h": 844,
    "title": "Passage inhabituel",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "V08-JournalAltere.dc.html": {
-   "x": 0,
-   "y": 1004,
+   "x": 3290,
+   "y": 7500,
    "w": 390,
    "h": 844,
    "title": "Journal altéré",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "V09-Humain.dc.html": {
-   "x": 470,
-   "y": 1004,
+   "x": 0,
+   "y": 8504,
    "w": 390,
    "h": 844,
    "title": "Ce qui reste humain",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "V10-Rapport.dc.html": {
-   "x": 940,
-   "y": 1004,
+   "x": 470,
+   "y": 8504,
    "w": 390,
    "h": 844,
    "title": "Rapport de cohérence",
-   "page": "verifier",
-   "radius": 28
+   "radius": 36
   },
   "D01-Livre.dc.html": {
    "x": 0,
-   "y": 0,
+   "y": 9908,
    "w": 390,
    "h": 844,
    "title": "Livre",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "D02-Equipement.dc.html": {
    "x": 470,
-   "y": 0,
+   "y": 9908,
    "w": 390,
    "h": 844,
    "title": "Équipement",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "D03-BiblePhysique.dc.html": {
    "x": 940,
-   "y": 0,
+   "y": 9908,
    "w": 390,
    "h": 844,
    "title": "Bible physique",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "D04-Mission.dc.html": {
    "x": 1410,
-   "y": 0,
+   "y": 9908,
    "w": 390,
    "h": 844,
    "title": "Mission",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "D05-Distribution.dc.html": {
    "x": 1880,
-   "y": 0,
+   "y": 9908,
    "w": 390,
    "h": 844,
    "title": "Distribution",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "D06-Projet.dc.html": {
    "x": 2350,
-   "y": 0,
+   "y": 9908,
    "w": 390,
    "h": 844,
    "title": "Projet",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "D07-Journaux.dc.html": {
    "x": 2820,
-   "y": 0,
+   "y": 9908,
    "w": 390,
    "h": 844,
    "title": "Journaux",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "D08-EntreeJournal.dc.html": {
-   "x": 0,
-   "y": 1004,
+   "x": 3290,
+   "y": 9908,
    "w": 390,
    "h": 844,
    "title": "Entrée de journal",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "D09-Personne.dc.html": {
-   "x": 470,
-   "y": 1004,
+   "x": 0,
+   "y": 10912,
    "w": 390,
    "h": 844,
    "title": "Personne",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "D10-Stock.dc.html": {
-   "x": 940,
-   "y": 1004,
+   "x": 470,
+   "y": 10912,
    "w": 390,
    "h": 844,
    "title": "Stock",
-   "page": "domaines",
-   "radius": 28
+   "radius": 36
   },
   "B01-Lecteur.dc.html": {
    "x": 0,
-   "y": 0,
+   "y": 12316,
    "w": 390,
    "h": 844,
    "title": "Bible · Jean 3",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B02-Selecteur.dc.html": {
    "x": 470,
-   "y": 0,
+   "y": 12316,
    "w": 390,
    "h": 844,
    "title": "Choisir un passage",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B03-Versions.dc.html": {
    "x": 940,
-   "y": 0,
+   "y": 12316,
    "w": 390,
    "h": 844,
    "title": "Versions",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B04-SelectionVerset.dc.html": {
    "x": 1410,
-   "y": 0,
+   "y": 12316,
    "w": 390,
    "h": 844,
    "title": "Verset sélectionné",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B05-Comparer.dc.html": {
    "x": 1880,
-   "y": 0,
+   "y": 12316,
    "w": 390,
    "h": 844,
    "title": "Comparer les versions",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B06-Interlineaire.dc.html": {
    "x": 2350,
-   "y": 0,
+   "y": 12316,
    "w": 390,
    "h": 844,
    "title": "Interlinéaire",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B07-Pericopes.dc.html": {
    "x": 2820,
-   "y": 0,
+   "y": 12316,
    "w": 390,
    "h": 844,
    "title": "Péricopes",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B08-Audio.dc.html": {
-   "x": 0,
-   "y": 1004,
+   "x": 3290,
+   "y": 12316,
    "w": 390,
    "h": 844,
    "title": "Écouter",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B09-Ressources.dc.html": {
-   "x": 470,
-   "y": 1004,
+   "x": 0,
+   "y": 13320,
    "w": 390,
    "h": 844,
    "title": "Ressources du passage",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B10-Onglets.dc.html": {
-   "x": 940,
-   "y": 1004,
+   "x": 470,
+   "y": 13320,
    "w": 390,
    "h": 844,
    "title": "Onglets",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B11-JourMeditation.dc.html": {
-   "x": 1410,
-   "y": 1004,
+   "x": 940,
+   "y": 13320,
    "w": 390,
    "h": 844,
    "title": "Verset du jour",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B12-Partage.dc.html": {
-   "x": 1880,
-   "y": 1004,
+   "x": 1410,
+   "y": 13320,
    "w": 390,
    "h": 844,
    "title": "Partager un verset",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "B13-Historique.dc.html": {
-   "x": 2350,
-   "y": 1004,
+   "x": 1880,
+   "y": 13320,
    "w": 390,
    "h": 844,
    "title": "Historique",
-   "page": "bible-lecture",
-   "radius": 28
+   "radius": 36
   },
   "S01-Lexique.dc.html": {
    "x": 0,
-   "y": 0,
+   "y": 14724,
    "w": 390,
    "h": 844,
    "title": "Lexique",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S02-Mot.dc.html": {
    "x": 470,
-   "y": 0,
+   "y": 14724,
    "w": 390,
    "h": 844,
    "title": "G25 ἀγαπάω",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S03-Concordance.dc.html": {
    "x": 940,
-   "y": 0,
+   "y": 14724,
    "w": 390,
    "h": 844,
    "title": "Concordance",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S04-ParLivre.dc.html": {
    "x": 1410,
-   "y": 0,
+   "y": 14724,
    "w": 390,
    "h": 844,
    "title": "Concordance par livre",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S05-MotsLies.dc.html": {
    "x": 1880,
-   "y": 0,
+   "y": 14724,
    "w": 390,
    "h": 844,
    "title": "Mots liés",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S06-Dictionnaire.dc.html": {
    "x": 2350,
-   "y": 0,
+   "y": 14724,
    "w": 390,
    "h": 844,
    "title": "Dictionnaire",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S07-Nave.dc.html": {
    "x": 2820,
-   "y": 0,
+   "y": 14724,
    "w": 390,
    "h": 844,
    "title": "Thèmes Nave",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S08-Entites.dc.html": {
-   "x": 0,
-   "y": 1004,
+   "x": 3290,
+   "y": 14724,
    "w": 390,
    "h": 844,
    "title": "Personnes et lieux",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S09-Commentaires.dc.html": {
-   "x": 470,
-   "y": 1004,
+   "x": 0,
+   "y": 15728,
    "w": 390,
    "h": 844,
    "title": "Commentaires",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S10-Chronologie.dc.html": {
-   "x": 940,
-   "y": 1004,
+   "x": 470,
+   "y": 15728,
    "w": 390,
    "h": 844,
    "title": "Chronologie",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S11-Recherche.dc.html": {
-   "x": 1410,
-   "y": 1004,
+   "x": 940,
+   "y": 15728,
    "w": 390,
    "h": 844,
    "title": "Recherche biblique",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "S12-Assistant.dc.html": {
-   "x": 1880,
-   "y": 1004,
+   "x": 1410,
+   "y": 15728,
    "w": 390,
    "h": 844,
    "title": "Assistant d’étude",
-   "page": "strong",
-   "radius": 28
+   "radius": 36
   },
   "L01-Bibliotheque.dc.html": {
    "x": 0,
-   "y": 0,
+   "y": 17132,
    "w": 390,
    "h": 844,
    "title": "Ma bibliothèque",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L02-Surbrillances.dc.html": {
    "x": 470,
-   "y": 0,
+   "y": 17132,
    "w": 390,
    "h": 844,
    "title": "Surbrillances",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L03-MarquePages.dc.html": {
    "x": 940,
-   "y": 0,
+   "y": 17132,
    "w": 390,
    "h": 844,
    "title": "Marque-pages",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L04-Notes.dc.html": {
    "x": 1410,
-   "y": 0,
+   "y": 17132,
    "w": 390,
    "h": 844,
    "title": "Notes",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L05-Liens.dc.html": {
    "x": 1880,
-   "y": 0,
+   "y": 17132,
    "w": 390,
    "h": 844,
    "title": "Liens",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L06-Etudes.dc.html": {
    "x": 2350,
-   "y": 0,
+   "y": 17132,
    "w": 390,
    "h": 844,
    "title": "Études",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L07-EditeurEtude.dc.html": {
    "x": 2820,
-   "y": 0,
+   "y": 17132,
    "w": 390,
    "h": 844,
    "title": "Étude",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L08-Etiquettes.dc.html": {
-   "x": 0,
-   "y": 1004,
+   "x": 3290,
+   "y": 17132,
    "w": 390,
    "h": 844,
    "title": "Étiquettes",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L09-Plans.dc.html": {
-   "x": 470,
-   "y": 1004,
+   "x": 0,
+   "y": 18136,
    "w": 390,
    "h": 844,
    "title": "Plans de lecture",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L10-Plan.dc.html": {
-   "x": 940,
-   "y": 1004,
+   "x": 470,
+   "y": 18136,
    "w": 390,
    "h": 844,
    "title": "Plan du jour",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "L12-Meditation.dc.html": {
-   "x": 1410,
-   "y": 1004,
+   "x": 940,
+   "y": 18136,
    "w": 390,
    "h": 844,
    "title": "Méditation",
-   "page": "bibliotheque",
-   "radius": 28
+   "radius": 36
   },
   "A01-Plus.dc.html": {
    "x": 0,
-   "y": 0,
+   "y": 19540,
    "w": 390,
    "h": 844,
    "title": "Plus",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   },
   "A02-Connexion.dc.html": {
    "x": 470,
-   "y": 0,
+   "y": 19540,
    "w": 390,
    "h": 844,
    "title": "Connexion",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   },
   "A03-Profil.dc.html": {
    "x": 940,
-   "y": 0,
+   "y": 19540,
    "w": 390,
    "h": 844,
    "title": "Profil",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   },
   "A04-Sauvegarde.dc.html": {
    "x": 1410,
-   "y": 0,
+   "y": 19540,
    "w": 390,
    "h": 844,
    "title": "Sauvegarde",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   },
   "A05-ImportExport.dc.html": {
    "x": 1880,
-   "y": 0,
+   "y": 19540,
    "w": 390,
    "h": 844,
    "title": "Importer / exporter",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   },
   "A06-Telechargements.dc.html": {
    "x": 2350,
-   "y": 0,
+   "y": 19540,
    "w": 390,
    "h": 844,
    "title": "Téléchargements",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   },
   "A07-Theme.dc.html": {
    "x": 2820,
-   "y": 0,
+   "y": 19540,
    "w": 390,
    "h": 844,
    "title": "Apparence",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   },
   "A08-Langue.dc.html": {
-   "x": 0,
-   "y": 1004,
+   "x": 3290,
+   "y": 19540,
    "w": 390,
    "h": 844,
    "title": "Langue",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   },
   "A09-Confidentialite.dc.html": {
-   "x": 470,
-   "y": 1004,
+   "x": 0,
+   "y": 20544,
    "w": 390,
    "h": 844,
    "title": "Confidentialité",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   },
   "A10-Aide.dc.html": {
-   "x": 940,
-   "y": 1004,
+   "x": 470,
+   "y": 20544,
    "w": 390,
    "h": 844,
    "title": "Aide",
-   "page": "compte",
-   "radius": 28
+   "radius": 36
   }
  },
  "order": [
@@ -1024,85 +889,75 @@
  "notes": {
   "t-fondations": {
    "x": 0,
-   "y": -300,
+   "y": 0,
    "text": "Fondations",
    "kind": "title1",
-   "maxW": 3210,
-   "page": "fondations"
+   "maxW": 3680
   },
   "t-cycle": {
    "x": 0,
-   "y": -300,
+   "y": 2384,
    "text": "Le cycle d’une réalité : la facture F-47",
    "kind": "title1",
-   "maxW": 3210,
-   "page": "cycle"
+   "maxW": 3680
   },
   "t-physique": {
    "x": 0,
-   "y": -300,
+   "y": 4792,
    "text": "Le lien physique ↔ numérique",
    "kind": "title1",
-   "maxW": 3210,
-   "page": "physique"
+   "maxW": 3680
   },
   "t-verifier": {
    "x": 0,
-   "y": -300,
+   "y": 7200,
    "text": "Vérifier : le système signale, l’humain décide",
    "kind": "title1",
-   "maxW": 3210,
-   "page": "verifier"
+   "maxW": 3680
   },
   "t-domaines": {
    "x": 0,
-   "y": -300,
+   "y": 9608,
    "text": "Toute réalité : livre, équipement, Bible, mission, projet, journaux",
    "kind": "title1",
-   "maxW": 3210,
-   "page": "domaines"
+   "maxW": 3680
   },
   "t-bible-lecture": {
    "x": 0,
-   "y": -300,
+   "y": 12016,
    "text": "Bible Strong · lecture, dans Empreinte",
    "kind": "title1",
-   "maxW": 3210,
-   "page": "bible-lecture"
+   "maxW": 3680
   },
   "t-strong": {
    "x": 0,
-   "y": -300,
+   "y": 14424,
    "text": "Bible Strong · Strong, dictionnaires, ressources",
    "kind": "title1",
-   "maxW": 3210,
-   "page": "strong"
+   "maxW": 3680
   },
   "t-bibliotheque": {
    "x": 0,
-   "y": -300,
+   "y": 16832,
    "text": "Bible Strong · ma bibliothèque d’étude",
    "kind": "title1",
-   "maxW": 3210,
-   "page": "bibliotheque"
+   "maxW": 3680
   },
   "t-compte": {
    "x": 0,
-   "y": -300,
+   "y": 19240,
    "text": "Compte, synchronisation, système",
    "kind": "title1",
-   "maxW": 3210,
-   "page": "compte"
+   "maxW": 3680
   },
   "legende": {
    "x": 0,
-   "y": -190,
-   "text": "Vert = physique (original, objet, emplacement). Bleu encre = numérique (photo, données, notes, Bible). Rouge / orange = vérifications. Les écrans sont reliés : Play sur un écran pour naviguer.",
-   "w": 640,
-   "size": "m",
+   "y": -260,
+   "text": "97 écrans · 9 parcours. Vert = physique (original, objet, emplacement). Bleu = numérique (photo, données, notes, Bible). Rouge / orange = vérifications. Le papier reste papier : les documents apparaissent sur fond clair. Bouton Play sur un écran pour naviguer.",
+   "w": 900,
+   "size": "l",
    "fill": "gray",
-   "maxH": 120,
-   "page": "fondations"
+   "maxH": 200
   }
  },
  "designSystems": []

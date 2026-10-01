@@ -1,26 +1,26 @@
 import json, os, html
 R=os.path.join(os.path.dirname(os.path.abspath(__file__)),'project')
-FONT='<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500&amp;family=Literata:opsz,wght@7..72,400;7..72,600&amp;display=swap">'
-PHY='#1F6B4F'; NUM='#2E46C2'; CRIT='#B42318'; WARN='#B76E00'; INFO='#5B6763'; INK='#18211F'
+FONT='<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;125,800&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;700&amp;family=Literata:opsz,wght@7..72,400;7..72,600&amp;display=swap">'
+PHY='#5BD6A0'; NUM='#6C8CFF'; CRIT='#FF6B5E'; WARN='#F5B94A'; INFO='#8B96A3'; INK='#18211F'
 STYLE='''<style>
 body{margin:0}
 a{color:#2E46C2}a:hover{color:#1F3196}
-.app{width:390px;height:844px;box-sizing:border-box;background:#F2F3EF;color:#18211F;font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.45;display:flex;flex-direction:column;overflow:hidden;position:relative}
+.app{width:390px;height:844px;box-sizing:border-box;background:#F2F3EF;color:#18211F;font-family:"Instrument Sans",system-ui,sans-serif;font-size:15px;line-height:1.45;display:flex;flex-direction:column;overflow:hidden;position:relative}
 .top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:52px 20px 10px;min-height:44px}
 .toptitle{font-weight:600;font-size:16px;text-align:center;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin:0}
-.h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;margin:0}
+.h1{font-family:"Archivo",sans-serif;font-stretch:125%;font-weight:800;font-size:27px;line-height:1.08;letter-spacing:-0.015em;margin:0}
+.h2{font-family:"Archivo",sans-serif;font-stretch:112%;font-weight:600;font-size:16.5px;letter-spacing:-0.005em;margin:0}
 .eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5B6763}
-.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:500}
 .serif{font-family:"Literata",Georgia,serif}
-.scroll{flex:1;overflow:hidden;padding:0 20px 16px;display:flex;flex-direction:column;gap:12px}
-.card{background:#FFFFFF;border:1px solid #DDE0D9;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.scroll{flex:1;overflow:hidden;padding:0 18px 104px;display:flex;flex-direction:column;gap:12px}
+.card{background:#FFFFFF;border:1px solid #DDE0D9;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:8px}
 .row{display:flex;align-items:center;gap:10px}
 .between{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .col{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
 .muted{color:#5B6763;font-size:13px}
 .small{font-size:12px}
-.chip{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;font-size:12.5px;font-weight:600;white-space:nowrap;border:none;font-family:"IBM Plex Sans",sans-serif}
+.chip{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;font-size:12.5px;font-weight:600;white-space:nowrap;border:none;font-family:"Instrument Sans",sans-serif}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
 .phy{background:#E3EFE8;color:#17573F}
 .num{background:#E6EAFB;color:#2438A3}
@@ -30,17 +30,17 @@ a{color:#2E46C2}a:hover{color:#1F3196}
 .ink{background:#18211F;color:#FFFFFF}
 .ghost{background:#FFFFFF;color:#18211F;border:1px solid #DDE0D9}
 .dot{width:8px;height:8px;border-radius:4px;flex:none;display:inline-block}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 16px;border-radius:12px;font:600 15px "IBM Plex Sans",sans-serif;border:none;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 18px;border-radius:25px;font:600 15px "Instrument Sans",sans-serif;border:none;cursor:pointer;text-decoration:none;box-sizing:border-box}
 .btn-ink{background:#18211F;color:#FFFFFF}
 .btn-line{background:#FFFFFF;color:#18211F;border:1px solid #C9CEC6}
-.btn-sm{height:38px;font-size:13.5px;padding:0 12px;border-radius:10px}
+.btn-sm{height:38px;font-size:13.5px;padding:0 14px;border-radius:19px}
 .icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .ic16{width:16px;height:16px}
 .iconbtn{width:44px;height:44px;border-radius:22px;border:1px solid #DDE0D9;background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#18211F;cursor:pointer;padding:0;flex:none;box-sizing:border-box}
-.nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:#FFFFFF;border-top:1px solid #DDE0D9;padding:8px 6px 26px}
+.nav{position:absolute;left:14px;right:14px;bottom:18px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:#1B2430;border:1px solid #2B3644;border-radius:30px;padding:8px 6px 6px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
 .nav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:#5B6763;text-decoration:none;padding-top:4px}
-.nav a.on{color:#18211F;font-weight:600}
-.nav .cap{width:52px;height:52px;border-radius:26px;background:#18211F;color:#FFFFFF;display:flex;align-items:center;justify-content:center;margin-top:-22px;border:4px solid #F2F3EF}
+.nav a.on{color:#6C8CFF;font-weight:600}
+.nav .cap{width:50px;height:50px;border-radius:25px;background:linear-gradient(135deg,#5BD6A0,#6C8CFF);color:#0B1016;display:flex;align-items:center;justify-content:center;margin-top:-20px;border:4px solid #0E1319}
 .path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13.5px}
 .sep{color:#8A948F}
 .bar{height:6px;border-radius:3px;background:#E3E6E0;overflow:hidden;display:block}
@@ -50,17 +50,17 @@ a{color:#2E46C2}a:hover{color:#1F3196}
 .li:first-child{border-top:none;padding-top:2px}
 .li:last-child{padding-bottom:2px}
 .sev{width:4px;align-self:stretch;border-radius:2px;flex:none;min-height:34px}
-.tile{background:#FFFFFF;border:1px solid #DDE0D9;border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;text-decoration:none;color:inherit;min-width:0}
+.tile{background:#FFFFFF;border:1px solid #DDE0D9;border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;text-decoration:none;color:inherit;min-width:0}
 .g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .ibox{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
-.search{display:flex;align-items:center;gap:8px;height:44px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE0D9;padding:0 12px;color:#5B6763;font-size:14.5px}
+.search{display:flex;align-items:center;gap:8px;height:46px;border-radius:23px;background:#FFFFFF;border:1px solid #DDE0D9;padding:0 12px;color:#5B6763;font-size:14.5px}
 .seg{display:flex;background:#E6E8E3;border-radius:10px;padding:3px;gap:2px}
 .seg span{flex:1;text-align:center;font-size:13px;font-weight:600;padding:6px 0;border-radius:8px;color:#5B6763}
 .seg span.on{background:#FFFFFF;color:#18211F}
 .verse{font-family:"Literata",Georgia,serif;font-size:17.5px;line-height:1.7;color:#1F2523;margin:0}
-.vn{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#5B6763;vertical-align:super;margin-right:3px}
+.vn{font-family:"JetBrains Mono",monospace;font-size:11px;color:#5B6763;vertical-align:super;margin-right:3px}
 .sheet{background:#FFFFFF;border-radius:20px 20px 0 0;border-top:1px solid #DDE0D9;padding:16px 20px 30px;display:flex;flex-direction:column;gap:12px}
 .toggle{width:44px;height:26px;border-radius:13px;background:#C9CEC6;position:relative;flex:none}
 .toggle.on{background:#1F6B4F}
@@ -69,7 +69,8 @@ a{color:#2E46C2}a:hover{color:#1F3196}
 .field{display:flex;flex-direction:column;gap:4px}
 .field label{font-size:12.5px;color:#5B6763;font-weight:500}
 .input{height:44px;border-radius:10px;border:1px solid #C9CEC6;background:#FFFFFF;padding:0 12px;display:flex;align-items:center;font-size:15px;box-sizing:border-box}
-.hash{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#8A948F}
+.fp{position:relative;overflow:hidden}.fp::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:repeating-radial-gradient(circle at 50% 60%,transparent 0 9px,rgba(108,140,255,.16) 9px 10.5px);pointer-events:none}
+.hash{font-family:"JetBrains Mono",monospace;font-size:11px;color:#8A948F}
 </style>'''
 I={
 'home':'<path d="M3 10.5 12 3l9 7.5V21H3z"/><path d="M9.5 21v-6h5v6"/>',
@@ -222,7 +223,7 @@ SCREENS={}
 def screen(fname,title,body,page,lang='fr'):
     SCREENS[fname]=dict(title=title,body=body,page=page)
 def render(fname,s):
-    return f'''<!doctype html>
+    return recolor(f'''<!doctype html>
 <html lang="fr">
 <head>
 <meta charset="utf-8">
@@ -248,8 +249,19 @@ return {{}};
 </script>
 </body>
 </html>
-'''
+''')
 QRBITS=["1111111010110111111","1000001011010100001","1011101001101101101","1011101110010101101","1011101010111101101","1000001001010100001","1111111010101011111","0000000011010000000","1101011100111011010","0110100101100100111","1011011010011011001","0101100111010110110","1100111001101001011","0000000010110101010","1111111001011010110","1000001011100110001","1011101010011011101","1000001101101000110","1111111010110110011"]
 def qr(size=120,color=INK):
     r=''.join(f'<rect x="{x}" y="{y}" width="1" height="1"/>' for y,row in enumerate(QRBITS) for x,c in enumerate(row) if c=='1')
     return f'<svg viewBox="-1 -1 21 21" width="{size}" height="{size}" fill="{color}" shape-rendering="crispEdges" role="img" aria-label="QR code">{r}</svg>'
+
+CMAP=[('#F2F3EF','#0E1319'),('#18211F','#ECEFF3'),('#FFFFFF','#171E27'),('#ffffff','#171E27'),('#5B6763','#8B96A3'),('#DDE0D9','#26303B'),('#E6E8E3','#212A35'),('#EEF0EC','#212A35'),('#C9CEC6','#3A4552'),('#E3E6E0','#26303B'),('#E6E8E3','#212A35'),('#8A948F','#5E6A77'),
+('#E3EFE8','#123228'),('#17573F','#7FE3B6'),('#E6EAFB','#18224A'),('#2438A3','#A9BBFF'),('#FBE5E3','#3A1716'),('#9A1D12','#FF8A7A'),('#FCEFD9','#33270F'),('#8A5300','#F5C46A'),('#E9ECEB','#222A33'),('#3B4643','#B8C2CC'),
+('#FFF2C9','#3B3214'),('#DDF3E4','#16301F'),('#DCE6FF','#1A2648'),('#FBE1EC','#3A1A28'),('#FFE4CC','#3A2614'),('#1F2523','#E4E8EC'),('#1F3196','#A9BBFF'),('#2E46C2','#6C8CFF'),
+('#F0C9C4','#5A2522'),('#FFF8F7','#211416'),('#C8D0F5','#2E3D78'),('#C2DDCD','#1F5A44'),('#8CC5A8','#2F7D5E'),('#E9EBE6','#121820'),('#1F2E2A','#13302A'),('#A9C4B8','#7FE3B6'),('#30302C','#30302C'),('#C9D2CE','#9AA6B2'),('#1F6B4F','#3FB984'),('#B42318','#FF6B5E'),('#B76E00','#F5B94A'),('#475467','#8B96A3'),('#262E2B','#1B2430'),('#3A4440','#2B3644')]
+def recolor(t):
+    import re
+    # protect paper renderings: keep light papers as is
+    for a,b in CMAP:
+        t=re.sub(re.escape(a),'\x00'+b[1:]+'\x00',t,flags=re.I)
+    return t.replace('\x00','#',1) if False else re.sub('\x00([0-9A-Fa-f]{6})\x00',lambda m:'#'+m.group(1),t)

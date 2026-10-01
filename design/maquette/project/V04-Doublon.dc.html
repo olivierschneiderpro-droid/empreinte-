@@ -8,79 +8,80 @@
 <body>
 <x-dc>
 <helmet>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&amp;family=IBM+Plex+Sans:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@500&amp;family=Literata:opsz,wght@7..72,400;7..72,600&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@112,600;125,800&amp;family=Instrument+Sans:wght@400;500;600&amp;family=JetBrains+Mono:wght@500;700&amp;family=Literata:opsz,wght@7..72,400;7..72,600&amp;display=swap">
 <style>
 body{margin:0}
-a{color:#2E46C2}a:hover{color:#1F3196}
-.app{width:390px;height:844px;box-sizing:border-box;background:#F2F3EF;color:#18211F;font-family:"IBM Plex Sans",system-ui,sans-serif;font-size:15px;line-height:1.45;display:flex;flex-direction:column;overflow:hidden;position:relative}
+a{color:#6C8CFF}a:hover{color:#A9BBFF}
+.app{width:390px;height:844px;box-sizing:border-box;background:#0E1319;color:#ECEFF3;font-family:"Instrument Sans",system-ui,sans-serif;font-size:15px;line-height:1.45;display:flex;flex-direction:column;overflow:hidden;position:relative}
 .top{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:52px 20px 10px;min-height:44px}
 .toptitle{font-weight:600;font-size:16px;text-align:center;flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:28px;line-height:1.1;letter-spacing:-0.01em;margin:0}
-.h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;margin:0}
-.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#5B6763}
-.mono{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500}
+.h1{font-family:"Archivo",sans-serif;font-stretch:125%;font-weight:800;font-size:27px;line-height:1.08;letter-spacing:-0.015em;margin:0}
+.h2{font-family:"Archivo",sans-serif;font-stretch:112%;font-weight:600;font-size:16.5px;letter-spacing:-0.005em;margin:0}
+.eyebrow{font-size:11.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#8B96A3}
+.mono{font-family:"JetBrains Mono",ui-monospace,monospace;font-weight:500}
 .serif{font-family:"Literata",Georgia,serif}
-.scroll{flex:1;overflow:hidden;padding:0 20px 16px;display:flex;flex-direction:column;gap:12px}
-.card{background:#FFFFFF;border:1px solid #DDE0D9;border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.scroll{flex:1;overflow:hidden;padding:0 18px 104px;display:flex;flex-direction:column;gap:12px}
+.card{background:#171E27;border:1px solid #26303B;border-radius:20px;padding:16px;display:flex;flex-direction:column;gap:8px}
 .row{display:flex;align-items:center;gap:10px}
 .between{display:flex;align-items:center;justify-content:space-between;gap:10px}
 .col{display:flex;flex-direction:column;gap:2px;min-width:0;flex:1}
-.muted{color:#5B6763;font-size:13px}
+.muted{color:#8B96A3;font-size:13px}
 .small{font-size:12px}
-.chip{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;font-size:12.5px;font-weight:600;white-space:nowrap;border:none;font-family:"IBM Plex Sans",sans-serif}
+.chip{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;border-radius:13px;font-size:12.5px;font-weight:600;white-space:nowrap;border:none;font-family:"Instrument Sans",sans-serif}
 .chips{display:flex;flex-wrap:wrap;gap:6px}
-.phy{background:#E3EFE8;color:#17573F}
-.num{background:#E6EAFB;color:#2438A3}
-.crit{background:#FBE5E3;color:#9A1D12}
-.warn{background:#FCEFD9;color:#8A5300}
-.info{background:#E9ECEB;color:#3B4643}
-.ink{background:#18211F;color:#FFFFFF}
-.ghost{background:#FFFFFF;color:#18211F;border:1px solid #DDE0D9}
+.phy{background:#123228;color:#7FE3B6}
+.num{background:#18224A;color:#A9BBFF}
+.crit{background:#3A1716;color:#FF8A7A}
+.warn{background:#33270F;color:#F5C46A}
+.info{background:#222A33;color:#B8C2CC}
+.ink{background:#ECEFF3;color:#171E27}
+.ghost{background:#171E27;color:#ECEFF3;border:1px solid #26303B}
 .dot{width:8px;height:8px;border-radius:4px;flex:none;display:inline-block}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 16px;border-radius:12px;font:600 15px "IBM Plex Sans",sans-serif;border:none;cursor:pointer;text-decoration:none;box-sizing:border-box}
-.btn-ink{background:#18211F;color:#FFFFFF}
-.btn-line{background:#FFFFFF;color:#18211F;border:1px solid #C9CEC6}
-.btn-sm{height:38px;font-size:13.5px;padding:0 12px;border-radius:10px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:50px;padding:0 18px;border-radius:25px;font:600 15px "Instrument Sans",sans-serif;border:none;cursor:pointer;text-decoration:none;box-sizing:border-box}
+.btn-ink{background:#ECEFF3;color:#171E27}
+.btn-line{background:#171E27;color:#ECEFF3;border:1px solid #3A4552}
+.btn-sm{height:38px;font-size:13.5px;padding:0 14px;border-radius:19px}
 .icon{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
 .ic16{width:16px;height:16px}
-.iconbtn{width:44px;height:44px;border-radius:22px;border:1px solid #DDE0D9;background:#FFFFFF;display:flex;align-items:center;justify-content:center;color:#18211F;cursor:pointer;padding:0;flex:none;box-sizing:border-box}
-.nav{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:#FFFFFF;border-top:1px solid #DDE0D9;padding:8px 6px 26px}
-.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:#5B6763;text-decoration:none;padding-top:4px}
-.nav a.on{color:#18211F;font-weight:600}
-.nav .cap{width:52px;height:52px;border-radius:26px;background:#18211F;color:#FFFFFF;display:flex;align-items:center;justify-content:center;margin-top:-22px;border:4px solid #F2F3EF}
+.iconbtn{width:44px;height:44px;border-radius:22px;border:1px solid #26303B;background:#171E27;display:flex;align-items:center;justify-content:center;color:#ECEFF3;cursor:pointer;padding:0;flex:none;box-sizing:border-box}
+.nav{position:absolute;left:14px;right:14px;bottom:18px;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));background:#1B2430;border:1px solid #2B3644;border-radius:30px;padding:8px 6px 6px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.nav a{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:#8B96A3;text-decoration:none;padding-top:4px}
+.nav a.on{color:#6C8CFF;font-weight:600}
+.nav .cap{width:50px;height:50px;border-radius:25px;background:linear-gradient(135deg,#5BD6A0,#6C8CFF);color:#0B1016;display:flex;align-items:center;justify-content:center;margin-top:-20px;border:4px solid #0E1319}
 .path{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:13.5px}
-.sep{color:#8A948F}
-.bar{height:6px;border-radius:3px;background:#E3E6E0;overflow:hidden;display:block}
+.sep{color:#5E6A77}
+.bar{height:6px;border-radius:3px;background:#26303B;overflow:hidden;display:block}
 .bar i{display:block;height:6px;border-radius:3px}
 .list{display:flex;flex-direction:column}
-.li{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #E6E8E3;text-decoration:none;color:inherit}
+.li{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid #212A35;text-decoration:none;color:inherit}
 .li:first-child{border-top:none;padding-top:2px}
 .li:last-child{padding-bottom:2px}
 .sev{width:4px;align-self:stretch;border-radius:2px;flex:none;min-height:34px}
-.tile{background:#FFFFFF;border:1px solid #DDE0D9;border-radius:12px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;text-decoration:none;color:inherit;min-width:0}
+.tile{background:#171E27;border:1px solid #26303B;border-radius:16px;padding:12px 14px;display:flex;flex-direction:column;gap:2px;text-decoration:none;color:inherit;min-width:0}
 .g2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
 .g3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
 .ibox{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;flex:none}
-.search{display:flex;align-items:center;gap:8px;height:44px;border-radius:12px;background:#FFFFFF;border:1px solid #DDE0D9;padding:0 12px;color:#5B6763;font-size:14.5px}
-.seg{display:flex;background:#E6E8E3;border-radius:10px;padding:3px;gap:2px}
-.seg span{flex:1;text-align:center;font-size:13px;font-weight:600;padding:6px 0;border-radius:8px;color:#5B6763}
-.seg span.on{background:#FFFFFF;color:#18211F}
-.verse{font-family:"Literata",Georgia,serif;font-size:17.5px;line-height:1.7;color:#1F2523;margin:0}
-.vn{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#5B6763;vertical-align:super;margin-right:3px}
-.sheet{background:#FFFFFF;border-radius:20px 20px 0 0;border-top:1px solid #DDE0D9;padding:16px 20px 30px;display:flex;flex-direction:column;gap:12px}
-.toggle{width:44px;height:26px;border-radius:13px;background:#C9CEC6;position:relative;flex:none}
-.toggle.on{background:#1F6B4F}
-.toggle i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:10px;background:#FFFFFF}
+.search{display:flex;align-items:center;gap:8px;height:46px;border-radius:23px;background:#171E27;border:1px solid #26303B;padding:0 12px;color:#8B96A3;font-size:14.5px}
+.seg{display:flex;background:#212A35;border-radius:10px;padding:3px;gap:2px}
+.seg span{flex:1;text-align:center;font-size:13px;font-weight:600;padding:6px 0;border-radius:8px;color:#8B96A3}
+.seg span.on{background:#171E27;color:#ECEFF3}
+.verse{font-family:"Literata",Georgia,serif;font-size:17.5px;line-height:1.7;color:#E4E8EC;margin:0}
+.vn{font-family:"JetBrains Mono",monospace;font-size:11px;color:#8B96A3;vertical-align:super;margin-right:3px}
+.sheet{background:#171E27;border-radius:20px 20px 0 0;border-top:1px solid #26303B;padding:16px 20px 30px;display:flex;flex-direction:column;gap:12px}
+.toggle{width:44px;height:26px;border-radius:13px;background:#3A4552;position:relative;flex:none}
+.toggle.on{background:#3FB984}
+.toggle i{position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:10px;background:#171E27}
 .toggle.on i{left:21px}
 .field{display:flex;flex-direction:column;gap:4px}
-.field label{font-size:12.5px;color:#5B6763;font-weight:500}
-.input{height:44px;border-radius:10px;border:1px solid #C9CEC6;background:#FFFFFF;padding:0 12px;display:flex;align-items:center;font-size:15px;box-sizing:border-box}
-.hash{font-family:"IBM Plex Mono",monospace;font-size:11px;color:#8A948F}
+.field label{font-size:12.5px;color:#8B96A3;font-weight:500}
+.input{height:44px;border-radius:10px;border:1px solid #3A4552;background:#171E27;padding:0 12px;display:flex;align-items:center;font-size:15px;box-sizing:border-box}
+.fp{position:relative;overflow:hidden}.fp::after{content:"";position:absolute;right:-60px;top:-60px;width:220px;height:220px;border-radius:50%;background:repeating-radial-gradient(circle at 50% 60%,transparent 0 9px,rgba(108,140,255,.16) 9px 10.5px);pointer-events:none}
+.hash{font-family:"JetBrains Mono",monospace;font-size:11px;color:#5E6A77}
 </style>
 </helmet>
 <div class="app">
-<div class="top"><a class="iconbtn" href="V01-Verifier.dc.html" aria-label="Retour"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="toptitle">Doublon possible</span><span style="width:44px;flex:none"></span></div><div class="scroll" style="gap:12px"><div class="g2"><div class="tile" style="gap:6px"><div style="height:120px;background:#F7F5EE;border-radius:6px;padding:8px;font-size:9px;color:#30302C;display:flex;flex-direction:column;gap:3px"><strong>FACTURE</strong><span>N° F-46</span><span>27/09/2026</span><span style="margin-top:auto">1 250,00 €</span></div><strong class="mono small">FAC-2026-0046</strong><span class="muted small">Pochette 14</span></div><div class="tile" style="gap:6px"><div style="height:120px;background:#F7F5EE;border-radius:6px;padding:8px;font-size:9px;color:#30302C;display:flex;flex-direction:column;gap:3px"><strong>FACTURE</strong><span>N° F-47</span><span>28/09/2026</span><span style="margin-top:auto">1 250,00 €</span></div><strong class="mono small">FAC-2026-0047</strong><span class="muted small">Pochette 14</span></div></div><div class="card" style="gap:2px"><div class="between" style="padding:6px 0;border-top:1px solid #EEF0EC"><span class="muted">Même montant</span><span style="font-weight:600;text-align:right">oui</span></div><div class="between" style="padding:6px 0;border-top:1px solid #EEF0EC"><span class="muted">Même émetteur</span><span style="font-weight:600;text-align:right">oui</span></div><div class="between" style="padding:6px 0;border-top:1px solid #EEF0EC"><span class="muted">Numéro</span><span style="font-weight:600;text-align:right">différent</span></div><div class="between" style="padding:6px 0;border-top:1px solid #EEF0EC"><span class="muted">Date</span><span style="font-weight:600;text-align:right">différente</span></div><div class="between" style="padding:6px 0;border-top:1px solid #EEF0EC"><span class="muted">Lignes</span><span style="font-weight:600;text-align:right">différentes</span></div></div><div class="card"><label class="li" style="cursor:pointer"><input type="radio" name="dbl" checked style="width:20px;height:20px;accent-color:#18211F"><span class="col"><strong style="font-weight:600">Deux réalités distinctes</strong></span></label><label class="li" style="cursor:pointer"><input type="radio" name="dbl"  style="width:20px;height:20px;accent-color:#18211F"><span class="col"><strong style="font-weight:600">L’une est la copie de l’autre</strong></span></label><label class="li" style="cursor:pointer"><input type="radio" name="dbl"  style="width:20px;height:20px;accent-color:#18211F"><span class="col"><strong style="font-weight:600">Nouvelle version (facture rectificative)</strong></span></label><label class="li" style="cursor:pointer"><input type="radio" name="dbl"  style="width:20px;height:20px;accent-color:#18211F"><span class="col"><strong style="font-weight:600">Vrai doublon : fusionner</strong></span></label></div><button class="btn btn-ink" type="button" style="">Confirmer</button></div>
+<div class="top"><a class="iconbtn" href="V01-Verifier.dc.html" aria-label="Retour"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></a><span class="toptitle">Doublon possible</span><span style="width:44px;flex:none"></span></div><div class="scroll" style="gap:12px"><div class="g2"><div class="tile" style="gap:6px"><div style="height:120px;background:#F7F5EE;border-radius:6px;padding:8px;font-size:9px;color:#30302C;display:flex;flex-direction:column;gap:3px"><strong>FACTURE</strong><span>N° F-46</span><span>27/09/2026</span><span style="margin-top:auto">1 250,00 €</span></div><strong class="mono small">FAC-2026-0046</strong><span class="muted small">Pochette 14</span></div><div class="tile" style="gap:6px"><div style="height:120px;background:#F7F5EE;border-radius:6px;padding:8px;font-size:9px;color:#30302C;display:flex;flex-direction:column;gap:3px"><strong>FACTURE</strong><span>N° F-47</span><span>28/09/2026</span><span style="margin-top:auto">1 250,00 €</span></div><strong class="mono small">FAC-2026-0047</strong><span class="muted small">Pochette 14</span></div></div><div class="card" style="gap:2px"><div class="between" style="padding:6px 0;border-top:1px solid #212A35"><span class="muted">Même montant</span><span style="font-weight:600;text-align:right">oui</span></div><div class="between" style="padding:6px 0;border-top:1px solid #212A35"><span class="muted">Même émetteur</span><span style="font-weight:600;text-align:right">oui</span></div><div class="between" style="padding:6px 0;border-top:1px solid #212A35"><span class="muted">Numéro</span><span style="font-weight:600;text-align:right">différent</span></div><div class="between" style="padding:6px 0;border-top:1px solid #212A35"><span class="muted">Date</span><span style="font-weight:600;text-align:right">différente</span></div><div class="between" style="padding:6px 0;border-top:1px solid #212A35"><span class="muted">Lignes</span><span style="font-weight:600;text-align:right">différentes</span></div></div><div class="card"><label class="li" style="cursor:pointer"><input type="radio" name="dbl" checked style="width:20px;height:20px;accent-color:#ECEFF3"><span class="col"><strong style="font-weight:600">Deux réalités distinctes</strong></span></label><label class="li" style="cursor:pointer"><input type="radio" name="dbl"  style="width:20px;height:20px;accent-color:#ECEFF3"><span class="col"><strong style="font-weight:600">L’une est la copie de l’autre</strong></span></label><label class="li" style="cursor:pointer"><input type="radio" name="dbl"  style="width:20px;height:20px;accent-color:#ECEFF3"><span class="col"><strong style="font-weight:600">Nouvelle version (facture rectificative)</strong></span></label><label class="li" style="cursor:pointer"><input type="radio" name="dbl"  style="width:20px;height:20px;accent-color:#ECEFF3"><span class="col"><strong style="font-weight:600">Vrai doublon : fusionner</strong></span></label></div><button class="btn btn-ink" type="button" style="">Confirmer</button></div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>

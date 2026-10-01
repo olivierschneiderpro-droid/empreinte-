@@ -39,7 +39,7 @@ for c in range(2):
     secs+=f'<div class="row" style="gap:4px"><span class="mono small" style="width:14px">{s}</span>'+''.join(f'<span style="flex:1;height:14px;border-radius:3px;background:{"#18211F" if (c==1 and s=="B" and k==2) else "#1F6B4F" if o>=10 else "#8CC5A8" if o>0 else "#E3E6E0"}"></span>' for k,o in enumerate(occ))+'</div>'
   cells+=f'<div class="card" style="gap:6px"><strong class="mono">Classeur 0{c+1}</strong>{secs}</div>'
 screen('P05-PlanRangement.dc.html','Plan de rangement',top('Rangement physique','P06-Organisation.dc.html')+scroll(
-'<span class="muted" style="font-size:14px">Chaque case est une pochette. La noire est celle de FAC-2026-0047.</span>',
+'<span class="muted" style="font-size:14px">Chaque case est une pochette. La case blanche est celle de FAC-2026-0047.</span>',
 cells,
 chips(chip('<span class="dot" style="background:#1F6B4F"></span>pleine','ghost'),chip('<span class="dot" style="background:#8CC5A8"></span>entamée','ghost'),chip('<span class="dot" style="background:#E3E6E0"></span>libre','ghost')),
 kvs(('Sections attribuées','Fournisseurs 2026 → 02-B · Clients 2026 → 01-A · Maison → 01-C')),

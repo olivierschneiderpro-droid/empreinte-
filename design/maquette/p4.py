@@ -15,7 +15,7 @@ grid(2,tile('Cohérence globale','94 %',href='V10-Rapport.dc.html'),tile('Décis
 screen('V02-Incoherence.dc.html','Montants différents',top('Montants différents','V01-Verifier.dc.html')+scroll(
 note('Anomalie détectée — vérification nécessaire.','crit','alert'),
 grid(2,f'<div class="tile" style="background:#E3EFE8"><span class="muted small">Original papier · conf. 1</span><strong class="mono" style="font-size:20px">1 250 €</strong></div>',f'<div class="tile" style="background:#FBE5E3"><span class="muted small">Saisie · conf. 0,75</span><strong class="mono" style="font-size:20px;color:#9A1D12">1 520 €</strong></div>'),
-f'<div class="card" style="padding:10px"><div style="background:#F7F5EE;border-radius:6px;padding:14px;font-size:12px;color:#30302C;display:flex;justify-content:space-between"><span>Total TTC</span><strong style="background:#FCEFD9;outline:2px solid #E7A83A;padding:1px 4px;border-radius:3px">1 250,00 €</strong></div><span class="muted small">Extrait de la photo F-47.jpg</span></div>',
+f'<div class="card" style="padding:10px"><div style="background:#F7F5EE;border-radius:6px;padding:14px;font-size:12px;color:#30302C;display:flex;justify-content:space-between"><span>Total TTC</span><strong style="background:#FCEFDA;outline:2px solid #E7A83A;padding:1px 4px;border-radius:3px">1 250,00 €</strong></div><span class="muted small">Extrait de la photo F-47.jpg</span></div>',
 kvs(('OCR','1 250 € · conf. 0,6'),('Attributs saisis','1 250 €'),('Hypothèse','chiffres inversés (25 ↔ 52)')),
 btns(btn('Garder 1 250 €','ink',style='flex:1'),btn('Garder 1 520 €','line',style='flex:1')),
 '<span class="muted small" style="text-align:center">L’ancienne valeur restera dans l’historique.</span>',
