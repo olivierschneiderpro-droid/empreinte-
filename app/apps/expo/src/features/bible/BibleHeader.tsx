@@ -67,6 +67,8 @@ import InterlinearModeSelectorSheet from './InterlinearModeSelectorSheet'
 import StrongModeSelectorSheet from './StrongModeSelectorSheet'
 import { useBibleModeAcquisitionCompletion } from './useBibleModeAcquisitionCompletion'
 import type { BibleVersionCoverage } from '~helpers/biblesDb'
+import { Icone } from '~features/empreinte/icones'
+import { POLICES, police, styleVerre, useVerre } from '~features/empreinte/lumiere'
 interface BibleHeaderProps {
   bibleAtom: PrimitiveAtom<BibleTab>
   isFormSheet?: boolean
@@ -91,6 +93,7 @@ const Header = ({
   onNavigateToVerse,
 }: BibleHeaderProps) => {
   const router = useRouter()
+  const verre = useVerre()
   const { t } = useTranslation()
   const dimensions = useDimensions()
   const isSmall = dimensions.screen.width < 400
@@ -338,6 +341,8 @@ const Header = ({
         selected: strongMode !== 'hidden',
       }}
       style={[
+        styleVerre(verre, 22, false),
+        { width: 44, height: 44 },
         { opacity: isStrongDownloadVisible ? 0.6 : 1 },
         [
           { opacity: isStrongDownloadVisible ? 0.6 : 1 },
@@ -377,6 +382,8 @@ const Header = ({
         selected: isInterlinearModeEnabled(interlinearMode),
       }}
       style={[
+        styleVerre(verre, 22, false),
+        { width: 44, height: 44 },
         { opacity: isInterlinearDownloadVisible ? 0.6 : 1 },
         [{ opacity: isInterlinearDownloadVisible ? 0.6 : 1 }, opacityTransitionStyle],
       ]}
@@ -494,9 +501,9 @@ const Header = ({
   // the newly mounted book selector invisible on iOS.
   return (
     <AnimatedVStack
-      className="border-continuous overflow-visible justify-center w-[100%] bg-reverse border-b-[1px] border-border absolute top-[0px] left-[0px]"
+      className="border-continuous overflow-visible justify-center w-[100%] absolute top-[0px] left-[0px]"
       style={[
-        { paddingTop: TOP_INSET, zIndex: nativeHeaderZIndex },
+        { paddingTop: TOP_INSET + 6, zIndex: nativeHeaderZIndex },
         {
           height: isHeaderCollapsed ? 20 + TOP_INSET : undefined,
           minHeight: isHeaderCollapsed ? 20 + TOP_INSET : headerHeight + TOP_INSET,
@@ -512,7 +519,7 @@ const Header = ({
       {isFormSheet && <FormSheetHandle />}
 
       <HStack
-        className="overflow-hidden border-continuous mx-auto items-center w-[100%]"
+        className="overflow-visible border-continuous mx-auto items-center w-[100%] px-[16px] gap-[8px]"
         style={{ maxWidth: PAGE_CONTENT_MAX_WIDTH }}
       >
         {hasBackButton ? (
@@ -561,14 +568,17 @@ const Header = ({
           </HStack>
         ) : (
           <>
-            <HStack className="overflow-hidden border-continuous items-center gap-[3px] pl-[10px]">
+            <HStack
+              className="overflow-hidden border-continuous items-center"
+              style={[styleVerre(verre, 22), { height: 44, paddingHorizontal: 4 }]}
+            >
               <HStack className="overflow-hidden border-continuous">
                 <BibleSelectorTrigger
                   kind="book"
                   data={getDefaultStore().get(bibleAtom).data}
                   actions={actions}
                   coverage={coverage}
-                  className="overflow-hidden border-continuous items-center justify-center pl-[12px] pr-[7px] h-[32px]"
+                  className="overflow-hidden border-continuous items-center justify-center pl-[14px] pr-[10px] h-[36px]"
                   onPress={() => {
                     openBookSelector({
                       actions,
@@ -581,21 +591,25 @@ const Header = ({
                   })}
                 >
                   <AnimatedBox
-                    className="overflow-hidden border-continuous bg-light-grey rounded-tl-[20px] rounded-bl-[20px] absolute left-[0px] bottom-[0px] right-[0px] top-[0px]"
-                    style={opacityTransitionStyle}
-                  />
-                  <AnimatedText className="font-bold text-[14px]" style={translateYTransitionStyle}>
-                    {isSmall
-                      ? truncate(`${t(bookName)} ${chapter}`, 10)
-                      : `${t(bookName)} ${chapter}`}
-                  </AnimatedText>
+                    className="flex-row items-center gap-[7px]"
+                    style={translateYTransitionStyle}
+                  >
+                    <Text style={{ fontFamily: police(POLICES.titre), fontSize: 15 }}>
+                      {isSmall ? truncate(t(bookName), 8) : t(bookName)}
+                    </Text>
+                    <Text
+                      style={{ fontFamily: police(POLICES.points), fontSize: 20, lineHeight: 22 }}
+                    >
+                      {chapter}
+                    </Text>
+                  </AnimatedBox>
                 </BibleSelectorTrigger>
               </HStack>
               <BibleSelectorTrigger
                 kind="version"
                 data={getDefaultStore().get(bibleAtom).data}
                 actions={actions}
-                className="overflow-hidden border-continuous items-center justify-center pl-[7px] pr-[12px] h-[32px]"
+                className="overflow-hidden border-continuous items-center justify-center px-[11px] h-[30px] rounded-[15px]"
                 onPress={() =>
                   openVersionSelector({
                     actions,
@@ -606,10 +620,15 @@ const Header = ({
                 accessibilityLabel={t('accessibility.chooseVersion', { version })}
               >
                 <AnimatedBox
-                  className="overflow-hidden border-continuous bg-light-grey rounded-tr-[20px] rounded-br-[20px] absolute left-[0px] bottom-[0px] right-[0px] top-[0px]"
-                  style={opacityTransitionStyle}
+                  className="overflow-hidden absolute left-[0px] bottom-[0px] right-[0px] top-[0px] rounded-[15px]"
+                  style={[opacityTransitionStyle, { backgroundColor: verre.actif }]}
                 />
-                <AnimatedText className="font-bold text-[14px]" style={translateYTransitionStyle}>
+                <AnimatedText
+                  style={[
+                    { fontFamily: police(POLICES.titre), fontSize: 12.5 },
+                    translateYTransitionStyle,
+                  ]}
+                >
                   {version}
                 </AnimatedText>
               </BibleSelectorTrigger>
@@ -624,7 +643,7 @@ const Header = ({
               </AnimatedBox>
             </VerseSelectorPopup>
             {!isSelectionMode && (
-              <HStack className="overflow-hidden border-continuous ml-auto items-center">
+              <HStack className="overflow-visible border-continuous ml-auto items-center gap-[8px]">
                 {isParallel && (
                   <MenuView
                     accessibilityLabel={t('accessibility.parallelOptions')}
@@ -685,14 +704,18 @@ const Header = ({
                   onPressAction={({ nativeEvent }) => handleMenuAction(nativeEvent.event)}
                 >
                   <AnimatedBox
-                    className="overflow-hidden border-continuous items-center justify-center w-[40px] h-[40px]"
-                    style={{
-                      opacity: fullScreenOpacity,
-                      transitionProperty: 'opacity',
-                      transitionDuration: 300,
-                    }}
+                    className="overflow-hidden border-continuous items-center justify-center"
+                    style={[
+                      styleVerre(verre, 22),
+                      { width: 44, height: 44 },
+                      {
+                        opacity: fullScreenOpacity,
+                        transitionProperty: 'opacity',
+                        transitionDuration: 300,
+                      },
+                    ]}
                   >
-                    <FeatherIcon name="more-vertical" size={18} />
+                    <Icone nom="more" taille={20} />
                   </AnimatedBox>
                 </BibleOptionsMenu>
                 {focusVerses && focusVerses.length > 0 && (

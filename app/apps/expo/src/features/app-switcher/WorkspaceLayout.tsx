@@ -18,6 +18,7 @@ import { FeatherIcon } from '~common/ui/Icon'
 import SharedBibleDOM from '~features/bible/SharedBibleDOM'
 import CachedTabScreens from './CachedTabScreens'
 import WorkspaceSidebar from './WorkspaceSidebar'
+import { Aurore, styleVerre, useVerre } from '~features/empreinte/lumiere'
 import { TabContextProvider } from './context/TabContext'
 import { useResponsiveWorkspace, WORKSPACE_SIDEBAR_WIDTH } from './utils/useResponsiveWorkspace'
 import { getWorkspacePageForPath, workspacePagePath } from './workspaceRoutes'
@@ -30,6 +31,7 @@ export default function WorkspaceLayout({
   mode?: PublicShellMode
 }) {
   const workspaceActive = mode === 'workspace'
+  const verre = useVerre()
   const { t } = useTranslation()
   const router = useRouter()
   const pathname = usePathname()
@@ -88,6 +90,7 @@ export default function WorkspaceLayout({
       }
       style={{ display: mode === 'pending' ? 'none' : 'flex' }}
     >
+      {workspaceActive && <Aurore />}
       {workspaceActive && <GlobalCommandPalette />}
       {workspaceActive && (
         <WorkspaceKeyboardShortcuts
@@ -174,11 +177,18 @@ export default function WorkspaceLayout({
             <Box
               testID="workspace-reader-motion"
               dataSet={Platform.OS === 'web' ? { assistantSurface: 'reader' } : undefined}
-              className="absolute inset-0"
-              style={{
-                display: isWorkspace || showsStudy ? 'flex' : 'none',
-                right: panel.open ? panel.reservedWidth : 0,
-              }}
+              className="absolute inset-0 overflow-hidden"
+              style={[
+                // Empreinte : le lecteur repose dans un grand panneau de verre (maquette bureau).
+                styleVerre(verre, 28),
+                {
+                  display: isWorkspace || showsStudy ? 'flex' : 'none',
+                  top: 16,
+                  bottom: 16,
+                  left: sidebarVisible && !overlayMode ? 16 : 52,
+                  right: (panel.open ? panel.reservedWidth : 0) + 16,
+                },
+              ]}
             >
               <TabContextProvider>
                 <CachedTabScreens />

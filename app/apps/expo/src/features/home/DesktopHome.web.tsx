@@ -29,7 +29,16 @@ import MeditationsHome from './MeditationsHome'
 import ResumeBookmark from './ResumeBookmark'
 import { LoginPrompt } from './UserWidget'
 import VerseOfTheDay from './VerseOfTheDay'
-import EmpreinteWidget from '~features/empreinte/EmpreinteWidget'
+import {
+  CarteAVerifier,
+  CartesMissionPlan,
+  CarteVerset,
+  FilDuJour,
+  OuSontLesOriginaux,
+  PileRealites,
+  TeteAccueil,
+} from '~features/empreinte/AccueilLumiere'
+import { Aurore } from '~features/empreinte/lumiere'
 import { VISIBLE_VERSE_OF_THE_DAY_OFFSETS } from './verseOfTheDayPolicy'
 
 const illustrations = {
@@ -73,7 +82,7 @@ function LearningCard({
     <div className="bs-home-learning-card">
       <LinkBox
         {...props}
-        className="bg-reverse rounded-[18px] overflow-hidden shadow-[0_2px_7px_rgba(89,131,240,0.1)]"
+        className="bg-reverse rounded-[18px] overflow-hidden shadow-[0_8px_24px_rgba(17,17,19,0.06)]"
       >
         <div className="bs-home-learning-body">
           <div className="bs-home-learning-image">
@@ -173,7 +182,8 @@ export default function DesktopHome() {
 
   return (
     <div className="bs-home-container">
-      <ScrollView testID="desktop-home" className="flex-1 bg-light-grey">
+      <Aurore />
+      <ScrollView testID="desktop-home" className="flex-1 bg-transparent">
         <div className="bs-home-content">
           <Events />
           <OfflineNotice />
@@ -187,7 +197,7 @@ export default function DesktopHome() {
                   openCommandPalette(true)
                 }}
                 accessibilityLabel={t('commandPalette.label')}
-                className="flex-row items-center gap-[12px] shadow-[0_2px_7px_rgba(89,131,240,0.1)] bg-reverse rounded-[16px] px-[16px] py-[14px]"
+                className="flex-row items-center gap-[12px] shadow-[0_8px_24px_rgba(17,17,19,0.06)] bg-reverse rounded-[16px] px-[16px] py-[14px]"
               >
                 <FeatherIcon name="search" size={19} color="grey" />
                 <Text className="text-grey text-[13px] flex-1 min-w-0" numberOfLines={1}>
@@ -201,9 +211,12 @@ export default function DesktopHome() {
               </LinkBox>
             </div>
             <div className="bs-home-main">
-              <EmpreinteWidget />
+              <TeteAccueil compact />
+              <PileRealites />
+              <CarteVerset large />
+              <CartesMissionPlan />
               <DailyVerse />
-              <Box className="bg-reverse rounded-[18px] p-[4px] shadow-[0_2px_7px_rgba(89,131,240,0.1)]">
+              <Box className="bg-reverse rounded-[18px] p-[4px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
                 <ProfileStats desktop />
               </Box>
               <Box>
@@ -234,9 +247,12 @@ export default function DesktopHome() {
               <ResourceDiscovery />
             </div>
             <div className="bs-home-aside">
+              <CarteAVerifier />
+              <FilDuJour />
+              <OuSontLesOriginaux />
               <ResumeBookmark card />
               <MeditationsHome />
-              <Box className="bg-reverse rounded-[20px] p-[16px] shadow-[0_2px_7px_rgba(89,131,240,0.1)]">
+              <Box className="bg-reverse rounded-[20px] p-[16px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
                 <PlanHome compact />
               </Box>
               <LinkBox

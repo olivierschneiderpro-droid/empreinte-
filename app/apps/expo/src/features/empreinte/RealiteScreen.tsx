@@ -20,7 +20,15 @@ import {
   useEmpreinte,
 } from './registreEmpreinte'
 import { emplacementLisible } from './RealitesScreen'
+import VueEclatee from './VueEclatee'
+import Text from '~common/ui/Text'
 import {
+  BarreHaut,
+  BoutonRond,
+  FondLumiere,
+  POLICES,
+  Pilule,
+  police,
   Confiance,
   Corps,
   Mono,
@@ -28,7 +36,6 @@ import {
   Points,
   Separateur,
   Surtitre,
-  Titre,
   Verre,
 } from './lumiere'
 
@@ -82,10 +89,21 @@ function Bouton({
   )
 }
 
-/** Partie numérique de l'identifiant, affichée en matrice de points. */
-function numero(id: string) {
-  const m = id.match(/^([A-Z]+)-(\d{4})-(\d+)$/)
-  return m ? { prefixe: `${m[1]}-${m[2]}`, numero: m[3] } : { prefixe: '', numero: id }
+const ETATS_LISIBLES: Record<string, string> = {
+  recu: 'Reçue',
+  verifie: 'Vérifiée',
+  paye: 'Payée',
+  conteste: 'Contestée',
+  annule: 'Annulée',
+  archive: 'Archivée',
+  rembourse: 'Remboursée',
+  disponible: 'Disponible',
+  prete: 'Prêté',
+  perdu: 'Perdu',
+  'en-service': 'En service',
+  'en-cours': 'En cours',
+  preparee: 'Préparée',
+  enregistre: 'Enregistré',
 }
 
 const RealiteScreen = () => {
@@ -118,35 +136,179 @@ const RealiteScreen = () => {
   const placement = proposerEmplacement(registre.realites, r)
   const relations = registre.relationsDe(r.id)
   const historique = registre.historique(r.id).slice().reverse()
-  const { prefixe, numero: n } = numero(r.id)
+
+  // Manifestations dont une valeur diverge de l'original (ou de la plus fiable).
+  const reference =
+    r.manifestations.find(m => m.type === 'physique-original') ??
+    [...r.manifestations].sort((x, y) => y.confiance - x.confiance)[0]
+  const norm = (x: unknown) =>
+    String(x)
+      .replace(/[^\d,.-]/g, '')
+      .replace(/,00$/, '')
+      .replace(',', '.')
+  const divergentes = new Set(
+    r.manifestations
+      .filter(
+        m =>
+          reference &&
+          m.id !== reference.id &&
+          Object.entries(m.donnees).some(
+            ([k, val]) =>
+              reference.donnees[k] !== undefined &&
+              Number(norm(val)) !== Number(norm(reference.donnees[k]))
+          )
+      )
+      .map(m => m.id)
+  )
+  const champEcart = reference
+    ? Object.keys(reference.donnees).find(k =>
+        r.manifestations.some(
+          m =>
+            divergentes.has(m.id) &&
+            m.donnees[k] !== undefined &&
+            Number(norm(m.donnees[k])) !== Number(norm(reference.donnees[k]))
+        )
+      )
+    : undefined
+  const valeurOriginale = champEcart && reference ? reference.donnees[champEcart] : undefined
+  const autreValeur = champEcart
+    ? r.manifestations.find(m => divergentes.has(m.id) && m.donnees[champEcart] !== undefined)
+        ?.donnees[champEcart]
+    : undefined
+  const difference =
+    valeurOriginale !== undefined && autreValeur !== undefined
+      ? Math.abs(Number(norm(autreValeur)) - Number(norm(valeurOriginale)))
+      : undefined
+  const garder = () =>
+    modifier(reg => {
+      if (!champEcart || valeurOriginale === undefined) return
+      for (const id of divergentes)
+        reg.corrigerManifestation(
+          id,
+          { [champEcart]: valeurOriginale },
+          {
+            par: 'moi',
+            note: 'Aligné sur l’original',
+          }
+        )
+    })
+  const idPoints = r.id.replace(/-/g, '·')
+  const ref0 = r.referencesExternes[0]
+  const rangementCourt = r.emplacement?.introuvable
+    ? 'introuvable'
+    : (r.emplacement?.rangement ?? [])
+        .map(x => x.replace(/^(Classeur|Section|Pochette|Étagère|Rang)\s*/i, ''))
+        .join('·') || '—'
 
   return (
-    <Container>
-      <Header hasBackButton title={r.id} />
-      <ScrollView contentContainerStyle={{ padding: 20, gap: 26, paddingBottom: 80 }}>
+    <FondLumiere>
+      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 130, gap: 22 }}>
+        <BarreHaut
+          centre={
+            <Pilule ton="verre">
+              <View
+                style={{
+                  width: 7,
+                  height: 7,
+                  borderRadius: 4,
+                  backgroundColor: ecarts.length ? theme.colors.quart : theme.colors.success,
+                }}
+              />
+              <Text style={{ fontFamily: police(POLICES.titre), fontSize: 13 }}>
+                {ETATS_LISIBLES[r.etat] ?? r.etat.charAt(0).toUpperCase() + r.etat.slice(1)} ·{' '}
+                {r.historiqueEtats[r.historiqueEtats.length - 1]?.le.slice(8, 10)}/
+                {r.historiqueEtats[r.historiqueEtats.length - 1]?.le.slice(5, 7)}
+              </Text>
+            </Pilule>
+          }
+          droite={
+            <BoutonRond
+              icone="more"
+              libelle="Vérifier"
+              onPress={() => router.push('/empreinte/verifier')}
+            />
+          }
+        />
+
+        {r.manifestations.length ? <VueEclatee realite={r} divergentes={divergentes} /> : null}
+
         {/* Identité */}
-        <View style={{ gap: 10 }}>
-          <View style={{ flexDirection: 'row', alignItems: 'flex-end', gap: 10 }}>
-            <Points taille={64}>{n}</Points>
-            <View style={{ paddingBottom: 10 }}>
-              <Mono couleur={theme.colors.grey}>{prefixe}</Mono>
-            </View>
-          </View>
-          <Titre>{r.titre}</Titre>
-          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-            <Pastille>{LIBELLES_GENRE[r.genre] ?? r.genre}</Pastille>
-            {r.sousType ? <Pastille>{r.sousType}</Pastille> : null}
-            <Pastille>{r.physiqueAttendu ? 'existe physiquement' : 'numérique seulement'}</Pastille>
-          </View>
-          {r.referencesExternes.map(ref => (
-            <Corps key={ref.cle + ref.valeur} taille={13} couleur={theme.colors.grey}>
-              {ref.cle} : {ref.valeur}
-              {ref.emetteur ? ` — ${ref.emetteur}` : ''}
-            </Corps>
+        <View style={{ gap: 6 }}>
+          <Points taille={idPoints.length >= 13 ? 37 : 46}>{idPoints}</Points>
+          <Text
+            style={{ fontFamily: police(POLICES.moyen), fontSize: 15, color: theme.colors.grey }}
+          >
+            {ref0?.emetteur ? `${ref0.emetteur} → ` : ''}
+            {r.titre}
+            {r.sousType ? ` · ${r.sousType}` : ''}
+          </Text>
+        </View>
+        <View style={{ flexDirection: 'row', gap: 8, marginTop: -8 }}>
+          {[
+            ['Original', rangementCourt, () => {}],
+            ['Liens', `${relations.length}`, () => {}],
+            ['Preuves', `${r.preuves.length}`, () => {}],
+          ].map(([titre, valeur]) => (
+            <Verre key={String(titre)} rayon={16} style={{ flex: 1, padding: 12, gap: 3 }}>
+              <Surtitre>{String(titre)}</Surtitre>
+              <Text
+                numberOfLines={1}
+                style={{
+                  fontFamily: police(POLICES.monoMoyen),
+                  fontSize: 13,
+                  color: valeur === 'introuvable' ? theme.colors.quart : theme.colors.default,
+                }}
+              >
+                {String(valeur)}
+              </Text>
+            </Verre>
           ))}
         </View>
 
-        {/* Écarts */}
+        {/* Écart principal, avec la décision de la maquette */}
+        {difference !== undefined ? (
+          <Verre ecart style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+            <View style={{ flex: 1, gap: 3 }}>
+              <Text style={{ fontFamily: police(POLICES.gras), fontSize: 16 }}>
+                Écart de {difference.toLocaleString('fr-FR').replace(/\u202f|\u00a0/g, ' ')}
+                {/€/.test(String(valeurOriginale)) || champEcart === 'montant' ? ' €' : ''}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: police(POLICES.moyen),
+                  fontSize: 13,
+                  color: theme.colors.grey,
+                }}
+              >
+                La saisie ne correspond pas à l’original
+              </Text>
+            </View>
+            <Pressable
+              onPress={garder}
+              accessibilityRole="button"
+              style={{
+                height: 46,
+                paddingHorizontal: 18,
+                borderRadius: 23,
+                backgroundColor: theme.colors.default,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Text
+                style={{
+                  fontFamily: police(POLICES.titre),
+                  fontSize: 14,
+                  color: theme.colors.reverse,
+                }}
+              >
+                Garder {String(valeurOriginale)}
+              </Text>
+            </Pressable>
+          </Verre>
+        ) : null}
+
+        {/* Toutes les anomalies de cette réalité */}
         {ecarts.length > 0 ? (
           <Verre ecart style={{ gap: 12 }}>
             <Surtitre couleur={theme.colors.quart}>
@@ -162,6 +324,14 @@ const RealiteScreen = () => {
             ))}
           </Verre>
         ) : null}
+
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
+          <Pastille>{LIBELLES_GENRE[r.genre] ?? r.genre}</Pastille>
+          <Pastille>{r.physiqueAttendu ? 'existe physiquement' : 'numérique seulement'}</Pastille>
+          {r.referencesExternes.map(ref => (
+            <Pastille key={ref.cle + ref.valeur}>{`${ref.cle} : ${ref.valeur}`}</Pastille>
+          ))}
+        </View>
 
         {/* Manifestations : chacune reste distincte */}
         <Section titre={`Manifestations · ${r.manifestations.length}`}>
@@ -422,7 +592,7 @@ const RealiteScreen = () => {
           ))}
         </Section>
       </ScrollView>
-    </Container>
+    </FondLumiere>
   )
 }
 

@@ -67,14 +67,19 @@ const VerseText = styled('span')<RootStyles & { isParallel?: boolean }>(
 
 const NumberText = styled<
   RootStyles & { isFocused?: boolean; highlightBg?: string; highlightColor?: string }
->('span')(({ isFocused, highlightBg, highlightColor, settings: { fontSizeScale } }) => ({
-  fontSize: scaleFontSize(14, fontSizeScale),
+>('span')(({ isFocused, highlightBg, highlightColor, settings: { fontSizeScale, theme, colors } }) => ({
+  // Empreinte : numéro en Geist Mono, petit, en exposant et gris (maquette Lumière).
+  fontFamily: '"Geist Mono", ui-monospace, monospace',
+  fontSize: scaleFontSize(10.5, fontSizeScale),
+  fontWeight: 500,
+  color: colors[theme].grey,
+  verticalAlign: 'super',
   display: 'inline-flex',
-  marginRight: '4px',
+  marginRight: '3px',
   alignItems: 'center',
   justifyContent: 'center',
-  padding: '2px 2px',
-  minWidth: '18px',
+  padding: '1px 1px',
+  minWidth: '12px',
   ...(highlightBg && {
     backgroundColor: highlightBg,
     borderRadius: '3px',
@@ -142,6 +147,17 @@ const Wrapper = styled('span')<
   ...(isSelectedMode && !isSelected
     ? {
         opacity: 0.3,
+      }
+    : {}),
+  // Empreinte : le verset choisi repose sur un fond gris doux arrondi.
+  ...(isSelected
+    ? {
+        backgroundColor: 'rgba(17,17,19,0.05)',
+        borderRadius: '14px',
+        boxDecorationBreak: 'clone',
+        WebkitBoxDecorationBreak: 'clone',
+        padding: '2px 6px',
+        margin: '0 -6px',
       }
     : {}),
   ...(fadePosition

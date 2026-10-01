@@ -1,6 +1,10 @@
 import React from 'react'
-import { Platform, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native'
-import Svg, { Path } from 'react-native-svg'
+import { Platform, Pressable, StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native'
+import { useRouter } from 'expo-router'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { Icone, type NomIcone } from './icones'
+import Svg, { Circle, Defs, Path, RadialGradient, Stop } from 'react-native-svg'
+import { colorWithOpacity } from '~themes/colorValues'
 import Text from '~common/ui/Text'
 import { useTheme } from '~themes/ThemeProvider'
 
@@ -9,66 +13,146 @@ export const POLICES = {
   texte: 'Geist',
   moyen: 'Geist Medium',
   titre: 'Geist SemiBold',
+  gras: 'Geist Bold',
   mono: 'Geist Mono',
   monoMoyen: 'Geist Mono Medium',
   points: 'Doto',
   lecture: 'Literata Book',
 } as const
 
-const police = (nom: string) => (Platform.OS === 'web' ? `"${nom}", system-ui, sans-serif` : nom)
+export const police = (nom: string) =>
+  Platform.OS === 'web' ? `"${nom}", system-ui, sans-serif` : nom
 
-/** Empreinte digitale : des lignes de crête concentriques, ouvertes en bas. */
-export function LogoEmpreinte({ taille = 28, couleur }: { taille?: number; couleur?: string }) {
+/** Empreinte digitale de la maquette : trois crêtes ouvertes vers le bas. */
+export function LogoEmpreinte({ taille = 22, couleur }: { taille?: number; couleur?: string }) {
   const theme = useTheme()
   const c = couleur ?? theme.colors.default
-  const cretes = [
-    'M12 4.2c4.3 0 7.8 3.5 7.8 7.8v1.6',
-    'M4.2 15.2V12c0-4.3 3.5-7.8 7.8-7.8',
-    'M12 7.2c2.7 0 4.8 2.1 4.8 4.8v3.4c0 1.6.4 3.1 1.1 4.4',
-    'M7.2 18.6c-.3-1-.4-2-.4-3.1V12c0-2.7 2.1-4.8 4.8-4.8',
-    'M12 10.2c1 0 1.8.8 1.8 1.8v3.6c0 2 .6 3.9 1.6 5.4',
-    'M10.2 12v3.6c0 2.3-.5 4.1-1.4 5.6',
-  ]
   return (
-    <Svg width={taille} height={taille} viewBox="0 0 24 24" fill="none">
-      {cretes.map(d => (
-        <Path key={d} d={d} stroke={c} strokeWidth={1.4} strokeLinecap="round" />
-      ))}
+    <Svg width={taille} height={taille} viewBox="0 0 32 32" fill="none">
+      <Path
+        d="M8 25c-2-2.6-3-5.6-3-9a11 11 0 0 1 22 0"
+        stroke={c}
+        strokeWidth={2}
+        strokeLinecap="round"
+      />
+      <Path
+        d="M12 27c-1.6-2.4-2.6-5.6-2.6-9.6a6.6 6.6 0 0 1 13.2 0c0 3-.5 5.6-1.6 8"
+        stroke={c}
+        strokeWidth={2}
+        strokeLinecap="round"
+      />
+      <Path
+        d="M16 28c-1-2.6-1.8-6.2-1.8-10.6a1.8 1.8 0 0 1 3.6 0c0 3.4-.2 6-.8 8.6"
+        stroke={c}
+        strokeWidth={2}
+        strokeLinecap="round"
+      />
     </Svg>
   )
 }
 
-export function Marque({ taille = 22 }: { taille?: number }) {
+/** « empreinte » en minuscules, Geist 700, comme dans la maquette. */
+export function Marque({ taille = 18 }: { taille?: number }) {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
       <LogoEmpreinte taille={taille + 4} />
-      <Text style={{ fontFamily: police(POLICES.titre), fontSize: taille, letterSpacing: -0.4 }}>
-        Empreinte
+      <Text style={{ fontFamily: police(POLICES.gras), fontSize: taille, letterSpacing: -0.36 }}>
+        empreinte
       </Text>
     </View>
   )
 }
 
-/** Surface de verre gris léger : fond translucide, filet clair, ombre très douce. */
+/** Couleurs du verre, dérivées du thème pour rester lisibles en sombre. */
+export function useVerre() {
+  const theme = useTheme()
+  return {
+    fond: colorWithOpacity(theme.colors.reverse, 0.62),
+    filet: colorWithOpacity(theme.colors.reverse, 0.9),
+    ligne: colorWithOpacity(theme.colors.default, 0.07),
+    doux: colorWithOpacity(theme.colors.default, 0.05),
+    actif: colorWithOpacity(theme.colors.default, 0.07),
+  }
+}
+
+/** Style de verre de la maquette (.g) : blanc à 62 %, filet blanc, ombre très douce. */
+export function styleVerre(v: ReturnType<typeof useVerre>, rayon = 24, ombre = true): ViewStyle {
+  return {
+    backgroundColor: v.fond,
+    borderColor: v.filet,
+    borderWidth: 1,
+    borderRadius: rayon,
+    ...(ombre
+      ? {
+          shadowColor: '#111113',
+          shadowOpacity: 0.06,
+          shadowRadius: 24,
+          shadowOffset: { width: 0, height: 8 },
+        }
+      : null),
+    ...(Platform.OS === 'web'
+      ? ({ backdropFilter: 'blur(22px) saturate(120%)' } as ViewStyle)
+      : null),
+  }
+}
+
+/** Surface de verre. `ecart` ajoute le filet rouge réservé aux écarts. */
 export function Verre({
   children,
   style,
   ecart = false,
-}: React.PropsWithChildren<{ style?: StyleProp<ViewStyle>; ecart?: boolean }>) {
+  rayon = 24,
+}: React.PropsWithChildren<{ style?: StyleProp<ViewStyle>; ecart?: boolean; rayon?: number }>) {
   const theme = useTheme()
+  const v = useVerre()
   return (
     <View
       style={[
-        styles.verre,
-        {
-          backgroundColor: theme.colors.reverse,
-          borderColor: ecart ? theme.colors.quart : theme.colors.border,
-        },
-        Platform.OS === 'web' ? ({ backdropFilter: 'blur(18px)' } as ViewStyle) : null,
+        styleVerre(v, rayon),
+        { padding: 18 },
+        ecart ? { borderColor: colorWithOpacity(theme.colors.quart, 0.45) } : null,
         style,
       ]}
     >
       {children}
+    </View>
+  )
+}
+
+/** Halos de l'aurore : quatre taches grises très douces derrière le verre. */
+export function Aurore() {
+  const theme = useTheme()
+  const taches = [
+    { x: -170, y: -140, t: 420, c: '#E3E2DE' },
+    { x: 'droite', y: 60, t: 380, c: '#DCDFE3' },
+    { x: -120, y: 420, t: 420, c: '#E6E2DC' },
+    { x: 'droite', y: 'bas', t: 380, c: '#DEE2E0' },
+  ] as const
+  if (theme.colors.reverse !== 'rgb(255,255,255)') return null
+  return (
+    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+      {taches.map((tache, i) => (
+        <View
+          key={i}
+          style={{
+            position: 'absolute',
+            width: tache.t,
+            height: tache.t,
+            ...(tache.x === 'droite' ? { right: -170 } : { left: tache.x }),
+            ...(tache.y === 'bas' ? { bottom: -120 } : { top: tache.y }),
+          }}
+        >
+          <Svg width={tache.t} height={tache.t}>
+            <Defs>
+              <RadialGradient id={`a${i}`} cx="50%" cy="50%" r="50%">
+                <Stop offset="0" stopColor={tache.c} stopOpacity={1} />
+                <Stop offset="0.68" stopColor={tache.c} stopOpacity={0} />
+              </RadialGradient>
+            </Defs>
+            <Circle cx={tache.t / 2} cy={tache.t / 2} r={tache.t / 2} fill={`url(#a${i})`} />
+          </Svg>
+        </View>
+      ))}
     </View>
   )
 }
@@ -190,30 +274,7 @@ export function Pastille({
   children: React.ReactNode
   ecart?: boolean
 }) {
-  const theme = useTheme()
-  return (
-    <View
-      style={{
-        paddingHorizontal: 9,
-        paddingVertical: 3,
-        borderRadius: 99,
-        borderWidth: StyleSheet.hairlineWidth * 2,
-        borderColor: ecart ? theme.colors.quart : theme.colors.border,
-        backgroundColor: ecart ? 'transparent' : theme.colors.lightGrey,
-        alignSelf: 'flex-start',
-      }}
-    >
-      <Text
-        style={{
-          fontFamily: police(POLICES.monoMoyen),
-          fontSize: 11,
-          color: ecart ? theme.colors.quart : theme.colors.tertiary,
-        }}
-      >
-        {children}
-      </Text>
-    </View>
-  )
+  return <Pilule ton={ecart ? 'rouge' : 'neutre'}>{children}</Pilule>
 }
 
 /** Barre de confiance d'une manifestation (0 → 1). */
@@ -244,14 +305,143 @@ export function Separateur() {
   )
 }
 
-const styles = StyleSheet.create({
-  verre: {
-    borderRadius: 22,
-    borderWidth: 1,
-    padding: 18,
-    shadowColor: '#111113',
-    shadowOpacity: 0.05,
-    shadowRadius: 18,
-    shadowOffset: { width: 0, height: 6 },
-  },
-})
+/** Barre du haut de la maquette : retour rond en verre, élément central, action ronde. */
+export function BarreHaut({
+  centre,
+  droite,
+  retour = true,
+}: {
+  centre?: React.ReactNode
+  droite?: React.ReactNode
+  retour?: boolean
+}) {
+  const v = useVerre()
+  const router = useRouter()
+  const insets = useSafeAreaInsets()
+  return (
+    <View
+      style={{
+        paddingTop: insets.top + 10,
+        paddingHorizontal: 16,
+        paddingBottom: 6,
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: 10,
+      }}
+    >
+      {retour ? (
+        <Pressable
+          onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
+          accessibilityRole="button"
+          accessibilityLabel="Retour"
+          style={[
+            styleVerre(v, 22),
+            { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
+          ]}
+        >
+          <Icone nom="back" taille={20} />
+        </Pressable>
+      ) : (
+        <View style={{ width: 44 }} />
+      )}
+      <View style={{ flex: 1, alignItems: 'center' }}>{centre}</View>
+      {droite ?? <View style={{ width: 44 }} />}
+    </View>
+  )
+}
+
+/** Bouton rond en verre (44 px) avec une icône de la maquette. */
+export function BoutonRond({
+  icone,
+  onPress,
+  libelle,
+}: {
+  icone: NomIcone
+  onPress: () => void
+  libelle: string
+}) {
+  const v = useVerre()
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="button"
+      accessibilityLabel={libelle}
+      style={[
+        styleVerre(v, 22),
+        { width: 44, height: 44, alignItems: 'center', justifyContent: 'center' },
+      ]}
+    >
+      <Icone nom={icone} taille={20} />
+    </Pressable>
+  )
+}
+
+/** Pastille (.pill) : neutre, noire (active), rouge (écart) ou verte. */
+export function Pilule({
+  children,
+  ton = 'neutre',
+  onPress,
+}: {
+  children: React.ReactNode
+  ton?: 'neutre' | 'actif' | 'rouge' | 'vert' | 'verre'
+  onPress?: () => void
+}) {
+  const theme = useTheme()
+  const v = useVerre()
+  const fonds = {
+    neutre: colorWithOpacity(theme.colors.default, 0.06),
+    actif: theme.colors.default,
+    rouge: colorWithOpacity(theme.colors.quart, 0.1),
+    vert: colorWithOpacity(theme.colors.success, 0.12),
+    verre: v.fond,
+  }
+  const textes = {
+    neutre: theme.colors.default,
+    actif: theme.colors.reverse,
+    rouge: theme.colors.quart,
+    vert: '#3F6A53',
+    verre: theme.colors.default,
+  }
+  const contenu = (
+    <View
+      style={[
+        ton === 'verre' ? styleVerre(v, 15, false) : null,
+        {
+          height: 30,
+          paddingHorizontal: 12,
+          borderRadius: 15,
+          flexDirection: 'row',
+          alignItems: 'center',
+          gap: 6,
+          backgroundColor: fonds[ton],
+        },
+      ]}
+    >
+      {typeof children === 'string' || typeof children === 'number' ? (
+        <Text style={{ fontFamily: police(POLICES.titre), fontSize: 12.5, color: textes[ton] }}>
+          {children}
+        </Text>
+      ) : (
+        children
+      )}
+    </View>
+  )
+  return onPress ? (
+    <Pressable onPress={onPress} accessibilityRole="button">
+      {contenu}
+    </Pressable>
+  ) : (
+    contenu
+  )
+}
+
+/** Fond d'écran Empreinte : gris clair + aurore. */
+export function FondLumiere({ children }: React.PropsWithChildren) {
+  const theme = useTheme()
+  return (
+    <View style={{ flex: 1, backgroundColor: theme.colors.lightGrey }}>
+      <Aurore />
+      {children}
+    </View>
+  )
+}

@@ -1,13 +1,14 @@
 import React, { useMemo, useState } from 'react'
 import { Pressable, ScrollView, TextInput, View } from 'react-native'
 import { useRouter } from 'expo-router'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import type { Realite } from '@empreinte/core'
-import Container from '~common/ui/Container'
-import Header from '~common/Header'
-import { FeatherIcon } from '~common/ui/Icon'
+import Text from '~common/ui/Text'
 import { useTheme } from '~themes/ThemeProvider'
-import { LIBELLES_GENRE, useEmpreinte } from './registreEmpreinte'
-import { Corps, Marque, Mono, Pastille, Points, Surtitre, Titre, Verre } from './lumiere'
+import { Dot, Micro } from './AccueilLumiere'
+import { Icone, type NomIcone } from './icones'
+import { BoutonRond, FondLumiere, POLICES, Pilule, police, styleVerre, useVerre } from './lumiere'
+import { useEmpreinte } from './registreEmpreinte'
 
 export function emplacementLisible(r: Realite): string {
   if (!r.emplacement) return 'Aucun emplacement'
@@ -15,123 +16,186 @@ export function emplacementLisible(r: Realite): string {
   return r.emplacement.rangement.join(' › ') || r.emplacement.dossier.join(' › ')
 }
 
+/** Catégorie affichée dans la grille : les factures sont séparées des autres documents. */
+export function categorie(r: Realite): string {
+  if (r.genre === 'document' && r.sousType?.startsWith('facture')) return 'facture'
+  return r.genre
+}
+
+export const CATEGORIES: Record<string, { libelle: string; icone: NomIcone }> = {
+  document: { libelle: 'Documents', icone: 'paper' },
+  facture: { libelle: 'Factures', icone: 'euro' },
+  livre: { libelle: 'Livres', icone: 'book' },
+  bible: { libelle: 'Bibles', icone: 'book' },
+  equipement: { libelle: 'Équipements', icone: 'laptop' },
+  objet: { libelle: 'Objets', icone: 'box' },
+  mission: { libelle: 'Missions', icone: 'flag' },
+  projet: { libelle: 'Projets', icone: 'folder' },
+  paiement: { libelle: 'Paiements', icone: 'bank' },
+  stock: { libelle: 'Stocks', icone: 'box' },
+  personne: { libelle: 'Personnes', icone: 'user' },
+}
+
+type Filtre = 'toutes' | 'physiques' | 'numeriques' | 'verifier'
+
 const RealitesScreen = () => {
   const theme = useTheme()
+  const v = useVerre()
   const router = useRouter()
+  const insets = useSafeAreaInsets()
   const { registre, anomalies } = useEmpreinte()
   const [texte, setTexte] = useState('')
-  const [genre, setGenre] = useState<string | null>(null)
+  const [filtre, setFiltre] = useState<Filtre>('toutes')
+  const [cat, setCat] = useState<string | null>(null)
 
-  const genres = useMemo(() => [...new Set(registre.realites.map(r => r.genre))], [registre])
-  const liste = useMemo(() => {
-    const base = texte.trim() ? registre.rechercher(texte) : [...registre.realites]
-    return genre ? base.filter(r => r.genre === genre) : base
-  }, [registre, texte, genre])
+  const aVerifier = useMemo(
+    () => new Set(anomalies.filter(a => a.gravite !== 'info').flatMap(a => a.realiteIds)),
+    [anomalies]
+  )
+  const toutes = registre.realites
+  const physiques = toutes.filter(r => r.physiqueAttendu)
+  const numeriques = toutes.filter(r => !r.physiqueAttendu)
 
-  const ecartsPar = useMemo(() => {
+  const base = useMemo(() => {
+    let l: Realite[] = texte.trim() ? registre.rechercher(texte) : [...toutes]
+    if (filtre === 'physiques') l = l.filter(r => r.physiqueAttendu)
+    if (filtre === 'numeriques') l = l.filter(r => !r.physiqueAttendu)
+    if (filtre === 'verifier') l = l.filter(r => aVerifier.has(r.id))
+    return l
+  }, [registre, toutes, texte, filtre, aVerifier])
+
+  const grille = useMemo(() => {
     const m = new Map<string, number>()
-    for (const a of anomalies) for (const id of a.realiteIds) m.set(id, (m.get(id) ?? 0) + 1)
-    return m
-  }, [anomalies])
-  const critiques = anomalies.filter(a => a.gravite !== 'info').length
-  const physiques = registre.realites.filter(r => r.physiqueAttendu).length
+    for (const r of base) m.set(categorie(r), (m.get(categorie(r)) ?? 0) + 1)
+    return [...m.entries()]
+  }, [base])
+
+  const liste = cat ? base.filter(r => categorie(r) === cat) : base
+  const recentes = useMemo(() => {
+    const vus: string[] = []
+    for (const e of [...registre.journal].reverse())
+      if (e.realiteId && !vus.includes(e.realiteId)) vus.push(e.realiteId)
+    return vus.slice(0, 3).map(id => ({
+      r: registre.chercher(id)!,
+      le: registre.journal.filter(e => e.realiteId === id).pop()?.le ?? '',
+    }))
+  }, [registre])
+
+  const ouvrir = (id: string) => router.push({ pathname: '/empreinte/realite', params: { id } })
 
   return (
-    <Container>
-      <Header hasBackButton title="Empreinte" />
-      <ScrollView contentContainerStyle={{ padding: 20, gap: 16, paddingBottom: 60 }}>
-        <View style={{ gap: 6 }}>
-          <Marque />
-          <Corps couleur={theme.colors.grey}>
-            Le réel laisse une empreinte. L’empreinte retrouve le réel.
-          </Corps>
-        </View>
-
-        <View style={{ flexDirection: 'row', gap: 12 }}>
-          <Verre style={{ flex: 1, gap: 6 }}>
-            <Surtitre>Réalités</Surtitre>
-            <Points>{String(registre.realites.length).padStart(2, '0')}</Points>
-            <Corps taille={12} couleur={theme.colors.grey}>
-              {physiques} physiques
-            </Corps>
-          </Verre>
-          <Pressable style={{ flex: 1 }} onPress={() => router.push('/empreinte/verifier')}>
-            <Verre style={{ gap: 6 }} ecart={critiques > 0}>
-              <Surtitre couleur={critiques > 0 ? theme.colors.quart : undefined}>Écarts</Surtitre>
-              <Points couleur={critiques > 0 ? theme.colors.quart : undefined}>
-                {String(critiques).padStart(2, '0')}
-              </Points>
-              <Corps taille={12} couleur={theme.colors.grey}>
-                Vérifier →
-              </Corps>
-            </Verre>
-          </Pressable>
-        </View>
-
+    <FondLumiere>
+      <ScrollView
+        contentContainerStyle={{
+          paddingHorizontal: 16,
+          paddingTop: insets.top + 18,
+          paddingBottom: 130,
+          gap: 12,
+        }}
+      >
         <View
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 10,
-            borderRadius: 14,
-            borderWidth: 1,
-            borderColor: theme.colors.border,
-            backgroundColor: theme.colors.reverse,
-            paddingHorizontal: 14,
-          }}
+          style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}
         >
-          <FeatherIcon name="search" size={16} color="grey" />
-          <TextInput
-            value={texte}
-            onChangeText={setTexte}
-            placeholder="FAC-2026-0047, F-47, Classeur 02…"
-            placeholderTextColor={theme.colors.grey}
-            style={{
-              flex: 1,
-              paddingVertical: 12,
-              fontFamily: 'Geist',
-              fontSize: 15,
-              color: theme.colors.default,
-            }}
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+            {router.canGoBack() ? (
+              <BoutonRond icone="back" libelle="Retour" onPress={() => router.back()} />
+            ) : null}
+            <Text style={{ fontFamily: police(POLICES.gras), fontSize: 30, letterSpacing: -0.9 }}>
+              Réalités
+            </Text>
+          </View>
+          <Dot taille={34}>{toutes.length}</Dot>
+        </View>
+
+        <View style={{ flexDirection: 'row', gap: 10 }}>
+          <View
+            style={[
+              styleVerre(v, 25, false),
+              {
+                flex: 1,
+                height: 50,
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 10,
+                paddingHorizontal: 18,
+              },
+            ]}
+          >
+            <Icone nom="search" taille={18} couleur={theme.colors.grey} />
+            <TextInput
+              value={texte}
+              onChangeText={setTexte}
+              placeholder="Numéro, titre, emplacement…"
+              placeholderTextColor={theme.colors.grey}
+              style={
+                {
+                  flex: 1,
+                  fontFamily: police(POLICES.moyen),
+                  fontSize: 15,
+                  color: theme.colors.default,
+                  outlineStyle: 'none',
+                } as object
+              }
+            />
+          </View>
+          <BoutonRond
+            icone="shield"
+            libelle="Vérifier"
+            onPress={() => router.push('/empreinte/verifier')}
           />
         </View>
 
         <ScrollView
           horizontal
           showsHorizontalScrollIndicator={false}
-          contentContainerStyle={{ gap: 8 }}
+          contentContainerStyle={{ gap: 6 }}
         >
-          {[null, ...genres].map(g => {
-            const actif = genre === g
-            return (
-              <Pressable
-                key={g ?? 'tout'}
-                onPress={() => setGenre(g)}
-                style={{
-                  paddingHorizontal: 14,
-                  paddingVertical: 8,
-                  borderRadius: 99,
-                  backgroundColor: actif ? theme.colors.default : theme.colors.reverse,
-                  borderWidth: 1,
-                  borderColor: actif ? theme.colors.default : theme.colors.border,
-                }}
-              >
-                <Corps taille={13} couleur={actif ? theme.colors.reverse : theme.colors.default}>
-                  {g ? (LIBELLES_GENRE[g] ?? g) : 'Tout'}
-                </Corps>
-              </Pressable>
-            )
-          })}
+          <Pilule
+            ton={filtre === 'toutes' ? 'actif' : 'neutre'}
+            onPress={() => setFiltre('toutes')}
+          >
+            Toutes
+          </Pilule>
+          <Pilule
+            ton={filtre === 'physiques' ? 'actif' : 'neutre'}
+            onPress={() => setFiltre('physiques')}
+          >
+            {`Physiques · ${physiques.length}`}
+          </Pilule>
+          <Pilule
+            ton={filtre === 'numeriques' ? 'actif' : 'neutre'}
+            onPress={() => setFiltre('numeriques')}
+          >
+            {`Numériques · ${numeriques.length}`}
+          </Pilule>
+          <Pilule
+            ton={filtre === 'verifier' ? 'actif' : 'rouge'}
+            onPress={() => setFiltre('verifier')}
+          >
+            {`À vérifier · ${aVerifier.size}`}
+          </Pilule>
         </ScrollView>
 
-        {liste.map(r => {
-          const ecarts = ecartsPar.get(r.id) ?? 0
-          return (
-            <Pressable
-              key={r.id}
-              onPress={() => router.push({ pathname: '/empreinte/realite', params: { id: r.id } })}
-            >
-              <Verre style={{ gap: 10 }} ecart={ecarts > 0}>
+        <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 10 }}>
+          {grille.map(([c, n]) => {
+            const info = CATEGORIES[c] ?? { libelle: c, icone: 'box' as NomIcone }
+            const actif = cat === c
+            return (
+              <Pressable
+                key={c}
+                onPress={() => setCat(actif ? null : c)}
+                accessibilityRole="button"
+                accessibilityState={{ selected: actif }}
+                style={[
+                  styleVerre(v, 24),
+                  {
+                    width: '48.5%',
+                    padding: 14,
+                    gap: 14,
+                    borderColor: actif ? theme.colors.default : v.filet,
+                  },
+                ]}
+              >
                 <View
                   style={{
                     flexDirection: 'row',
@@ -139,55 +203,136 @@ const RealitesScreen = () => {
                     alignItems: 'center',
                   }}
                 >
-                  <Mono>{r.id}</Mono>
-                  {ecarts > 0 ? (
-                    <Pastille ecart>
-                      {ecarts} écart{ecarts > 1 ? 's' : ''}
-                    </Pastille>
-                  ) : null}
-                </View>
-                <Titre taille={18}>{r.titre}</Titre>
-                <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 6 }}>
-                  <Pastille>{LIBELLES_GENRE[r.genre] ?? r.genre}</Pastille>
-                  <Pastille>{r.etat}</Pastille>
-                  <Pastille>
-                    {r.manifestations.length} manifestation{r.manifestations.length > 1 ? 's' : ''}
-                  </Pastille>
-                </View>
-                <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6 }}>
-                  <FeatherIcon name="map-pin" size={13} color="grey" />
-                  <Corps
-                    taille={13}
-                    couleur={r.emplacement?.introuvable ? theme.colors.quart : theme.colors.grey}
+                  <View
+                    style={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: 14,
+                      backgroundColor: v.doux,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
                   >
-                    {emplacementLisible(r)}
-                  </Corps>
+                    <Icone nom={info.icone} taille={19} />
+                  </View>
+                  <Dot taille={24}>{n}</Dot>
                 </View>
-              </Verre>
-            </Pressable>
-          )
-        })}
-        {liste.length === 0 ? (
-          <Corps couleur={theme.colors.grey}>Aucune réalité ne correspond.</Corps>
+                <Text style={{ fontFamily: police(POLICES.gras), fontSize: 15 }}>
+                  {info.libelle}
+                </Text>
+              </Pressable>
+            )
+          })}
+        </View>
+
+        {!cat && !texte.trim() && filtre === 'toutes' ? (
+          <View style={{ gap: 8, marginTop: 6 }}>
+            <Micro>Récemment touchées</Micro>
+            <View style={{ flexDirection: 'row', gap: 8 }}>
+              {recentes.map(({ r, le }) => (
+                <Pressable
+                  key={r.id}
+                  onPress={() => ouvrir(r.id)}
+                  style={[styleVerre(v, 16), { flex: 1, padding: 12, gap: 4 }]}
+                >
+                  <Text
+                    numberOfLines={1}
+                    style={{ fontFamily: police(POLICES.gras), fontSize: 13.5 }}
+                  >
+                    {r.referencesExternes[0]?.valeur ?? r.id.replace(/-\d{4}-/, '-')}
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: police(POLICES.mono),
+                      fontSize: 10.5,
+                      color: theme.colors.grey,
+                    }}
+                  >
+                    {le.slice(11, 16)}
+                  </Text>
+                </Pressable>
+              ))}
+            </View>
+          </View>
         ) : null}
 
-        <Pressable
-          onPress={() => router.push('/empreinte/capturer')}
-          style={{
-            flexDirection: 'row',
-            gap: 8,
-            justifyContent: 'center',
-            alignItems: 'center',
-            paddingVertical: 15,
-            borderRadius: 16,
-            backgroundColor: theme.colors.default,
-          }}
-        >
-          <FeatherIcon name="plus" size={17} color="reverse" />
-          <Corps couleur={theme.colors.reverse}>Intégrer une réalité</Corps>
-        </Pressable>
+        <View style={{ gap: 8, marginTop: 6 }}>
+          <Micro>{`${liste.length} réalité${liste.length > 1 ? 's' : ''}${cat ? ` · ${CATEGORIES[cat]?.libelle ?? cat}` : ''}`}</Micro>
+          <View style={[styleVerre(v, 24), { paddingHorizontal: 18, paddingVertical: 4 }]}>
+            {liste.map((r, i) => {
+              const ecart = aVerifier.has(r.id)
+              return (
+                <Pressable
+                  key={r.id}
+                  onPress={() => ouvrir(r.id)}
+                  style={{
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    gap: 12,
+                    paddingVertical: 11,
+                    borderTopWidth: i ? 1 : 0,
+                    borderTopColor: v.ligne,
+                  }}
+                >
+                  <View
+                    style={{
+                      width: 40,
+                      height: 40,
+                      borderRadius: 14,
+                      backgroundColor: v.doux,
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <Icone nom={CATEGORIES[categorie(r)]?.icone ?? 'box'} taille={19} />
+                  </View>
+                  <View style={{ flex: 1, gap: 1 }}>
+                    <Text
+                      numberOfLines={1}
+                      style={{ fontFamily: police(POLICES.titre), fontSize: 14.5 }}
+                    >
+                      {r.titre}
+                    </Text>
+                    <Text
+                      numberOfLines={1}
+                      style={{
+                        fontFamily: police(POLICES.moyen),
+                        fontSize: 12.5,
+                        color: r.emplacement?.introuvable ? theme.colors.quart : theme.colors.grey,
+                      }}
+                    >
+                      {r.id} · {emplacementLisible(r)}
+                    </Text>
+                  </View>
+                  {ecart ? (
+                    <View
+                      style={{
+                        width: 7,
+                        height: 7,
+                        borderRadius: 4,
+                        backgroundColor: theme.colors.quart,
+                      }}
+                    />
+                  ) : null}
+                  <Icone nom="fwd" taille={16} couleur={theme.colors.grey} />
+                </Pressable>
+              )
+            })}
+            {liste.length === 0 ? (
+              <Text
+                style={{
+                  paddingVertical: 14,
+                  fontFamily: police(POLICES.moyen),
+                  color: theme.colors.grey,
+                }}
+              >
+                Aucune réalité ne correspond.
+              </Text>
+            ) : null}
+          </View>
+        </View>
       </ScrollView>
-    </Container>
+    </FondLumiere>
   )
 }
 

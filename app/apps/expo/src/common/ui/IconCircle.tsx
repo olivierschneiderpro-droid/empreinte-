@@ -4,6 +4,7 @@ import { twMerge } from '~common/ui/classNames'
 import Box from '~common/ui/Box'
 import type { Theme as AppTheme } from '~themes'
 import { useTheme as useAppTheme } from '~themes/ThemeProvider'
+import { useVerre } from '~features/empreinte/lumiere'
 
 interface IconCircleProps {
   bg?: string
@@ -17,8 +18,11 @@ const IconCircle = (
   const contextTheme = useAppTheme()
   const { theme: themeOverride, className, ...props } = componentProps
   const theme = themeOverride ?? contextTheme
-  const { bg, size = 36 } = props
-  const resolvedClassName = twMerge('rounded-[10px] items-center justify-center', className)
+  const verre = useVerre()
+  const { bg, size = 40 } = props
+  // Empreinte : carré doux neutre de la maquette ; les couleurs vives restent pour l'icône.
+  const neutre = !bg || bg.startsWith('rgba') || bg === 'lightPrimary' || bg === 'opacity5'
+  const resolvedClassName = twMerge('rounded-[14px] items-center justify-center', className)
   return (
     <Box
       {...props}
@@ -27,9 +31,9 @@ const IconCircle = (
           {
             width: size,
             height: size,
-            backgroundColor: bg
-              ? theme.colors[bg as keyof typeof theme.colors] || bg
-              : theme.colors.lightPrimary,
+            backgroundColor: neutre
+              ? verre.doux
+              : theme.colors[bg as keyof typeof theme.colors] || bg,
           },
           props.style,
         ] as UIComponentProps<typeof Box>['style']

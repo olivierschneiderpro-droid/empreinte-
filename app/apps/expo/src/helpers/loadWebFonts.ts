@@ -14,6 +14,7 @@ export const loadWebFonts = async () => {
         'Geist',
         'Geist Medium',
         'Geist SemiBold',
+        'Geist Bold',
         'Geist Mono',
         'Geist Mono Medium',
         'Doto',

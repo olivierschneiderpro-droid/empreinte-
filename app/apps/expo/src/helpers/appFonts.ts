@@ -13,7 +13,8 @@ export const appFonts = {
   Geist: require('~assets/fonts/Geist_400Regular.ttf'),
   'Geist Medium': require('~assets/fonts/Geist_500Medium.ttf'),
   'Geist SemiBold': require('~assets/fonts/Geist_600SemiBold.ttf'),
+  'Geist Bold': require('~assets/fonts/Geist_700Bold.ttf'),
   'Geist Mono': require('~assets/fonts/GeistMono_400Regular.ttf'),
   'Geist Mono Medium': require('~assets/fonts/GeistMono_500Medium.ttf'),
-  Doto: require('~assets/fonts/Doto_700Bold.ttf'),
+  Doto: require('~assets/fonts/Doto_900Black.ttf'),
 }

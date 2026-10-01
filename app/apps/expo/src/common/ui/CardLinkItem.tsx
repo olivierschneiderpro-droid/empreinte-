@@ -4,6 +4,7 @@ import { twMerge } from '~common/ui/classNames'
 import Link, { LinkProps } from '~common/Link'
 import { MainStackProps } from '~navigation/type'
 import type { Theme as AppTheme } from '~themes'
+import { useVerre } from '~features/empreinte/lumiere'
 
 interface CardLinkItemProps {
   isLast?: boolean
@@ -22,8 +23,10 @@ const CardLinkItem = (
   const { theme: _themeOverride, className, ...props } = componentProps
 
   const { isLast } = props
+  const verre = useVerre()
+  // Empreinte : lignes de la maquette, séparées par un filet très doux.
   const resolvedClassName = twMerge(
-    'flex-row items-center gap-[10px] px-[12px] pt-[12px]',
+    'flex-row items-center gap-[12px] mx-[18px] py-[11px]',
     className
   )
   return (
@@ -31,7 +34,10 @@ const CardLinkItem = (
       {...props}
       className={resolvedClassName}
       style={
-        [{ paddingBottom: isLast ? 12 : 0 }, props.style] as UIComponentProps<typeof Link>['style']
+        [
+          { borderBottomWidth: isLast ? 0 : 1, borderBottomColor: verre.ligne },
+          props.style,
+        ] as UIComponentProps<typeof Link>['style']
       }
     />
   )

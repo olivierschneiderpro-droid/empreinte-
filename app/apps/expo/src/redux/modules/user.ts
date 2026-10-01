@@ -632,7 +632,8 @@ const getInitialState = (): UserState => ({
     data: [],
   },
   needsUpdate: {},
-  fontFamily: 'Avenir',
+  // Empreinte : Literata par défaut (les autres polices restent au choix).
+  fontFamily: 'Literata Book',
   bible: {
     changelog: {},
     bookmarks: {},
@@ -678,7 +679,7 @@ const getInitialState = (): UserState => ({
         hasQuotes: true,
         hasAppName: true,
       },
-      fontFamily: 'Avenir',
+      fontFamily: 'Literata Book',
       theme: 'default',
       colors: {
         default: defaultColors,

@@ -30,7 +30,7 @@ import { useRouter } from 'expo-router'
 import { Events } from './Events'
 import ProfileStats from '~features/profile/components/ProfileStats'
 import PassageMediaLibraryWidget from './PassageMediaLibraryWidget'
-import EmpreinteWidget from '~features/empreinte/EmpreinteWidget'
+import AccueilLumiere from '~features/empreinte/AccueilLumiere'
 // local react props
 type HomeProps = {
   closeHome: () => void
@@ -51,11 +51,11 @@ export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
   return (
     <Box className="overflow-hidden border-continuous bg-light-grey flex-[1]">
       <HomeScrollView showsVerticalScrollIndicator={false}>
+        <AccueilLumiere />
         <Events />
         <UserWidget />
         <ProfileStats />
         <LoginPrompt />
-        <EmpreinteWidget style={{ marginHorizontal: 20, marginTop: 24 }} />
         <Box className="overflow-hidden border-continuous pt-[40px] px-[20px]">
           <Text
             className="text-[23px] flex-[1]"

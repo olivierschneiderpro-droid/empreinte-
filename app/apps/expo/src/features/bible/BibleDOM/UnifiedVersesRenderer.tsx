@@ -46,33 +46,53 @@ const Span = styled('span')({
   zIndex: 1,
 })
 
-const H1 = styled('h1')<RootStyles>(({ settings: { fontSizeScale, fontFamily } }) => ({
-  fontFamily,
-  fontSize: scaleFontSize(28, fontSizeScale),
+const H1 = styled('h1')<RootStyles>(({ settings: { fontSizeScale } }) => ({
+  // Empreinte : titre en Geist 700 serré.
+  fontFamily: '"Geist Bold", "Geist", system-ui, sans-serif',
+  letterSpacing: '-0.03em',
+  fontSize: scaleFontSize(30, fontSizeScale),
   textAlign: 'start',
   position: 'relative',
   zIndex: 1,
 }))
 
-const H2 = styled('h2')<RootStyles>(({ settings: { fontSizeScale, fontFamily } }) => ({
-  fontFamily,
-  fontSize: scaleFontSize(24, fontSizeScale),
+const H2 = styled('h2')<RootStyles>(({ settings: { fontSizeScale, theme, colors } }) => ({
+  // Empreinte : intertitre en petites capitales mono, gris (maquette Lumière).
+  fontFamily: '"Geist Mono", ui-monospace, monospace',
+  fontSize: scaleFontSize(12, fontSizeScale),
+  fontWeight: 600,
+  letterSpacing: '0.08em',
+  textTransform: 'uppercase',
+  color: colors[theme].grey,
+  margin: '22px 0 10px',
   textAlign: 'start',
   position: 'relative',
   zIndex: 1,
 }))
 
-const H3 = styled('h3')<RootStyles>(({ settings: { fontSizeScale, fontFamily } }) => ({
-  fontFamily,
-  fontSize: scaleFontSize(20, fontSizeScale),
+const H3 = styled('h3')<RootStyles>(({ settings: { fontSizeScale, theme, colors } }) => ({
+  // Empreinte : intertitre en petites capitales mono, gris (maquette Lumière).
+  fontFamily: '"Geist Mono", ui-monospace, monospace',
+  fontSize: scaleFontSize(11, fontSizeScale),
+  fontWeight: 600,
+  letterSpacing: '0.08em',
+  textTransform: 'uppercase',
+  color: colors[theme].grey,
+  margin: '22px 0 10px',
   textAlign: 'start',
   position: 'relative',
   zIndex: 1,
 }))
 
-const H4 = styled('h4')<RootStyles>(({ settings: { fontSizeScale, fontFamily } }) => ({
-  fontFamily,
-  fontSize: scaleFontSize(18, fontSizeScale),
+const H4 = styled('h4')<RootStyles>(({ settings: { fontSizeScale, theme, colors } }) => ({
+  // Empreinte : intertitre en petites capitales mono, gris (maquette Lumière).
+  fontFamily: '"Geist Mono", ui-monospace, monospace',
+  fontSize: scaleFontSize(10.5, fontSizeScale),
+  fontWeight: 600,
+  letterSpacing: '0.08em',
+  textTransform: 'uppercase',
+  color: colors[theme].grey,
+  margin: '22px 0 10px',
   textAlign: 'start',
   position: 'relative',
   zIndex: 1,

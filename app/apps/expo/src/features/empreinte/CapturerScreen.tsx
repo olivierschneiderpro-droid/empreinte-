@@ -8,11 +8,26 @@ import {
   proposerIdentifiant,
   type TypeManifestation,
 } from '@empreinte/core'
-import Container from '~common/ui/Container'
-import Header from '~common/Header'
 import { useTheme } from '~themes/ThemeProvider'
 import { LIBELLES_GENRE, LIBELLES_MANIFESTATION, useEmpreinte } from './registreEmpreinte'
-import { Corps, Mono, Points, Surtitre, Verre } from './lumiere'
+import Text from '~common/ui/Text'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
+import { Icone, type NomIcone } from './icones'
+import {
+  BarreHaut,
+  BoutonRond,
+  Corps,
+  FondLumiere,
+  Mono,
+  POLICES,
+  Pilule,
+  Points,
+  Surtitre,
+  Verre,
+  police,
+  styleVerre,
+  useVerre,
+} from './lumiere'
 
 const GENRES = [
   'document',
@@ -103,6 +118,15 @@ const CapturerScreen = () => {
   const [emetteur, setEmetteur] = useState('')
   const [montant, setMontant] = useState('')
   const [notes, setNotes] = useState('')
+  const [choisi, setChoisi] = useState(false)
+  const v = useVerre()
+  const insets = useSafeAreaInsets()
+  const choisir = (g: string, f: TypeManifestation, ref = '') => {
+    setGenre(g)
+    setForme(f)
+    if (ref) setReference(ref)
+    setChoisi(true)
+  }
 
   const sousType = genre === 'document' && /^f/i.test(reference.trim()) ? 'facture' : undefined
   const identifiant = useMemo(
@@ -139,10 +163,193 @@ const CapturerScreen = () => {
     router.replace({ pathname: '/empreinte/realite', params: { id: identifiant } })
   }
 
+  if (!choisi) {
+    const tuiles: [NomIcone, string, () => void][] = [
+      ['paper', 'Document', () => choisir('document', 'physique-original')],
+      ['euro', 'Facture', () => choisir('document', 'physique-original', 'F-')],
+      ['book', 'Livre · ISBN', () => choisir('livre', 'physique-original')],
+      ['book', 'Bible', () => choisir('bible', 'physique-original')],
+      ['laptop', 'Équipement', () => choisir('equipement', 'physique-original')],
+      ['box', 'Objet', () => choisir('objet', 'physique-original')],
+      ['note', 'Page de carnet', () => choisir('document', 'scan')],
+      ['truck', 'Lot · mission', () => choisir('mission', 'physique-original')],
+    ]
+    return (
+      <FondLumiere>
+        <ScrollView
+          contentContainerStyle={{
+            paddingHorizontal: 16,
+            paddingTop: insets.top + 10,
+            paddingBottom: 130,
+            gap: 12,
+          }}
+        >
+          <BoutonRond
+            icone="back"
+            libelle="Retour"
+            onPress={() => (router.canGoBack() ? router.back() : router.replace('/'))}
+          />
+          <View style={{ gap: 6, marginTop: 8 }}>
+            <Text
+              style={{
+                fontFamily: police(POLICES.gras),
+                fontSize: 30,
+                lineHeight: 32,
+                letterSpacing: -0.9,
+              }}
+            >
+              {'Qu’avez-vous\ndevant vous ?'}
+            </Text>
+            <Text
+              style={{ fontFamily: police(POLICES.moyen), fontSize: 14, color: theme.colors.grey }}
+            >
+              Le physique garde son existence. Empreinte en crée la trace.
+            </Text>
+          </View>
+          <Pressable
+            onPress={() => choisir('document', 'photo')}
+            accessibilityRole="button"
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: 16,
+              padding: 18,
+              borderRadius: 24,
+              backgroundColor: theme.colors.default,
+            }}
+          >
+            <View
+              style={{
+                width: 58,
+                height: 58,
+                borderRadius: 29,
+                backgroundColor: theme.colors.reverse,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Icone nom="camera" taille={24} />
+            </View>
+            <View style={{ flex: 1, gap: 2 }}>
+              <Text
+                style={{
+                  fontFamily: police(POLICES.gras),
+                  fontSize: 17,
+                  color: theme.colors.reverse,
+                }}
+              >
+                Photographier
+              </Text>
+              <Text
+                style={{
+                  fontFamily: police(POLICES.moyen),
+                  fontSize: 13,
+                  color: theme.colors.lightGrey,
+                }}
+              >
+                Empreinte reconnaît le type tout seul
+              </Text>
+            </View>
+          </Pressable>
+          <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+            {tuiles.map(([icone, libelle, faire]) => (
+              <Pressable
+                key={libelle}
+                onPress={faire}
+                accessibilityRole="button"
+                style={[
+                  styleVerre(v, 20),
+                  {
+                    width: '23.2%',
+                    minHeight: 70,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    gap: 6,
+                    padding: 6,
+                  },
+                ]}
+              >
+                <Icone nom={icone} taille={20} />
+                <Text
+                  style={{ fontFamily: police(POLICES.titre), fontSize: 11.5, textAlign: 'center' }}
+                >
+                  {libelle}
+                </Text>
+              </Pressable>
+            ))}
+          </View>
+          <View style={[styleVerre(v, 24), { paddingHorizontal: 18, paddingVertical: 4 }]}>
+            {(
+              [
+                [
+                  'sparkle',
+                  'Créer sans original',
+                  'Projet, idée : une réalité d’abord numérique',
+                  () => choisir('projet', 'fichier-numerique'),
+                ],
+                [
+                  'upload',
+                  'Importer des fichiers',
+                  'PDF, photos, relevés OFX, Factur-X',
+                  () => choisir('document', 'fichier-numerique'),
+                ],
+              ] as [NomIcone, string, string, () => void][]
+            ).map(([icone, titreLigne, sous, faire], i) => (
+              <Pressable
+                key={titreLigne}
+                onPress={faire}
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  gap: 12,
+                  paddingVertical: 12,
+                  borderTopWidth: i ? 1 : 0,
+                  borderTopColor: v.ligne,
+                }}
+              >
+                <View
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 14,
+                    backgroundColor: v.doux,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Icone nom={icone} taille={19} />
+                </View>
+                <View style={{ flex: 1 }}>
+                  <Text style={{ fontFamily: police(POLICES.gras), fontSize: 15 }}>
+                    {titreLigne}
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: police(POLICES.moyen),
+                      fontSize: 12.5,
+                      color: theme.colors.grey,
+                    }}
+                  >
+                    {sous}
+                  </Text>
+                </View>
+              </Pressable>
+            ))}
+          </View>
+        </ScrollView>
+      </FondLumiere>
+    )
+  }
+
   return (
-    <Container>
-      <Header hasBackButton title="Intégrer une réalité" />
-      <ScrollView contentContainerStyle={{ padding: 20, gap: 20, paddingBottom: 60 }}>
+    <FondLumiere>
+      <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingBottom: 130, gap: 18 }}>
+        <BarreHaut
+          centre={<Pilule ton="verre">Intégrer une réalité</Pilule>}
+          droite={
+            <BoutonRond icone="x" libelle="Changer de type" onPress={() => setChoisi(false)} />
+          }
+        />
         <Verre style={{ gap: 6, alignItems: 'flex-start' }}>
           <Surtitre>Identité proposée</Surtitre>
           <Points taille={34}>{identifiant}</Points>
@@ -221,7 +428,7 @@ const CapturerScreen = () => {
           <Corps couleur={theme.colors.reverse}>Intégrer {identifiant}</Corps>
         </Pressable>
       </ScrollView>
-    </Container>
+    </FondLumiere>
   )
 }
 

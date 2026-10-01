@@ -1,5 +1,5 @@
 import SidebarAccountCard from './SidebarAccountCard'
-import { Marque } from '~features/empreinte/lumiere'
+import { Marque, POLICES, police, styleVerre, useVerre } from '~features/empreinte/lumiere'
 import { resolveUniverseColors } from '~themes/universeColors'
 import {
   SidebarDragProvider,
@@ -14,7 +14,10 @@ import { useAtom, useAtomValue, useSetAtom } from 'jotai/react'
 import { collapsedWorkspaceGroupsAtom } from '~state/workspacePreferences'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useRouter } from 'expo-router'
+import { usePathname, useRouter } from 'expo-router'
+import { commandPaletteOpenAtom } from './commandPalette/state'
+import { Icone } from '~features/empreinte/icones'
+import { useEmpreinte } from '~features/empreinte/registreEmpreinte'
 import { Platform, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import type { SheetRef } from '~common/sheet'
@@ -61,6 +64,11 @@ const WorkspaceSidebar = ({
 
   const { t } = useTranslation()
   const router = useRouter()
+  const pathname = usePathname()
+  const verre = useVerre()
+  const openCommandPalette = useSetAtom(commandPaletteOpenAtom)
+  const { anomalies } = useEmpreinte()
+  const ecartsEmpreinte = anomalies.filter(a => a.gravite !== 'info').length
   const insets = useSafeAreaInsets()
   const { colorScheme } = useCurrentThemeSelector()
   const rowHeight = Platform.OS === 'web' ? 32 : 44
@@ -102,21 +110,25 @@ const WorkspaceSidebar = ({
     >
       {(previewGroups, foldedGroupId) => (
         <Box
-          className="flex-1 min-h-0 border-continuous overflow-hidden bg-light-grey border-r-[1px] border-border"
-          style={{
-            paddingTop: insets.top,
-            paddingBottom: insets.bottom,
-            width: WORKSPACE_SIDEBAR_WIDTH,
-          }}
+          className="flex-1 min-h-0 border-continuous overflow-hidden"
+          style={[
+            styleVerre(verre, 24),
+            {
+              marginTop: 16 + insets.top,
+              marginBottom: 16 + insets.bottom,
+              marginLeft: 16,
+              width: WORKSPACE_SIDEBAR_WIDTH - 24,
+            },
+          ]}
         >
-          <HStack className="overflow-hidden border-continuous items-center pl-[20px] pr-[8px] py-[10px]">
+          <HStack className="overflow-hidden border-continuous items-center pl-[22px] pr-[10px] pt-[16px] pb-[8px]">
             <TouchableBox
               className="flex-1 flex-row items-center min-h-[40px]"
               onPress={openHome}
               accessibilityRole="button"
               accessibilityLabel={`Empreinte — ${t('Accueil')}`}
             >
-              <Marque taille={16} />
+              <Marque taille={18} />
             </TouchableBox>
             <TouchableBox
               className="overflow-hidden border-continuous items-center justify-center"
@@ -128,6 +140,100 @@ const WorkspaceSidebar = ({
               <FeatherIcon name="sidebar" size={18} color="grey" />
             </TouchableBox>
           </HStack>
+          <Box className="px-[12px] pt-[8px] pb-[6px] gap-[4px]">
+            <TouchableBox
+              testID="workspace-search"
+              className="flex-row items-center gap-[8px] px-[12px] h-[40px] rounded-[14px] mb-[12px]"
+              style={{ backgroundColor: verre.fond, borderWidth: 1, borderColor: verre.ligne }}
+              onPress={() => openCommandPalette(true)}
+              accessibilityRole="button"
+              accessibilityLabel={t('commandPalette.label')}
+            >
+              <Icone nom="search" taille={15} couleur={stylingTheme.colors.grey} />
+              <Text
+                className="flex-1 text-[13.5px]"
+                style={{ fontFamily: police(POLICES.moyen), color: stylingTheme.colors.grey }}
+              >
+                Rechercher
+              </Text>
+              <Text
+                style={{
+                  fontFamily: police(POLICES.mono),
+                  fontSize: 10.5,
+                  color: stylingTheme.colors.grey,
+                }}
+              >
+                ⌘K
+              </Text>
+            </TouchableBox>
+            {(
+              [
+                ['home', t('Accueil'), activePage === 'home', openHome, undefined],
+                [
+                  'layers',
+                  'Réalités',
+                  pathname.startsWith('/empreinte') && !pathname.includes('verifier'),
+                  () => router.push('/empreinte'),
+                  undefined,
+                ],
+                [
+                  'book',
+                  t('tabs.bible'),
+                  isContentActive && activePage !== 'home' && !pathname.startsWith('/empreinte'),
+                  () => onSelectContent?.(),
+                  undefined,
+                ],
+                [
+                  'shield',
+                  'Vérifier',
+                  pathname.includes('/empreinte/verifier'),
+                  () => router.push('/empreinte/verifier'),
+                  ecartsEmpreinte || undefined,
+                ],
+              ] as const
+            ).map(([icone, libelle, actif, ouvrir, compte]) => (
+              <TouchableBox
+                key={icone}
+                testID={icone === 'layers' ? 'workspace-empreinte' : `workspace-nav-${icone}`}
+                className="flex-row items-center gap-[12px] px-[12px] h-[40px] rounded-[12px]"
+                style={{ backgroundColor: actif ? verre.actif : undefined }}
+                onPress={ouvrir}
+                accessibilityRole="button"
+                accessibilityLabel={libelle}
+                accessibilityState={{ selected: actif }}
+              >
+                <Icone nom={icone} taille={19} />
+                <Text
+                  className="flex-1 text-[14.5px]"
+                  style={{ fontFamily: police(POLICES.titre) }}
+                >
+                  {libelle}
+                </Text>
+                {compte ? (
+                  <Text
+                    style={{
+                      fontFamily: police(POLICES.mono),
+                      fontSize: 11.5,
+                      color: stylingTheme.colors.quart,
+                    }}
+                  >
+                    {compte}
+                  </Text>
+                ) : null}
+              </TouchableBox>
+            ))}
+            <Text
+              className="px-[12px] pt-[18px] pb-[4px]"
+              style={{
+                fontFamily: police(POLICES.monoMoyen),
+                fontSize: 10.5,
+                letterSpacing: 0.84,
+                color: stylingTheme.colors.grey,
+              }}
+            >
+              ONGLETS
+            </Text>
+          </Box>
           <ScrollView
             style={{
               flex: 1,
@@ -409,16 +515,19 @@ const WorkspaceSidebar = ({
           </ScrollView>
           <Box className="border-continuous overflow-hidden px-[12px] pt-[8px] pb-[8px] gap-[4px]">
             <TouchableBox
-              className="overflow-hidden border-continuous flex-row items-center px-[10px] rounded-[8px] hover:bg-reverse"
-              onPress={() => router.push('/empreinte')}
+              className="flex-row items-center justify-center gap-[8px] h-[46px] rounded-[23px] mb-[6px]"
+              style={{ backgroundColor: stylingTheme.colors.default }}
+              onPress={() => router.push('/empreinte/capturer')}
               accessibilityRole="button"
-              accessibilityLabel="Empreinte — réalités"
-              testID="workspace-empreinte"
-              style={{ minHeight: rowHeight }}
+              accessibilityLabel="Capturer une réalité"
+              testID="workspace-capturer"
             >
-              <FeatherIcon name="layers" size={16} color="grey" />
-              <Text className="ml-[8px] text-[13px]" style={labelStyle}>
-                Réalités
+              <Icone nom="scan" taille={18} couleur={stylingTheme.colors.reverse} trait={2} />
+              <Text
+                className="text-[14.5px]"
+                style={{ fontFamily: police(POLICES.titre), color: stylingTheme.colors.reverse }}
+              >
+                Capturer
               </Text>
             </TouchableBox>
             {Platform.OS === 'web' ? (
