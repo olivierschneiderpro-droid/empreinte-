@@ -1,0 +1,10 @@
+{
+  "name": "@empreinte/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "@empreinte/core": "*",
+    "qrcode": "^1.5.4"
+  },
+  "license": "GPL-3.0-or-later"
+}
