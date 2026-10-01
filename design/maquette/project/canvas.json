@@ -12,7 +12,7 @@
  "boards": {
   "Main.dc.html": {
    "x": 0,
-   "y": 300,
+   "y": 4500,
    "w": 390,
    "h": 844,
    "title": "Aujourd’hui",
@@ -20,7 +20,7 @@
   },
   "F02-Realites.dc.html": {
    "x": 470,
-   "y": 300,
+   "y": 4500,
    "w": 390,
    "h": 844,
    "title": "Réalités",
@@ -28,7 +28,7 @@
   },
   "F03-Domaines.dc.html": {
    "x": 940,
-   "y": 300,
+   "y": 4500,
    "w": 390,
    "h": 844,
    "title": "Domaines de vie",
@@ -36,7 +36,7 @@
   },
   "F04-Recherche.dc.html": {
    "x": 1410,
-   "y": 300,
+   "y": 4500,
    "w": 390,
    "h": 844,
    "title": "Recherche universelle",
@@ -44,7 +44,7 @@
   },
   "F05-Scanner.dc.html": {
    "x": 1880,
-   "y": 300,
+   "y": 4500,
    "w": 390,
    "h": 844,
    "title": "Scanner un code",
@@ -52,7 +52,7 @@
   },
   "F06-Capturer.dc.html": {
    "x": 2350,
-   "y": 300,
+   "y": 4500,
    "w": 390,
    "h": 844,
    "title": "Capturer une réalité",
@@ -60,7 +60,7 @@
   },
   "F07-Principe.dc.html": {
    "x": 2820,
-   "y": 300,
+   "y": 4500,
    "w": 390,
    "h": 844,
    "title": "Le principe",
@@ -68,7 +68,7 @@
   },
   "F08-Bureau.dc.html": {
    "x": 0,
-   "y": 1304,
+   "y": 5504,
    "w": 1280,
    "h": 820,
    "title": "Empreinte sur ordinateur",
@@ -76,7 +76,7 @@
   },
   "C01-Photo.dc.html": {
    "x": 0,
-   "y": 2684,
+   "y": 6884,
    "w": 390,
    "h": 844,
    "title": "Photographier l’original",
@@ -84,7 +84,7 @@
   },
   "C02-Lecture.dc.html": {
    "x": 470,
-   "y": 2684,
+   "y": 6884,
    "w": 390,
    "h": 844,
    "title": "Lecture de la facture",
@@ -92,7 +92,7 @@
   },
   "C03-Correspondance.dc.html": {
    "x": 940,
-   "y": 2684,
+   "y": 6884,
    "w": 390,
    "h": 844,
    "title": "Correspondance",
@@ -100,7 +100,7 @@
   },
   "C04-Identite.dc.html": {
    "x": 1410,
-   "y": 2684,
+   "y": 6884,
    "w": 390,
    "h": 844,
    "title": "Identité",
@@ -108,7 +108,7 @@
   },
   "C05-Contexte.dc.html": {
    "x": 1880,
-   "y": 2684,
+   "y": 6884,
    "w": 390,
    "h": 844,
    "title": "Contexte",
@@ -116,7 +116,7 @@
   },
   "C06-Fiche.dc.html": {
    "x": 2350,
-   "y": 2684,
+   "y": 6884,
    "w": 390,
    "h": 844,
    "title": "FAC-2026-0047",
@@ -124,7 +124,7 @@
   },
   "C07-Manifestations.dc.html": {
    "x": 2820,
-   "y": 2684,
+   "y": 6884,
    "w": 390,
    "h": 844,
    "title": "Manifestations",
@@ -132,7 +132,7 @@
   },
   "C08-Emplacement.dc.html": {
    "x": 3290,
-   "y": 2684,
+   "y": 6884,
    "w": 390,
    "h": 844,
    "title": "Emplacement",
@@ -140,7 +140,7 @@
   },
   "C09-Etat.dc.html": {
    "x": 0,
-   "y": 3688,
+   "y": 7888,
    "w": 390,
    "h": 844,
    "title": "État",
@@ -148,7 +148,7 @@
   },
   "C10-Preuves.dc.html": {
    "x": 470,
-   "y": 3688,
+   "y": 7888,
    "w": 390,
    "h": 844,
    "title": "Preuves",
@@ -156,7 +156,7 @@
   },
   "C11-Relations.dc.html": {
    "x": 940,
-   "y": 3688,
+   "y": 7888,
    "w": 390,
    "h": 844,
    "title": "Relations",
@@ -164,7 +164,7 @@
   },
   "C12-Historique.dc.html": {
    "x": 1410,
-   "y": 3688,
+   "y": 7888,
    "w": 390,
    "h": 844,
    "title": "Historique",
@@ -172,7 +172,7 @@
   },
   "C13-Lacunes.dc.html": {
    "x": 1880,
-   "y": 3688,
+   "y": 7888,
    "w": 390,
    "h": 844,
    "title": "Lacunes",
@@ -180,7 +180,7 @@
   },
   "P01-Methodes.dc.html": {
    "x": 0,
-   "y": 5092,
+   "y": 9292,
    "w": 390,
    "h": 844,
    "title": "Méthodes de marquage",
@@ -188,7 +188,7 @@
   },
   "P02-Etiquette.dc.html": {
    "x": 470,
-   "y": 5092,
+   "y": 9292,
    "w": 390,
    "h": 844,
    "title": "Étiquette",
@@ -196,7 +196,7 @@
   },
   "P03-Manuscrit.dc.html": {
    "x": 940,
-   "y": 5092,
+   "y": 9292,
    "w": 390,
    "h": 844,
    "title": "Inscrire à la main",
@@ -204,7 +204,7 @@
   },
   "P04-Emplacement.dc.html": {
    "x": 1410,
-   "y": 5092,
+   "y": 9292,
    "w": 390,
    "h": 844,
    "title": "Emplacement calculé",
@@ -212,7 +212,7 @@
   },
   "P05-PlanRangement.dc.html": {
    "x": 1880,
-   "y": 5092,
+   "y": 9292,
    "w": 390,
    "h": 844,
    "title": "Plan de rangement",
@@ -220,7 +220,7 @@
   },
   "P06-Organisation.dc.html": {
    "x": 2350,
-   "y": 5092,
+   "y": 9292,
    "w": 390,
    "h": 844,
    "title": "Organiser",
@@ -228,7 +228,7 @@
   },
   "P07-Criteres.dc.html": {
    "x": 2820,
-   "y": 5092,
+   "y": 9292,
    "w": 390,
    "h": 844,
    "title": "Critères",
@@ -236,7 +236,7 @@
   },
   "P08-Inventaire.dc.html": {
    "x": 3290,
-   "y": 5092,
+   "y": 9292,
    "w": 390,
    "h": 844,
    "title": "Inventaire physique",
@@ -244,7 +244,7 @@
   },
   "P09-NumVersPhys.dc.html": {
    "x": 0,
-   "y": 6096,
+   "y": 10296,
    "w": 390,
    "h": 844,
    "title": "Du numérique au physique",
@@ -252,7 +252,7 @@
   },
   "P10-Detenteur.dc.html": {
    "x": 470,
-   "y": 6096,
+   "y": 10296,
    "w": 390,
    "h": 844,
    "title": "Confier un original",
@@ -260,7 +260,7 @@
   },
   "V01-Verifier.dc.html": {
    "x": 0,
-   "y": 7500,
+   "y": 11700,
    "w": 390,
    "h": 844,
    "title": "Vérifier",
@@ -268,7 +268,7 @@
   },
   "V02-Incoherence.dc.html": {
    "x": 470,
-   "y": 7500,
+   "y": 11700,
    "w": 390,
    "h": 844,
    "title": "Montants différents",
@@ -276,7 +276,7 @@
   },
   "V03-RelationManquante.dc.html": {
    "x": 940,
-   "y": 7500,
+   "y": 11700,
    "w": 390,
    "h": 844,
    "title": "Paiement sans justificatif",
@@ -284,7 +284,7 @@
   },
   "V04-Doublon.dc.html": {
    "x": 1410,
-   "y": 7500,
+   "y": 11700,
    "w": 390,
    "h": 844,
    "title": "Doublon possible",
@@ -292,7 +292,7 @@
   },
   "V05-Introuvable.dc.html": {
    "x": 1880,
-   "y": 7500,
+   "y": 11700,
    "w": 390,
    "h": 844,
    "title": "Original introuvable",
@@ -300,7 +300,7 @@
   },
   "V06-NouvelleRealite.dc.html": {
    "x": 2350,
-   "y": 7500,
+   "y": 11700,
    "w": 390,
    "h": 844,
    "title": "Nouvelle réalité",
@@ -308,7 +308,7 @@
   },
   "V07-TransitionForcee.dc.html": {
    "x": 2820,
-   "y": 7500,
+   "y": 11700,
    "w": 390,
    "h": 844,
    "title": "Passage inhabituel",
@@ -316,7 +316,7 @@
   },
   "V08-JournalAltere.dc.html": {
    "x": 3290,
-   "y": 7500,
+   "y": 11700,
    "w": 390,
    "h": 844,
    "title": "Journal altéré",
@@ -324,7 +324,7 @@
   },
   "V09-Humain.dc.html": {
    "x": 0,
-   "y": 8504,
+   "y": 12704,
    "w": 390,
    "h": 844,
    "title": "Ce qui reste humain",
@@ -332,7 +332,7 @@
   },
   "V10-Rapport.dc.html": {
    "x": 470,
-   "y": 8504,
+   "y": 12704,
    "w": 390,
    "h": 844,
    "title": "Rapport de cohérence",
@@ -340,7 +340,7 @@
   },
   "D01-Livre.dc.html": {
    "x": 0,
-   "y": 9908,
+   "y": 14108,
    "w": 390,
    "h": 844,
    "title": "Livre",
@@ -348,7 +348,7 @@
   },
   "D02-Equipement.dc.html": {
    "x": 470,
-   "y": 9908,
+   "y": 14108,
    "w": 390,
    "h": 844,
    "title": "Équipement",
@@ -356,7 +356,7 @@
   },
   "D03-BiblePhysique.dc.html": {
    "x": 940,
-   "y": 9908,
+   "y": 14108,
    "w": 390,
    "h": 844,
    "title": "Bible physique",
@@ -364,7 +364,7 @@
   },
   "D04-Mission.dc.html": {
    "x": 1410,
-   "y": 9908,
+   "y": 14108,
    "w": 390,
    "h": 844,
    "title": "Mission",
@@ -372,7 +372,7 @@
   },
   "D05-Distribution.dc.html": {
    "x": 1880,
-   "y": 9908,
+   "y": 14108,
    "w": 390,
    "h": 844,
    "title": "Distribution",
@@ -380,7 +380,7 @@
   },
   "D06-Projet.dc.html": {
    "x": 2350,
-   "y": 9908,
+   "y": 14108,
    "w": 390,
    "h": 844,
    "title": "Projet",
@@ -388,7 +388,7 @@
   },
   "D07-Journaux.dc.html": {
    "x": 2820,
-   "y": 9908,
+   "y": 14108,
    "w": 390,
    "h": 844,
    "title": "Journaux",
@@ -396,7 +396,7 @@
   },
   "D08-EntreeJournal.dc.html": {
    "x": 3290,
-   "y": 9908,
+   "y": 14108,
    "w": 390,
    "h": 844,
    "title": "Entrée de journal",
@@ -404,7 +404,7 @@
   },
   "D09-Personne.dc.html": {
    "x": 0,
-   "y": 10912,
+   "y": 15112,
    "w": 390,
    "h": 844,
    "title": "Personne",
@@ -412,7 +412,7 @@
   },
   "D10-Stock.dc.html": {
    "x": 470,
-   "y": 10912,
+   "y": 15112,
    "w": 390,
    "h": 844,
    "title": "Stock",
@@ -420,7 +420,7 @@
   },
   "B01-Lecteur.dc.html": {
    "x": 0,
-   "y": 12316,
+   "y": 16516,
    "w": 390,
    "h": 844,
    "title": "Bible · Jean 3",
@@ -428,7 +428,7 @@
   },
   "B02-Selecteur.dc.html": {
    "x": 470,
-   "y": 12316,
+   "y": 16516,
    "w": 390,
    "h": 844,
    "title": "Choisir un passage",
@@ -436,7 +436,7 @@
   },
   "B03-Versions.dc.html": {
    "x": 940,
-   "y": 12316,
+   "y": 16516,
    "w": 390,
    "h": 844,
    "title": "Versions",
@@ -444,7 +444,7 @@
   },
   "B04-SelectionVerset.dc.html": {
    "x": 1410,
-   "y": 12316,
+   "y": 16516,
    "w": 390,
    "h": 844,
    "title": "Verset sélectionné",
@@ -452,7 +452,7 @@
   },
   "B05-Comparer.dc.html": {
    "x": 1880,
-   "y": 12316,
+   "y": 16516,
    "w": 390,
    "h": 844,
    "title": "Comparer les versions",
@@ -460,7 +460,7 @@
   },
   "B06-Interlineaire.dc.html": {
    "x": 2350,
-   "y": 12316,
+   "y": 16516,
    "w": 390,
    "h": 844,
    "title": "Interlinéaire",
@@ -468,7 +468,7 @@
   },
   "B07-Pericopes.dc.html": {
    "x": 2820,
-   "y": 12316,
+   "y": 16516,
    "w": 390,
    "h": 844,
    "title": "Péricopes",
@@ -476,7 +476,7 @@
   },
   "B08-Audio.dc.html": {
    "x": 3290,
-   "y": 12316,
+   "y": 16516,
    "w": 390,
    "h": 844,
    "title": "Écouter",
@@ -484,7 +484,7 @@
   },
   "B09-Ressources.dc.html": {
    "x": 0,
-   "y": 13320,
+   "y": 17520,
    "w": 390,
    "h": 844,
    "title": "Ressources du passage",
@@ -492,7 +492,7 @@
   },
   "B10-Onglets.dc.html": {
    "x": 470,
-   "y": 13320,
+   "y": 17520,
    "w": 390,
    "h": 844,
    "title": "Onglets",
@@ -500,7 +500,7 @@
   },
   "B11-JourMeditation.dc.html": {
    "x": 940,
-   "y": 13320,
+   "y": 17520,
    "w": 390,
    "h": 844,
    "title": "Verset du jour",
@@ -508,7 +508,7 @@
   },
   "B12-Partage.dc.html": {
    "x": 1410,
-   "y": 13320,
+   "y": 17520,
    "w": 390,
    "h": 844,
    "title": "Partager un verset",
@@ -516,7 +516,7 @@
   },
   "B13-Historique.dc.html": {
    "x": 1880,
-   "y": 13320,
+   "y": 17520,
    "w": 390,
    "h": 844,
    "title": "Historique",
@@ -524,7 +524,7 @@
   },
   "S01-Lexique.dc.html": {
    "x": 0,
-   "y": 14724,
+   "y": 18924,
    "w": 390,
    "h": 844,
    "title": "Lexique",
@@ -532,7 +532,7 @@
   },
   "S02-Mot.dc.html": {
    "x": 470,
-   "y": 14724,
+   "y": 18924,
    "w": 390,
    "h": 844,
    "title": "G25 ἀγαπάω",
@@ -540,7 +540,7 @@
   },
   "S03-Concordance.dc.html": {
    "x": 940,
-   "y": 14724,
+   "y": 18924,
    "w": 390,
    "h": 844,
    "title": "Concordance",
@@ -548,7 +548,7 @@
   },
   "S04-ParLivre.dc.html": {
    "x": 1410,
-   "y": 14724,
+   "y": 18924,
    "w": 390,
    "h": 844,
    "title": "Concordance par livre",
@@ -556,7 +556,7 @@
   },
   "S05-MotsLies.dc.html": {
    "x": 1880,
-   "y": 14724,
+   "y": 18924,
    "w": 390,
    "h": 844,
    "title": "Mots liés",
@@ -564,7 +564,7 @@
   },
   "S06-Dictionnaire.dc.html": {
    "x": 2350,
-   "y": 14724,
+   "y": 18924,
    "w": 390,
    "h": 844,
    "title": "Dictionnaire",
@@ -572,7 +572,7 @@
   },
   "S07-Nave.dc.html": {
    "x": 2820,
-   "y": 14724,
+   "y": 18924,
    "w": 390,
    "h": 844,
    "title": "Thèmes Nave",
@@ -580,7 +580,7 @@
   },
   "S08-Entites.dc.html": {
    "x": 3290,
-   "y": 14724,
+   "y": 18924,
    "w": 390,
    "h": 844,
    "title": "Personnes et lieux",
@@ -588,7 +588,7 @@
   },
   "S09-Commentaires.dc.html": {
    "x": 0,
-   "y": 15728,
+   "y": 19928,
    "w": 390,
    "h": 844,
    "title": "Commentaires",
@@ -596,7 +596,7 @@
   },
   "S10-Chronologie.dc.html": {
    "x": 470,
-   "y": 15728,
+   "y": 19928,
    "w": 390,
    "h": 844,
    "title": "Chronologie",
@@ -604,7 +604,7 @@
   },
   "S11-Recherche.dc.html": {
    "x": 940,
-   "y": 15728,
+   "y": 19928,
    "w": 390,
    "h": 844,
    "title": "Recherche biblique",
@@ -612,7 +612,7 @@
   },
   "S12-Assistant.dc.html": {
    "x": 1410,
-   "y": 15728,
+   "y": 19928,
    "w": 390,
    "h": 844,
    "title": "Assistant d’étude",
@@ -620,7 +620,7 @@
   },
   "L01-Bibliotheque.dc.html": {
    "x": 0,
-   "y": 17132,
+   "y": 21332,
    "w": 390,
    "h": 844,
    "title": "Ma bibliothèque",
@@ -628,7 +628,7 @@
   },
   "L02-Surbrillances.dc.html": {
    "x": 470,
-   "y": 17132,
+   "y": 21332,
    "w": 390,
    "h": 844,
    "title": "Surbrillances",
@@ -636,7 +636,7 @@
   },
   "L03-MarquePages.dc.html": {
    "x": 940,
-   "y": 17132,
+   "y": 21332,
    "w": 390,
    "h": 844,
    "title": "Marque-pages",
@@ -644,7 +644,7 @@
   },
   "L04-Notes.dc.html": {
    "x": 1410,
-   "y": 17132,
+   "y": 21332,
    "w": 390,
    "h": 844,
    "title": "Notes",
@@ -652,7 +652,7 @@
   },
   "L05-Liens.dc.html": {
    "x": 1880,
-   "y": 17132,
+   "y": 21332,
    "w": 390,
    "h": 844,
    "title": "Liens",
@@ -660,7 +660,7 @@
   },
   "L06-Etudes.dc.html": {
    "x": 2350,
-   "y": 17132,
+   "y": 21332,
    "w": 390,
    "h": 844,
    "title": "Études",
@@ -668,7 +668,7 @@
   },
   "L07-EditeurEtude.dc.html": {
    "x": 2820,
-   "y": 17132,
+   "y": 21332,
    "w": 390,
    "h": 844,
    "title": "Étude",
@@ -676,7 +676,7 @@
   },
   "L08-Etiquettes.dc.html": {
    "x": 3290,
-   "y": 17132,
+   "y": 21332,
    "w": 390,
    "h": 844,
    "title": "Étiquettes",
@@ -684,7 +684,7 @@
   },
   "L09-Plans.dc.html": {
    "x": 0,
-   "y": 18136,
+   "y": 22336,
    "w": 390,
    "h": 844,
    "title": "Plans de lecture",
@@ -692,7 +692,7 @@
   },
   "L10-Plan.dc.html": {
    "x": 470,
-   "y": 18136,
+   "y": 22336,
    "w": 390,
    "h": 844,
    "title": "Plan du jour",
@@ -700,7 +700,7 @@
   },
   "L12-Meditation.dc.html": {
    "x": 940,
-   "y": 18136,
+   "y": 22336,
    "w": 390,
    "h": 844,
    "title": "Méditation",
@@ -708,7 +708,7 @@
   },
   "A01-Plus.dc.html": {
    "x": 0,
-   "y": 19540,
+   "y": 23740,
    "w": 390,
    "h": 844,
    "title": "Plus",
@@ -716,7 +716,7 @@
   },
   "A02-Connexion.dc.html": {
    "x": 470,
-   "y": 19540,
+   "y": 23740,
    "w": 390,
    "h": 844,
    "title": "Connexion",
@@ -724,7 +724,7 @@
   },
   "A03-Profil.dc.html": {
    "x": 940,
-   "y": 19540,
+   "y": 23740,
    "w": 390,
    "h": 844,
    "title": "Profil",
@@ -732,7 +732,7 @@
   },
   "A04-Sauvegarde.dc.html": {
    "x": 1410,
-   "y": 19540,
+   "y": 23740,
    "w": 390,
    "h": 844,
    "title": "Sauvegarde",
@@ -740,7 +740,7 @@
   },
   "A05-ImportExport.dc.html": {
    "x": 1880,
-   "y": 19540,
+   "y": 23740,
    "w": 390,
    "h": 844,
    "title": "Importer / exporter",
@@ -748,7 +748,7 @@
   },
   "A06-Telechargements.dc.html": {
    "x": 2350,
-   "y": 19540,
+   "y": 23740,
    "w": 390,
    "h": 844,
    "title": "Téléchargements",
@@ -756,7 +756,7 @@
   },
   "A07-Theme.dc.html": {
    "x": 2820,
-   "y": 19540,
+   "y": 23740,
    "w": 390,
    "h": 844,
    "title": "Apparence",
@@ -764,7 +764,7 @@
   },
   "A08-Langue.dc.html": {
    "x": 3290,
-   "y": 19540,
+   "y": 23740,
    "w": 390,
    "h": 844,
    "title": "Langue",
@@ -772,7 +772,7 @@
   },
   "A09-Confidentialite.dc.html": {
    "x": 0,
-   "y": 20544,
+   "y": 24744,
    "w": 390,
    "h": 844,
    "title": "Confidentialité",
@@ -780,11 +780,83 @@
   },
   "A10-Aide.dc.html": {
    "x": 470,
-   "y": 20544,
+   "y": 24744,
    "w": 390,
    "h": 844,
    "title": "Aide",
    "radius": 36
+  },
+  "DL1-Lumiere-Accueil.dc.html": {
+   "x": 0,
+   "y": 330,
+   "w": 390,
+   "h": 844,
+   "title": "Lumière — Accueil",
+   "radius": 44
+  },
+  "DL2-Lumiere-Facture.dc.html": {
+   "x": 470,
+   "y": 330,
+   "w": 390,
+   "h": 844,
+   "title": "Lumière — Facture F-47 (vue éclatée)",
+   "radius": 44
+  },
+  "DL3-Lumiere-Bible.dc.html": {
+   "x": 940,
+   "y": 330,
+   "w": 390,
+   "h": 844,
+   "title": "Lumière — Bible (Jean 3)",
+   "radius": 44
+  },
+  "DD1-Bureau-Accueil.dc.html": {
+   "x": 0,
+   "y": 1500,
+   "w": 1440,
+   "h": 900,
+   "title": "Ordinateur — Accueil",
+   "radius": 18
+  },
+  "DD2-Bureau-Facture.dc.html": {
+   "x": 1520,
+   "y": 1500,
+   "w": 1440,
+   "h": 900,
+   "title": "Ordinateur — Facture F-47",
+   "radius": 18
+  },
+  "DD3-Bureau-Bible.dc.html": {
+   "x": 3040,
+   "y": 1500,
+   "w": 1440,
+   "h": 900,
+   "title": "Ordinateur — Bible",
+   "radius": 18
+  },
+  "DT1-Tablette-Accueil.dc.html": {
+   "x": 0,
+   "y": 2780,
+   "w": 1194,
+   "h": 834,
+   "title": "Tablette — Accueil",
+   "radius": 28
+  },
+  "DT2-Tablette-Facture.dc.html": {
+   "x": 1274,
+   "y": 2780,
+   "w": 1194,
+   "h": 834,
+   "title": "Tablette — Facture F-47",
+   "radius": 28
+  },
+  "DT3-Tablette-Bible.dc.html": {
+   "x": 2548,
+   "y": 2780,
+   "w": 1194,
+   "h": 834,
+   "title": "Tablette — Bible",
+   "radius": 28
   }
  },
  "order": [
@@ -884,80 +956,126 @@
   "A07-Theme.dc.html",
   "A08-Langue.dc.html",
   "A09-Confidentialite.dc.html",
-  "A10-Aide.dc.html"
+  "A10-Aide.dc.html",
+  "DL1-Lumiere-Accueil.dc.html",
+  "DL2-Lumiere-Facture.dc.html",
+  "DL3-Lumiere-Bible.dc.html",
+  "DD1-Bureau-Accueil.dc.html",
+  "DD2-Bureau-Facture.dc.html",
+  "DD3-Bureau-Bible.dc.html",
+  "DT1-Tablette-Accueil.dc.html",
+  "DT2-Tablette-Facture.dc.html",
+  "DT3-Tablette-Bible.dc.html"
  ],
  "notes": {
   "t-fondations": {
    "x": 0,
-   "y": 0,
+   "y": 4200,
    "text": "Fondations",
    "kind": "title1",
    "maxW": 3680
   },
   "t-cycle": {
    "x": 0,
-   "y": 2384,
+   "y": 6584,
    "text": "Le cycle d’une réalité : la facture F-47",
    "kind": "title1",
    "maxW": 3680
   },
   "t-physique": {
    "x": 0,
-   "y": 4792,
+   "y": 8992,
    "text": "Le lien physique ↔ numérique",
    "kind": "title1",
    "maxW": 3680
   },
   "t-verifier": {
    "x": 0,
-   "y": 7200,
+   "y": 11400,
    "text": "Vérifier : le système signale, l’humain décide",
    "kind": "title1",
    "maxW": 3680
   },
   "t-domaines": {
    "x": 0,
-   "y": 9608,
+   "y": 13808,
    "text": "Toute réalité : livre, équipement, Bible, mission, projet, journaux",
    "kind": "title1",
    "maxW": 3680
   },
   "t-bible-lecture": {
    "x": 0,
-   "y": 12016,
+   "y": 16216,
    "text": "Bible Strong · lecture, dans Empreinte",
    "kind": "title1",
    "maxW": 3680
   },
   "t-strong": {
    "x": 0,
-   "y": 14424,
+   "y": 18624,
    "text": "Bible Strong · Strong, dictionnaires, ressources",
    "kind": "title1",
    "maxW": 3680
   },
   "t-bibliotheque": {
    "x": 0,
-   "y": 16832,
+   "y": 21032,
    "text": "Bible Strong · ma bibliothèque d’étude",
    "kind": "title1",
    "maxW": 3680
   },
   "t-compte": {
    "x": 0,
-   "y": 19240,
+   "y": 23440,
    "text": "Compte, synchronisation, système",
    "kind": "title1",
    "maxW": 3680
   },
   "legende": {
    "x": 0,
-   "y": -260,
-   "text": "97 écrans · 9 parcours. Vert = physique (original, objet, emplacement). Bleu = numérique (photo, données, notes, Bible). Rouge / orange = vérifications. Le papier reste papier : les documents apparaissent sur fond clair. Bouton Play sur un écran pour naviguer.",
+   "y": 3940,
+   "text": "Ci-dessous : la première version (97 écrans, style à remplacer). Elle sera redessinée entièrement dans la direction choisie ci-dessus.",
    "w": 900,
    "size": "l",
    "fill": "gray",
    "maxH": 200
+  },
+  "t-directions": {
+   "x": 0,
+   "y": 0,
+   "text": "Lumière · téléphone",
+   "kind": "title1",
+   "maxW": 3200
+  },
+  "n-directions": {
+   "x": 1500,
+   "y": 330,
+   "text": "Sobre : fond presque blanc, verre gris léger, encre noire, une seule teinte ardoise. Le rouge est réservé aux écarts. Verre, objets en 3D, chiffres en matrice de points.",
+   "w": 520,
+   "size": "l",
+   "fill": "orange",
+   "maxH": 320
+  },
+  "t-ancien": {
+   "x": 0,
+   "y": 3780,
+   "text": "Première version (à redessiner)",
+   "kind": "title1",
+   "maxW": 3200
+  },
+  "t-desktop": {
+   "x": 0,
+   "y": 1260,
+   "text": "Lumière · ordinateur (1440 × 900)",
+   "kind": "title1",
+   "maxW": 4400
+  },
+  "t-tablet": {
+   "x": 0,
+   "y": 2540,
+   "text": "Lumière · tablette (1194 × 834)",
+   "kind": "title1",
+   "maxW": 3700
   }
  },
  "designSystems": []
