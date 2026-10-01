@@ -2,8 +2,8 @@
 # Déploie la version web d'Empreinte sur le serveur HP (Linux, Node 20+).
 #
 # Deux façons :
-#   1. Depuis l'archive prête :   ./scripts/deployer-hp.sh archive empreinte-web.tar.gz
-#   2. Depuis le code source :    ./scripts/deployer-hp.sh source
+#   1. Version déjà compilée (rapide) :  ./scripts/deployer-hp.sh
+#   2. Depuis le code source (long) :    ./scripts/deployer-hp.sh source
 #
 # Ensuite l'app est servie sur http://<adresse-du-hp>:8080 (PORT=… pour changer).
 # Avec sudo et systemd présents, un service « empreinte » est installé pour démarrer
@@ -11,6 +11,7 @@
 set -euo pipefail
 
 MODE=${1:-archive}
+ICI_TOT=$(cd "$(dirname "$0")/.." && pwd)
 PORT=${PORT:-8080}
 DEST=${DEST:-$HOME/empreinte-web}
 ICI=$(cd "$(dirname "$0")/.." && pwd)
@@ -19,7 +20,8 @@ command -v node >/dev/null || { echo "Node.js 20 ou plus est nécessaire (https:
 
 case "$MODE" in
   archive)
-    ARCHIVE=${2:-empreinte-web.tar.gz}
+    # Par défaut : la version déjà compilée, livrée dans le dépôt.
+    ARCHIVE=${2:-$ICI_TOT/deploiement/empreinte-web.tar.gz}
     if [ ! -f "$ARCHIVE" ]; then
       echo "Archive introuvable : $ARCHIVE"
       echo "Copiez-la dans ce dossier, ou compilez depuis le code : $0 source"

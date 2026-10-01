@@ -103,8 +103,8 @@ Empreinte est distribué sous **GPL-3.0-or-later**, compatible avec Bible Strong
 Sur le serveur (Linux, Node 20 ou plus), dans une copie de ce dépôt :
 
 ```bash
-./scripts/deployer-hp.sh archive empreinte-web.tar.gz   # depuis l'archive prête
-./scripts/deployer-hp.sh source                         # ou en compilant depuis le code
+./scripts/deployer-hp.sh          # version déjà compilée (deploiement/empreinte-web.tar.gz)
+./scripts/deployer-hp.sh source   # ou en compilant depuis le code (long)
 ```
 
 L'app est alors servie sur `http://<adresse-du-hp>:8080` (variable `PORT` pour changer).
