@@ -83,7 +83,7 @@ sauf si on la force, et elle reste alors signalée.
 packages/core             modèle et calculs d'Empreinte (TypeScript, sans dépendance lourde)
 packages/bible-references analyseur de références bibliques FR/EN (MIT, issu de Bible Strong)
 apps/cli                  outil en ligne de commande, étiquettes QR (bibliothèque qrcode, MIT)
-vendor/bible-strong       Bible Strong complet (GPL-3.0), sous-module épinglé
+app/                      application Empreinte : fork complet de Bible Strong (GPL-3.0)
 docs/VISION.md            la vision d'origine
 ```
 
@@ -91,9 +91,21 @@ docs/VISION.md            la vision d'origine
 
 - **[Bible Strong](https://github.com/smontlouis/bible-strong)** (GPL-3.0) : application
   d'étude biblique React Native/Expo (concordance Strong, lexiques, interlinéaire, hors ligne).
-  Sous-module dans `vendor/bible-strong`, base de la future application mobile.
+  Forké en entier dans `app/` : c’est la base de l’application Empreinte.
 - **Analyseur de références bibliques** (MIT, Stephen Smith / Bible Strong) : copié dans
   `packages/bible-references`.
 - **[node-qrcode](https://github.com/soldair/node-qrcode)** (MIT) : génération des QR codes.
 
 Empreinte est distribué sous **GPL-3.0-or-later**, compatible avec Bible Strong.
+
+## Déployer sur le serveur HP
+
+Sur le serveur (Linux, Node 20 ou plus), dans une copie de ce dépôt :
+
+```bash
+./scripts/deployer-hp.sh          # version déjà compilée (deploiement/empreinte-web.tar.gz)
+./scripts/deployer-hp.sh source   # ou en compilant depuis le code (long)
+```
+
+L'app est alors servie sur `http://<adresse-du-hp>:8080` (variable `PORT` pour changer).
+Avec `sudo` et systemd, un service `empreinte` est installé et redémarre avec le serveur.

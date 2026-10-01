@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
-# Télécharge les sources open source dont Empreinte dépend.
+# Installe les dépendances d'Empreinte et de l'application (fork de Bible Strong dans app/).
 set -e
 cd "$(dirname "$0")/.."
-# Bible Strong (GPL-3.0) : application complète, épinglée sur un commit précis, sans historique.
-git submodule update --init --depth 1 vendor/bible-strong
 npm install
-echo "✔ Sources prêtes. Essayer : npm run demo"
+cd app
+# Yarn 4 depuis le registre npm (repo.yarnpkg.com peut être bloqué)
+npx --yes @yarnpkg/cli-dist@4.12.0 install || yarn install
+echo "✔ Prêt. Application web : cd app && yarn dev:expo:web"

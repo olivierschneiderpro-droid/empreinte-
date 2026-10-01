@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>Critères</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Doto:wght@400;700;900&amp;family=Geist:wght@400;500;600;700;800&amp;family=Geist+Mono:wght@400;500;600&amp;family=Literata:opsz,wght@7..72,400;7..72,500;7..72,600&amp;family=Caveat:wght@600&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+.l{width:390px;height:844px;background:#F4F4F2;color:#111113;font:500 15px/1.45 'Geist',system-ui,sans-serif;position:relative;overflow:hidden;letter-spacing:-.005em}
+.aur{position:absolute;border-radius:50%;pointer-events:none}
+.glass{background:rgba(255,255,255,.62);backdrop-filter:blur(22px) saturate(120%);-webkit-backdrop-filter:blur(22px) saturate(120%);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(17,17,19,.07)}
+.dot{font-family:'Doto',monospace;font-weight:900;letter-spacing:-.02em}
+.gm{font-family:'Geist Mono',monospace}
+.micro{font:600 10.5px 'Geist Mono',monospace;letter-spacing:.08em;text-transform:uppercase;color:#76767C}
+.ib{width:44px;height:44px;border-radius:22px;display:flex;align-items:center;justify-content:center;color:#111113;box-sizing:border-box}
+.tab{position:absolute;left:16px;bottom:26px;height:62px;width:270px;border-radius:31px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:center;box-sizing:border-box;padding:0 6px}
+.tab a{display:flex;flex-direction:column;align-items:center;gap:1px;font:600 10px 'Geist';color:#5E5E70;text-decoration:none;height:50px;justify-content:center;border-radius:25px}
+.tab a.on{background:rgba(17,17,19,.07);color:#111113}
+.act{position:absolute;right:16px;bottom:26px;width:62px;height:62px;border-radius:31px;display:flex;align-items:center;justify-content:center;color:#FFFFFF;background:#111113;box-shadow:inset 0 1px 1px rgba(255,255,255,.25),0 12px 26px rgba(17,17,19,.28)}.g{background:rgba(255,255,255,.62);backdrop-filter:blur(22px) saturate(120%);-webkit-backdrop-filter:blur(22px) saturate(120%);border:1px solid rgba(255,255,255,.9);box-shadow:inset 0 1px 0 rgba(255,255,255,.95),0 8px 24px rgba(17,17,19,.06);border-radius:24px}
+.gf{background:rgba(255,255,255,.62);border:1px solid rgba(255,255,255,.9);border-radius:20px;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px)}
+.h1{font:700 30px/1.08 'Geist',sans-serif;letter-spacing:-.03em;margin:0}
+.h2{font:650 17px/1.25 'Geist',sans-serif;letter-spacing:-.015em;margin:0}
+.sub{font-size:14px;color:#76767C}
+.row{display:flex;align-items:center;gap:12px}
+.col{display:flex;flex-direction:column;min-width:0}
+.btw{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.sep{border-top:1px solid rgba(17,17,19,.07)}
+.pill{display:inline-flex;align-items:center;gap:6px;height:30px;padding:0 12px;border-radius:15px;font:600 12.5px 'Geist';white-space:nowrap;background:rgba(17,17,19,.06);color:#111113}
+.pill.on{background:#111113;color:#FFFFFF}
+.pill.red{background:rgba(181,67,47,.10);color:#B5432F}
+.pill.grn{background:rgba(79,122,99,.12);color:#3F6A53}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;height:52px;border-radius:26px;font:600 15px 'Geist';text-decoration:none;border:none;cursor:pointer;box-sizing:border-box}
+.btn.k{background:#111113;color:#FFFFFF}
+.btn.w{background:rgba(255,255,255,.7);color:#111113;border:1px solid rgba(255,255,255,.95);box-shadow:0 6px 18px rgba(17,17,19,.06)}
+.sq{width:40px;height:40px;border-radius:14px;background:rgba(17,17,19,.05);display:flex;align-items:center;justify-content:center;flex:none;color:#111113}
+.verse{font:400 18px/1.7 'Literata',serif;color:#1C1C26;margin:0}
+.vn{font:500 10px 'Geist Mono',monospace;color:#76767C;vertical-align:super;margin-right:3px}
+.tog{width:46px;height:28px;border-radius:14px;background:rgba(17,17,19,.14);position:relative;flex:none}
+.tog i{position:absolute;top:3px;left:3px;width:22px;height:22px;border-radius:11px;background:#FFFFFF;box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.tog.on{background:#111113}.tog.on i{left:21px}
+.inp{height:50px;border-radius:16px;background:rgba(255,255,255,.7);border:1px solid rgba(17,17,19,.08);display:flex;align-items:center;padding:0 16px;font:500 15px Geist;box-sizing:border-box}
+
+</style>
+</helmet>
+<div class="l"><div class="aur" style="width:420px;height:420px;left:-170px;top:-140px;background:radial-gradient(circle,#E3E2DE 0%,rgba(227,226,222,0) 68%)"></div>
+<div class="aur" style="width:380px;height:380px;right:-170px;top:60px;background:radial-gradient(circle,#DCDFE3 0%,rgba(220,223,227,0) 68%)"></div>
+<div class="aur" style="width:420px;height:420px;left:-120px;top:420px;background:radial-gradient(circle,#E6E2DC 0%,rgba(230,226,220,0) 66%)"></div>
+<div class="aur" style="width:380px;height:380px;right:-160px;bottom:-120px;background:radial-gradient(circle,#DEE2E0 0%,rgba(222,226,224,0) 66%)"></div><div style="position:absolute;top:54px;left:16px;right:16px;display:flex;justify-content:space-between;align-items:center;gap:10px;z-index:5"><a href="#" class="ib g" aria-label="Retour" style="border-radius:22px"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" ><path d="M15 5l-7 7 7 7"/></svg></a><span style="flex:1;display:flex;justify-content:center"><span class="g" style="height:34px;border-radius:17px;padding:0 14px;display:flex;align-items:center;gap:7px;font:600 12.5px Geist;box-shadow:none">Ce qui compte pour vous</span></span><span style="width:44px"></span></div><div style="position:absolute;top:110px;left:16px;right:16px;bottom:30px;display:flex;flex-direction:column;gap:12px;overflow:hidden"><div class="g" style="padding:8px 18px;display:flex;flex-direction:column;gap:0px;"><div class="col" style="gap:8px;padding:8px 0;"><span class="btw"><span style="font-weight:600;font-size:13.5px">Temps de recherche</span><span class="gm" style="font-size:12px">90</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:90%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(90% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Fréquence d’usage</span><span class="gm" style="font-size:12px">80</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:80%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(80% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Volume</span><span class="gm" style="font-size:12px">70</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:70%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(70% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Risque de perte</span><span class="gm" style="font-size:12px">75</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:75%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(75% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Coût</span><span class="gm" style="font-size:12px">30</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:30%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(30% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Espace</span><span class="gm" style="font-size:12px">40</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:40%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(40% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Accès</span><span class="gm" style="font-size:12px">60</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:60%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(60% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Confidentialité</span><span class="gm" style="font-size:12px">35</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:35%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(35% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Durabilité</span><span class="gm" style="font-size:12px">80</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:80%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(80% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Partage</span><span class="gm" style="font-size:12px">30</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:30%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(30% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div><div class="col" style="gap:8px;padding:8px 0;border-top:1px solid rgba(17,17,19,.07)"><span class="btw"><span style="font-weight:600;font-size:13.5px">Synchronisation</span><span class="gm" style="font-size:12px">65</span></span><span style="position:relative;height:4px;border-radius:2px;background:rgba(17,17,19,.1)"><i style="position:absolute;left:0;top:0;height:4px;border-radius:2px;width:65%;background:#111113"></i><i style="position:absolute;top:-8px;left:calc(65% - 10px);width:20px;height:20px;border-radius:10px;background:#FFFFFF;box-shadow:0 1px 5px rgba(0,0,0,.25)"></i></span></div></div><a href="#" class="btn k">Recalculer</a></div></div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
