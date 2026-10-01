@@ -20,18 +20,25 @@ command -v node >/dev/null || { echo "Node.js 20 ou plus est nécessaire (https:
 case "$MODE" in
   archive)
     ARCHIVE=${2:-empreinte-web.tar.gz}
-    [ -f "$ARCHIVE" ] || { echo "Archive introuvable : $ARCHIVE"; exit 1; }
+    if [ ! -f "$ARCHIVE" ]; then
+      echo "Archive introuvable : $ARCHIVE"
+      echo "Copiez-la dans ce dossier, ou compilez depuis le code : $0 source"
+      exit 1
+    fi
     TMP=$(mktemp -d)
     tar xzf "$ARCHIVE" -C "$TMP"
     rm -rf "$DEST" && mv "$TMP"/empreinte-web-hp "$DEST" && rm -rf "$TMP"
     ;;
   source)
+    # Yarn 4 via corepack (fourni avec Node), sans installation globale.
     cd "$ICI/app"
-    corepack enable >/dev/null 2>&1 || true
-    yarn install
+    export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
+    echo "Installation des dépendances (quelques minutes la première fois)…"
+    corepack yarn install
     cd apps/expo
     rm -rf "$DEST"
-    CI=1 EXPO_NO_TELEMETRY=1 NODE_ENV=production npx expo export --platform web --output-dir "$DEST"
+    echo "Compilation de la version web…"
+    CI=1 EXPO_NO_TELEMETRY=1 NODE_ENV=production corepack yarn expo export --platform web --output-dir "$DEST"
     ;;
   *)
     echo "Usage : $0 archive <empreinte-web.tar.gz> | source"; exit 1 ;;
