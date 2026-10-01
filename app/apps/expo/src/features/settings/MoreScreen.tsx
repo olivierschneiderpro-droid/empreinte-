@@ -82,9 +82,11 @@ const Infos = memo(() => {
 type MoreProps = {
   closeMenu: () => void
   inWorkspace?: boolean
+  /** Empreinte : affiché comme page pleine du téléphone (sans retour ni bordure). */
+  pageTab?: boolean
 }
 
-export const More = ({ closeMenu, inWorkspace = false }: MoreProps) => {
+export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MoreProps) => {
   const router = useRouter()
   const { isLogged, user, logout } = useLogin()
   const theme = useTheme()
@@ -142,17 +144,23 @@ export const More = ({ closeMenu, inWorkspace = false }: MoreProps) => {
   }
 
   return (
-    <SafeAreaBox className="border-continuous overflow-hidden border-l-[1px] border-border bg-light-grey">
+    <SafeAreaBox
+      className={
+        pageTab
+          ? 'border-continuous overflow-hidden bg-light-grey'
+          : 'border-continuous overflow-hidden border-l-[1px] border-border bg-light-grey'
+      }
+    >
       <Header
         title={t(inWorkspace ? 'settings.settings' : 'Plus')}
         onCustomBackPress={closeMenu}
-        hasBackButton={!inWorkspace}
+        hasBackButton={!inWorkspace && !pageTab}
       />
       <ScrollView
         backgroundColor="lightGrey"
         style={{ flex: 1 }}
         contentContainerStyle={{
-          paddingBottom: 20,
+          paddingBottom: pageTab ? 120 : 20,
           backgroundColor: theme.colors.lightGrey,
         }}
       >

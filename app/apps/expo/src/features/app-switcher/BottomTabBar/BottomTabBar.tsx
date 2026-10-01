@@ -21,6 +21,7 @@ import {
 import { getDefaultBibleVersionFromState } from '../../../state/useDefaultBibleVersion'
 import { FLOATING_BAR_BOTTOM, FLOATING_BAR_HEIGHT } from '../utils/constants'
 import { useTabAnimations } from '../utils/useTabAnimations'
+import type { CompactWorkspacePage } from '../workspaceViewTracking'
 import AddTabButton from './Buttons/AddTabButton'
 import useSearchButtonPress from './Buttons/useSearchButton'
 import useTabButtonPress from './Buttons/useTabButtonPress'
@@ -31,6 +32,9 @@ import useTabBarSwipeGesture from './useTabBarSwipeGesture'
 type BottomTabBarProps = {
   openMenu: () => void
   openHome: () => void
+  /** Page pleine affichée (Accueil, Plus, Réalités) ; null = les onglets. */
+  page?: CompactWorkspacePage | null
+  onPage?: (page: CompactWorkspacePage | null) => void
 }
 
 /** Un élément de la barre : icône de la maquette + libellé, fond doux quand actif. */
@@ -107,7 +111,7 @@ function Element({
   )
 }
 
-const BottomTabBar = ({ openMenu, openHome }: BottomTabBarProps) => {
+const BottomTabBar = ({ openMenu, openHome, page = null, onPage }: BottomTabBarProps) => {
   const { t } = useTranslation()
   const theme = useTheme()
   const v = useVerre()
@@ -127,7 +131,11 @@ const BottomTabBar = ({ openMenu, openHome }: BottomTabBarProps) => {
   const { slideToIndex } = useTabAnimations()
   const { onPress: ouvrirRecherche } = useSearchButtonPress()
   const { onPress: ouvrirOnglets } = useTabButtonPress()
-  const typeActif = tabs[activeTabIndex]?.type
+  const typeActif = page ? undefined : tabs[activeTabIndex]?.type
+  const versOnglets = (action: () => void) => () => {
+    onPage?.(null)
+    action()
+  }
 
   const ouvrirBible = () => {
     const bibleIndex = tabs.findIndex(tab => tab.type === 'bible')
@@ -175,32 +183,43 @@ const BottomTabBar = ({ openMenu, openHome }: BottomTabBarProps) => {
               },
             ]}
           >
-            <Element icone="home" libelle={t('Accueil')} onPress={openHome} />
+            <Element
+              icone="home"
+              libelle={t('Accueil')}
+              actif={page === 'home'}
+              onPress={openHome}
+            />
             <Element
               icone="book"
               libelle={t('tabs.bible')}
               actif={typeActif === 'bible'}
-              onPress={ouvrirBible}
+              onPress={versOnglets(ouvrirBible)}
             />
             <Element
               icone="search"
               libelle="Chercher"
               accessibilityLabel={t('tabs.search')}
               actif={typeActif === 'search'}
-              onPress={ouvrirRecherche}
+              onPress={versOnglets(ouvrirRecherche)}
             />
             <Element
               icone="tabs"
               libelle="Onglets"
               accessibilityLabel={t('accessibility.tabs', { count: tabsCount })}
               pastille={tabsCount}
-              onPress={ouvrirOnglets}
+              onPress={versOnglets(ouvrirOnglets)}
             />
-            <Element icone="layers" libelle="Réalités" onPress={() => router.push('/empreinte')} />
+            <Element
+              icone="layers"
+              libelle="Réalités"
+              actif={page === 'realites'}
+              onPress={() => (onPage ? onPage('realites') : router.push('/empreinte'))}
+            />
             <Element
               icone="more"
               libelle="Plus"
               accessibilityLabel={t('accessibility.mainMenu')}
+              actif={page === 'menu'}
               onPress={openMenu}
             />
           </View>

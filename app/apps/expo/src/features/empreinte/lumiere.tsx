@@ -130,7 +130,8 @@ export function Aurore() {
   ] as const
   if (theme.colors.reverse !== 'rgb(255,255,255)') return null
   return (
-    <View pointerEvents="none" style={StyleSheet.absoluteFill}>
+    // overflow caché : les halos débordent du cadre et feraient défiler l'écran.
+    <View pointerEvents="none" style={[StyleSheet.absoluteFill, { overflow: 'hidden' }]}>
       {taches.map((tache, i) => (
         <View
           key={i}
