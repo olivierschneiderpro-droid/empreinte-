@@ -6,7 +6,10 @@ import ConfirmDialogHost from '~common/ConfirmDialog/ConfirmDialogHost.web'
 import { useWorkspaceRoutePanel } from '~navigation/useWorkspaceRoutePanel'
 import WorkspaceLayout from '~features/app-switcher/WorkspaceLayout'
 import * as Sentry from '@sentry/react-native'
-import { Stack, useLocalSearchParams, usePathname, useSegments } from 'expo-router'
+import { Stack, useLocalSearchParams, usePathname, useRouter, useSegments } from 'expo-router'
+import { StyleSheet, View } from 'react-native'
+import PresentationWeb from '~features/empreinte/PresentationWeb'
+import { dejaEntre, retenirEntree } from '~features/empreinte/memoireEntree'
 import { useEffect, useRef, useState } from 'react'
 import { RootSiblingParent } from 'react-native-root-siblings'
 import TrackPlayer from 'react-native-track-player'
@@ -64,6 +67,11 @@ const FullAppRuntime = ({ theme }: { theme: Theme }) => {
     guestWorkspaceRequested,
   })
   const authPending = publicShellMode === 'pending'
+  // Empreinte : la page de présentation s'affiche à la première arrivée (et sur /bienvenue),
+  // par-dessus l'app qui se charge déjà derrière.
+  const router = useRouter()
+  const [entre, setEntre] = useState(dejaEntre)
+  const presentation = pathname === '/bienvenue' || (pathname === '/' && !entre)
   const publicShellActive = publicShellMode === 'public'
   useEffect(() => {
     void TrackPlayer.registerPlaybackService(() => PlaybackService)
@@ -121,6 +129,25 @@ const FullAppRuntime = ({ theme }: { theme: Theme }) => {
               {!publicShellActive && !authPending && <WorkspaceAnalytics />}
               {!publicShellActive && !authPending && <AssistantLauncher />}
               {!publicShellActive && !authPending && <ConfirmDialogHost />}
+              {presentation && (
+                <View
+                  testID="presentation-empreinte"
+                  style={[
+                    StyleSheet.absoluteFill,
+                    // fixe : au-dessus de toute la coque de l'espace de travail.
+                    { position: 'fixed' as 'absolute', zIndex: 100000 },
+                  ]}
+                >
+                  <PresentationWeb
+                    onEntrer={vers => {
+                      retenirEntree()
+                      setEntre(true)
+                      if (vers && vers !== pathname) router.replace(vers)
+                      else if (pathname === '/bienvenue') router.replace('/')
+                    }}
+                  />
+                </View>
+              )}
               <ThemedToaster />
               {!publicShellActive && !authPending && <ChangelogModal />}
               {!publicShellActive && !authPending && <UnifiedTagsModal />}
