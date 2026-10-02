@@ -32,7 +32,7 @@ import VerseOfTheDay from './VerseOfTheDay'
 import {
   CarteAVerifier,
   CartesMissionPlan,
-  CarteVerset,
+  BasculeAccueil,
   FilDuJour,
   OuSontLesOriginaux,
   PileRealites,
@@ -169,6 +169,7 @@ function DailyVerse() {
 }
 
 export default function DesktopHome() {
+  const [vue, setVue] = useState<'parole' | 'realites'>('parole')
   useFonts({ 'Literata Book': require('~assets/fonts/LiterataBook-Regular.otf') })
   const { t } = useTranslation()
   const lang = useLanguage()
@@ -211,45 +212,58 @@ export default function DesktopHome() {
               </LinkBox>
             </div>
             <div className="bs-home-main">
-              <TeteAccueil compact />
-              <PileRealites />
-              <CarteVerset large />
-              <CartesMissionPlan />
-              <DailyVerse />
-              <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[4px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
-                <ProfileStats desktop />
-              </Box>
-              <Box>
-                <SectionTitle>{t('Apprendre')}</SectionTitle>
-                <div className="bs-home-learning">
-                  <LearningCard
-                    title={t('passageMediaLibrary.title')}
-                    source={require('~assets/images/home/courses-videos.jpg')}
-                    onPress={() => pushRoute({ pathname: '/(library)/passage-media' })}
-                  />
-                  <LearningCard
-                    title={t('home.learning.bibleProjectPlan')}
-                    source={require('~assets/images/home/bible-project-plan.jpg')}
-                    route={bibleProjectPlan ? 'Plan' : 'Plans'}
-                    params={
-                      bibleProjectPlan
-                        ? { planId: bibleProjectPlan.id, plan: bibleProjectPlan }
-                        : undefined
-                    }
-                  />
-                  <LearningCard
-                    title={t('home.desktop.timeline')}
-                    source={require('~assets/images/home/bible-timeline.jpg')}
-                    route="TimelineHome"
-                  />
-                </div>
-              </Box>
-              <ResourceDiscovery />
+              <TeteAccueil compact avecTraces={vue === 'realites'} />
+              {/* Empreinte : l'accueil reste centré sur la Parole ; les réalités (factures,
+                  missions, vérifications) ont leur propre vue, selon le profil. */}
+              <BasculeAccueil vue={vue} onChange={setVue} />
+              {vue === 'parole' ? (
+                <>
+                  <DailyVerse />
+                  <Box>
+                    <SectionTitle>{t('Apprendre')}</SectionTitle>
+                    <div className="bs-home-learning">
+                      <LearningCard
+                        title={t('passageMediaLibrary.title')}
+                        source={require('~assets/images/home/courses-videos.jpg')}
+                        onPress={() => pushRoute({ pathname: '/(library)/passage-media' })}
+                      />
+                      <LearningCard
+                        title={t('home.learning.bibleProjectPlan')}
+                        source={require('~assets/images/home/bible-project-plan.jpg')}
+                        route={bibleProjectPlan ? 'Plan' : 'Plans'}
+                        params={
+                          bibleProjectPlan
+                            ? { planId: bibleProjectPlan.id, plan: bibleProjectPlan }
+                            : undefined
+                        }
+                      />
+                      <LearningCard
+                        title={t('home.desktop.timeline')}
+                        source={require('~assets/images/home/bible-timeline.jpg')}
+                        route="TimelineHome"
+                      />
+                    </div>
+                  </Box>
+                  <ResourceDiscovery />
+                </>
+              ) : (
+                <>
+                  <PileRealites />
+                  <CartesMissionPlan />
+                  <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[4px]">
+                    <ProfileStats desktop />
+                  </Box>
+                </>
+              )}
             </div>
             <div className="bs-home-aside">
-              <CarteAVerifier />
-              <FilDuJour />
-              <OuSontLesOriginaux />
+              {vue === 'realites' ? (
+                <>
+                  <CarteAVerifier />
+                  <FilDuJour />
+                  <OuSontLesOriginaux />
+                </>
+              ) : null}
               <ResumeBookmark card />
               <MeditationsHome />
               <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[16px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
@@ -283,16 +297,10 @@ export default function DesktopHome() {
             </div>
           </div>
           <HStack className="items-center flex-wrap gap-[24px] border-t border-border pt-[16px]">
-            <ResourceLink href={`https://bible-strong.app/${lang === 'fr' ? 'fr/' : ''}give`}>
-              {t('home.desktop.support')}
-            </ResourceLink>
+            <ResourceLink href="/">{t('home.desktop.support')}</ResourceLink>
             <ResourceLink route="FAQ">{t('FAQ')}</ResourceLink>
-            <ResourceLink href="https://www.facebook.com/fr.bible.strong">
-              {t('Suivre')}
-            </ResourceLink>
-            <ResourceLink href="https://bible-strong.app">
-              {t('home.desktop.downloadApp')}
-            </ResourceLink>
+            <ResourceLink href="/">{t('Suivre')}</ResourceLink>
+            <ResourceLink href="/">{t('home.desktop.downloadApp')}</ResourceLink>
           </HStack>
         </div>
       </ScrollView>

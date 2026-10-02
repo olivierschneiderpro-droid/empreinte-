@@ -16,7 +16,7 @@ import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { usePathname, useRouter } from 'expo-router'
 import { commandPaletteOpenAtom } from './commandPalette/state'
-import { Icone } from '~features/empreinte/icones'
+import { Icone, type NomIcone } from '~features/empreinte/icones'
 import { useEmpreinte } from '~features/empreinte/registreEmpreinte'
 import { Platform, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
@@ -51,6 +51,132 @@ interface WorkspaceSidebarProps {
   openHome: () => void
   openMenu: () => void
 }
+
+type EntreeNav = {
+  id: string
+  libelle: string
+  icone: NomIcone
+  chemin?: string
+  prefixes: string[]
+}
+
+/** Empreinte : lire, étudier, sa bibliothèque, puis les réalités. */
+const SECTIONS_NAV: { titre?: string; entrees: EntreeNav[] }[] = [
+  {
+    entrees: [
+      { id: 'home', libelle: 'Accueil', icone: 'home', prefixes: [] },
+      { id: 'bible', libelle: 'Bible', icone: 'book', prefixes: [] },
+      {
+        id: 'verset',
+        libelle: 'Verset du jour',
+        icone: 'sun',
+        chemin: '/daily-verse',
+        prefixes: ['/daily-verse'],
+      },
+      {
+        id: 'plans',
+        libelle: 'Plans',
+        icone: 'cal',
+        chemin: '/plans',
+        prefixes: ['/plan', '/my-plan-list'],
+      },
+      {
+        id: 'videos',
+        libelle: 'Vidéos',
+        icone: 'play',
+        chemin: '/passage-media',
+        prefixes: ['/passage-media'],
+      },
+      {
+        id: 'recents',
+        libelle: 'Récents',
+        icone: 'clock',
+        chemin: '/history',
+        prefixes: ['/history'],
+      },
+    ],
+  },
+  {
+    titre: 'ÉTUDIER',
+    entrees: [
+      {
+        id: 'lexique',
+        libelle: 'Lexique',
+        icone: 'hash',
+        chemin: '/lexique',
+        prefixes: ['/lexique', '/strong'],
+      },
+      {
+        id: 'dictionnaire',
+        libelle: 'Dictionnaire',
+        icone: 'paper',
+        chemin: '/dictionnaire',
+        prefixes: ['/dictionnaire', '/dictionnary', '/dictionary'],
+      },
+      { id: 'nave', libelle: 'Thèmes (Nave)', icone: 'tag', chemin: '/nave', prefixes: ['/nave'] },
+      {
+        id: 'commentaires',
+        libelle: 'Commentaires',
+        icone: 'note',
+        chemin: '/commentary-library',
+        prefixes: ['/commentar'],
+      },
+      {
+        id: 'chronologie',
+        libelle: 'Chronologie',
+        icone: 'timeline',
+        chemin: '/timeline-home',
+        prefixes: ['/timeline'],
+      },
+    ],
+  },
+  {
+    titre: 'BIBLIOTHÈQUE',
+    entrees: [
+      {
+        id: 'etudes',
+        libelle: 'Études',
+        icone: 'pen',
+        chemin: '/studies',
+        prefixes: ['/studies', '/edit-study'],
+      },
+      {
+        id: 'notes',
+        libelle: 'Notes',
+        icone: 'note',
+        chemin: '/bible-verse-notes',
+        prefixes: ['/bible-verse-notes'],
+      },
+      {
+        id: 'marque-pages',
+        libelle: 'Marque-pages',
+        icone: 'mark',
+        chemin: '/bookmarks',
+        prefixes: ['/bookmarks'],
+      },
+      {
+        id: 'surlignages',
+        libelle: 'Surlignages',
+        icone: 'color',
+        chemin: '/highlights',
+        prefixes: ['/highlights'],
+      },
+    ],
+  },
+  {
+    titre: 'RÉALITÉS',
+    entrees: [
+      { id: 'realites', libelle: 'Réalités', icone: 'layers', chemin: '/empreinte', prefixes: [] },
+      {
+        id: 'verifier',
+        libelle: 'Vérifier',
+        icone: 'shield',
+        chemin: '/empreinte/verifier',
+        prefixes: ['/empreinte/verifier'],
+      },
+    ],
+  },
+]
 
 const WorkspaceSidebar = ({
   onCollapse,
@@ -168,93 +294,89 @@ const WorkspaceSidebar = ({
                 ⌘K
               </Text>
             </TouchableBox>
-            {(
-              [
-                // Empreinte : Accueil, Bible, Verset du jour, Récents, Vidéos, Plans, Réalités, Vérifier.
-                ['home', t('Accueil'), activePage === 'home', openHome, undefined],
-                [
-                  'book',
-                  t('tabs.bible'),
-                  isContentActive && activePage !== 'home' && !pathname.startsWith('/empreinte'),
-                  () => onSelectContent?.(),
-                  undefined,
-                ],
-                [
-                  'sun',
-                  'Verset du jour',
-                  pathname.startsWith('/daily-verse'),
-                  () => router.push('/daily-verse'),
-                  undefined,
-                ],
-                [
-                  'clock',
-                  'Récents',
-                  pathname.startsWith('/history'),
-                  () => router.push('/history'),
-                  undefined,
-                ],
-                [
-                  'play',
-                  'Vidéos',
-                  pathname.startsWith('/passage-media'),
-                  () => router.push('/passage-media'),
-                  undefined,
-                ],
-                [
-                  'cal',
-                  'Plans',
-                  pathname.startsWith('/plan') || pathname.startsWith('/my-plan-list'),
-                  () => router.push('/plans'),
-                  undefined,
-                ],
-                [
-                  'layers',
-                  'Réalités',
-                  pathname.startsWith('/empreinte') && !pathname.includes('verifier'),
-                  () => router.push('/empreinte'),
-                  undefined,
-                ],
-                [
-                  'shield',
-                  'Vérifier',
-                  pathname.includes('/empreinte/verifier'),
-                  () => router.push('/empreinte/verifier'),
-                  ecartsEmpreinte || undefined,
-                ],
-              ] as const
-            ).map(([icone, libelle, actif, ouvrir, compte]) => (
-              <TouchableBox
-                key={icone}
-                testID={icone === 'layers' ? 'workspace-empreinte' : `workspace-nav-${icone}`}
-                className="flex-row items-center gap-[12px] px-[12px] h-[40px] rounded-[12px]"
-                style={{ backgroundColor: actif ? verre.actif : undefined }}
-                onPress={ouvrir}
-                accessibilityRole="button"
-                accessibilityLabel={libelle}
-                accessibilityState={{ selected: actif }}
-              >
-                <Icone nom={icone} taille={19} />
-                <Text
-                  className="flex-1 text-[14.5px]"
-                  style={{ fontFamily: police(POLICES.titre) }}
-                >
-                  {libelle}
-                </Text>
-                {compte ? (
+          </Box>
+          <ScrollView
+            style={{
+              flex: 1,
+              ...(Platform.OS === 'web' ? { scrollbarGutter: 'stable' } : {}),
+            }}
+            contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 8, gap: 8 }}
+          >
+            {/* Empreinte : navigation regroupée et compacte, qui défile avec les onglets pour que
+                ceux-ci restent toujours visibles. */}
+            {SECTIONS_NAV.map(section => (
+              <Box key={section.titre ?? 'principal'} className="gap-[2px]">
+                {section.titre ? (
                   <Text
+                    className="px-[12px] pt-[12px] pb-[2px]"
                     style={{
-                      fontFamily: police(POLICES.mono),
-                      fontSize: 11.5,
-                      color: stylingTheme.colors.quart,
+                      fontFamily: police(POLICES.monoMoyen),
+                      fontSize: 10.5,
+                      letterSpacing: 0.84,
+                      color: stylingTheme.colors.grey,
                     }}
                   >
-                    {compte}
+                    {section.titre}
                   </Text>
                 ) : null}
-              </TouchableBox>
+                {section.entrees.map(entree => {
+                  const actif =
+                    entree.id === 'home'
+                      ? activePage === 'home'
+                      : entree.id === 'bible'
+                        ? isContentActive &&
+                          activePage !== 'home' &&
+                          !pathname.startsWith('/empreinte')
+                        : entree.id === 'realites'
+                          ? pathname.startsWith('/empreinte') && !pathname.includes('verifier')
+                          : entree.prefixes.some(prefixe => pathname.startsWith(prefixe))
+                  const ouvrir =
+                    entree.id === 'home'
+                      ? openHome
+                      : entree.id === 'bible'
+                        ? () => onSelectContent?.()
+                        : () => router.push(entree.chemin as never)
+                  const compte = entree.id === 'verifier' ? ecartsEmpreinte || undefined : undefined
+                  return (
+                    <TouchableBox
+                      key={entree.id}
+                      testID={
+                        entree.id === 'realites'
+                          ? 'workspace-empreinte'
+                          : `workspace-nav-${entree.id}`
+                      }
+                      className="flex-row items-center gap-[11px] px-[12px] h-[34px] rounded-[11px]"
+                      style={{ backgroundColor: actif ? verre.actif : undefined }}
+                      onPress={ouvrir}
+                      accessibilityRole="button"
+                      accessibilityLabel={entree.libelle}
+                      accessibilityState={{ selected: actif }}
+                    >
+                      <Icone nom={entree.icone} taille={17} />
+                      <Text
+                        className="flex-1 text-[14px]"
+                        style={{ fontFamily: police(POLICES.titre) }}
+                      >
+                        {entree.libelle}
+                      </Text>
+                      {compte ? (
+                        <Text
+                          style={{
+                            fontFamily: police(POLICES.mono),
+                            fontSize: 11.5,
+                            color: stylingTheme.colors.quart,
+                          }}
+                        >
+                          {compte}
+                        </Text>
+                      ) : null}
+                    </TouchableBox>
+                  )
+                })}
+              </Box>
             ))}
             <Text
-              className="px-[12px] pt-[18px] pb-[4px]"
+              className="px-[12px] pt-[14px] pb-[2px]"
               style={{
                 fontFamily: police(POLICES.monoMoyen),
                 fontSize: 10.5,
@@ -264,14 +386,6 @@ const WorkspaceSidebar = ({
             >
               ONGLETS
             </Text>
-          </Box>
-          <ScrollView
-            style={{
-              flex: 1,
-              ...(Platform.OS === 'web' ? { scrollbarGutter: 'stable' } : {}),
-            }}
-            contentContainerStyle={{ paddingHorizontal: 12, paddingBottom: 8, gap: 8 }}
-          >
             {[
               ...(previewGroups ?? groups).filter(group => group.isDefault),
               ...(previewGroups ?? groups).filter(group => !group.isDefault),
