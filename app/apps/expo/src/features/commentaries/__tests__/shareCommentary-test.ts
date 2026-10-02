@@ -23,7 +23,7 @@ it('formats the share message like the pre-27 commentary share', () => {
       sections: [{ content: '<p>Au commencement.</p>' }],
     })
   ).toBe(
-    'Matthew Henry\nCommentaire concis de Matthew Henry\nGenèse 1:1–2\n\nAu commencement.\n\nhttps://bible-strong.app'
+    'Matthew Henry\nCommentaire concis de Matthew Henry\nGenèse 1:1–2\n\nAu commencement.'
   )
 })
 
@@ -37,7 +37,8 @@ it('labels chapter sections and truncates long commentaries on a word boundary',
     ],
   })
   expect(message).toContain('Genèse 1:1\nPremier.\n\nGenèse 1:2\nmot mot')
-  const body = message.split('\n\n').slice(1, -1).join('\n\n')
+  // Sans adresse de site (tests), le corps va jusqu'à la fin du message.
+  const body = message.split('\n\n').slice(1).join('\n\n')
   expect(body.length).toBeLessThanOrEqual(10001)
   expect(body.endsWith('mot…')).toBe(true)
 })

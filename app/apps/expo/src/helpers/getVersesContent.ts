@@ -1,4 +1,5 @@
 import { VerseIds, VerseRefContent } from '~common/types'
+import { urlSiteEmpreinte } from '~helpers/siteEmpreinte'
 import { VersionCode } from '../state/tabs'
 import verseToReference from './verseToReference'
 import { appLogger } from '~helpers/agentObservability'
@@ -80,7 +81,7 @@ export default async ({
     version,
     content: versesContent,
     all: `${versesContent} \n${reference} ${version} ${
-      hasAppName ? '\n\nhttps://bible-strong.app' : ''
+      hasAppName && urlSiteEmpreinte() ? `\n\n${urlSiteEmpreinte()}` : ''
     }`,
   }
 }

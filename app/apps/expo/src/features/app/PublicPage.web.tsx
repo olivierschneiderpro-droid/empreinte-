@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react'
+import { urlSiteEmpreinte } from '~helpers/siteEmpreinte'
 import { Image } from 'expo-image'
 import { Linking } from 'react-native'
 
@@ -27,7 +28,7 @@ const PublicPage = ({
             className="flex-1 flex-row items-center min-w-0"
             accessibilityRole="link"
             accessibilityLabel="Empreinte"
-            onPress={() => void Linking.openURL('https://bible-strong.app')}
+            onPress={() => void Linking.openURL(urlSiteEmpreinte() || '/')}
           >
             <Image
               source={require('~assets/images/icon.png')}

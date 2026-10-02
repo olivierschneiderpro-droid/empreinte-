@@ -1,4 +1,5 @@
 import { useAssistantResourceContext } from '~features/study-assistant/useAssistantResourceContext'
+import { urlSiteEmpreinte } from '~helpers/siteEmpreinte'
 import { naveContext } from '~features/study-assistant/resourceContext'
 import { goBackOrHome } from '~navigation/goBackOrHome'
 import React, { useCallback, useEffect } from 'react'
@@ -198,7 +199,7 @@ const NaveDetailScreen = ({ naveAtom, isFormSheet = false }: NaveDetailScreenPro
         .text.replace(/&#/g, '\\')
         .replace(/\\x([0-9A-F]+);/gi, (_, hex: string) => {
           return String.fromCharCode(parseInt(hex, 16))
-        })} \n\nLa suite sur https://bible-strong.app`
+        })} \n\nLa suite sur ${urlSiteEmpreinte()}`
       Share.share({ message })
     } catch (e) {
       toast.error('Erreur lors du partage.')

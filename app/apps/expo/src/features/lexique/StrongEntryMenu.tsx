@@ -1,4 +1,5 @@
 import { useSetAtom } from 'jotai/react'
+import { urlSiteEmpreinte } from '~helpers/siteEmpreinte'
 import { Share } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import Box from '~common/ui/Box'
@@ -45,7 +46,7 @@ const StrongEntryMenu = ({ context, entry }: Props) => {
       `${stepStrongCode} — ${entry.gloss}`,
       `${entry.original} · ${entry.transliteration}`,
       entry.definitionHtml ? stripHtml(entry.definitionHtml) : '',
-      'https://bible-strong.app',
+      urlSiteEmpreinte(),
     ].filter(Boolean)
     Share.share({ message: lines.join('\n\n') })
   }

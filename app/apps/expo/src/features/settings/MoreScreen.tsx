@@ -61,12 +61,15 @@ export const LinkItem = (
   )
 }
 
+/** Empreinte : les pages (soutenir, suivre, confidentialité…) seront recréées sur le site. */
+const SITE_EMPREINTE = '/'
+
 const shareMessage = () => {
   const appUrl =
     Platform.OS === 'ios'
-      ? 'https://apps.apple.com/fr/app/bible-strong/id1454738221?mt=8'
-      : 'https://play.google.com/store/apps/details?id=com.smontlouis.biblestrong'
-  return `Empreinte App ${appUrl}`
+      ? SITE_EMPREINTE
+      : SITE_EMPREINTE
+  return `Empreinte ${appUrl}`
 }
 
 const Infos = memo(() => {
@@ -396,7 +399,7 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
               {t('settings.community')}
             </Text>
           </SectionCardHeader>
-          <CardLinkItem href="https://www.facebook.com/fr.bible.strong">
+          <CardLinkItem href={SITE_EMPREINTE}>
             <IconCircle bg="rgba(59, 89, 152, 0.1)">
               <FeatherIcon name="facebook" size={20} color="primary" />
             </IconCircle>
@@ -404,11 +407,7 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
             <FeatherIcon name="chevron-right" size={20} color="grey" />
           </CardLinkItem>
           <CardLinkItem
-            href={
-              Platform.OS === 'ios'
-                ? 'https://apps.apple.com/fr/app/bible-strong/id1454738221?mt=8'
-                : 'https://play.google.com/store/apps/details?id=com.smontlouis.biblestrong'
-            }
+            href={SITE_EMPREINTE}
           >
             <IconCircle bg="rgba(251, 191, 36, 0.1)">
               <FeatherIcon name="star" size={20} color="secondary" />
@@ -425,9 +424,7 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
           </CardLinkItem>
           {!appleIsReviewing && (
             <CardLinkItem
-              href={
-                lang === 'fr' ? 'https://bible-strong.app/fr/give' : 'https://bible-strong.app/give'
-              }
+              href={SITE_EMPREINTE}
             >
               <IconCircle bg="rgba(236, 72, 153, 0.1)">
                 <FeatherIcon name="heart" size={20} color="color2" />
@@ -436,31 +433,18 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
               <FeatherIcon name="chevron-right" size={20} color="grey" />
             </CardLinkItem>
           )}
-          <CardLinkItem href="https://github.com/smontlouis/bible-strong" isLast>
-            <IconCircle bg="rgba(107, 114, 128, 0.1)">
-              <FeatherIcon name="github" size={20} color="grey" />
-            </IconCircle>
-            <Text className="flex-[1] text-[15px]">Github</Text>
-            <FeatherIcon name="chevron-right" size={20} color="grey" />
-          </CardLinkItem>
         </SectionCard>
 
         <Box className="overflow-hidden border-continuous px-[20px] py-[8px]">
           <LinkItem
             style={{ paddingVertical: 10, paddingHorizontal: 0 }}
-            href={
-              lang === 'fr'
-                ? 'https://bible-strong.app/politique-de-confidentialite'
-                : 'https://bible-strong.app/privacy-policy'
-            }
+            href={SITE_EMPREINTE}
           >
             <Text className="text-[14px] text-grey">{t('Politique de confidentialité')}</Text>
           </LinkItem>
           <LinkItem
             style={{ paddingVertical: 10, paddingHorizontal: 0 }}
-            href={
-              lang === 'fr' ? 'https://bible-strong.app/eula' : 'https://bible-strong.app/eula-en'
-            }
+            href={SITE_EMPREINTE}
           >
             <Text className="text-[14px] text-grey">{t("Conditions d'utilisation")}</Text>
           </LinkItem>

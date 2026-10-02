@@ -1,4 +1,5 @@
 import * as Sentry from '@sentry/react-native'
+import { urlSiteEmpreinte } from '~helpers/siteEmpreinte'
 import type { CommentaryCatalogEntry } from '@empreinte/resource-catalog/commentaries'
 import { isTag, isText, type AnyNode } from 'domhandler'
 import { parseDocument } from 'htmlparser2'
@@ -52,7 +53,7 @@ export const getCommentaryShareMessage = ({
     })
     .filter(Boolean)
     .join('\n\n')
-  return `${entry.author}\n${entry.title}\n${passage}\n\n${truncate(body)}\n\nhttps://bible-strong.app`
+  return `${entry.author}\n${entry.title}\n${passage}\n\n${truncate(body)}${urlSiteEmpreinte() ? `\n\n${urlSiteEmpreinte()}` : ''}`
 }
 
 export const shareCommentary = async (
