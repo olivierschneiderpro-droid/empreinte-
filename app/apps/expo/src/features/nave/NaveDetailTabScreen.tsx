@@ -2,10 +2,10 @@ import { useAssistantResourceContext } from '~features/study-assistant/useAssist
 import { urlSiteEmpreinte } from '~helpers/siteEmpreinte'
 import { naveContext } from '~features/study-assistant/resourceContext'
 import { goBackOrHome } from '~navigation/goBackOrHome'
-import React, { useCallback, useEffect } from 'react'
+import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { MenuView, type MenuAction } from '~common/ui/MenuView'
-import { Share } from 'react-native'
+import { Share, View } from 'react-native'
 import { useSelector } from 'react-redux'
 import truncHTML from 'trunc-html'
 import { useRouter, useLocalSearchParams } from 'expo-router'
@@ -47,6 +47,10 @@ import {
   resourceFailureFromAccessError,
   resourceFailureFromAvailability,
 } from '~features/resources/resourceFailure'
+import { passageDepuisLien, useOuvrirDansLaBible } from '~features/empreinte/ouvrirDansLaBible'
+import { analyserNave } from './analyseNave'
+import { IndexAlphabetiqueNave, PiluleNave, ResumeNave, VoirAussiNave } from './NaveLumiere'
+
 interface NaveDetailScreenProps {
   naveAtom: PrimitiveAtom<NaveTab>
   isFormSheet?: boolean
@@ -156,39 +160,40 @@ const NaveDetailScreen = ({ naveAtom, isFormSheet = false }: NaveDetailScreenPro
     })
   }, [addHistory, naveItem])
 
+  const ouvrirDansLaBible = useOuvrirDansLaBible()
+  const [largeur, setLargeur] = useState(0)
+  const analyse = useMemo(
+    () => analyserNave(naveQuery.data?.description ?? ''),
+    [naveQuery.data?.description]
+  )
+  /** Empreinte : on passe d'un thème à l'autre dans la même page, sans fenêtre par-dessus. */
+  const ouvrirTheme = (cle: string, nom: string) => {
+    if (isInTab) {
+      setNaveTab(
+        produce(draft => {
+          draft.title = nom
+          draft.data = { name_lower: cle, name: nom, language: naveResourceLanguage }
+        })
+      )
+      return
+    }
+    pushRouteOnce({
+      pathname: '/nave-detail',
+      params: { language: naveResourceLanguage, name_lower: cle, name: nom },
+    })
+  }
+
   const openLink = ({ href }: HTMLViewLinkPayload) => {
     const [type, item] = href.split('=')
 
+    // Empreinte : un passage s'ouvre dans la Bible principale, la fiche reste à côté.
     if (type === 'v') {
-      try {
-        const [book, chapter, verses] = item.split('-')
-        const [verse] = verses ? verses.split(',') : []
-        pushRouteOnce({
-          pathname: '/bible-view',
-          params: {
-            contextDisplayMode: 'focused',
-            book: String(book),
-            chapter: String(chapter),
-            verse: String(verse),
-            focusVerses: JSON.stringify(verses?.split(',').map(Number)),
-          },
-        })
-      } catch (e) {
-        console.log('[Nave] Error loading verse:', e)
-        toast.error('Impossible de charger ce verset.')
-      }
+      const passage = passageDepuisLien(item)
+      if (passage) ouvrirDansLaBible(passage)
+      else toast.error('Impossible de charger ce verset.')
     }
 
-    if (type === 'w') {
-      pushRouteOnce({
-        pathname: '/nave-detail',
-        params: {
-          language: naveResourceLanguage,
-          name_lower: item,
-          name: item,
-        },
-      })
-    }
+    if (type === 'w') ouvrirTheme(item, item)
   }
 
   const shareDefinition = async () => {
@@ -333,24 +338,70 @@ const NaveDetailScreen = ({ naveAtom, isFormSheet = false }: NaveDetailScreenPro
           </MenuView>
         }
       />
-      <ScrollView contentContainerStyle={{ maxWidth: 600 }}>
-        {(tags || relationCount > 0) && (
-          <Box className="overflow-hidden border-continuous mt-[0px] px-[20px]">
-            <EntityChipList
-              tags={tags}
-              relationCount={relationCount}
-              onRelationPress={() => naveEndpoint && openEntityRelations(naveEndpoint)}
+      <ScrollView
+        contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 48 }}
+        onLayout={event => setLargeur(event.nativeEvent.layout.width)}
+      >
+        <View
+          style={{
+            flexDirection: largeur >= 900 ? 'row' : 'column',
+            alignItems: 'flex-start',
+            gap: 24,
+            width: '100%',
+            maxWidth: 1080,
+            alignSelf: 'center',
+          }}
+        >
+          <View style={{ flex: largeur >= 900 ? 1 : undefined, width: '100%', gap: 18 }}>
+            <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
+              <PiluleNave
+                libelle="Retour à la Bible"
+                icone="book"
+                onPress={() => router.navigate('/')}
+              />
+              <PiluleNave
+                libelle="Tous les thèmes"
+                icone="list"
+                onPress={() => (isInTab ? goBack() : router.navigate('/nave'))}
+              />
+            </View>
+            {(tags || relationCount > 0) && (
+              <EntityChipList
+                tags={tags}
+                relationCount={relationCount}
+                onRelationPress={() => naveEndpoint && openEntityRelations(naveEndpoint)}
+              />
+            )}
+            <ResumeNave
+              analyse={analyse}
+              onPassage={passage => {
+                const lu = passageDepuisLien(passage)
+                if (lu) ouvrirDansLaBible(lu)
+              }}
             />
-          </Box>
-        )}
-        {naveItem?.description && (
-          <HTMLViewContent
-            selectable
-            previewSource={{ kind: 'nave', language: naveResourceLanguage }}
-            html={naveItem.description}
-            onLinkClicked={openLink}
-          />
-        )}
+            {naveItem?.description && (
+              <View style={{ marginHorizontal: -20 }}>
+                <HTMLViewContent
+                  selectable
+                  previewSource={{ kind: 'nave', language: naveResourceLanguage }}
+                  html={naveItem.description}
+                  onLinkClicked={openLink}
+                />
+              </View>
+            )}
+            <VoirAussiNave voirAussi={analyse.voirAussi} onTheme={ouvrirTheme} />
+          </View>
+          <View style={{ width: largeur >= 900 ? 280 : '100%' }}>
+            <IndexAlphabetiqueNave
+              key={naveItem.normalizedName}
+              initiale={naveItem.initial || naveItem.name}
+              actuel={naveItem.normalizedName}
+              langue={naveResourceLanguage}
+              onTheme={ouvrirTheme}
+              hauteurMax={largeur >= 900 ? 520 : 360}
+            />
+          </View>
+        </View>
       </ScrollView>
     </FormSheetScreen>
   )
