@@ -80,8 +80,14 @@ export type ResourceAccessRegistry = {
 }
 
 const isOnline = async () => onlineManager.isOnline()
+// Empreinte : servie par scripts/servir-empreinte.mjs, la page annonce un relais vers l'API
+// (même origine), car l'API de Bible Strong n'accepte que les sites de Bible Strong (CORS).
+const relaisEmpreinte =
+  typeof window !== 'undefined'
+    ? (window as { __EMPREINTE_RELAIS__?: string }).__EMPREINTE_RELAIS__
+    : undefined
 const resourceApiBaseUrl = getConfiguredResourceApiBaseUrl(
-  Constants.expoConfig?.extra?.resourceApiUrl as string | undefined
+  relaisEmpreinte ?? (Constants.expoConfig?.extra?.resourceApiUrl as string | undefined)
 )
 
 const unavailableAccess = <Access extends object>(): Access =>
