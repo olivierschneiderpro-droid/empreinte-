@@ -20,15 +20,15 @@ Il existe assez de matière légalement réutilisable pour lancer un catalogue s
 
 1. **Tyndale Open Study Notes / Bible Aquifer en français et en anglais**, sous CC BY-SA 4.0 : 66 livres dans les deux langues et près de 17 000 unités par langue. C'est de loin le meilleur socle bilingue moderne immédiatement structuré.
 2. **Albert Barnes en anglais**, domaine public via CrossWire/SWORD : bon candidat attendu par le produit, déjà présent dans Firestore, mais limité au Nouveau Testament malgré le titre de module.
-3. **Jamieson-Fausset-Brown ou Matthew Henry Concise en anglais**, domaine public via CrossWire : ils apportent une couverture de toute la Bible protestante. JFB diversifie davantage le catalogue ; MHCC facilite la comparaison avec la ressource historique de Bible Strong.
+3. **Jamieson-Fausset-Brown ou Matthew Henry Concise en anglais**, domaine public via CrossWire : ils apportent une couverture de toute la Bible protestante. JFB diversifie davantage le catalogue ; MHCC facilite la comparaison avec la ressource historique d’Empreinte.
 4. **Augustin et Jean Chrysostome en français**, domaine public via CrossWire : deux vraies ressources françaises redistribuables, mais patristiques et à couverture irrégulière. Elles complètent Aquifer ; elles ne le remplacent pas comme commentaire continu moderne.
 5. En deuxième vague, **Rachi en anglais via Sefaria** (CC BY, Ancien Testament), **Calvin**, **Keil & Delitzsch**, **Catena Aurea** et les **annotations originales de la Douay-Rheims** apportent des traditions exégétiques différentes, sous réserve des contrôles de version et de provenance détaillés plus bas.
 
-L'autorisation historique de Dominique Osché a été retrouvée. Dans l'échange du 1er novembre 2019 fourni pendant cet audit, Bible Strong demande la version HTML la plus récente pour l'application gratuite `bible-strong.app`; Dominique répond en transmettant « la version bu3, la plus à jour », le fichier `MHY.zip` et un relevé de décalages. L'intégration lui est ensuite confirmée le 6 novembre. Cette pièce établit la provenance et une permission directe pour l'usage historique dans l'application gratuite. Elle doit être archivée avec ses pièces jointes et enregistrée comme **permission personnalisée**, et non comme `Public domain`. Pour éviter toute ambiguïté future, il reste souhaitable de faire confirmer en une phrase que la permission couvre également le réhébergement dans la base Bible Strong, l'API, le SQLite hors ligne, les mises à jour et un éventuel usage commercial. Ce point n'empêche pas l'inventaire ni la migration technique à périmètre d'usage constant.
+L'autorisation historique de Dominique Osché a été retrouvée. Dans l'échange du 1er novembre 2019 fourni pendant cet audit, Empreinte demande la version HTML la plus récente pour l'application gratuite `bible-strong.app`; Dominique répond en transmettant « la version bu3, la plus à jour », le fichier `MHY.zip` et un relevé de décalages. L'intégration lui est ensuite confirmée le 6 novembre. Cette pièce établit la provenance et une permission directe pour l'usage historique dans l'application gratuite. Elle doit être archivée avec ses pièces jointes et enregistrée comme **permission personnalisée**, et non comme `Public domain`. Pour éviter toute ambiguïté future, il reste souhaitable de faire confirmer en une phrase que la permission couvre également le réhébergement dans la base Empreinte, l'API, le SQLite hors ligne, les mises à jour et un éventuel usage commercial. Ce point n'empêche pas l'inventaire ni la migration technique à périmètre d'usage constant.
 
 ## Ce que signifie « ouvert » dans cet audit
 
-Une ressource « lisible gratuitement » n'est pas nécessairement réutilisable par Bible Strong. Pour entrer dans la base canonique et dans un SQLite téléchargé, il faut que les droits autorisent au minimum : extraction, transformation, hébergement, redistribution électronique, usage hors ligne et, si l'application peut être monétisée, usage commercial.
+Une ressource « lisible gratuitement » n'est pas nécessairement réutilisable par Empreinte. Pour entrer dans la base canonique et dans un SQLite téléchargé, il faut que les droits autorisent au minimum : extraction, transformation, hébergement, redistribution électronique, usage hors ligne et, si l'application peut être monétisée, usage commercial.
 
 | Classe | Ingestion et redistribution | Traduction/adaptation | Décision par défaut |
 |---|---:|---:|---|
@@ -41,7 +41,7 @@ Une ressource « lisible gratuitement » n'est pas nécessairement réutilisable
 
 La licence du moteur SWORD, du dépôt Git ou de l'API n'accorde aucun droit sur les textes tiers qu'ils transportent. Chaque œuvre, version linguistique et édition numérique doit avoir sa propre preuve de droits.
 
-## État actuel de Bible Strong
+## État actuel d’Empreinte
 
 Le projet Firebase `bible-strong-app` expose actuellement **30 826 documents `verse-commentaries`** en lecture publique. Pour Genèse 1:1, les œuvres non adventistes observées sont :
 
@@ -106,7 +106,7 @@ Le cache ne peut donc pas devenir la base canonique tel quel. Avant SQL/SQLite, 
 | **Wesley Notes** | 66 livres, concis, domaine public, [module CrossWire Wesley](https://www.crosswire.org/sword/modules/ModInfo.jsp?modName=Wesley). | Facile à intégrer, mais moins prioritaire que JFB/Barnes pour le premier lot. |
 | **Treasury of David** | Commentaire classique des Psaumes, domaine public, [module CrossWire TDavid](https://www.crosswire.org/sword/modules/ModInfo.jsp?modName=TDavid). | Psaumes uniquement et très volumineux ; excellent pack thématique ultérieur. |
 | **Catena Aurea** | Anthologie patristique anglophone sur les quatre Évangiles ; domaine public dans [le catalogue CrossWire](https://www.crosswire.org/sword/modules/ModDisp.jsp?exp=true&modType=Commentaries). | Couverture Évangiles seulement ; vérifier l'édition/traduction précise du module avant ingestion. Bonne voix catholique/patristique en seconde vague. |
-| **Annotations originales Douay-Rheims** | Dépôt JSON `janvier-s/original-douay-rheims` épinglé au commit `0bf4218b9b46b5b00d29a703b5b74226051b97a5`, CC0 1.0. Les 1 659 objets effectivement publiés sont importés sur 390 chapitres et 53 livres avec contenu. | Le JSON publié est accepté comme source faisant foi, sans collation, reconstruction ni restauration éditoriale par Bible Strong. |
+| **Annotations originales Douay-Rheims** | Dépôt JSON `janvier-s/original-douay-rheims` épinglé au commit `0bf4218b9b46b5b00d29a703b5b74226051b97a5`, CC0 1.0. Les 1 659 objets effectivement publiés sont importés sur 390 chapitres et 53 livres avec contenu. | Le JSON publié est accepté comme source faisant foi, sans collation, reconstruction ni restauration éditoriale par Empreinte. |
 | **Haydock** | Grand commentaire catholique anglais historiquement dans le domaine public. | Aucun dépôt structuré avec provenance éditoriale et déclaration de droits suffisamment robustes n'a été identifié. [Une édition EPUB communautaire existe](https://johnblood.gitlab.io/haydock/id2.html), mais ne doit pas entrer en production avant vérification de l'édition, des transcripteurs et des éventuels ajouts. |
 | **Family 35 NT with Commentary** | Traduction anglaise du NT et notes de Wilbur Pickering, formats de développement et SWORD sur [eBible](https://ebible.org/bible/details.php?id=engf35). | La [page de copyright actuelle](https://ebible.org/engf35/copyright.htm) indique CC BY-SA 4.0, mais la [préface](https://ebible.org/engf35/FRT01.htm) mentionne CC BY-SA 3.0. Demander une clarification, puis étiqueter clairement sa perspective textuelle Family 35/Byzantine. |
 | **unfoldingWord Translation Notes** | Notes de traduction très structurées, TSV, [dépôt officiel](https://git.door43.org/unfoldingWord/en_tn), sous CC BY-SA 4.0. La [release v90](https://git.door43.org/unfoldingWord/en_tn/releases) couvre les 27 livres NT et 29 livres AT. | Ce sont des aides à la traduction, pas un commentaire général. La branche mouvante comportait des travaux explicitement marqués AI ; épingler une release stable et faire une QA humaine. Les dépôts français sont fragmentés entre organisations/forks et leur maturité doit être auditée séparément. |
@@ -196,7 +196,7 @@ MHC, Clarke, Barnes ou Keil & Delitzsch représentent chacun un chantier importa
 3. Produire la traduction en lot avec glossaire biblique, noms propres et politique de citations.
 4. Valider automatiquement l'identité de la source, la langue, la structure HTML et les références bibliques.
 5. Stocker pour chaque segment la source anglaise, la traduction, le moteur/modèle et sa version, la date et le profil de production.
-6. Publier une révision immuable et indiquer clairement « traduction Bible Strong », l'édition source et les modifications.
+6. Publier une révision immuable et indiquer clairement « traduction Empreinte », l'édition source et les modifications.
 7. Corriger les segments concernés lorsqu'une anomalie est détectée ou signalée par un utilisateur, puis republier les artefacts.
 
 Pour Matthew Henry Concise français, obtenir une licence de l'édition CLÉ pourrait rester moins coûteux qu'une retraduction complète, si les conditions sont compatibles.
@@ -329,7 +329,7 @@ Ce lot offre immédiatement une ressource moderne complète dans chaque langue, 
 
 - L'accord Osché retrouvé peut-il être archivé avec les fichiers originaux et complété par une confirmation explicite pour SQL, API, SQLite, corrections et usage commercial éventuel ?
 - D'où proviennent exactement les corpus Firestore `acbc`, `barnes`, `mhcc` et EGW, et ont-ils été modifiés ?
-- Bible Strong est-il ou pourra-t-il être considéré comme un usage commercial ? La porte de droits doit être conçue pour le scénario le plus large.
+- Empreinte est-il ou pourra-t-il être considéré comme un usage commercial ? La porte de droits doit être conçue pour le scénario le plus large.
 - L'équipe accepte-t-elle de distribuer les adaptations Aquifer sous CC BY-SA 4.0 et de rendre les fichiers de ressource correspondants récupérables sous cette licence ?
 - Quelles traditions et quels canons le catalogue doit-il représenter explicitement : protestant, catholique, orthodoxe, juif, adventiste ?
 - Les anciens commentaires seront-ils affichés avec date, tradition, auteur, langue d'origine et avertissement de vocabulaire historique ?
@@ -341,4 +341,4 @@ Ce lot offre immédiatement une ressource moderne complète dans chaque langue, 
 
 La décision raisonnable aujourd'hui est de sécuriser le corpus existant, publier Aquifer EN/FR avec sa licence, puis ajouter les œuvres dont les droits et la provenance sont établis.
 
-Le premier ensemble produit peut être **Aquifer EN/FR + ACBC EN/FR + Barnes EN/FR**, car il correspond au besoin immédiat et à l'historique de Bible Strong. JFB apporte en complément une couverture anglaise complète. L'accord Osché retrouvé permet de conserver Matthew Henry français dans le programme ; il faut archiver la preuve, corriger sa fausse mention `Public domain` et clarifier les extensions d'usage futures. La Bible Annotée, Rachi, Calvin et les ressources catholiques forment ensuite un programme crédible de diversification, sans confondre disponibilité sur le Web et liberté de redistribution.
+Le premier ensemble produit peut être **Aquifer EN/FR + ACBC EN/FR + Barnes EN/FR**, car il correspond au besoin immédiat et à l'historique d’Empreinte. JFB apporte en complément une couverture anglaise complète. L'accord Osché retrouvé permet de conserver Matthew Henry français dans le programme ; il faut archiver la preuve, corriger sa fausse mention `Public domain` et clarifier les extensions d'usage futures. La Bible Annotée, Rachi, Calvin et les ressources catholiques forment ensuite un programme crédible de diversification, sans confondre disponibilité sur le Web et liberté de redistribution.

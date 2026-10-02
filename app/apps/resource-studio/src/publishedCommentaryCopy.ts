@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { createReadStream } from "node:fs";
 import { DatabaseSync } from "node:sqlite";
-import { COMMENTARY_READING_INDEX_VERSION } from "@bible-strong/resource-domain/contracts/commentaryReadingContract";
+import { COMMENTARY_READING_INDEX_VERSION } from "@empreinte/resource-domain/contracts/commentaryReadingContract";
 import type { AnyCanonicalCommentary } from "./packageCommentaryResourcePublications.js";
 
 export type PublishedCommentaryCopy = {

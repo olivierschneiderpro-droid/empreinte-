@@ -2,7 +2,7 @@ import {
   parseStudyWidget,
   type StudyWidget,
   type StudySource,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 import type { ResourceAccessRegistry } from '~features/resources/resourceAccess'
 const excerpt = (html: string) =>
   new DOMParser()

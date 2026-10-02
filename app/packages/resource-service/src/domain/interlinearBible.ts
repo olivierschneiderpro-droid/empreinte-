@@ -8,9 +8,9 @@ import {
   InterlinearIdentityDto,
   InterlinearSegmentDto,
   InterlinearTokenDto,
-} from '@bible-strong/resource-domain/contracts/interlinearBibleContract'
-import type { ResourceLanguage } from '@bible-strong/resource-domain/interlinear-bible'
-import type { InterlinearToken } from '@bible-strong/resource-domain/interlinear-bible'
+} from '@empreinte/resource-domain/contracts/interlinearBibleContract'
+import type { ResourceLanguage } from '@empreinte/resource-domain/interlinear-bible'
+import type { InterlinearToken } from '@empreinte/resource-domain/interlinear-bible'
 
 export type InterlinearBibleIdentity = {
   versionId: 'BHG'

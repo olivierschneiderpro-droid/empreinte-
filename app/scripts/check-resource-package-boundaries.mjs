@@ -5,8 +5,8 @@ import { fileURLToPath } from 'node:url'
 const workspaceRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const packageRoots = ['packages/resource-domain', 'packages/resource-catalog']
 const forbiddenImports = [
-  '@bible-strong/expo',
-  '@bible-strong/resource-service',
+  '@empreinte/expo',
+  '@empreinte/resource-service',
   'apps/expo',
   'expo',
   'firebase',

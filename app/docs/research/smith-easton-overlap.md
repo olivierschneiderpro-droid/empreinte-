@@ -9,7 +9,7 @@ les textes ne sont généralement pas des copies d’Easton et Smith apporte enc
 d’articles absents de la base actuelle. Il ne faut ni fusionner silencieusement Smith dans
 Easton + Webster, ni présenter le module CrossWire comme une transcription pure de 1884.
 
-**Décision mise en œuvre : solution 1.** Bible Strong conserve la transcription numérique CrossWire
+**Décision mise en œuvre : solution 1.** Empreinte conserve la transcription numérique CrossWire
 et ses enrichissements, en les déclarant dans l’édition et le manifeste de provenance.
 
 ## Source contrôlée
@@ -26,7 +26,7 @@ supplémentaires correspondent principalement à des homonymes partageant un mê
 
 ## Chevauchement des intitulés
 
-La comparaison porte sur la ressource Bible Strong actuelle `Easton + Webster 1828`, soit 8 620
+La comparaison porte sur la ressource Empreinte actuelle `Easton + Webster 1828`, soit 8 620
 entrées. Elle applique deux niveaux conservateurs : intitulé normalisé exact, puis variantes uniques
 de ponctuation, d’alternatives « or » et d’ordre des mots fonctionnels.
 

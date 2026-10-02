@@ -179,7 +179,7 @@ export const buildTranslationWordsEntries = async (bibleRoot) => {
 
 const download = async (destination) => {
   const response = await fetch(ARCHIVE_URL, {
-    headers: { "user-agent": "BibleStrongResourceStudio/1.0" },
+    headers: { "user-agent": "EmpreinteResourceStudio/1.0" },
     signal: AbortSignal.timeout(120_000)
   });
   if (!response.ok)
@@ -276,7 +276,7 @@ const main = async () => {
     },
     adaptation: {
       changes:
-        "Converted Markdown to safe Bible Strong dictionary HTML; converted relative article links to dictionary links; normalized Bible references with the Bible Strong BCV parser; grouped articles with identical headings.",
+        "Converted Markdown to safe Empreinte dictionary HTML; converted relative article links to dictionary links; normalized Bible references with Empreinte BCV parser; grouped articles with identical headings.",
       trademark:
         "The derivative resource is titled Translation Words and does not use the unfoldingWord registered trademark as its own product mark.",
       attribution:

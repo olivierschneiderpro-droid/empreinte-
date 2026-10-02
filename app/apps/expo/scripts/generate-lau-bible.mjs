@@ -50,7 +50,7 @@ const parseArgs = argv => {
 }
 
 const printHelp = () => {
-  console.log(`Generate Bible Strong JSON for the Lausanne Bible (1872).
+  console.log(`Generate Empreinte JSON for the Lausanne Bible (1872).
 
 Usage:
   yarn bible:lau:generate [--output .scratch/generated/bible-lau.json] [--pretty]

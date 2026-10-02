@@ -1,6 +1,6 @@
 # Drizzle + Kysely dans un backend Effect
 
-Recherche vérifiée le 16 août 2026. Les constats de version reposent sur les paquets publiés et les dépôts officiels ; la recommandation pour Bible Strong est une déduction architecturale.
+Recherche vérifiée le 16 août 2026. Les constats de version reposent sur les paquets publiés et les dépôts officiels ; la recommandation pour Empreinte est une déduction architecturale.
 
 ## Conclusion
 
@@ -58,7 +58,7 @@ La contrainte déterminante n'est pas la syntaxe SQL, mais le transport.
 - Le driver Neon est GA et expose HTTP pour les opérations one-shot et WebSocket pour les sessions/transactions interactives. Il autorise aussi plusieurs requêtes dans une transaction HTTP non interactive. [Documentation officielle Neon](https://neon.com/docs/serverless/serverless-driver).
 - Cloudflare accepte le driver Neon direct, mais recommande désormais Hyperdrive pour Neon ; Hyperdrive permet aussi `pg`/Drizzle avec `nodejs_compat`. [Cloudflare — Neon](https://developers.cloudflare.com/workers/databases/third-party-integrations/neon/), [Cloudflare — Drizzle avec Hyperdrive](https://developers.cloudflare.com/hyperdrive/examples/connect-to-postgres/postgres-drivers-and-libraries/drizzle-orm/).
 
-Cela crée un choix réel pour Bible Strong :
+Cela crée un choix réel pour Empreinte :
 
 1. **Conserver l'ADR « Neon HTTP direct, sans Hyperdrive au départ »** : Drizzle + Kysely est cohérent. Drizzle 0.45/Kit possède le schéma et les migrations ; Kysely 0.29 possède toutes les requêtes ; `PostgresDialect` utilise `pg` en local et `kysely-neon` utilise HTTP dans le Worker. Les opérations du repository enveloppent les Promises Kysely dans `Effect.tryPromise`, traduisent les erreurs et portent les traces/retry/timeouts Effect. Ne pas utiliser `@effect/sql-kysely` tant qu'il ne supporte pas la ligne Kysely actuelle sans son patch fragile.
 2. **Privilégier l'intégration Effect la plus native** : Effect 4 + Drizzle 1 RC + `@effect/sql-pg` est la direction la plus nette, mais elle implique soit Hyperdrive/`pg` dans Cloudflare, soit un adaptateur séparé pour Neon HTTP, et accepte aujourd'hui des versions RC.

@@ -277,13 +277,13 @@ const validateBiblePair = (greek, french, expected = {}) => {
     .map(Number)
     .sort((a, b) => a - b)
   if (JSON.stringify(greekBooks) !== JSON.stringify(APP_BOOK_IDS)) {
-    errors.push(`Book IDs differ from Bible Strong: ${greekBooks.join(', ')}`)
+    errors.push(`Book IDs differ from Empreinte: ${greekBooks.join(', ')}`)
   }
   const frenchBooks = Object.keys(french)
     .map(Number)
     .sort((a, b) => a - b)
   if (JSON.stringify(frenchBooks) !== JSON.stringify(APP_BOOK_IDS)) {
-    errors.push(`French book IDs differ from Bible Strong: ${frenchBooks.join(', ')}`)
+    errors.push(`French book IDs differ from Empreinte: ${frenchBooks.join(', ')}`)
   }
 
   const greekCoverage = getCoverage(greek)

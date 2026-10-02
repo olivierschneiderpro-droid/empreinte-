@@ -4,8 +4,8 @@ import {
   createCommentaryPreview,
   createCommentarySectionId,
   type CommentaryResourceSection,
-} from '@bible-strong/resource-domain/contracts/commentarySections'
-import { COMMENTARY_CATALOG_BY_ID } from '@bible-strong/resource-catalog/commentaries'
+} from '@empreinte/resource-domain/contracts/commentarySections'
+import { COMMENTARY_CATALOG_BY_ID } from '@empreinte/resource-catalog/commentaries'
 import * as Schema from 'effect/Schema'
 
 import type { Comment } from '~features/commentaries/types'
@@ -19,7 +19,7 @@ import {
 import { ResourceAccessError, resourceAccessErrorFromHttpResponse } from './resourceAccessError'
 import { getLocalResourceAvailability, offlineResourceRegistry } from './resourceAvailability'
 
-export type { CommentaryResourceSection } from '@bible-strong/resource-domain/contracts/commentarySections'
+export type { CommentaryResourceSection } from '@empreinte/resource-domain/contracts/commentarySections'
 
 export type CommentaryChapterRequest = {
   book: number

@@ -7,7 +7,7 @@ import type { ResourceDatabase } from '../database/types'
 import {
   decodeNavePageCursor,
   encodeNavePageCursor,
-} from '@bible-strong/resource-domain/contracts/naveContract'
+} from '@empreinte/resource-domain/contracts/naveContract'
 import {
   ActiveNavePublicationUnavailable,
   NaveRepositoryFailure,

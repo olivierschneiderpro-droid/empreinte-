@@ -2,13 +2,13 @@ services:
   postgres:
     image: pgvector/pgvector:pg17
     environment:
-      POSTGRES_DB: bible_strong
-      POSTGRES_USER: bible_strong
-      POSTGRES_PASSWORD: bible_strong
+      POSTGRES_DB: empreinte
+      POSTGRES_USER: empreinte
+      POSTGRES_PASSWORD: empreinte
     ports:
       - '${RESOURCE_POSTGRES_PORT:-54329}:5432'
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U bible_strong -d bible_strong']
+      test: ['CMD-SHELL', 'pg_isready -U empreinte -d empreinte']
       interval: 2s
       timeout: 3s
       retries: 20

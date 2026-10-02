@@ -15,7 +15,7 @@ describe('Resource database bindings', () => {
 
   it('constructs local and hosted Kysely dialects without changing repository types', async () => {
     const local = makeLocalDatabase({
-      connectionString: 'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong',
+      connectionString: 'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte',
       maxConnections: 1,
     })
     const hosted = makeNeonDatabase({

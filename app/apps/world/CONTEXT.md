@@ -1,11 +1,11 @@
 # Event Exploration World Context
 
-The Event Exploration World is a standalone, illustrated Bible Strong experience for ASI Europe. Visitors move an Avatar through six places that introduce the product's study-resource families.
+The Event Exploration World is a standalone, illustrated Empreinte experience for ASI Europe. Visitors move an Avatar through six places that introduce the product's study-resource families.
 
 ## Language
 
 **Exploration world**:
-The navigable illustrated environment that presents Bible Strong resources.
+The navigable illustrated environment that presents Empreinte resources.
 _Avoid_: Game, competition
 
 **Place**:

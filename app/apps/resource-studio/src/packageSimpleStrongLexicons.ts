@@ -132,10 +132,10 @@ export async function packageSimpleStrongLexicon(options: {
         },
         rights: {
           holder:
-            "Bible Strong historical lexicon contributors / STEP Bible identity data",
+            "Empreinte historical lexicon contributors / STEP Bible identity data",
           termsReference: "docs/legacy-strong-simple-lexicons.md",
           attribution:
-            "Historical Bible Strong definitions; STEP Bible lexical identities",
+            "Historical Empreinte definitions; STEP Bible lexical identities",
           reviewedAt: "2026-09-28",
           online: true,
           offline: true

@@ -118,7 +118,7 @@ def main():
         meta={'id':f'bibleproject-{plan["key"]}-{plan["lang"]}', 'title':plan['title'].split('|',1)[-1].strip(),
               'lang':plan['lang'],'description':plan['description'],'image':plan['image'],
               'author':{'id':'bibleproject','displayName':'BibleProject','photoUrl':''},
-              'sourceUrl':plan['url'],'rights':'Publisher rights confirmed by Bible Strong owner, 2026-09-15.'}
+              'sourceUrl':plan['url'],'rights':'Publisher rights confirmed by Empreinte owner, 2026-09-15.'}
         docs.extend(make_documents(meta,readings))
         summaries.append({'id':meta['id'],'days':len(readings),'source':plan['url']})
     for key,book,days,fr,en,frlabel,enlabel,color in OWN:
@@ -127,9 +127,9 @@ def main():
             readings=[{'title':f'{label} {day}','slices':[{'type':'Chapter','chapters':f'{book}|{day}'}]} for day in range(1,days+1)]
             meta={'id':f'bible-strong-{key}-{lang}','title':title,'lang':lang,
                   'description': f'Parcourez {label} en {days} jours, à raison d’un chapitre par jour.' if lang=='fr' else f'Read {label} in {days} days, one chapter each day.',
-                  'image':cover(label,days,lang,color),'author':{'id':'bible-strong','displayName':'Bible Strong','photoUrl':''},
-                  'rights':'Original reference-only reading schedule by Bible Strong.'}
-            docs.extend(make_documents(meta,readings));summaries.append({'id':meta['id'],'days':days,'source':'Bible Strong'})
+                  'image':cover(label,days,lang,color),'author':{'id':'bible-strong','displayName':'Empreinte','photoUrl':''},
+                  'rights':'Original reference-only reading schedule by Empreinte.'}
+            docs.extend(make_documents(meta,readings));summaries.append({'id':meta['id'],'days':days,'source':'Empreinte'})
     assert len(summaries)==26 and len({d['path'] for d in docs})==len(docs)
     for d in docs: assert len(json.dumps(d['data']).encode())<900000,d['path']
     serialized=json.dumps(docs,ensure_ascii=False,indent=2)

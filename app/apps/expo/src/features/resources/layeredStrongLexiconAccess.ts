@@ -1,7 +1,7 @@
-import type { StrongLexiconEntry } from '@bible-strong/resource-domain/strong-lexicon'
+import type { StrongLexiconEntry } from '@empreinte/resource-domain/strong-lexicon'
 import type { StrongLexiconAccess } from './strongLexiconAccess'
 import { ResourceAccessError } from './resourceAccessError'
-import { getSimpleStrongModuleId } from '@bible-strong/resource-domain/strong-lexicon'
+import { getSimpleStrongModuleId } from '@empreinte/resource-domain/strong-lexicon'
 
 export async function getPrimaryStrongLexiconAvailability(
   access: StrongLexiconAccess,

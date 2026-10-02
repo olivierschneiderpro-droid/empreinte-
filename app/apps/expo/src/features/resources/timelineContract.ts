@@ -1,1 +1,1 @@
-export * from '@bible-strong/resource-domain/contracts/timelineContract'
+export * from '@empreinte/resource-domain/contracts/timelineContract'

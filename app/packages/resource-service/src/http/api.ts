@@ -3,14 +3,14 @@ import {
   CommentaryReadingIndexResponse,
   CommentaryReadingSectionRequest,
   CommentaryReadingSectionResponse,
-} from '@bible-strong/resource-domain/contracts/commentaryReadingContract'
+} from '@empreinte/resource-domain/contracts/commentaryReadingContract'
 import { HttpApi, HttpApiEndpoint, HttpApiGroup } from '@effect/platform'
 import { Schema } from 'effect'
 
 import {
   SearchAnalyticsAcceptedDto,
   SearchAnalyticsEventDto,
-} from '@bible-strong/resource-domain/contracts/searchAnalyticsContract'
+} from '@empreinte/resource-domain/contracts/searchAnalyticsContract'
 import {
   BibleChapterDto,
   BibleChaptersDto,
@@ -25,7 +25,7 @@ import {
   BibleSearchResponseDto,
   BibleVerseTextsDto,
   BibleVerseTextsQuery,
-} from '@bible-strong/resource-domain/contracts/bibleChapterContract'
+} from '@empreinte/resource-domain/contracts/bibleChapterContract'
 import {
   NaveLanguagePath,
   NaveTopicListResponseDto,
@@ -34,7 +34,7 @@ import {
   NaveTopicsQuery,
   NaveVersePath,
   NaveVerseTopicsResponseDto,
-} from '@bible-strong/resource-domain/contracts/naveContract'
+} from '@empreinte/resource-domain/contracts/naveContract'
 import {
   DictionaryCatalogQuery,
   DictionaryCatalogResponseDto,
@@ -54,7 +54,7 @@ import {
   DictionaryResourcePath,
   DictionaryVersePath,
   DictionaryVerseWordsResponseDto,
-} from '@bible-strong/resource-domain/contracts/dictionaryContract'
+} from '@empreinte/resource-domain/contracts/dictionaryContract'
 import {
   StrongBibleChapterDto,
   StrongBibleChapterPath,
@@ -65,13 +65,13 @@ import {
   StrongBibleOccurrencesDto,
   StrongBibleOccurrencesQuery,
   StrongBibleVersionPath,
-} from '@bible-strong/resource-domain/contracts/strongBibleContract'
+} from '@empreinte/resource-domain/contracts/strongBibleContract'
 import {
   InterlinearBibleChapterDto,
   InterlinearBibleChapterPath,
   InterlinearBibleCoverageDto,
   InterlinearBibleCoveragePath,
-} from '@bible-strong/resource-domain/contracts/interlinearBibleContract'
+} from '@empreinte/resource-domain/contracts/interlinearBibleContract'
 import {
   StrongLexiconBrowseQuery,
   StrongLexiconChapterEntitiesPath,
@@ -91,7 +91,7 @@ import {
   StrongLexiconMorphologyResponseDto,
   StrongLexiconRandomQuery,
   StrongLexiconSearchResponseDto,
-} from '@bible-strong/resource-domain/contracts/strongLexiconContract'
+} from '@empreinte/resource-domain/contracts/strongLexiconContract'
 import {
   CommentaryChapterPath,
   CommentaryChapterResponseDto,
@@ -101,14 +101,14 @@ import {
   CommentaryVerseResponseDto,
   CrossReferencePath,
   CrossReferenceResponseDto,
-} from '@bible-strong/resource-domain/contracts/supplementaryContract'
+} from '@empreinte/resource-domain/contracts/supplementaryContract'
 import {
   TimelineEventPath,
   TimelineEventResponseDto,
   TimelineEventsQuery,
   TimelineEventsResponseDto,
   TimelineLanguagePath,
-} from '@bible-strong/resource-domain/contracts/timelineContract'
+} from '@empreinte/resource-domain/contracts/timelineContract'
 import {
   InvalidResourceRequestProblem,
   ResourceInternalProblem,

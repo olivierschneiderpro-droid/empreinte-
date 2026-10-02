@@ -27,7 +27,7 @@ test décisif : requêtes françaises contre le catalogue de thèmes principalem
 
 **Alternative de repli : BGE-M3.** Il est MIT, disponible sur Workers AI au même tarif, ne demande
 pas d'instruction et possède une documentation cross-lingue solide. Le retenir si Qwen ne gagne pas
-clairement le corpus Bible Strong ou si son endpoint instruction-aware se révèle instable.
+clairement le corpus Empreinte ou si son endpoint instruction-aware se révèle instable.
 
 ## Contexte vérifié dans le dépôt
 
@@ -77,7 +77,7 @@ libellés thématiques sont de toute façon très loin de cette limite.
 
 Le test local a montré que le champ `instruction` de l'endpoint ne modifiait pas les vecteurs dans
 notre chemin Wrangler, alors que le format canonique explicite `Instruct: …\nQuery: …` changeait le
-classement et l'améliorait nettement. Le contrat Bible Strong v2 encode donc explicitement ce format
+classement et l'améliorait nettement. Le contrat Empreinte v2 encode donc explicitement ce format
 dans le texte de requête au lieu de dépendre du champ optionnel du fournisseur.
 
 Source : [modèle Qwen sur Workers AI](https://developers.cloudflare.com/workers-ai/models/qwen3-embedding-0.6b/).
@@ -85,7 +85,7 @@ Source : [modèle Qwen sur Workers AI](https://developers.cloudflare.com/workers
 ### BGE-M3
 
 BGE-M3 produit un dense vector de 1 024 dimensions, accepte jusqu'à 8 192 tokens et couvre plus de
-100 langues. Le même modèle peut produire sparse et ColBERT, mais l'API Bible Strong n'a besoin que
+100 langues. Le même modèle peut produire sparse et ColBERT, mais l'API Empreinte n'a besoin que
 du dense vector ; la recherche lexicale PostgreSQL joue déjà le rôle du signal sparse. La model
 card précise qu'aucune instruction de requête n'est requise.
 

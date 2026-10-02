@@ -52,7 +52,7 @@ Strong superpose les plages du sidecar seulement si sa révision est compatible.
 interrogent le sidecar choisi, sont paginées en SQL et affichent leur version source.
 
 Depuis un verset, l’application essaie d’abord le sidecar compatible de la Bible ouverte, puis la
-Bible Strong par défaut installée. Le lexique hébreu/grec partagé reste dans la base Strong
+Bible annotée Strong par défaut installée. Le lexique hébreu/grec partagé reste dans la base Strong
 historique : le sidecar remplace la source des occurrences, pas les définitions.
 
 ## Annotations lors d’une mise à jour

@@ -41,7 +41,7 @@ export function WorldLoading({
       }
     >
       <div className="loading-brand">
-        Bible Strong <span>World</span>
+        Empreinte <span>World</span>
       </div>
       <div className="loading-content">
         <div className="loading-scene" aria-hidden="true">

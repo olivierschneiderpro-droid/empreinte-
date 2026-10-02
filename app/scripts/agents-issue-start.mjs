@@ -45,7 +45,7 @@ if (!/^\d+$/.test(issueNumber)) {
 }
 
 if (createWorktree) {
-  console.error('--worktree is not supported for Bible Strong mobile issue work.')
+  console.error('--worktree is not supported for Empreinte mobile issue work.')
   console.error(
     'This repo uses mobile-sequential orchestration: create one branch in the current worktree and run the local mobile verification loop before moving to the next issue.'
   )

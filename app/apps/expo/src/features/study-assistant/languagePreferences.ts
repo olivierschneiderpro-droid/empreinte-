@@ -17,8 +17,8 @@ export function assistantLanguagePreferences(
 
 /** Use a uniquely known source edition for ordinary links, never a guessed global default. */
 export function responseBibleVersion(
-  sources: import('@bible-strong/ai-contract/contract').StudySource[] = [],
-  widgets: import('@bible-strong/ai-contract/contract').StudyWidget[] = []
+  sources: import('@empreinte/ai-contract/contract').StudySource[] = [],
+  widgets: import('@empreinte/ai-contract/contract').StudyWidget[] = []
 ) {
   const versions = new Set(
     [

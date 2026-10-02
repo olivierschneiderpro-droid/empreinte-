@@ -59,7 +59,7 @@ it('converts persisted message features into assistant-ui parts without changing
       args: { reference: 'Jean 3' },
       argsText: '{"reference":"Jean 3"}',
       result: 'Jean 3',
-      artifact: { bibleStrongState: 'complete' },
+      artifact: { empreinteState: 'complete' },
     },
     { type: 'data', name: messagePartNames.routing, data: message.routing?.[0] },
     { type: 'data', name: messagePartNames.source, data: message.sources?.[0] },

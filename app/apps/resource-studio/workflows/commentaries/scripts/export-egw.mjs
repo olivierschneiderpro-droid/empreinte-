@@ -53,7 +53,7 @@ const fetchCached = async ({ url, cachePath }) => {
   let lastError
   for (let attempt = 1; attempt <= 5; attempt += 1) {
     try {
-      const response = await fetch(url, { headers: { 'user-agent': 'BibleStrongEGWImporter/1.0 (+https://bible-strong.app)' } })
+      const response = await fetch(url, { headers: { 'user-agent': 'EmpreinteEGWImporter/1.0 (+https://bible-strong.app)' } })
       if (!response.ok) throw new Error(`HTTP ${response.status}`)
       const bytes = Buffer.from(await response.arrayBuffer())
       await mkdir(path.dirname(cachePath), { recursive: true })
@@ -380,8 +380,8 @@ const main = async () => {
     schemaVersion: 1,
     generatedAt: new Date().toISOString(),
     provider: 'Ellen G. White Estate · EGW Writings',
-    authorization: { status: 'confirmed-by-project-owner', confirmedAt: '2026-08-28', scope: 'Extraction, transformation et usage dans Bible Strong confirmés par le responsable du projet ; pièces d’approbation à archiver dans le registre de provenance.' },
-    linkContract: { representation: 'html-reference-id-plus-references', canonicalTarget: 'OSIS', parser: '@bible-strong/bible-reference-parser', parserVersion: COMMENTARY_BCV_PARSER_VERSION, normalizationRevision: COMMENTARY_LINK_NORMALIZATION_REVISION, runtimeParsingRequired: false },
+    authorization: { status: 'confirmed-by-project-owner', confirmedAt: '2026-08-28', scope: 'Extraction, transformation et usage dans Empreinte confirmés par le responsable du projet ; pièces d’approbation à archiver dans le registre de provenance.' },
+    linkContract: { representation: 'html-reference-id-plus-references', canonicalTarget: 'OSIS', parser: '@empreinte/bible-reference-parser', parserVersion: COMMENTARY_BCV_PARSER_VERSION, normalizationRevision: COMMENTARY_LINK_NORMALIZATION_REVISION, runtimeParsingRequired: false },
     scope: { included: ['EGW SDA Bible Commentary 1BC–7BC', 'EGW Complete Scripture Index', 'Paragraphes explicitement ciblés par EGW Complete Scripture Index', 'Chapitre complet lorsqu’une cible éditoriale déclare “This chapter is based on…”', 'Section complète lorsqu’une cible ECSI est son titre structurel'], excluded: ['SDA Bible Commentary général hors extraits EGW', 'Paragraphes voisins des cibles ECSI ordinaires'] },
     semantics: { curatedCommentary: 'Texte éditorial EGW des volumes 1BC–7BC.', scriptureIndex: 'Associations exhaustives vers des paragraphes EGW ; une association n’est pas automatiquement un commentaire exégétique. Les marqueurs “This chapter is based on…” portent une association explicite au niveau du chapitre. Une cible qui est le titre structurel d’une section porte une association de section dont la portée biblique est déduite de sa couverture ECSI.', indexedParagraphs: 'Corpus dédupliqué limité aux paragraphes exactement ciblés par ECSI, sauf lorsqu’une cible représente une unité documentaire : un marqueur éditorial “This chapter is based on…” est remplacé par tous les paragraphes réels de son chapitre, et un titre structurel par tous les paragraphes réels de sa section. Le titre du livre, la section et le lien de contexte restent des métadonnées. Une cible historique que le site ne matérialise plus exactement reste inventoriée sans texte et n’est jamais remplacée par un voisin.' },
     counts: { books, commentaryPages: commentaryPages.length, commentaryEntries: commentary.length, scriptureIndexPages: indexPages.length, scriptureIndexEntries: scriptureIndex.length, citations, originalCitationTargets: indexedParagraphIds.size, chapterAssociationMarkers: chapterExpansions.size, indexedSectionAnchors: headingSectionExpansions.size, uniqueCitationTargets, indexedParagraphs: indexedParagraphs.length, indexedParagraphsWithBibleReferences, indexedBibleReferences, availableIndexedParagraphs: indexedParagraphs.length - unavailableIndexedParagraphs.length, unavailableIndexedParagraphs: unavailableIndexedParagraphs.length, mergedPassageAnchors: merged.length },

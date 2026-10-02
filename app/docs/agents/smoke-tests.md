@@ -73,7 +73,7 @@ field-level conflict resolution for concurrent edits to the same group.
 
 Automated regression coverage lives in
 `apps/expo/src/state/__tests__/useTabGroupsSync-test.tsx`; run it with
-`yarn workspace @bible-strong/expo test useTabGroupsSync-test --watchman=false --runInBand`.
+`yarn workspace @empreinte/expo test useTabGroupsSync-test --watchman=false --runInBand`.
 These tests simulate Firestore callbacks and delayed writes; they do not replace
 the two-session smoke above.
 

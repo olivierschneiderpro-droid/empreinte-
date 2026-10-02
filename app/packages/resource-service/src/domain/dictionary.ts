@@ -17,7 +17,7 @@ import {
   DictionarySummaryDto,
   DictionaryVerseWordsResponseDto,
   DictionaryWorkDto,
-} from '@bible-strong/resource-domain/contracts/dictionaryContract'
+} from '@empreinte/resource-domain/contracts/dictionaryContract'
 
 export type DictionaryLanguage = 'fr' | 'en'
 export type DictionaryWorkId = string

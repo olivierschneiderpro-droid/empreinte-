@@ -1,4 +1,4 @@
-import { COMMENTARY_CATALOG_BY_ID } from '@bible-strong/resource-catalog/commentaries'
+import { COMMENTARY_CATALOG_BY_ID } from '@empreinte/resource-catalog/commentaries'
 
 import { getSupportedOsisBookId } from '~helpers/osisReference'
 import type { ResourceLanguage } from '~helpers/databaseTypes'

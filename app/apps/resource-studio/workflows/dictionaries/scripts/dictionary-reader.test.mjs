@@ -37,7 +37,7 @@ describe("lecteur local des dictionnaires", () => {
             language: "fr",
             title: "Dictionnaire test",
             abbreviation: "Test",
-            authors: ["Bible Strong"],
+            authors: ["Empreinte"],
             description: "Jeu de test.",
             edition: "Test",
             source: "Local",

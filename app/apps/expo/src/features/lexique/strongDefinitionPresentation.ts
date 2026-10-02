@@ -1,4 +1,4 @@
-import type { StrongLexiconEntry } from '@bible-strong/resource-domain/strong-lexicon'
+import type { StrongLexiconEntry } from '@empreinte/resource-domain/strong-lexicon'
 import {
   compareStrongDefinitions,
   countStrongDefinitionWords,

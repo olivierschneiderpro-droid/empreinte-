@@ -32,7 +32,7 @@ into the artwork; all labels, controls, and the book itself remain responsive HT
 
 - World unit tests cover safe arrival on all six islands in both default and published
   navigation, and reject an island removed from the navigation document.
-- Run `yarn workspace @bible-strong/world test` and `yarn workspace @bible-strong/world build`.
+- Run `yarn workspace @empreinte/world test` and `yarn workspace @empreinte/world build`.
 - Check desktop, tablet, 390 px and 320 px widths; French and English; avatar editor
   return, Escape/focus restoration, camera controls, and a live place shortcut.
 

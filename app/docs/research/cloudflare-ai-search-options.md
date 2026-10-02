@@ -1,4 +1,4 @@
-# Briques Cloudflare utiles à la recherche Bible Strong
+# Briques Cloudflare utiles à la recherche Empreinte
 
 _État de la recherche : 24 août 2026. Sources Cloudflare officielles uniquement. Aucun changement
 d'architecture ni déploiement effectué._
@@ -51,7 +51,7 @@ texte effectivement affiché.
 
 Le binding Workers AI est exactement adapté à l'opération actuelle. Le modèle Qwen expose une
 fenêtre de 8 192 tokens et coûte actuellement 0,012 USD par million de tokens d'entrée. Les requêtes
-de Bible Strong sont courtes ; le coût d'embedding n'est donc probablement pas le facteur dominant.
+de Empreinte sont courtes ; le coût d'embedding n'est donc probablement pas le facteur dominant.
 La priorité doit rester la qualité du retrieval FR/EN et la latence sur un cache miss.
 
 Source : [Qwen3 Embedding 0.6B sur Workers AI](https://developers.cloudflare.com/workers-ai/models/qwen3-embedding-0.6b/),
@@ -59,7 +59,7 @@ Source : [Qwen3 Embedding 0.6B sur Workers AI](https://developers.cloudflare.com
 
 Workers AI indique également que le contenu client n'est ni communiqué à d'autres clients ni
 utilisé pour entraîner ou améliorer les modèles et services sans consentement explicite. Cela ne
-dispense pas Bible Strong de minimiser les logs : une recherche comme « je n'arrive plus à vivre »
+dispense pas Empreinte de minimiser les logs : une recherche comme « je n'arrive plus à vivre »
 reste une donnée personnelle sensible même si elle ne sert pas à l'entraînement.
 
 Source : [utilisation des données Workers AI](https://developers.cloudflare.com/workers-ai/platform/data-usage/).
@@ -114,12 +114,12 @@ Sources : [AI Gateway depuis le binding Workers AI](https://developers.cloudflar
 
 AI Gateway enregistre par défaut les prompts et réponses dans ses logs. Cloudflare permet de couper
 la collecte ou de ne garder que les métadonnées sans payload. Ce réglage est une condition de mise
-en production pour Bible Strong, pas une optimisation facultative.
+en production pour Empreinte, pas une optimisation facultative.
 
 Source : [logs AI Gateway et contrôle des payloads](https://developers.cloudflare.com/ai-gateway/observability/logging/).
 
 Le cache AI Gateway n'apporte pas grand-chose ici. Il ne frappe que sur des requêtes identiques ;
-Bible Strong cache déjà la **réponse de recherche entière** pendant 24 heures avec une clé qui tient
+Empreinte cache déjà la **réponse de recherche entière** pendant 24 heures avec une clé qui tient
 compte de la version de la Bible, de l'index thématique, du contrat embedding et du ranking. Mettre
 un second cache sur le vecteur complexifierait l'invalidation pour un gain inférieur. Cloudflare
 précise en outre que son cache AI Gateway est volatil.
@@ -140,7 +140,7 @@ Sources : [limites Vectorize](https://developers.cloudflare.com/vectorize/platfo
 [filtrage de métadonnées](https://developers.cloudflare.com/vectorize/reference/metadata-filtering/),
 [présentation Vectorize](https://developers.cloudflare.com/vectorize/get-started/intro/).
 
-Mais l'index de thèmes de Bible Strong est petit et `pgvector` possède déjà un index cosinus HNSW.
+Mais l'index de thèmes d’Empreinte est petit et `pgvector` possède déjà un index cosinus HNSW.
 Les résultats vectoriels doivent immédiatement rejoindre les tables de thèmes, sources, relations,
 passages, publications et versets. Les laisser dans PostgreSQL permet une seule transaction de
 publication et une seule requête hybride. Vectorize introduirait :
@@ -230,7 +230,7 @@ temps total d'une requête SQL unique.
 Sources : [placement des Workers](https://developers.cloudflare.com/workers/configuration/placement/),
 [fonctionnement d'Hyperdrive](https://developers.cloudflare.com/hyperdrive/concepts/how-hyperdrive-works/).
 
-Bible Strong est entre les deux cas : la recherche principale est une seule grande CTE, mais une
+Empreinte est entre les deux cas : la recherche principale est une seule grande CTE, mais une
 recherche sémantique peut faire une sonde exacte PostgreSQL, un appel Workers AI, puis la CTE. Le
 cache 24 h élimine le chemin pour les requêtes répétées. Il faut donc activer `placement.mode =
 "smart"` en staging, comparer les cache misses depuis plusieurs régions et ne le conserver que si le
@@ -293,7 +293,7 @@ doivent répondre à quatre décisions concrètes :
 
 ## Conclusion
 
-Le meilleur usage de Cloudflare n'est pas d'empiler davantage de moteurs de recherche. Bible Strong
+Le meilleur usage de Cloudflare n'est pas d'empiler davantage de moteurs de recherche. Empreinte
 utilise déjà la brique la plus pertinente — Workers AI — au bon endroit, tandis que PostgreSQL garde
 la vérité biblique et le classement explicable. Le prochain gain vient de **l'observabilité et de la
 maîtrise de l'inférence** avec AI Gateway et Analytics Engine. Le reranker, Vectorize et AI Search

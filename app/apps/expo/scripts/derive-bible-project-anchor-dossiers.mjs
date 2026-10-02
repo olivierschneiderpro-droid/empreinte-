@@ -3,7 +3,7 @@
 import { createHash } from 'node:crypto'
 import { mkdir, readFile, writeFile } from 'node:fs/promises'
 import path from 'node:path'
-import { createBibleReferenceParser } from '@bible-strong/bible-reference-parser/reference-parser'
+import { createBibleReferenceParser } from '@empreinte/bible-reference-parser/reference-parser'
 
 const ROOT = process.cwd()
 const DATA_DIR = path.join(ROOT, 'docs/research/data/bible-project')

@@ -4,7 +4,7 @@ import { useSetAtom } from 'jotai'
 import type {
   SourceGroupWidget as Descriptor,
   StudySource,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
 import { previewHistoryAtom } from '~features/bibleReferencePreview/state'
 import { sourceRoute, sourceDisplayTitle } from '../sourceNavigation'

@@ -1,11 +1,11 @@
 ---
 name: orchestrate-ready-issues
-description: Sequentially orchestrate GitHub issues labeled ready-for-agent through the Bible Strong harness. Use when the user asks to run, drain, process, or coordinate ready-for-agent issues, or asks for an agent orchestrator for issue-to-PR work.
+description: Sequentially orchestrate GitHub issues labeled ready-for-agent through Empreinte harness. Use when the user asks to run, drain, process, or coordinate ready-for-agent issues, or asks for an agent orchestrator for issue-to-PR work.
 ---
 
 # Orchestrate Ready Issues
 
-Run the Bible Strong issue harness as a sequential orchestrator. Do not parallelize issue work unless the user explicitly changes the repo policy.
+Run Empreinte issue harness as a sequential orchestrator. Do not parallelize issue work unless the user explicitly changes the repo policy.
 
 ## Source of truth
 

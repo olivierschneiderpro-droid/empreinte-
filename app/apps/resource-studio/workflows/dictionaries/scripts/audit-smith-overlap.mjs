@@ -253,7 +253,7 @@ const querySqlite = async (databasePath, query) => {
 const download = async (url, destination) => {
   const response = await globalThis.fetch(url, {
     headers: {
-      "user-agent": "BibleStrongResourceStudio/1.0 (+https://bible-strong.app)"
+      "user-agent": "EmpreinteResourceStudio/1.0 (+https://bible-strong.app)"
     },
     signal: globalThis.AbortSignal.timeout(60_000)
   });

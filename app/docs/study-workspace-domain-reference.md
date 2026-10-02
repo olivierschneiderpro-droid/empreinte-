@@ -2,7 +2,7 @@
 
 This document preserves detailed product invariants and implementation references for the mobile application. The glossary used by agents is `apps/expo/CONTEXT.md`.
 
-Bible Strong is a mobile Bible study application for French-speaking users first, with English support and original-language resources. The product goal is not only reading Bible text; it is an integrated study workspace where the same passage can connect to Strong's definitions, interlinear text, cross references, topical references, personal notes, highlights, links, studies, audio, and reading plans.
+Empreinte is a mobile Bible study application for French-speaking users first, with English support and original-language resources. The product goal is not only reading Bible text; it is an integrated study workspace where the same passage can connect to Strong's definitions, interlinear text, cross references, topical references, personal notes, highlights, links, studies, audio, and reading plans.
 
 ## Domain Purpose
 
@@ -52,7 +52,7 @@ Core user activities:
 | Entity chip list | Compact chip row showing study associations attached to one object, such as tags and a relation count. | `src/common/EntityChipList.tsx` |
 | Bookmark | Named marker for one Bible location. | `src/features/bookmarks/`, `src/features/bookmarks/BookmarkModal.tsx` |
 | Link | User URL that can exist independently and can be connected to verses or other entities through relations. | `src/features/bible/BibleLinkModal.tsx` |
-| Relation | Binary edge between two relation endpoints that can be opened inside Bible Strong. | `src/features/studyRelations/` |
+| Relation | Binary edge between two relation endpoints that can be opened inside Empreinte. | `src/features/studyRelations/` |
 | System relation | Relation implied by a feature action, such as connecting a note or link to a verse. | `src/features/studyRelations/` |
 | Manual relation | Relation intentionally created by the user to express a study connection between two endpoints. | `src/features/studyRelations/` |
 | Relation endpoint | Openable study object that can participate in a relation, such as a verse, word annotation, note, study, Strong entry, Nave topic, dictionary word, word, or external link. | `src/features/studyRelations/` |
@@ -113,7 +113,7 @@ Core user activities:
 - If the followed **Reading plan** no longer exists, its **Plan tab** has no reading content to recover.
 - A **Tag** groups user study objects by theme or category.
 - A **Relation** connects exactly two **Relation endpoints**.
-- A **Link** opens an external URL, while a **Relation** opens another object inside Bible Strong.
+- A **Link** opens an external URL, while a **Relation** opens another object inside Empreinte.
 - An **Annotation note** belongs to its **Word annotation** and is not surfaced as a passage-level **Relation** by default.
 - A **Bookmark**, **Highlight**, and **Tag** are not **Relation endpoints**.
 - A **Relation** is binary; it never groups more than two **Relation endpoints**.
@@ -121,7 +121,7 @@ Core user activities:
 - **Same theme** is not a **Relation type**; use **Tags** for thematic grouping.
 - Every **Relation** has a **Relation type**; the default type is linked.
 - A **Relation endpoint** is identified by its durable object identity and may keep a display label snapshot as fallback.
-- **Relation endpoints** are the shared identity language for objects that can be opened inside Bible Strong, including Search results and Relation target selection.
+- **Relation endpoints** are the shared identity language for objects that can be opened inside Empreinte, including Search results and Relation target selection.
 - Deleting or losing access to a **Relation endpoint** does not automatically delete its **Manual relations**.
 - A **Manual relation** can exist even when one of its **Relation endpoints** is not currently openable on the device.
 - **Relations** are private user-owned study data and are not published with **Studies**.

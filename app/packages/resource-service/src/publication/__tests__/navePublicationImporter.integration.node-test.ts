@@ -18,7 +18,7 @@ import { makeNaveSqliteFixture } from './naveSqliteFixture'
 const runIntegration = process.env.RESOURCE_INTEGRATION === '1'
 const connectionString =
   process.env.RESOURCE_DATABASE_URL ??
-  'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong'
+  'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte'
 const sha256 = (value: string | Buffer | Uint8Array) =>
   createHash('sha256').update(value).digest('hex')
 

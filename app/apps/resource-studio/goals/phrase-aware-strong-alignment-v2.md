@@ -2,7 +2,7 @@
 
 ## Objective
 
-Improve the French Bible Strong-generation pipeline now that the project supports phrase-level Strong assignments.
+Improve the French Empreinte-generation pipeline now that the project supports phrase-level Strong assignments.
 
 The goal is to make the hybrid generator, LLM review workflow, metrics, and regenerated local outputs fully phrase-aware, so French locutions such as `dans la mesure ou`, `prend soin`, or `a leurs peres et a leurs meres` can be represented as a single `<w strong="...">...</w>` wrapper when that is more faithful than attaching the Strong to one word.
 

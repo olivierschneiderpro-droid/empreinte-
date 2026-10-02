@@ -1,4 +1,4 @@
-import { COMMENTARY_READING_EXCERPT_LENGTH } from '@bible-strong/resource-domain/contracts/commentaryReadingContract'
+import { COMMENTARY_READING_EXCERPT_LENGTH } from '@empreinte/resource-domain/contracts/commentaryReadingContract'
 import { DomUtils, parseDocument } from 'htmlparser2'
 
 type ResourceLanguage = 'fr' | 'en'

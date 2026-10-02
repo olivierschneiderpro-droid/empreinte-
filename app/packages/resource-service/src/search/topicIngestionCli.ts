@@ -7,7 +7,7 @@ import { createInterface } from 'node:readline'
 import {
   getSupportedOsisBookNumber,
   normalizeOsisReference,
-} from '@bible-strong/bible-reference-parser/osis-reference'
+} from '@empreinte/bible-reference-parser/osis-reference'
 import { persistThematicSearchImport } from '../repositories/topicIngestionRepository'
 import { CONTROLLED_FRENCH_TOPIC_ALIASES } from './topicFrenchAliases'
 import {

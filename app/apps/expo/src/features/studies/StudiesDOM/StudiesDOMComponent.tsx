@@ -61,9 +61,9 @@ type StudyDOMAction =
   | { type: 'FOCUS_EDITOR' }
   | { type: 'BLUR_EDITOR' }
   | { type: 'GET_BIBLE_VERSES'; payload: InlineVersePayload }
-  | { type: 'GET_BIBLE_STRONG'; payload: InlineStrongPayload }
+  | { type: 'GET_STRONG_BIBLE'; payload: InlineStrongPayload }
   | { type: 'GET_BIBLE_VERSES_BLOCK'; payload: VerseBlockPayload }
-  | { type: 'GET_BIBLE_STRONG_BLOCK'; payload: StrongBlockPayload }
+  | { type: 'GET_STRONG_BIBLE_BLOCK'; payload: StrongBlockPayload }
   | { type: 'INSERT_ENTITY_LINK'; payload: StudyEntityEmbedPayload }
   | { type: 'INSERT_ENTITY_BLOCK'; payload: StudyEntityEmbedPayload }
   | { type: 'BLOCK_DIVIDER' }
@@ -84,9 +84,9 @@ const isStudyDOMAction = (value: unknown): value is StudyDOMAction => {
     case 'BLOCK_DIVIDER':
       return true
     case 'GET_BIBLE_VERSES':
-    case 'GET_BIBLE_STRONG':
+    case 'GET_STRONG_BIBLE':
     case 'GET_BIBLE_VERSES_BLOCK':
-    case 'GET_BIBLE_STRONG_BLOCK':
+    case 'GET_STRONG_BIBLE_BLOCK':
     case 'INSERT_ENTITY_LINK':
     case 'INSERT_ENTITY_BLOCK':
       return isRecord(value.payload)
@@ -242,7 +242,7 @@ export default function StudiesDOMComponent({
           break
         }
 
-        case 'GET_BIBLE_STRONG': {
+        case 'GET_STRONG_BIBLE': {
           const inlineModule = quill.getModule('inline-verse')
           inlineModule.receiveStrongLink(event.payload)
           break
@@ -254,7 +254,7 @@ export default function StudiesDOMComponent({
           break
         }
 
-        case 'GET_BIBLE_STRONG_BLOCK': {
+        case 'GET_STRONG_BIBLE_BLOCK': {
           const blockModule = quill.getModule('block-verse')
           blockModule.receiveStrongBlock(event.payload)
           break

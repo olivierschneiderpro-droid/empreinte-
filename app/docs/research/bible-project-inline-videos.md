@@ -4,13 +4,13 @@ Research snapshot: 2026-08-04.
 
 ## Conclusion
 
-BibleProject videos are a strong fit for Bible Strong when treated as curated contextual resources, not as a live mirror of either YouTube channel. Book overviews and visual commentaries can be anchored precisely in the reading flow. Themes, book collections, and how-to-read videos are useful as secondary resources. Podcasts, announcements, trailers, and behind-the-scenes material should not appear inline.
+BibleProject videos are a strong fit for Empreinte when treated as curated contextual resources, not as a live mirror of either YouTube channel. Book overviews and visual commentaries can be anchored precisely in the reading flow. Themes, book collections, and how-to-read videos are useful as secondary resources. Podcasts, announcements, trailers, and behind-the-scenes material should not appear inline.
 
 The existing French and English Read Scripture plans are a useful seed corpus, but they should not become the source of truth. They contain duplicates, stale or cross-language links, broad day-level associations, and at least one incorrect French association: `Apocalypse 1-11` points to the French Jude video.
 
 ## First-party findings
 
-- BibleProject's own introduction to its library identifies six useful editorial categories: How to Read the Bible, Themes, Book Collections, Word Studies, Overviews, and Visual Commentaries. Overviews introduce whole books, while Visual Commentaries focus on specific passages. This gives Bible Strong a sound basis for different anchor and placement rules. [BibleProject Help Center: video library categories](https://help.bibleproject.com/hc/en-us/articles/4479282424087-How-do-I-get-started-with-your-video-library)
+- BibleProject's own introduction to its library identifies six useful editorial categories: How to Read the Bible, Themes, Book Collections, Word Studies, Overviews, and Visual Commentaries. Overviews introduce whole books, while Visual Commentaries focus on specific passages. This gives Empreinte a sound basis for different anchor and placement rules. [BibleProject Help Center: video library categories](https://help.bibleproject.com/hc/en-us/articles/4479282424087-How-do-I-get-started-with-your-video-library)
 - BibleProject explicitly permits creators to use its resources in custom applications, subject to its usage rules. It requires embedding or linking from BibleProject/YouTube rather than storing the media, keeping the resources outside a paywall, and displaying production credit. [BibleProject Help Center: app creators](https://help.bibleproject.com/hc/en-us/articles/22547623073687-I-m-building-an-app-Can-I-use-your-content-in-it)
 - The full terms permit embedded streams or links in websites and mobile applications. They prohibit charging or profiting from the video content, copying or modifying it, and uploading it to another host. A prominent nearby attribution and link to BibleProject are required. Permission is revocable. [BibleProject Terms of Use](https://bibleproject.com/terms/)
 - BibleProject describes localized videos as translated, re-voiced, and re-illustrated for the target language. French items should therefore be modeled as localized counterparts of works, not merely English videos with a language label. [BibleProject Help Center: localization](https://help.bibleproject.com/hc/en-us/articles/4414767668375-What-is-localization)
@@ -207,4 +207,4 @@ type PassageMedia = {
 - Schedule the existing YouTube Data API collector before each `refreshDueAt`, while keeping passage anchors and relevance human-reviewed and independent from transient provider metadata.
 - Ship the complete supported catalog together rather than using a book-level pilot.
 
-Because Bible Strong includes premium functionality, confirm the proposed presentation against BibleProject's current terms before release, particularly the prohibition on direct or indirect financial benefit from its content.
+Because Empreinte includes premium functionality, confirm the proposed presentation against BibleProject's current terms before release, particularly the prohibition on direct or indirect financial benefit from its content.

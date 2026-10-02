@@ -2,7 +2,7 @@ import {
   parseAssistantAction,
   parseStudyEvent,
   parseStudyRequest,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 import { createTabForAssistantAction } from '../assistantActions'
 
 jest.mock('~helpers/bibleVersions', () => ({ versions: { LSG: {}, DBY: {} } }))

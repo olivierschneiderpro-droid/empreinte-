@@ -79,62 +79,62 @@
     {
       "id": "bible-strong-mark-fr",
       "days": 16,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-mark-en",
       "days": 16,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-john-fr",
       "days": 21,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-john-en",
       "days": 21,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-proverbs-fr",
       "days": 31,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-proverbs-en",
       "days": 31,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-acts-fr",
       "days": 28,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-acts-en",
       "days": 28,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-james-fr",
       "days": 5,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-james-en",
       "days": 5,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-philippians-fr",
       "days": 4,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     },
     {
       "id": "bible-strong-philippians-en",
       "days": 4,
-      "source": "Bible Strong"
+      "source": "Empreinte"
     }
   ],
   "latestCorrectionReceipt": "../reading-ui-fixes-2026-09/receipt.json"

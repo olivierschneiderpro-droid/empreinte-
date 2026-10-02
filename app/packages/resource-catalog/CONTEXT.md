@@ -9,7 +9,7 @@ The immutable integrity and installation metadata for one Resource artifact.
 _Avoid_: Download configuration
 
 **Bundled catalog**:
-The minimum Artifact catalog shipped with a Bible Strong client release.
+The minimum Artifact catalog shipped with a Empreinte client release.
 _Avoid_: Default cache
 
 **Publication catalog**:

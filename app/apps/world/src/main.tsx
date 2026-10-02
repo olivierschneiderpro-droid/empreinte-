@@ -65,7 +65,7 @@ const copy = {
     reload: 'Recharger',
     retry: 'Réessayer',
     title: 'Un monde à explorer',
-    brand: 'Bible Strong',
+    brand: 'Empreinte',
     hint: 'Déplace ton avatar avec le joystick.',
     home: 'Retour à la place',
     overview: 'Vue d’ensemble',
@@ -82,7 +82,7 @@ const copy = {
     edit: 'Éditer les zones',
     draftError: 'Fichier de navigation du projet illisible : carte initiale chargée.',
     intro:
-      'Un premier aperçu de cette ressource. Les démonstrations de Bible Strong seront ajoutées dans une prochaine étape.',
+      'Un premier aperçu de cette ressource. Les démonstrations d’Empreinte seront ajoutées dans une prochaine étape.',
     zoomIn: 'Zoom avant',
     zoomOut: 'Zoom arrière',
     choose: 'Choisir mon avatar',
@@ -99,7 +99,7 @@ const copy = {
     reload: 'Reload',
     retry: 'Try again',
     title: 'A world to explore',
-    brand: 'Bible Strong',
+    brand: 'Empreinte',
     hint: 'Move your avatar with the joystick.',
     home: 'Back to the plaza',
     overview: 'World overview',
@@ -116,7 +116,7 @@ const copy = {
     edit: 'Edit zones',
     draftError: 'Cannot read the project navigation file: original map loaded.',
     intro:
-      'A first look at this resource. Bible Strong demonstrations will be added in a future step.',
+      'A first look at this resource. Empreinte demonstrations will be added in a future step.',
     zoomIn: 'Zoom in',
     zoomOut: 'Zoom out',
     choose: 'Choose my avatar',
@@ -407,8 +407,8 @@ function App() {
     saveLanguage(language)
     const title =
       language === 'fr'
-        ? 'Bible Strong World — Explore la Bible autrement'
-        : 'Bible Strong World — A new way to explore the Bible'
+        ? 'Empreinte World — Explore la Bible autrement'
+        : 'Empreinte World — A new way to explore the Bible'
     const description =
       language === 'fr'
         ? 'Explore un monde interactif pour découvrir la Bible : lexiques, dictionnaire, commentaires et jeux bibliques, en solo ou avec d’autres explorateurs.'
@@ -514,7 +514,7 @@ function App() {
     <main
       className={`world-shell ${stand ? 'is-stand' : ''} ${!ready ? 'is-loading' : ''} ${editing ? 'is-editing' : ''} ${editorMode ? 'is-world-editing' : ''}`}
     >
-      <div className="world-canvas" ref={host} aria-label="Bible Strong — archipel" />
+      <div className="world-canvas" ref={host} aria-label="Empreinte — archipel" />
       <header className="world-header">
         <button
           className="journal-trigger"
@@ -584,7 +584,7 @@ function App() {
         const station = stations.find(station => station.id === action.id)
         const label =
           action.id === 'story'
-            ? 'Bible Strong x ASI Europe'
+            ? 'Empreinte x ASI Europe'
             : action.id === 'games'
               ? language === 'fr'
                 ? 'Jouer · Solo ou ensemble'

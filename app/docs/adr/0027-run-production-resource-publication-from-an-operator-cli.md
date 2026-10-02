@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-ADR-0010 initially placed production publication credentials in protected CI. Bible Strong is
+ADR-0010 initially placed production publication credentials in protected CI. Empreinte is
 currently operated by one publisher, and maintaining a GitHub Actions runner, environment, and
 automatic repository push adds operational complexity without adding a separate human approval.
 The publication workflow already has exhaustive catalog validation, differential additive immutable R2 writes, live

@@ -1,1 +1,1 @@
-export * from '@bible-strong/resource-domain/strong-identities'
+export * from '@empreinte/resource-domain/strong-identities'

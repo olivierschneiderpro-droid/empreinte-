@@ -1,4 +1,4 @@
-import { COMMENTARY_READING_INDEX_VERSION } from "@bible-strong/resource-domain/contracts/commentaryReadingContract";
+import { COMMENTARY_READING_INDEX_VERSION } from "@empreinte/resource-domain/contracts/commentaryReadingContract";
 import { writeCommentaryReadingIndex } from "./commentaryReadingIndex.js";
 import { createHash, randomUUID } from "node:crypto";
 import { execFile } from "node:child_process";

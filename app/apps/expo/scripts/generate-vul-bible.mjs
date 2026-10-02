@@ -51,7 +51,7 @@ const parseArgs = argv => {
 }
 
 const printHelp = () => {
-  console.log(`Generate Bible Strong JSON for the Clementine Vulgate.
+  console.log(`Generate Empreinte JSON for the Clementine Vulgate.
 
 Usage:
   yarn bible:vul:generate [--output .scratch/generated/bible-vul.json] [--pretty]
@@ -209,7 +209,7 @@ const main = async () => {
       online: true,
       offline: true,
     },
-    attribution: 'Source text: Clementine Text Project. Converted and normalized for Bible Strong.',
+    attribution: 'Source text: Clementine Text Project. Converted and normalized for Empreinte.',
     transformations: [
       'Decoded Windows-1252 source files to Unicode',
       'Converted paragraph and poetic line-break markers to normalized spaces',

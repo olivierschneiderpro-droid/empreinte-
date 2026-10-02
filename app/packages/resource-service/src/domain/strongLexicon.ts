@@ -16,7 +16,7 @@ import {
   StrongLexiconResourceDto,
   StrongLexiconSearchResultDto,
   StrongLexiconSearchResponseDto,
-} from '@bible-strong/resource-domain/contracts/strongLexiconContract'
+} from '@empreinte/resource-domain/contracts/strongLexiconContract'
 import type {
   StrongLexiconChapterEntity,
   StrongLexiconEntry,
@@ -25,8 +25,8 @@ import type {
   StrongLexiconMorphology,
   StrongLexiconSearchResult,
   StrongLexiconPage,
-} from '@bible-strong/resource-domain/strong-lexicon'
-import type { StrongIdentityKind } from '@bible-strong/resource-domain/strong-identities'
+} from '@empreinte/resource-domain/strong-lexicon'
+import type { StrongIdentityKind } from '@empreinte/resource-domain/strong-identities'
 
 export type StrongLexiconLanguage = 'fr' | 'en'
 export type StrongLexicalLanguage = 'greek' | 'hebrew'

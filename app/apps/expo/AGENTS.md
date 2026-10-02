@@ -4,7 +4,7 @@ This file provides guidance to Codex (Codex.ai/code) when working with code in t
 
 ## Project Overview
 
-Bible Strong is a React Native application for Bible study, primarily targeting French-speaking users but with English support. Key features include:
+Empreinte is a React Native application for Bible study, primarily targeting French-speaking users but with English support. Key features include:
 
 - **Multiple Bible translations**: 40+ versions in French, English, Hebrew, and Greek
 - **Strong's concordance**: Hebrew and Greek word studies with interlinear versions
@@ -295,8 +295,8 @@ by `Box` or `Text`. Use `className` or native `style`. For computed theme colors
 use the value helpers in `~themes/colorValues`. Do not add Emotion or `styled` wrappers. Run `yarn agents:styles:check` for UI changes.
 
 Theme palettes live in `src/themes/`. `global.css` is generated from them: run
-`yarn workspace @bible-strong/expo themes:generate` after palette edits and
-`yarn workspace @bible-strong/expo themes:check` before finishing. Do not manually
+`yarn workspace @empreinte/expo themes:generate` after palette edits and
+`yarn workspace @empreinte/expo themes:check` before finishing. Do not manually
 edit generated palette values. Use `useTheme` from `~themes/ThemeProvider` when a
 consumer needs JavaScript values. See ADR-0040 for the Bible DOM boundary.
 

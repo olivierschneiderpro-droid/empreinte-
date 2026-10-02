@@ -51,13 +51,13 @@ export function LogoEmpreinte({ taille = 22, couleur }: { taille?: number; coule
   )
 }
 
-/** « empreinte » en minuscules, Geist 700, comme dans la maquette. */
+/** « Empreinte », avec un E majuscule, en Geist 700. */
 export function Marque({ taille = 18 }: { taille?: number }) {
   return (
     <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
       <LogoEmpreinte taille={taille + 4} />
       <Text style={{ fontFamily: police(POLICES.gras), fontSize: taille, letterSpacing: -0.36 }}>
-        empreinte
+        Empreinte
       </Text>
     </View>
   )

@@ -107,7 +107,7 @@ export const LoginPrompt = ({ className }: { className?: string }) => {
       )}
     >
       <Paragraph className="font-bold text-reverse mb-[20px]" scale={-1}>
-        {t('Connectez-vous pour profiter de toutes les fonctionnalités de la Bible Strong !')}
+        {t('Connectez-vous pour profiter de toutes les fonctionnalités d’Empreinte !')}
       </Paragraph>
       <Button
         reverse

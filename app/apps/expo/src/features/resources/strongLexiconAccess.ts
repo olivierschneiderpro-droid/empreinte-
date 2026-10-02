@@ -1,4 +1,4 @@
-import { getSimpleStrongModuleId } from '@bible-strong/resource-domain/strong-lexicon'
+import { getSimpleStrongModuleId } from '@empreinte/resource-domain/strong-lexicon'
 import type { SQLiteDatabase } from '~helpers/sqlite'
 import type { ResourceLanguage } from '~helpers/databaseTypes'
 import type {
@@ -14,7 +14,7 @@ import type {
   StrongLexiconRelation,
   StrongLexiconResource,
   StrongLexiconSearchResult,
-} from '@bible-strong/resource-domain/strong-lexicon'
+} from '@empreinte/resource-domain/strong-lexicon'
 import * as Schema from 'effect/Schema'
 import {
   createStrongIdentity,
@@ -58,7 +58,7 @@ export type {
   StrongLexiconRelation,
   StrongLexiconResource,
   StrongLexiconSearchResult,
-} from '@bible-strong/resource-domain/strong-lexicon'
+} from '@empreinte/resource-domain/strong-lexicon'
 
 const SQLITE_SEARCH_DIACRITIC_REPLACEMENTS = [
   ['ā', 'a'],

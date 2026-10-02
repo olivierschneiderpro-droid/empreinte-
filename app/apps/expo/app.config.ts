@@ -9,7 +9,7 @@ const RUNTIME_VERSION = `${majorVersion}.${minorVersion}`
 export default ({ config }: ConfigContext): ExpoConfig => ({
   ...config,
   name: process.env.APP_NAME ?? 'Empreinte',
-  description: 'Bible strong for french people',
+  description: 'Empreinte for french people',
   slug: 'bible-strong',
   scheme: 'biblestrong',
   primaryColor: '#ffffff',
@@ -90,8 +90,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     // CocoaPods, not SPM: RNFirebase 26 rejects SPM with our static frameworks linkage.
     ['@react-native-firebase/app', { ios: { disableSPM: true } }],
     './plugins/withFirebaseAppCheckSwiftBridge.js',
-    // Offline-copy keys come from BIBLE_STRONG_ARCHIVE_KEYS in the build environment (ADR-0065).
-    './plugins/withBibleStrongArchiveKeys.js',
+    // Offline-copy keys come from EMPREINTE_ARCHIVE_KEYS in the build environment (ADR-0065).
+    './plugins/withEmpreinteArchiveKeys.js',
     '@react-native-firebase/app-check',
     '@react-native-firebase/auth',
     [
@@ -183,7 +183,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   },
   experiments: {
     reactCompiler: true,
-    // Empreinte : l'export doit voir packages/core, hors du monorepo de Bible Strong.
+    // Empreinte : l'export doit voir packages/core, hors du monorepo d’Empreinte.
     onDemandFilesystem: false,
   } as ExpoConfig['experiments'] & { onDemandFilesystem?: boolean },
   runtimeVersion: RUNTIME_VERSION,

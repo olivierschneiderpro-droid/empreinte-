@@ -43,7 +43,7 @@ Web messages use the official `ThreadPrimitive.Messages`, `MessagePrimitive.Root
 `MessagePrimitive.Parts` pipeline. `LocalMessage` remains the validated application format;
 `messageRuntime.ts` converts it at the runtime boundary without rewriting stored conversations.
 Text becomes a text part, while reading context, tool timelines,
-routing decisions, sources and widgets become named Bible Strong data parts. Tool activity
+routing decisions, sources and widgets become named Empreinte data parts. Tool activity
 uses native `tool-call` parts with stable call IDs, parsed arguments, results and terminal
 error state. The custom part renderer keeps source citations and study widgets while the
 official `StreamdownTextPrimitive` renders the active text part.
@@ -51,7 +51,7 @@ Assistant message status maps streaming/completion/interruption/error into assis
 runtime status; user messages intentionally omit status because the runtime forbids it.
 
 Conversation selection and management use an `ExternalStoreThreadListAdapter` plus
-`ThreadListPrimitive`, `ThreadListItemPrimitive.Trigger`, `Delete` and `New`. Bible Strong
+`ThreadListPrimitive`, `ThreadListItemPrimitive.Trigger`, `Delete` and `New`. Empreinte
 owns account-scoped persistence in Firestore; the adapter bridges subscribed application state
 to assistant-ui.
 
@@ -150,7 +150,7 @@ Passage UI simplification: `passages` and legacy `passage_comparison` descriptor
 
 The playground's **Ce que Gloo reçoit** panel loads exact tool descriptions, argument schemas and the selection-guidance paragraph from the private repository's loopback-only diagnostic server (`yarn dev:widget-catalog` in bible-strong-ai). It distinguishes explicit presentation calls from widgets emitted automatically after a successful resource read. The panel follows the selected state, shows the local prompt version, explains JEV-dependent tool exposure, and does not claim to trace a specific model request or deployed version. No private prompt is bundled or persisted in the public app. This request does not consume an AI quota.
 
-`PassageWidget` translation controls use HeroUI's compound `Select` and `ListBox` primitives. The trigger and options intentionally render only stable version identifiers such as `LSG` or `DBY`; full publication names belong to the version catalog, not this compact comparison card. The portaled menu receives the current Bible Strong theme as concrete CSS variables, remains bounded and scrollable, and retains React Aria keyboard/focus behavior. Verified in light/dark themes and a 390 px viewport.
+`PassageWidget` translation controls use HeroUI's compound `Select` and `ListBox` primitives. The trigger and options intentionally render only stable version identifiers such as `LSG` or `DBY`; full publication names belong to the version catalog, not this compact comparison card. The portaled menu receives the current Empreinte theme as concrete CSS variables, remains bounded and scrollable, and retains React Aria keyboard/focus behavior. Verified in light/dark themes and a 390 px viewport.
 
 ### Active-context capability floor
 

@@ -1,6 +1,6 @@
 {
-  "name": "Bible Strong",
-  "short_name": "Bible Strong",
+  "name": "Empreinte",
+  "short_name": "Empreinte",
   "start_url": "/",
   "display": "browser",
   "icons": [{ "src": "/images/icon.png", "sizes": "1024x1024", "type": "image/png" }],

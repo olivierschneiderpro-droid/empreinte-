@@ -245,9 +245,9 @@ function LandingHeader({
   return (
     <header className="landing-nav-wrap">
       <nav className="landing-nav" aria-label={t('home.nav.label')}>
-        <a className="brand" href={homePath} aria-label="Bible Strong">
+        <a className="brand" href={homePath} aria-label="Empreinte">
           <img src="/images/icon.png" alt="" width="44" height="44" />
-          <span>Bible Strong</span>
+          <span>Empreinte</span>
         </a>
         <div className="landing-nav__links">
           <a href="#parcours">{t('home.nav.journey')}</a>
@@ -1241,9 +1241,9 @@ export default function Home({ initialTheme }: HomeProps) {
       </section>
 
       <footer className="landing-footer">
-        <a className="brand brand--footer" href={homePath} aria-label="Bible Strong">
+        <a className="brand brand--footer" href={homePath} aria-label="Empreinte">
           <img src="/images/icon.png" alt="" width="38" height="38" />
-          <span>Bible Strong</span>
+          <span>Empreinte</span>
         </a>
         <p>{t('home.footer.line')}</p>
         <div>

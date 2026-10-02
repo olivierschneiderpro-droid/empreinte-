@@ -269,7 +269,7 @@ export function App() {
               </div>
               <div className="min-w-0">
                 <h1 className="truncate text-base font-semibold">
-                  Bible Strong Studio
+                  Empreinte Studio
                 </h1>
                 <p className="text-muted-foreground text-xs">
                   Ledger, lexique et revue unifiés

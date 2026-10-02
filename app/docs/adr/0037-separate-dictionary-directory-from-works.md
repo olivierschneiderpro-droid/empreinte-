@@ -5,7 +5,7 @@
 
 ## Context
 
-Bible Strong publishes independently authored French and English dictionaries that can be read
+Empreinte publishes independently authored French and English dictionaries that can be read
 online or installed separately. A single alphabetical experience is desirable, but physically
 merging definitions would erase Resource identity and make independent downloads, attribution, and
 updates difficult. Per-work word indexes also cannot reliably drive passage discovery because a

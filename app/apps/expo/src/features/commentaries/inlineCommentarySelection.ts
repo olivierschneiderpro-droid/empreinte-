@@ -1,5 +1,5 @@
 import { parseCommentaryProjectionId } from './commentarySelection'
-import { COMMENTARY_CATALOG_BY_ID } from '@bible-strong/resource-catalog/commentaries'
+import { COMMENTARY_CATALOG_BY_ID } from '@empreinte/resource-catalog/commentaries'
 
 /** Associated writings remain available in Resources, but not in inline Bible reading. */
 export function isInlineCommentaryEligible(id: string): boolean {

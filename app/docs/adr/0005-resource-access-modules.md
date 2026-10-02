@@ -6,7 +6,7 @@ Accepted, with semantic fallback clauses superseded by ADR-0028.
 
 ## Context
 
-Bible Strong currently reads Bible and study resources mostly through local SQLite/JSON helpers.
+Empreinte currently reads Bible and study resources mostly through local SQLite/JSON helpers.
 That implementation supports offline use well, but it makes online-first resource loading hard:
 screens and feature helpers can end up knowing whether a resource is installed, which file should
 exist, which SQLite table to query, and which error means "download required".

@@ -15,7 +15,7 @@ import {
   highlightBibleSearchText,
   highlightFuzzyBibleSearchText,
   parseBibleTextSearchQuery,
-} from '@bible-strong/resource-domain/bible-search-input'
+} from '@empreinte/resource-domain/bible-search-input'
 import { highlightStemmedBibleSearchText } from '../search/bibleSearchStemming'
 import {
   normalizeTopicSearchText,

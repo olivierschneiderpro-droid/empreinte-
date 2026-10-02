@@ -24,7 +24,7 @@ class InlineStrong extends Inline {
         console.log(`[Studies] ${codeStrong} ${book}`)
         if (codeStrong) {
           dispatch(
-            'VIEW_BIBLE_STRONG',
+            'VIEW_STRONG_BIBLE',
             {
               reference: codeStrong,
               book,

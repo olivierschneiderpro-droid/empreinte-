@@ -78,7 +78,7 @@ prepare their derived online projection without changing source rows, artifact
 hashes or revision metadata. Run a dry-run for one explicit identity first:
 
 ```sh
-yarn workspace @bible-strong/resource-service exec tsx src/publication/commentaryReadingBackfillCli.ts --resource-id MHY --language fr
+yarn workspace @empreinte/resource-service exec tsx src/publication/commentaryReadingBackfillCli.ts --resource-id MHY --language fr
 ```
 
 `--apply` writes the projection atomically while locking the source publication;
@@ -140,7 +140,7 @@ Reports are in `docs/measurements/inline-commentary-*.json`.
 Run the reproducible measurement on a verified local SQLite artifact:
 
 ```sh
-yarn workspace @bible-strong/resource-studio exec tsx src/measureCommentaryReadingIndex.ts /absolute/source.sqlite /absolute/report.json
+yarn workspace @empreinte/resource-studio exec tsx src/measureCommentaryReadingIndex.ts /absolute/source.sqlite /absolute/report.json
 ```
 
 The script hashes the source, works on a disposable copy, and reports added SQLite

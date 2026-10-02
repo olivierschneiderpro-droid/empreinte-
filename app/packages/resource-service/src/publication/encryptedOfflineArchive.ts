@@ -15,7 +15,7 @@ import { immutableR2ArtifactKey } from './r2ArtifactPublisher'
 // Node has no worker scripts for zip.js; run its codecs on the main thread.
 configure({ useWebWorkers: false })
 
-export const ARCHIVE_KEYS_ENV = 'BIBLE_STRONG_ARCHIVE_KEYS'
+export const ARCHIVE_KEYS_ENV = 'EMPREINTE_ARCHIVE_KEYS'
 export const ENCRYPTED_ARCHIVE_ROUTE = '/v1/offline-archives/'
 const PASSWORD_SALT = 'bible-strong-offline-archive'
 const SHA256_PATTERN = /^[a-f0-9]{64}$/

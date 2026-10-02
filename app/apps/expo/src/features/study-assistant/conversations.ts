@@ -9,7 +9,7 @@ import {
   type StudySurfaceContext,
   type StudyWidget,
   type ToolActivity,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 import { validCheckpoint, type MemoryCheckpoint } from './conversationMemory'
 
 export type ReadingContext = {

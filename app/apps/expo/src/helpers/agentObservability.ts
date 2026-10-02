@@ -37,12 +37,12 @@ const BEARER_PATTERN = /\bBearer\s+[A-Za-z0-9._~+/-]+=*/gi
 const JWT_PATTERN = /\beyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\b/g
 
 declare global {
-  var __BIBLE_STRONG_AGENT_LOGS__: AgentLogEvent[] | undefined
+  var __EMPREINTE_AGENT_LOGS__: AgentLogEvent[] | undefined
 }
 
 const getEventBuffer = () => {
-  globalThis.__BIBLE_STRONG_AGENT_LOGS__ ??= []
-  return globalThis.__BIBLE_STRONG_AGENT_LOGS__
+  globalThis.__EMPREINTE_AGENT_LOGS__ ??= []
+  return globalThis.__EMPREINTE_AGENT_LOGS__
 }
 
 const sanitizeString = (value: string, key: string, maxLength = MAX_STRING_LENGTH): string => {

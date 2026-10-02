@@ -24,11 +24,11 @@ yarn dev:resources
 Run any app-specific command by package name, for example:
 
 ```bash
-yarn workspace @bible-strong/expo ios
-yarn workspace @bible-strong/expo android
-yarn workspace @bible-strong/api-functions build
-yarn workspace @bible-strong/resource-service test
-yarn workspace @bible-strong/resource-studio commentaries:validate
+yarn workspace @empreinte/expo ios
+yarn workspace @empreinte/expo android
+yarn workspace @empreinte/api-functions build
+yarn workspace @empreinte/resource-service test
+yarn workspace @empreinte/resource-studio commentaries:validate
 ```
 
 The Expo app uses a custom development client and is not expected to run in Expo Go.
@@ -43,14 +43,14 @@ flows, or native context menus. Browser storage is limited to app preferences an
 Configure the Resource API and Firebase Web app from `apps/expo/.env.example`, then start Expo:
 
 ```bash
-EXPO_PUBLIC_RESOURCE_API_URL="http://127.0.0.1:8787" yarn workspace @bible-strong/expo web
+EXPO_PUBLIC_RESOURCE_API_URL="http://127.0.0.1:8787" yarn workspace @empreinte/expo web
 ```
 
 The Resource service must allow the browser origin through `RESOURCE_WEB_ORIGINS`, a
 comma-separated exact allowlist. Create the production SPA bundle with:
 
 ```bash
-yarn workspace @bible-strong/expo web:export
+yarn workspace @empreinte/expo web:export
 ```
 
 The deployment host must send unknown Expo Router routes to `index.html`. This runtime is distinct
@@ -95,4 +95,4 @@ Never replace a `patch:` dependency with a plain version merely to make workspac
 
 Expo import aliases (`~assets`, `~common`, `~features`, `~helpers`, `~redux`, and related aliases) are configured inside `apps/expo/`. Playground mode is enabled with `EXPO_PUBLIC_PLAYGROUND=true` in the Expo environment and requires restarting Metro.
 
-Prefer Node 20 or 18 for Expo development if the local Node version triggers Metro/free-port incompatibilities. Build commands remain workspace scripts, for example `yarn workspace @bible-strong/expo build:ios:dev`.
+Prefer Node 20 or 18 for Expo development if the local Node version triggers Metro/free-port incompatibilities. Build commands remain workspace scripts, for example `yarn workspace @empreinte/expo build:ios:dev`.

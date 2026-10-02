@@ -64,7 +64,7 @@ class ModuleBlockVerse extends Module {
   }
 
   openStrongBlock = (_value?: unknown) => {
-    dispatch('SELECT_BIBLE_STRONG_BLOCK', undefined, this.quill.container)
+    dispatch('SELECT_STRONG_BIBLE_BLOCK', undefined, this.quill.container)
   }
 
   receiveStrongBlock = (data: StrongBlockPayload) => {

@@ -45,7 +45,7 @@ The rich-source JSONL is not the final mobile JSON. A later projection will:
 
 1. convert OSIS presentation elements into the canonical Bible JSON layout;
 2. keep headings/pericopes as anchored editorial objects, independent from
-   Bible Strong's current pericope model;
+   Empreinte's current pericope model;
 3. keep notes and cross-references in canonical JSON;
 4. move Strong occurrences and any Strong-coupled linguistic data into the
    separate SQLite sidecar;

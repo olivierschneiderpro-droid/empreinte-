@@ -4,11 +4,11 @@ World uses `partyserver` on Cloudflare Durable Objects and `partysocket` in the 
 
 ## Local development
 
-`yarn dev:world` starts Vite on port 5186 and the local Worker on port 8791. Vite proxies `/parties` so phones on the same network can use the Vite Network URL. Open two browsers, choose names, and move with the joystick or keyboard. `yarn workspace @bible-strong/world dev:client` and `dev:multiplayer` can also run separately. If Vite is already running, start only `dev:multiplayer`.
+`yarn dev:world` starts Vite on port 5186 and the local Worker on port 8791. Vite proxies `/parties` so phones on the same network can use the Vite Network URL. Open two browsers, choose names, and move with the joystick or keyboard. `yarn workspace @empreinte/world dev:client` and `dev:multiplayer` can also run separately. If Vite is already running, start only `dev:multiplayer`.
 
 ## Deploy
 
-`yarn workspace @bible-strong/world deploy` builds and deploys the app, static assets, and room Worker together as `bible-strong-world`. No external multiplayer subscription or database is needed. Cloudflare credentials must belong to the intended account.
+`yarn workspace @empreinte/world deploy` builds and deploys the app, static assets, and room Worker together as `bible-strong-world`. No external multiplayer subscription or database is needed. Cloudflare credentials must belong to the intended account.
 
 To keep a separate frontend host such as Vercel, set `VITE_WORLD_MULTIPLAYER_HOST` to the Worker HTTPS URL **at frontend build time**, and add the exact frontend origin to the Worker's comma-separated `ALLOWED_ORIGINS`. Same-origin deployments work without this variable. The Worker permits only the event room route; arbitrary public room creation is disabled.
 
@@ -26,13 +26,13 @@ To keep a separate frontend host such as Vercel, set `VITE_WORLD_MULTIPLAYER_HOS
 
 ## Validation
 
-`yarn workspace @bible-strong/world test` covers parsing, interpolation and client transport behavior. `yarn workspace @bible-strong/world typecheck` checks both runtimes.
+`yarn workspace @empreinte/world test` covers parsing, interpolation and client transport behavior. `yarn workspace @empreinte/world typecheck` checks both runtimes.
 
 For isolated live WebSocket checks, run:
 
 ```sh
-yarn workspace @bible-strong/world wrangler dev --assets public --port 8792 --persist-to /tmp/world-multiplayer-tests
-WORLD_TEST_URL=ws://127.0.0.1:8792/parties/world-room/asi-europe yarn workspace @bible-strong/world test:multiplayer
+yarn workspace @empreinte/world wrangler dev --assets public --port 8792 --persist-to /tmp/world-multiplayer-tests
+WORLD_TEST_URL=ws://127.0.0.1:8792/parties/world-room/asi-europe yarn workspace @empreinte/world test:multiplayer
 ```
 
 The script checks joins/snapshots, movement, profile edits, stale sequence rejection, departures/rejoins, invalid payloads, rate limiting, 30 simultaneous moving clients at 15 Hz, and the 100-connection limit. Run against an **empty, dedicated test instance**, never against the event room in use. A local protocol load test does not measure mobile rendering or venue Wi-Fi capacity.

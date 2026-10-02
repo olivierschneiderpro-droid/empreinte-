@@ -5,11 +5,11 @@ import { describe, it } from 'node:test'
 
 import { Effect } from 'effect'
 
-import { getMobileStrongBibleVersionIds } from '@bible-strong/resource-catalog/catalog'
+import { getMobileStrongBibleVersionIds } from '@empreinte/resource-catalog/catalog'
 import {
   getStrongBibleCatalogIdentity,
   type StrongBibleVersionId,
-} from '@bible-strong/resource-catalog/strong-bibles'
+} from '@empreinte/resource-catalog/strong-bibles'
 import { createIsolatedPostgres } from '../../database/__tests__/isolatedPostgresTestSupport'
 import { makeKyselyStrongBibleRepository } from '../../repositories/strongBibleRepository'
 import { importPublicationBundle } from '../../repositories/publicationImporter'
@@ -24,7 +24,7 @@ const root = process.env.RESOURCE_STRONG_BIBLE_BUNDLES_ROOT
 const runIntegration = process.env.RESOURCE_INTEGRATION === '1' && Boolean(root)
 const connectionString =
   process.env.RESOURCE_DATABASE_URL ??
-  'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong'
+  'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte'
 
 describe('Complete Strong Bible publications', { skip: !runIntegration }, () => {
   it('validates, activates, imports, and queries all 12 current Strong indexes', async () => {

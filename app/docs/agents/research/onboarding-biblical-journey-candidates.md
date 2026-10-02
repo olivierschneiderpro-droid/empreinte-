@@ -5,7 +5,7 @@ Date : 6 août 2026
 ## Verdict
 
 Le concept retenu n’est pas un récit poétique sur Abel ni un catalogue de fonctionnalités. C’est
-la démonstration guidée de la manière dont une étude se construit dans Bible Strong : l’utilisateur
+la démonstration guidée de la manière dont une étude se construit dans Empreinte : l’utilisateur
 part d’un verset, ouvre une ressource, suit une relation, formule une question, organise ses
 découvertes et les assemble dans une étude.
 
@@ -178,7 +178,7 @@ Une carte Note apparaît avec une question personnelle :
 > quelque chose ? »
 
 Cette formulation est explicitement présentée comme la question de l’utilisateur, pas comme une
-conclusion de Bible Strong. La note est reliée au verset, à Strong Abel, au mot *hevel* et à
+conclusion d’Empreinte. La note est reliée au verset, à Strong Abel, au mot *hevel* et à
 Ecclésiaste 1.2.
 
 Texte inférieur :

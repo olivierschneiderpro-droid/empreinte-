@@ -1,1 +1,1 @@
-export * from '@bible-strong/resource-domain/contracts/dictionaryContract'
+export * from '@empreinte/resource-domain/contracts/dictionaryContract'

@@ -1,9 +1,9 @@
-# Bible Strong Resource Studio
+# Empreinte Resource Studio
 
-Resource Studio is the authoring home for Bible Strong resources. It acquires and pins sources,
+Resource Studio is the authoring home for Empreinte resources. It acquires and pins sources,
 transforms and validates editorial content, provides local inspection tools, and generates immutable
 Resource publication bundles with their matching Offline copies. Production import, R2 upload,
-activation, and runtime delivery remain owned by `@bible-strong/resource-service`.
+activation, and runtime delivery remain owned by `@empreinte/resource-service`.
 
 The current workflows cover Bibles, Strong and interlinear data, lexicons, dictionaries, topical and
 timeline resources, cross references, and commentaries. Commentary-specific commands and local
@@ -20,7 +20,7 @@ npm install
 ### Versioned Resource publication bundles
 
 Resource Studio is the official producer of the handoff consumed by the
-Bible Strong Resource service. A Bible publication bundle contains the
+Empreinte Resource service. A Bible publication bundle contains the
 canonical import JSON and the exact matching ZIP Offline copy under one
 immutable, content-derived revision. Rights and Online/Offline delivery
 capabilities remain independent and are validated before a bundle is written.
@@ -48,7 +48,7 @@ npm run resources:publication:bible -- \
 ```
 
 The output directory is an explicit repository-to-repository handoff. Pass it
-to Bible Strong without making the Resource service inspect this working tree:
+to Empreinte without making the Resource service inspect this working tree:
 
 ```sh
 RESOURCE_PUBLICATION_BUNDLE=/absolute/path/to/lsg-<revision> yarn resources:dev

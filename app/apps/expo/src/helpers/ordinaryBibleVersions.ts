@@ -1,1 +1,1 @@
-export * from '@bible-strong/resource-catalog/ordinary-bibles'
+export * from '@empreinte/resource-catalog/ordinary-bibles'

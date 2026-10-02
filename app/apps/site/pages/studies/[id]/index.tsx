@@ -24,7 +24,7 @@ export default function Study({ data }: { data: StudyPageData }) {
       )}
       <hr className="my-12" />
       <footer className="flex flex-col items-center justify-center text-xs text-muted-foreground">
-        <p className="flex items-center gap-2">Étude rédigée par {user.displayName} avec <img src="/images/svg/logo.svg" alt="Bible Strong" className="inline-block h-6 w-[100px]" /></p>
+        <p className="flex items-center gap-2">Étude rédigée par {user.displayName} avec <img src="/images/svg/logo.svg" alt="Empreinte" className="inline-block h-6 w-[100px]" /></p>
         <a className="mt-4 text-primary" href="https://bible-strong.app">bible-strong.app</a>
       </footer>
     </main>

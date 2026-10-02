@@ -4,7 +4,7 @@
 
 | Path | Purpose |
 |---|---|
-| `apps/` | Independently runnable Bible Strong products. |
+| `apps/` | Independently runnable Empreinte products. |
 | `packages/` | Shared libraries and backend/resource packages. |
 | `docs/` | System documentation, ADRs, mobile architecture, and agent guidance. |
 | `scripts/` | Repository-wide agent and quality scripts. |
@@ -18,11 +18,11 @@
 
 | Path | Package | Purpose |
 |---|---|---|
-| `apps/expo/` | `@bible-strong/expo` | Expo/React Native Bible reading and study application. |
-| `apps/site/` | `@bible-strong/site` | Browser Bible Strong experience. |
-| `apps/api/` | `@bible-strong/api` | API workspace and Firebase deployment boundary. |
-| `apps/api/functions/` | `@bible-strong/api-functions` | Firebase Functions implementation. |
-| `apps/resource-studio/` | `@bible-strong/resource-studio` | Editorial UI and authoring workflows for every Bible Strong resource family. |
+| `apps/expo/` | `@empreinte/expo` | Expo/React Native Bible reading and study application. |
+| `apps/site/` | `@empreinte/site` | Browser Empreinte experience. |
+| `apps/api/` | `@empreinte/api` | API workspace and Firebase deployment boundary. |
+| `apps/api/functions/` | `@empreinte/api-functions` | Firebase Functions implementation. |
+| `apps/resource-studio/` | `@empreinte/resource-studio` | Editorial UI and authoring workflows for every Empreinte resource family. |
 
 Resource Studio keeps one workflow per Resource family. The complete commentary workflow and its
 local reader live under `apps/resource-studio/workflows/commentaries/`; documentation under `docs/`
@@ -32,10 +32,10 @@ records audits and decisions but does not own production generators.
 
 | Path | Package | Purpose |
 |---|---|---|
-| `packages/resource-service/` | `@bible-strong/resource-service` | Resource validation, publication, import, storage, and delivery. |
-| `packages/resource-domain/` | `@bible-strong/resource-domain` | Platform-neutral resource schemas, identities, cursors, and invariants. |
-| `packages/resource-catalog/` | `@bible-strong/resource-catalog` | Generated artifact catalog and immutable publication metadata. |
-| `packages/bible-reference-parser/` | `@bible-strong/bible-reference-parser` | French and English Bible passage parsing and OSIS conversion. |
+| `packages/resource-service/` | `@empreinte/resource-service` | Resource validation, publication, import, storage, and delivery. |
+| `packages/resource-domain/` | `@empreinte/resource-domain` | Platform-neutral resource schemas, identities, cursors, and invariants. |
+| `packages/resource-catalog/` | `@empreinte/resource-catalog` | Generated artifact catalog and immutable publication metadata. |
+| `packages/bible-reference-parser/` | `@empreinte/bible-reference-parser` | French and English Bible passage parsing and OSIS conversion. |
 
 ## Expo application
 

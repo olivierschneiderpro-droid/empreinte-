@@ -2,7 +2,7 @@ import { sql, type Kysely } from 'kysely'
 import {
   buildCommentaryReadingSections,
   createCommentaryReadingIndex,
-} from '@bible-strong/resource-domain/contracts/commentarySections'
+} from '@empreinte/resource-domain/contracts/commentarySections'
 import type { ResourceDatabase } from '../database/types'
 
 /** Rebuild a derived projection, never the immutable source or publication metadata. */

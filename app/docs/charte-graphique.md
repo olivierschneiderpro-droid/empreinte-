@@ -1,12 +1,12 @@
-# Bible Strong Brand Guidelines
+# Empreinte Brand Guidelines
 
-These guidelines document the visual identity shared by the Bible Strong public site and application. The first chapter formalizes existing illustrations; it is not yet a complete specification of logos, typography, or components.
+These guidelines document the visual identity shared by Empreinte public site and application. The first chapter formalizes existing illustrations; it is not yet a complete specification of logos, typography, or components.
 
 ## Illustration Styles
 
 | Style                                                                | Reusable identifier       | Usage                                                      | Reference                                              |
 | -------------------------------------------------------------------- | ------------------------- | ---------------------------------------------------------- | ------------------------------------------------------ |
-| **Bible Strong Illustrated Worlds** (Univers illustrés Bible Strong) | `bible-strong-univers-v1` | Feature introductions, onboarding, and educational support | [Rules, gallery, and prompts](design/illustrations.md) |
+| **Empreinte Illustrated Worlds** (Univers illustrés Empreinte) | `bible-strong-univers-v1` | Feature introductions, onboarding, and educational support | [Rules, gallery, and prompts](design/illustrations.md) |
 
 This style depicts people reading, comparing, connecting, or exploring Scripture. Large colored shapes, monochromatic characters, and fine detail lines make each gesture readable. The tone is warm, human, and thoughtful.
 

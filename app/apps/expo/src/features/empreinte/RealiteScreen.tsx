@@ -542,7 +542,7 @@ const RealiteScreen = () => {
           ) : null}
         </Section>
 
-        {/* Passages bibliques (Bible Strong) */}
+        {/* Passages bibliques (Empreinte) */}
         {r.passages.length > 0 ? (
           <Section titre="Passages">
             <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>

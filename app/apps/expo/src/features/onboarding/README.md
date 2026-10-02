@@ -93,7 +93,7 @@ const checkOnboarding = () => setShowOnboarding(!hasCompletedOnboarding())
 ```typescript
 const slides = [
   {
-    title: "Bienvenue dans Bible Strong",
+    title: "Bienvenue dans Empreinte",
     description: "Votre compagnon pour l'étude biblique",
     image: require('./assets/slide1.png'),
     backgroundColor: '#FFB6C1'

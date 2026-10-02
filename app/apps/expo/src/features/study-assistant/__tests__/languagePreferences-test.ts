@@ -3,7 +3,7 @@ import {
   parseStudyRequest,
   parseStudyWidget,
   parseStudySource,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 it('keeps the reading Bible, default Bible and default Strong Bible independent', () => {
   expect(assistantLanguagePreferences('en-US')).toEqual({
     appLanguage: 'en',

@@ -121,7 +121,7 @@ const BottomTabBar = ({ openMenu, openHome, page = null, onPage }: BottomTabBarP
   const insets = useSafeAreaInsets()
   const isFullScreenBible = useAtomValue(isFullScreenBibleAtom)
 
-  // Mêmes actions que les boutons de Bible Strong (Accueil, Recherche, Bible, Onglets, Menu).
+  // Mêmes actions que les boutons d’Empreinte (Accueil, Recherche, Bible, Onglets, Menu).
   const tabs = useAtomValue(tabsAtom)
   const tabsCount = useAtomValue(tabsCountAtom)
   const activeTabIndex = useAtomValue(activeTabIndexAtom)

@@ -171,7 +171,7 @@ export function WorkflowView() {
               </Badge>
             </div>
             <h2 className="mt-2 text-2xl font-semibold tracking-normal">
-              Carte interactive de generation Bible Strong
+              Carte interactive de generation Empreinte
             </h2>
           </div>
           <div className="grid gap-2 sm:grid-cols-[minmax(240px,360px)_auto]">

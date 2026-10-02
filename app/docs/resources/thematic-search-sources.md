@@ -8,7 +8,7 @@ ESV text from OpenBible.
 
 | Source | Imported data | Rights and attribution |
 |---|---|---|
-| Existing Bible Strong Nave publication | Topic identity and existing verse links; the search index does not copy Nave verse associations | Nave's Topical Bible (Orville J. Nave, 1896), public domain; current digitisation provenance remains attached to the Nave publication |
+| Existing Empreinte Nave publication | Topic identity and existing verse links; the search index does not copy Nave verse associations | Nave's Topical Bible (Orville J. Nave, 1896), public domain; current digitisation provenance remains attached to the Nave publication |
 | [NEUU Bible Topics Dataset](https://github.com/neuu-org/bible-topics-dataset) | Torrey topics, canonical references, Nave/Torrey `see also` relations, source identity | Bible Topics Dataset by NEUU, used under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/). It derives from public-domain Nave (1896) and Torrey (1897) works and credits CCEL digitisation. The exact Git commit is recorded per import. |
 | [OpenBible.info Topical Bible](https://www.openbible.info/topics/) | Topic, OSIS range, quality score and matching raw vote count | OpenBible.info topical data, used under Creative Commons Attribution. Snapshot generation date and SHA-256 hashes are recorded per import. |
 
@@ -20,7 +20,7 @@ translated.
 
 ## Reference and ranking policy
 
-- References are normalized to Bible Strong book/chapter/verse coordinates.
+- References are normalized to Empreinte book/chapter/verse coordinates.
 - Unsupported books and invalid references are rejected and counted in the import report.
 - A reference is shown only when the selected active Bible publication contains both its starting
   and ending verse.

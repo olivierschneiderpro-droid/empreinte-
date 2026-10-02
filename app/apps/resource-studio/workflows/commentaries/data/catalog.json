@@ -19,7 +19,7 @@
       "rights": "Domaine public",
       "licenseId": "PublicDomain",
       "status": "available",
-      "source": "Bible Strong Firestore ; comparaison prévue avec CrossWire Clarke"
+      "source": "Empreinte Firestore ; comparaison prévue avec CrossWire Clarke"
     },
     {
       "id": "barnes",
@@ -34,11 +34,11 @@
       "tradition": "Protestantisme",
       "tags": ["Réformé", "Presbytérien"],
       "languages": ["en", "fr"],
-      "coverage": "Corpus Bible Strong ; module CrossWire officiel limité au Nouveau Testament",
+      "coverage": "Corpus Empreinte ; module CrossWire officiel limité au Nouveau Testament",
       "rights": "Domaine public",
       "licenseId": "PublicDomain",
       "status": "available",
-      "source": "Bible Strong Firestore ; CrossWire Barnes pour la provenance anglaise"
+      "source": "Empreinte Firestore ; CrossWire Barnes pour la provenance anglaise"
     },
     {
       "id": "mhy-fr",
@@ -56,7 +56,7 @@
       "rights": "© Éditions CLÉ / Dominique Osché · tous droits réservés",
       "licenseId": "CustomPermission",
       "status": "available",
-      "source": "Fichier MHY.zip transmis à Bible Strong en novembre 2019"
+      "source": "Fichier MHY.zip transmis à Empreinte en novembre 2019"
     },
     {
       "id": "mhcc",
@@ -514,7 +514,7 @@
       "shortName": "Douay",
       "title": "Original Douay–Rheims Annotations",
       "description": {
-        "en": "Historical Catholic annotations published with the Douay–Rheims Bible and preserved according to the source JSON segmentation. They reflect the doctrinal and controversial reading of their period without reconstruction or supplementation by Bible Strong."
+        "en": "Historical Catholic annotations published with the Douay–Rheims Bible and preserved according to the source JSON segmentation. They reflect the doctrinal and controversial reading of their period without reconstruction or supplementation by Empreinte."
       },
       "author": "Collège anglais de Douai–Reims",
       "era": "1582–1609",
@@ -576,7 +576,7 @@
       "tradition": "Protestantisme",
       "tags": ["Adventiste"],
       "languages": ["en", "fr"],
-      "coverage": "Anglais : écrits indexés par ECSI ; français : paragraphes déjà traduits du fonds historique de Bible Strong",
+      "coverage": "Anglais : écrits indexés par ECSI ; français : paragraphes déjà traduits du fonds historique d’Empreinte",
       "rights": "Ellen G. White Estate · tous droits réservés",
       "licenseId": "CustomPermission",
       "status": "available",

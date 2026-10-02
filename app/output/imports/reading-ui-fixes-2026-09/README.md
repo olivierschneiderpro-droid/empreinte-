@@ -6,7 +6,7 @@ Autorisation : demande « fix » après le rapport d'audit UI/UX/fonctionnel.
 - Les 2 191 HTML sources ont été comparés aux SHA256 de l'import initial, avant extraction.
 - L'ordre et l'intégralité des caractères hors espaces sont identiques avant/après : seules les séparations de vers/strophes sont restaurées.
 - Six éditions La Bonne Semence utilisent une couverture originale neutre sans date.
-- Douze éditions des parcours Bible Strong reçoivent une couverture simplifiée lisible en vignette.
+- Douze éditions des parcours Empreinte reçoivent une couverture simplifiée lisible en vignette.
 
 `poems.json` conserve le texte avant/après ; `patches.json` fixe les champs autorisés ;
 `before.json` sauvegarde les documents distants avant écriture ; `receipt.json` atteste

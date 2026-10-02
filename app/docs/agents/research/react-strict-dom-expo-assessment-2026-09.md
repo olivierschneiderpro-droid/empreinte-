@@ -1,4 +1,4 @@
-# React Strict DOM dans Bible Strong
+# React Strict DOM dans Empreinte
 
 Recherche du 8 septembre 2026, sources primaires uniquement. Aucun benchmark de l'application ni changement de son code.
 
@@ -10,7 +10,7 @@ React Strict DOM (RSD) mérite une veille et éventuellement un essai ciblé. Un
 
 RSD propose un sous-ensemble de HTML, CSS et des API DOM, avec `html.div`, `html.button` et une API de styles JavaScript obligatoire basée sur StyleX. Il rend ces composants dans le DOM sur Web et via React Native sur mobile. Il ne transforme pas une bibliothèque React DOM arbitraire en bibliothèque native. La documentation indique que le projet reste en développement, avec des capacités natives incomplètes. [Présentation officielle](https://react.github.io/react-strict-dom/learn/)
 
-Avec son preset Babel, RSD extrait les styles en CSS statique et optimise les éléments. La documentation affirme une absence de surcoût d'exécution Web par rapport à React DOM avec une solution CSS atomique comme StyleX. C'est une comparaison avec React DOM + StyleX, pas un benchmark de Bible Strong ni une promesse de pourcentage gagné face à RNW. [Preset Babel](https://react.github.io/react-strict-dom/api/babel-preset/)
+Avec son preset Babel, RSD extrait les styles en CSS statique et optimise les éléments. La documentation affirme une absence de surcoût d'exécution Web par rapport à React DOM avec une solution CSS atomique comme StyleX. C'est une comparaison avec React DOM + StyleX, pas un benchmark d’Empreinte ni une promesse de pourcentage gagné face à RNW. [Preset Babel](https://react.github.io/react-strict-dom/api/babel-preset/)
 
 Le chiffre officiel « moins de 2 Ko » décrit le runtime RSD Web, pas le bundle complet de l'application : React, React DOM, la navigation, les composants externes et les ressources restent à compter. [Présentation officielle](https://react.github.io/react-strict-dom/learn/)
 
@@ -24,7 +24,7 @@ Le chiffre officiel « moins de 2 Ko » décrit le runtime RSD Web, pas le bundl
 
 ## Performance et coût d'adoption
 
-Sur Web, réduire l'adaptation des props RN et le traitement dynamique des styles pourrait réduire le travail JavaScript des composants concernés. Il s'agit d'une **hypothèse à mesurer**. Les sources examinées ne donnent pas de benchmark reproductible permettant d'annoncer un gain chiffré pour une application Expo + RNW comparable à Bible Strong.
+Sur Web, réduire l'adaptation des props RN et le traitement dynamique des styles pourrait réduire le travail JavaScript des composants concernés. Il s'agit d'une **hypothèse à mesurer**. Les sources examinées ne donnent pas de benchmark reproductible permettant d'annoncer un gain chiffré pour une application Expo + RNW comparable à Empreinte.
 
 Sur native, le mainteneur confirme un surcoût d'exécution inhérent aux fonctionnalités que RSD ajoute au-dessus de React Native. Il indique que des optimisations ont été réalisées et que certaines fonctionnalités migrent progressivement vers RN core. On ne peut donc pas vendre RSD comme une accélération de l'application iOS/Android. [Explication du mainteneur](https://github.com/react/react-strict-dom/discussions/270)
 

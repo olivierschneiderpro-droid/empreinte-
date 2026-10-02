@@ -5,10 +5,10 @@
   "authorization": {
     "status": "confirmed-by-project-owner",
     "confirmedAt": "2026-08-28",
-    "scope": "Le responsable Bible Strong confirme avoir obtenu de STEP et des auteurs les droits nécessaires à l’usage, la transformation et la redistribution des ressources de cette vague."
+    "scope": "Le responsable Empreinte confirme avoir obtenu de STEP et des auteurs les droits nécessaires à l’usage, la transformation et la redistribution des ressources de cette vague."
   },
   "nonCommentaryResources": {
-    "TSK": "Corpus de références croisées déjà distribué par Bible Strong sous l’identité TRESOR ; conservé dans l’audit source mais exclu du lecteur de commentaires."
+    "TSK": "Corpus de références croisées déjà distribué par Empreinte sous l’identité TRESOR ; conservé dans l’audit source mais exclu du lecteur de commentaires."
   },
   "resources": {
     "abbott": {

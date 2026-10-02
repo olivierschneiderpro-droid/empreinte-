@@ -8,10 +8,10 @@ import {
   BibleSearchResponseDto,
   BibleSearchResultDto,
   BibleTextRevisionDto,
-} from '@bible-strong/resource-domain/contracts/bibleChapterContract'
-import { isOrdinaryBibleVersionId } from '@bible-strong/resource-catalog/ordinary-bibles'
+} from '@empreinte/resource-domain/contracts/bibleChapterContract'
+import { isOrdinaryBibleVersionId } from '@empreinte/resource-catalog/ordinary-bibles'
 import { UnsupportedBibleVersion } from './bibleChapter'
-import type { BibleCanonId } from '@bible-strong/resource-domain/bible-canon'
+import type { BibleCanonId } from '@empreinte/resource-domain/bible-canon'
 
 export type BibleSearchInput = {
   versionId: string

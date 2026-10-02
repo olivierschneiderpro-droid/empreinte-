@@ -4,7 +4,7 @@
 
 <h1 align="center">
   <img width="120" height="120" src="https://raw.githubusercontent.com/smontlouis/bible-strong/master/apps/expo/assets/images/icon.png"><br>
-  <a href="https://bible-strong.app"><span>Bible Strong</span></a><br>
+  <a href="https://bible-strong.app"><span>Empreinte</span></a><br>
 </h1>
 
 <p align="center">
@@ -38,9 +38,9 @@
 
 ## A propos
 
-**Bible Strong** est une application mobile gratuite et open-source pour l'etude approfondie de la Bible. Concue principalement pour la communaute francophone, elle offre des outils puissants pour explorer les textes bibliques dans leurs langues originales (hebreu et grec) grace a la concordance Strong.
+**Empreinte** est une application mobile gratuite et open-source pour l'etude approfondie de la Bible. Concue principalement pour la communaute francophone, elle offre des outils puissants pour explorer les textes bibliques dans leurs langues originales (hebreu et grec) grace a la concordance Strong.
 
-Que vous soyez etudiant en theologie, pasteur, ou simplement curieux d'approfondir votre comprehension des Ecritures, Bible Strong vous donne acces a des ressources habituellement reservees aux specialistes, le tout dans une interface moderne et intuitive.
+Que vous soyez etudiant en theologie, pasteur, ou simplement curieux d'approfondir votre comprehension des Ecritures, Empreinte vous donne acces a des ressources habituellement reservees aux specialistes, le tout dans une interface moderne et intuitive.
 
 ## Telecharger l'application
 
@@ -136,20 +136,20 @@ La concordance Strong permet d'etudier chaque mot de la Bible dans sa langue ori
 
 ---
 
-## Monorepo Bible Strong
+## Monorepo Empreinte
 
-Ce repository regroupe les applications, services et packages partages de Bible Strong dans un workspace Yarn 4 unique :
+Ce repository regroupe les applications, services et packages partages d’Empreinte dans un workspace Yarn 4 unique :
 
 | Workspace | Package | Role |
 |-----------|---------|------|
-| `apps/expo` | `@bible-strong/expo` | Application Expo / React Native presentee dans ce README |
-| `apps/site` | `@bible-strong/site` | Site public Bible Strong |
-| `apps/api` | `@bible-strong/api` et `@bible-strong/api-functions` | API et fonctions Firebase |
-| `apps/resource-studio` | `@bible-strong/resource-studio` | Acquisition, transformation et fabrication des ressources |
-| `packages/resource-service` | `@bible-strong/resource-service` | Publication et livraison des ressources bibliques |
-| `packages/resource-domain` | `@bible-strong/resource-domain` | Contrats et invariants partages des ressources |
-| `packages/resource-catalog` | `@bible-strong/resource-catalog` | Catalogue partage des ressources publiees |
-| `packages/bible-reference-parser` | `@bible-strong/bible-reference-parser` | Analyse des references bibliques francaises et anglaises |
+| `apps/expo` | `@empreinte/expo` | Application Expo / React Native presentee dans ce README |
+| `apps/site` | `@empreinte/site` | Site public Empreinte |
+| `apps/api` | `@empreinte/api` et `@empreinte/api-functions` | API et fonctions Firebase |
+| `apps/resource-studio` | `@empreinte/resource-studio` | Acquisition, transformation et fabrication des ressources |
+| `packages/resource-service` | `@empreinte/resource-service` | Publication et livraison des ressources bibliques |
+| `packages/resource-domain` | `@empreinte/resource-domain` | Contrats et invariants partages des ressources |
+| `packages/resource-catalog` | `@empreinte/resource-catalog` | Catalogue partage des ressources publiees |
+| `packages/bible-reference-parser` | `@empreinte/bible-reference-parser` | Analyse des references bibliques francaises et anglaises |
 
 Toutes les dependances sont resolues depuis la racine avec un seul `yarn.lock`. Les dependances entre workspaces utilisent le protocole `workspace:*`, et les patches Yarn partages restent sous `.yarn/patches`.
 
@@ -198,13 +198,13 @@ Consultez le [`CONTEXT-MAP.md`](./CONTEXT-MAP.md) pour les contextes metier et [
 
    ```bash
    # Pour Android
-   yarn workspace @bible-strong/expo build:android:dev
+   yarn workspace @empreinte/expo build:android:dev
 
    # Pour iOS (macOS uniquement)
-   yarn workspace @bible-strong/expo build:ios:dev
+   yarn workspace @empreinte/expo build:ios:dev
 
    # Pour le simulateur iOS
-   yarn workspace @bible-strong/expo build:ios:dev-sim
+   yarn workspace @empreinte/expo build:ios:dev-sim
    ```
 
 6. **Lancer le serveur de developpement**
@@ -215,10 +215,10 @@ Consultez le [`CONTEXT-MAP.md`](./CONTEXT-MAP.md) pour les contextes metier et [
 7. **Lancer sur un appareil**
    ```bash
    # Android
-   yarn workspace @bible-strong/expo android
+   yarn workspace @empreinte/expo android
 
    # iOS
-   yarn workspace @bible-strong/expo ios
+   yarn workspace @empreinte/expo ios
    ```
 
 ### Scripts disponibles
@@ -238,31 +238,31 @@ Consultez le [`CONTEXT-MAP.md`](./CONTEXT-MAP.md) pour les contextes metier et [
 | `yarn test` | Lance les suites de tests du monorepo |
 | `yarn build` | Compile les applications API et web |
 | `yarn format:check` | Verifie le formatage de l'application mobile |
-| `yarn workspace @bible-strong/expo android` | Lance l'application sur Android |
-| `yarn workspace @bible-strong/expo ios` | Lance l'application sur iOS |
-| `yarn workspace @bible-strong/expo lint:fix` | Corrige automatiquement le lint mobile |
-| `yarn workspace @bible-strong/expo format` | Formate le code mobile avec Prettier |
-| `yarn workspace @bible-strong/expo clean` | Nettoie et reinstalle les dependances mobiles |
-| `yarn workspace @bible-strong/expo i18n` | Extrait les chaines de traduction mobiles |
+| `yarn workspace @empreinte/expo android` | Lance l'application sur Android |
+| `yarn workspace @empreinte/expo ios` | Lance l'application sur iOS |
+| `yarn workspace @empreinte/expo lint:fix` | Corrige automatiquement le lint mobile |
+| `yarn workspace @empreinte/expo format` | Formate le code mobile avec Prettier |
+| `yarn workspace @empreinte/expo clean` | Nettoie et reinstalle les dependances mobiles |
+| `yarn workspace @empreinte/expo i18n` | Extrait les chaines de traduction mobiles |
 
 ### Builds de production
 
 ```bash
 # Android
-yarn workspace @bible-strong/expo build:android:staging    # Build de test interne (APK)
-yarn workspace @bible-strong/expo build:android:prod       # Build de production (AAB)
-yarn workspace @bible-strong/expo build:android:prod:apk   # Build de production (APK)
+yarn workspace @empreinte/expo build:android:staging    # Build de test interne (APK)
+yarn workspace @empreinte/expo build:android:prod       # Build de production (AAB)
+yarn workspace @empreinte/expo build:android:prod:apk   # Build de production (APK)
 
 # iOS
-yarn workspace @bible-strong/expo build:ios:staging        # Build de test interne
-yarn workspace @bible-strong/expo build:ios:prod           # Build de production
+yarn workspace @empreinte/expo build:ios:staging        # Build de test interne
+yarn workspace @empreinte/expo build:ios:prod           # Build de production
 ```
 
 ---
 
 ## Contribuer
 
-Les contributions sont les bienvenues ! Bible Strong est un projet open-source et communautaire.
+Les contributions sont les bienvenues ! Empreinte est un projet open-source et communautaire.
 
 ### Comment contribuer
 

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import type { RoutingDecision } from '@bible-strong/ai-contract/contract'
+import type { RoutingDecision } from '@empreinte/ai-contract/contract'
 import { Collapsible, CollapsibleTrigger, CollapsibleContent } from './components/ui/collapsible'
 export default function RoutingDetails({ decisions }: { decisions: RoutingDecision[] }) {
   const { t } = useTranslation()

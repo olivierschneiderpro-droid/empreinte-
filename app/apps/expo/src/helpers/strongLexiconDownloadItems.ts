@@ -1,4 +1,4 @@
-import { isStandaloneStrongModule } from '@bible-strong/resource-domain/strong-lexicon'
+import { isStandaloneStrongModule } from '@empreinte/resource-domain/strong-lexicon'
 import type { DownloadItem } from '~state/downloadQueue'
 import {
   getStrongLexiconPublication,

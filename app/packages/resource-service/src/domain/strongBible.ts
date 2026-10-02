@@ -13,9 +13,9 @@ import {
   StrongBibleOccurrenceVerseDto,
   StrongBibleRevisionDto,
   StrongBibleSpanDto,
-} from '@bible-strong/resource-domain/contracts/strongBibleContract'
-import type { StrongBibleSpan } from '@bible-strong/resource-domain/strong-bible'
-import { isStrongBibleVersionId } from '@bible-strong/resource-catalog/strong-bibles'
+} from '@empreinte/resource-domain/contracts/strongBibleContract'
+import type { StrongBibleSpan } from '@empreinte/resource-domain/strong-bible'
+import { isStrongBibleVersionId } from '@empreinte/resource-catalog/strong-bibles'
 
 export type StrongBibleResourceRevision = {
   versionId: string

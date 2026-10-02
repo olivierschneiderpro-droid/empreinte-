@@ -1,4 +1,4 @@
-import type { CommentaryCatalogEntry } from '@bible-strong/resource-catalog/commentaries'
+import type { CommentaryCatalogEntry } from '@empreinte/resource-catalog/commentaries'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import Box from '~common/ui/Box'

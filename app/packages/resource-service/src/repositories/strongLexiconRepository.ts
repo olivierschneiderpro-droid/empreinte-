@@ -1,10 +1,10 @@
 import {
   getSimpleStrongModuleId,
   isStandaloneStrongModule,
-} from '@bible-strong/resource-domain/strong-lexicon'
+} from '@empreinte/resource-domain/strong-lexicon'
 import { Effect } from 'effect'
 import { sql, type Kysely } from 'kysely'
-import { normalizeBibleSearchText } from '@bible-strong/resource-domain/bible-search-input'
+import { normalizeBibleSearchText } from '@empreinte/resource-domain/bible-search-input'
 
 import { tryDatabasePromise } from '../database/databaseEffect'
 import { makeNeonDatabase, type NeonDatabaseConfig } from '../database/neonDatabase'
@@ -29,16 +29,16 @@ import type {
   StrongLexiconEntryCard,
   StrongLexiconMorphology,
   StrongLexiconSearchResult,
-} from '@bible-strong/resource-domain/strong-lexicon'
+} from '@empreinte/resource-domain/strong-lexicon'
 import {
   decodeStrongLexiconPageCursor,
   encodeStrongLexiconPageCursor,
-} from '@bible-strong/resource-domain/contracts/strongLexiconContract'
+} from '@empreinte/resource-domain/contracts/strongLexiconContract'
 import {
   createStrongIdentity,
   getDisplayedStrongIdentities,
   type StrongIdentityKind,
-} from '@bible-strong/resource-domain/strong-identities'
+} from '@empreinte/resource-domain/strong-identities'
 
 type Payload = Record<string, string | number | null>
 type Publication = { id: number; revision: string; metadata: Record<string, unknown> }

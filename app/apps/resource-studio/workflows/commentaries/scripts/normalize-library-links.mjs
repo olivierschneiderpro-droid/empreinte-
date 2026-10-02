@@ -51,7 +51,7 @@ export const normalizeLibraryLinks = async (libraryRoot = defaultLibraryRoot) =>
     version: 1,
     representation: 'html-reference-id-plus-references',
     canonicalTarget: 'OSIS',
-    parser: '@bible-strong/bible-reference-parser',
+    parser: '@empreinte/bible-reference-parser',
     parserVersion: COMMENTARY_BCV_PARSER_VERSION,
     inlineExternalLinks: false,
     runtimeParsingRequired: false,

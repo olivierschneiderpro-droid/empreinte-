@@ -18,7 +18,7 @@ import {
   decodeDictionaryDirectoryPageCursor,
   encodeDictionaryDirectoryPageCursor,
   encodeDictionaryPageCursor,
-} from '@bible-strong/resource-domain/contracts/dictionaryContract'
+} from '@empreinte/resource-domain/contracts/dictionaryContract'
 
 const mapEntry = (row: {
   entry_id: number

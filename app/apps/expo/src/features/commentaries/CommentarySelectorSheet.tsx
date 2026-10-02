@@ -6,7 +6,7 @@ import {
   COMMENTARY_CATALOG,
   type CommentaryCatalogEntry,
   type CommentaryLanguage,
-} from '@bible-strong/resource-catalog/commentaries'
+} from '@empreinte/resource-catalog/commentaries'
 import { useTheme } from '~themes/ThemeProvider'
 import React from 'react'
 import { Platform, SectionList, TouchableOpacity } from 'react-native'

@@ -26,7 +26,7 @@ trajectory unless a newer implementation document says otherwise.
 
 ## Summary
 
-Product goal: Bible Strong should be usable immediately online, while still allowing users to make any resource available offline. Offline downloads become a user choice, not an entry requirement.
+Product goal: Empreinte should be usable immediately online, while still allowing users to make any resource available offline. Offline downloads become a user choice, not an entry requirement.
 
 Target decision: build every major resource around domain interfaces that can read from local storage or from online endpoints. Each important resource should have two adapters:
 

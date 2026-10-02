@@ -4,7 +4,7 @@
 
 <h1 align="center">
   <img width="120" height="120" src="https://raw.githubusercontent.com/smontlouis/bible-strong/master/assets/images/icon.png"><br>
-  <a href="https://bible-strong.app"><span>Bible Strong</span></a><br>
+  <a href="https://bible-strong.app"><span>Empreinte</span></a><br>
 </h1>
 
 <p align="center">
@@ -38,9 +38,9 @@
 
 ## About
 
-**Bible Strong** is a free and open-source mobile application for in-depth Bible study. Designed primarily for the French-speaking community but with English support, it offers powerful tools to explore biblical texts in their original languages (Hebrew and Greek) through Strong's concordance.
+**Empreinte** is a free and open-source mobile application for in-depth Bible study. Designed primarily for the French-speaking community but with English support, it offers powerful tools to explore biblical texts in their original languages (Hebrew and Greek) through Strong's concordance.
 
-Whether you are a theology student, pastor, or simply curious to deepen your understanding of the Scriptures, Bible Strong gives you access to resources usually reserved for specialists, all in a modern and intuitive interface.
+Whether you are a theology student, pastor, or simply curious to deepen your understanding of the Scriptures, Empreinte gives you access to resources usually reserved for specialists, all in a modern and intuitive interface.
 
 ## Download the App
 
@@ -231,7 +231,7 @@ yarn build:ios:prod           # Production build
 
 ## Contributing
 
-Contributions are welcome! Bible Strong is an open-source community project.
+Contributions are welcome! Empreinte is an open-source community project.
 
 ### How to Contribute
 

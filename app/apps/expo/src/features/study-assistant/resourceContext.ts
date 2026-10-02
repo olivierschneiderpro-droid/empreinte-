@@ -1,6 +1,6 @@
 import i18n from '~i18n'
 import type { ReadingContext } from './conversations'
-import type { StudySurfaceContext } from '@bible-strong/ai-contract/contract'
+import type { StudySurfaceContext } from '@empreinte/ai-contract/contract'
 import verseToReference from '~helpers/verseToReference'
 import { parseCommentaryResourceParams } from '~features/commentaries/commentaryResourceParams'
 const context = (

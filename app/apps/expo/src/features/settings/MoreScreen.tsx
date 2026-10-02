@@ -66,7 +66,7 @@ const shareMessage = () => {
     Platform.OS === 'ios'
       ? 'https://apps.apple.com/fr/app/bible-strong/id1454738221?mt=8'
       : 'https://play.google.com/store/apps/details?id=com.smontlouis.biblestrong'
-  return `Bible Strong App ${appUrl}`
+  return `Empreinte App ${appUrl}`
 }
 
 const Infos = memo(() => {

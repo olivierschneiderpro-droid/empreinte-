@@ -1,6 +1,6 @@
 import { Context, Effect } from 'effect'
 
-import type { SearchAnalyticsEventDto } from '@bible-strong/resource-domain/contracts/searchAnalyticsContract'
+import type { SearchAnalyticsEventDto } from '@empreinte/resource-domain/contracts/searchAnalyticsContract'
 import type { SanitizedSearchAnalyticsEvent } from '../analytics/searchAnalytics'
 import { sanitizeSearchAnalyticsEvent } from '../analytics/searchAnalytics'
 

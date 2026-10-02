@@ -1,5 +1,5 @@
-import { widgetMemoryText } from '@bible-strong/ai-contract/contract'
-import type { HistoryMessage } from '@bible-strong/ai-contract/contract'
+import { widgetMemoryText } from '@empreinte/ai-contract/contract'
+import type { HistoryMessage } from '@empreinte/ai-contract/contract'
 import type { Conversation, LocalMessage } from './conversations'
 export type MemoryCheckpoint = {
   version: 'memory-2'

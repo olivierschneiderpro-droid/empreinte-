@@ -164,7 +164,7 @@ de détail :
   ([`StrongDetailScreen.tsx:336`](../../../src/features/lexique/StrongDetailScreen.tsx#L336),
   [`StrongDetailScreen.tsx:342`](../../../src/features/lexique/StrongDetailScreen.tsx#L342)).
 
-La nouvelle page retombe alors sur la Bible Strong par défaut, donc une concordance ouverte depuis
+La nouvelle page retombe alors sur la Bible annotée Strong par défaut, donc une concordance ouverte depuis
 DBY peut devenir LSG sans action explicite. Les entrées ouvertes depuis la recherche, les tags,
 l’historique ou une relation n’ont volontairement pas de source et suivent correctement la Bible
 Strong par défaut.

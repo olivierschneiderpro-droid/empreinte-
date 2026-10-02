@@ -11,8 +11,8 @@ export const Route = createRootRouteWithContext<RouterContext>()({
       { charSet: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       { name: 'apple-itunes-app', content: 'app-id=1454738221' },
-      { title: 'Bible Strong App - Lexique Hébreu et Grec' },
-      { name: 'description', content: "Le projet Bible Strong met à disposition des outils efficaces d'étude de la Bible pour développer et affermir une foi réfléchie en Dieu par sa Parole." },
+      { title: 'Empreinte App - Lexique Hébreu et Grec' },
+      { name: 'description', content: "Le projet Empreinte met à disposition des outils efficaces d'étude de la Bible pour développer et affermir une foi réfléchie en Dieu par sa Parole." },
       { property: 'og:image', content: '/image-fb.jpg' },
     ],
     links: [

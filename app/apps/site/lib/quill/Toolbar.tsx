@@ -35,7 +35,7 @@ const Toolbar = () => {
 
       <span className="ql-formats rounded-full bg-blue-50">
         <button className="ql-inlineStrong" title="Insérer un lien strong" aria-label="Lien strong"><AiOutlineLink className="size-[18px] text-primary" /></button>
-        <button className="ql-bibleStrong" title="Insérer un bloc strong" aria-label="Bloc strong"><FiBox className="size-[18px] text-primary" /></button>
+        <button className="ql-empreinte" title="Insérer un bloc strong" aria-label="Bloc strong"><FiBox className="size-[18px] text-primary" /></button>
       </span>
 
       <span className="ql-formats">

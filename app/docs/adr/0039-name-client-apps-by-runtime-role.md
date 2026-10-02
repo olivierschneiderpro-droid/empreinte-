@@ -17,8 +17,8 @@ browser-capable products with “web” would keep commands and deployment owner
 
 Rename the deployable workspaces as follows:
 
-- `apps/mobile` and `@bible-strong/mobile` become `apps/expo` and `@bible-strong/expo`.
-- `apps/web` and `@bible-strong/web` become `apps/site` and `@bible-strong/site`.
+- `apps/mobile` and `@empreinte/mobile` become `apps/expo` and `@empreinte/expo`.
+- `apps/web` and `@empreinte/web` become `apps/site` and `@empreinte/site`.
 
 Root development commands use `dev:expo` and `dev:site`. Platform-specific Expo commands use the
 `dev:expo:<platform>` form. Product and domain documentation calls the Expo-owned context the

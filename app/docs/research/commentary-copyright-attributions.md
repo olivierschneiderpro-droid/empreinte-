@@ -52,7 +52,7 @@ Le [manifeste local](../../apps/resource-studio/workflows/commentaries/.local/bi
 
 ### `sdabc`
 
-Le [manifeste local](../../apps/resource-studio/workflows/commentaries/.local/sdabc-export/manifest.json) identifie F. D. Nichol, la Seventh-day Adventist Church et l'édition 1978. Les archives adventistes confirment que le commentaire a été produit et publié par Review and Herald Publishing Association, notamment dans cette [annonce historique officielle](https://documents.adventistarchives.org/Periodicals/RH/RH19570919-V134-38.pdf). Cela établit l'éditeur historique, pas de façon suffisante le titulaire actuel. L'autorisation de Bible Strong est confirmée localement mais doit rester hors du libellé public.
+Le [manifeste local](../../apps/resource-studio/workflows/commentaries/.local/sdabc-export/manifest.json) identifie F. D. Nichol, la Seventh-day Adventist Church et l'édition 1978. Les archives adventistes confirment que le commentaire a été produit et publié par Review and Herald Publishing Association, notamment dans cette [annonce historique officielle](https://documents.adventistarchives.org/Periodicals/RH/RH19570919-V134-38.pdf). Cela établit l'éditeur historique, pas de façon suffisante le titulaire actuel. L'autorisation d’Empreinte est confirmée localement mais doit rester hors du libellé public.
 
 ## Règle d'affichage suggérée
 

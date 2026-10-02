@@ -334,7 +334,7 @@ const Header = ({
       accessibilityLabel={
         isStrongDownloadVisible
           ? t('Téléchargement en cours')
-          : t('Choisir l’affichage de la Bible Strong')
+          : t('Choisir l’affichage de la Bible annotée Strong')
       }
       accessibilityState={{
         disabled: isStrongDownloadVisible,

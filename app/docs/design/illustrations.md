@@ -1,8 +1,8 @@
-# Bible Strong Illustrated Worlds
+# Empreinte Illustrated Worlds
 
 **Identifier: `bible-strong-univers-v1` · Guide version: 1 · September 9, 2026**
 
-The illustration chapter of the [Bible Strong Brand Guidelines](../charte-graphique.md). Also known as **Univers illustrés Bible Strong**, this guide formalizes the corpus supplied by the team and supports future creations. Examples are existing assets, not images newly generated for this documentation.
+The illustration chapter of the [Empreinte Brand Guidelines](../charte-graphique.md). Also known as **Univers illustrés Empreinte**, this guide formalizes the corpus supplied by the team and supports future creations. Examples are existing assets, not images newly generated for this documentation.
 
 ## Short Definition
 
@@ -83,7 +83,7 @@ This gallery is the requested style corpus, not an inventory of images currently
 Attach one or two gallery images: the first for character drawing, the second if needed for palette or composition. Identify their roles. Text alone cannot guarantee style continuity; compare each output with the references.
 
 ```text
-Usage: editorial illustration for Bible Strong.
+Usage: editorial illustration for Empreinte.
 Style: bible-strong-univers-v1, defined in the attached guide.
 Reference 1: [file], drawing and character-treatment reference.
 Optional reference 2: [file], [palette / composition] reference.

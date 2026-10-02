@@ -1,5 +1,5 @@
 import { useStrongLexiconLanguage } from './useStrongLexiconLanguage'
-import { getSimpleStrongModuleId } from '@bible-strong/resource-domain/strong-lexicon'
+import { getSimpleStrongModuleId } from '@empreinte/resource-domain/strong-lexicon'
 import type { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import Empty from '~common/Empty'

@@ -22,7 +22,7 @@ import { useDispatch } from './DispatchProvider'
 import { Bookmark, SelectedCode, StudyNavigateBibleType, Verse as TVerse } from '~common/types'
 import { RootStyles, TaggedVerse, VerseRelationItem } from './BibleDOMWrapper'
 import { ParallelDisplayMode } from 'src/state/tabs'
-import { BibleStrongRef } from './BibleStrongReference'
+import { StrongVerseRef } from './StrongVerseReference'
 import { verseToRedWords } from './verseToRedWords'
 import { ContainerText, resolveHighlightInfo } from './ContainerText'
 import { convertHex } from './convertHex'
@@ -316,7 +316,7 @@ const renderCanonicalPresentation = (
     if (node.kind === 'text') return node.text
     if (node.kind === 'strong-reference') {
       return (
-        <BibleStrongRef
+        <StrongVerseRef
           key={key}
           book={options.book}
           version={options.version}

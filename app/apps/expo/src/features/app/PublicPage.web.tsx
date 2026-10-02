@@ -35,7 +35,7 @@ const PublicPage = ({
               accessible={false}
             />
             <Text className="ml-[10px] font-bold text-[15px]" numberOfLines={1}>
-              Bible Strong
+              Empreinte
             </Text>
           </TouchableBox>
           <Text

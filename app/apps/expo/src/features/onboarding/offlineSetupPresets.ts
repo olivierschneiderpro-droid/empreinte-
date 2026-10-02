@@ -1,4 +1,4 @@
-import { getSimpleStrongModuleId } from '@bible-strong/resource-domain/strong-lexicon'
+import { getSimpleStrongModuleId } from '@empreinte/resource-domain/strong-lexicon'
 import { versions } from '~helpers/bibleVersions'
 import { databases } from '~helpers/databases'
 import type { ResourceLanguage } from '~helpers/databaseTypes'
@@ -17,7 +17,7 @@ import { getOnboardingResourceSelectionId } from './onboardingResourceSelectionI
 import {
   getCommentaryCatalogForLanguage,
   type CommentaryCatalogEntry,
-} from '@bible-strong/resource-catalog/commentaries'
+} from '@empreinte/resource-catalog/commentaries'
 import { KNOWN_DICTIONARY_WORKS } from '~features/resources/dictionaryAccess'
 
 export const OFFLINE_SETUP_FOLDER_IDS = [

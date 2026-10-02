@@ -10,7 +10,7 @@ Il ne faut **ni conserver aveuglément les liens HTML des fournisseurs, ni suppr
 La solution recommandée est hybride, avec l'essentiel du travail réalisé à la construction des JSON :
 
 1. convertir les destinations bibliques connues (`/Gen_1.26`, `ref.ly/John3:16`, `JHN3.16`, `osisRef`, etc.) en références OSIS internes ;
-2. remplacer ensuite les liens fournisseur par une référence Bible Strong structurée ;
+2. remplacer ensuite les liens fournisseur par une référence Empreinte structurée ;
 3. retirer la balise `<a>` des autres liens incorporés en conservant leur texte ;
 4. conserver les liens externes réellement éditoriaux sous forme de métadonnées contrôlées, et non comme HTML arbitrairement cliquable ;
 5. exécuter BCV Parser à la construction sur le texte restant pour détecter les références n'ayant jamais possédé de lien ;
@@ -42,7 +42,7 @@ Parmi les 410 821 balises `<a>` :
 |---|---:|---|
 | Ancres nommées sans `href` | 103 318 | Vestiges de navigation interne aux éditions HTML, principalement Barnes |
 | Liens possédant un `href` | 307 503 | Bibliques, éditoriaux ou externes |
-| Liens dont le `href` survit au sanitizer actuel | 303 872 | « Cliquable » ne signifie pas fonctionnel dans Bible Strong |
+| Liens dont le `href` survit au sanitizer actuel | 303 872 | « Cliquable » ne signifie pas fonctionnel dans Empreinte |
 | Schémas `javascript:`, `data:`, `mailto:` ou protocol-relative | 0 | Aucun lien de ce type dans le snapshot |
 
 Les marqueurs de références non exprimés comme liens sont également très nombreux :
@@ -79,7 +79,7 @@ L'absence de `<a>` ne signifie pas absence de références. Bible Annotée, JFB,
 
 Aquifer contient exactement 77 553 occurrences `https://ref.ly/...`, représentant 21 926 destinations distinctes. Le chemin encode déjà la cible, par exemple `Heb7:20-Heb7:22`. Les 21 926 chemins distincts ont tous produit une référence avec le BCV Parser anglais lors du contrôle de cet audit.
 
-Ces liens ne doivent donc pas être ouverts chez le fournisseur. Ils doivent être transformés à l'ingestion en navigation Bible Strong. Le libellé seul n'est pas suffisant : Aquifer emploie fréquemment des raccourcis comme `22:11–12`, `91:11`, `14` ou `3:17, 1`, qui exigent le contexte précédent.
+Ces liens ne doivent donc pas être ouverts chez le fournisseur. Ils doivent être transformés à l'ingestion en navigation Empreinte. Le libellé seul n'est pas suffisant : Aquifer emploie fréquemment des raccourcis comme `22:11–12`, `91:11`, `14` ou `3:17, 1`, qui exigent le contexte précédent.
 
 Les trois autres liens Aquifer sont :
 
@@ -113,7 +113,7 @@ La chaîne EGW est déjà proche du bon modèle : l'importeur extrait les identi
 
 ## Ce que fait le prototype aujourd'hui
 
-Le sanitizer du prototype autorise les balises `<a>` et les `href` commençant par `/`, `#`, `http:` ou `https:`. Il ajoute `rel="noreferrer"`, mais ne transforme pas les destinations fournisseur en routes Bible Strong ([`app.js`](../../apps/resource-studio/workflows/commentaries/app.js#L50)). En conséquence :
+Le sanitizer du prototype autorise les balises `<a>` et les `href` commençant par `/`, `#`, `http:` ou `https:`. Il ajoute `rel="noreferrer"`, mais ne transforme pas les destinations fournisseur en routes Empreinte ([`app.js`](../../apps/resource-studio/workflows/commentaries/app.js#L50)). En conséquence :
 
 - les liens ACBC/Barnes en `/Book_C.V` restent cliquables mais ne correspondent pas au routeur du prototype ;
 - les 77 553 `ref.ly` quittent le prototype dans le même onglet et dépendent du réseau ;
@@ -248,6 +248,6 @@ Chaque langue doit posséder ses propres emplacements de référence, car le tex
 
 La règle de publication peut être formulée simplement :
 
-> Le texte d'un commentaire ne contient aucun lien web arbitraire cliquable. Les références bibliques sont des cibles Bible Strong structurées et hors ligne. Les renvois éditoriaux autorisés, dont l'index EGW, sont des objets métier distincts. Tout autre `<a>` est retiré en conservant son texte.
+> Le texte d'un commentaire ne contient aucun lien web arbitraire cliquable. Les références bibliques sont des cibles Empreinte structurées et hors ligne. Les renvois éditoriaux autorisés, dont l'index EGW, sont des objets métier distincts. Tout autre `<a>` est retiré en conservant son texte.
 
 Cette règle répond à l'objectif initial de nettoyage sans sacrifier les centaines de milliers de destinations déjà encodées par les fournisseurs.

@@ -415,8 +415,8 @@ const cards = rows
   .join('\n')
 await writeFile(
   resolve(output, 'index.html'),
-  `<!doctype html><meta charset="utf-8"><title>Benchmark SAM 3 · Bible Strong</title>
+  `<!doctype html><meta charset="utf-8"><title>Benchmark SAM 3 · Empreinte</title>
   <style>body{font:15px system-ui;margin:24px;background:#eef1f6;color:#173845}article{background:white;padding:20px;border-radius:16px;margin:0 0 24px}h2{margin-top:0}.images{display:flex;gap:12px;overflow:auto;align-items:start}figure{margin:0;min-width:240px}img{display:block;width:240px;height:240px;object-fit:contain;background:repeating-conic-gradient(#e8e8e8 0 25%,white 0 50%) 50%/20px 20px;border:1px solid #ccd5d8}figcaption{margin-top:6px;font-size:12px}code{font-size:12px;color:#64777d}</style>
-  <h1>Benchmark SAM 3 · Bible Strong</h1>${cards}`
+  <h1>Benchmark SAM 3 · Empreinte</h1>${cards}`
 )
 console.log(`Review ready: ${resolve(output, 'index.html')}`)

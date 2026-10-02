@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Bible Strong already assigns stable numeric identities 67–73 to Tobit, Judith, Wisdom, Sirach,
+Empreinte already assigns stable numeric identities 67–73 to Tobit, Judith, Wisdom, Sirach,
 Baruch, 1 Maccabees, and 2 Maccabees. Several installed French editions were historically generated
 with only the 66 Protestant books even though their Bible.com sources expose these seven books.
 Leaving those editions on the implicit Protestant canon prevents their installed coverage from
@@ -18,7 +18,7 @@ Silently treating all five sources as one versification would hide those source 
 ## Decision
 
 Add `catholic-73` as the canon of BCC1923, BFC, FRC97, NFC, and PDV2017. Its order follows the modern
-Catholic order published by these sources and retains stable Bible Strong book identities 1–73.
+Catholic order published by these sources and retains stable Empreinte book identities 1–73.
 Installed resource coverage remains authoritative for the chapters and verses that can actually be
 opened.
 
@@ -28,7 +28,7 @@ record any unused alternatives.
 
 BCC1923 uses `bible-strong-catholic-extended-esther-daniel`: its Greek Esther and Daniel sources are
 mapped to the existing Esther and Daniel identities while preserving their 16 and 14 chapters.
-Bible Strong does not infer equivalence between these locations and another versification.
+Empreinte does not infer equivalence between these locations and another versification.
 
 When a source publishes the Letter of Jeremiah as a separate book, the import representation maps it
 to Baruch 6. A source that does not publish that text, such as BFC 63, retains five Baruch chapters;

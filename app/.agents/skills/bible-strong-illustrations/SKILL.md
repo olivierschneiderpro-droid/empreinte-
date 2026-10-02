@@ -1,15 +1,15 @@
 ---
 name: bible-strong-illustrations
-description: Create or adapt Bible Strong illustrations in the house style of flat colors, monochromatic characters, and fine detail lines. Use for Illustrated Worlds, Univers illustrés, bible-strong-univers-v1, or scenes matching the site and onboarding illustrations. Not for interface mockups, logos, or UI icons.
+description: Create or adapt Empreinte illustrations in the house style of flat colors, monochromatic characters, and fine detail lines. Use for Illustrated Worlds, Univers illustrés, bible-strong-univers-v1, or scenes matching the site and onboarding illustrations. Not for interface mockups, logos, or UI icons.
 ---
 
-# Bible Strong Illustrations
+# Empreinte Illustrations
 
-Produce a scene consistent with **Bible Strong Illustrated Worlds**, respecting the requested subject and usage. This skill provides art direction; the `imagegen` skill provides the generation and editing workflow.
+Produce a scene consistent with **Empreinte Illustrated Worlds**, respecting the requested subject and usage. This skill provides art direction; the `imagegen` skill provides the generation and editing workflow.
 
 ## Load the Reference
 
-This skill belongs to the Bible Strong repository. Resolve the following paths from the skill directory, even when the working directory is elsewhere: the repository root is three levels above.
+This skill belongs to Empreinte repository. Resolve the following paths from the skill directory, even when the working directory is elsewhere: the repository root is three levels above.
 
 - Read the [style guide](../../../docs/design/illustrations.md): the source of truth for invariants, color worlds, the gallery, and the master prompt.
 - Consult the [brand guidelines](../../../docs/charte-graphique.md) for brand or interface integration questions.

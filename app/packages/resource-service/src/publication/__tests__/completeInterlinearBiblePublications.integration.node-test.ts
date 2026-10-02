@@ -8,7 +8,7 @@ import { Effect } from 'effect'
 import {
   BHG_INTERLINEAR_PUBLICATION_CATALOG,
   getInterlinearBiblePublicationLanguages,
-} from '@bible-strong/resource-catalog/interlinear-bible'
+} from '@empreinte/resource-catalog/interlinear-bible'
 import { createIsolatedPostgres } from '../../database/__tests__/isolatedPostgresTestSupport'
 import { makeResourceWebHandler } from '../../http/app'
 import { makeKyselyBibleChapterRepository } from '../../repositories/bibleChapterRepository'
@@ -28,7 +28,7 @@ const runIntegration =
   process.env.RESOURCE_INTEGRATION === '1' && Boolean(root) && Boolean(bhgBundleRoot)
 const connectionString =
   process.env.RESOURCE_DATABASE_URL ??
-  'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong'
+  'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte'
 
 describe('Complete BHG interlinear publications', { skip: !runIntegration }, () => {
   it('validates, activates, imports, and queries both cataloged language indexes', async () => {

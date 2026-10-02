@@ -1,4 +1,4 @@
-import { parseStudyEvent, type StudyEvent } from '@bible-strong/ai-contract/contract'
+import { parseStudyEvent, type StudyEvent } from '@empreinte/ai-contract/contract'
 export type DebugEntry = {
   type: 'debug'
   sequence: number

@@ -129,7 +129,7 @@ function App() {
       <header>
         <div>
           <span className="eyebrow">
-            BIBLE STRONG · {t('ATELIER DES QUESTIONS', 'QUESTION WORKSHOP')}
+            EMPREINTE · {t('ATELIER DES QUESTIONS', 'QUESTION WORKSHOP')}
           </span>
           <h1>{t('De belles questions. Sans attendre.', 'Good questions. No waiting.')}</h1>
           <p>

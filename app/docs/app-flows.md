@@ -1,6 +1,6 @@
 # App Flows
 
-Ce document décrit les principaux parcours utilisateur de Bible Strong: surfaces, écrans, utilité, états visibles et transitions. Il complète `CONTEXT.md`, `docs/architecture.md` et `docs/data-models.md`.
+Ce document décrit les principaux parcours utilisateur d’Empreinte: surfaces, écrans, utilité, états visibles et transitions. Il complète `CONTEXT.md`, `docs/architecture.md` et `docs/data-models.md`.
 
 ## Assets De Cartographie
 
@@ -62,7 +62,7 @@ Surfaces curatées:
 
 ## Vue D'ensemble
 
-Bible Strong est organisée autour d'un espace de travail à onglets plutôt qu'une navigation linéaire classique. L'utilisateur lit la Bible, ouvre des ressources d'étude, compare des versions, crée des annotations, lance des plans et revient ensuite à ces surfaces via l'app switcher.
+Empreinte est organisée autour d'un espace de travail à onglets plutôt qu'une navigation linéaire classique. L'utilisateur lit la Bible, ouvre des ressources d'étude, compare des versions, crée des annotations, lance des plans et revient ensuite à ces surfaces via l'app switcher.
 
 Surfaces racines:
 

@@ -67,9 +67,9 @@ type RouterParams = Record<string, string | number | (string | number)[] | null 
 
 const SELECTION_MODE_MAP: Record<string, StudyNavigateBibleType> = {
   SELECT_BIBLE_VERSE: 'verse',
-  SELECT_BIBLE_STRONG: 'strong',
+  SELECT_STRONG_BIBLE: 'strong',
   SELECT_BIBLE_VERSE_BLOCK: 'verse-block',
-  SELECT_BIBLE_STRONG_BLOCK: 'strong-block',
+  SELECT_STRONG_BIBLE_BLOCK: 'strong-block',
 }
 
 const encodeDeltaContent = (content: Study['content'] | undefined) =>
@@ -220,7 +220,7 @@ export default function StudiesDomWrapper({
     if (isVerse) {
       dispatchToWebView(isBlock ? 'GET_BIBLE_VERSES_BLOCK' : 'GET_BIBLE_VERSES', params)
     } else {
-      dispatchToWebView(isBlock ? 'GET_BIBLE_STRONG_BLOCK' : 'GET_BIBLE_STRONG', params)
+      dispatchToWebView(isBlock ? 'GET_STRONG_BIBLE_BLOCK' : 'GET_STRONG_BIBLE', params)
     }
   }, [JSON.stringify(params)])
 
@@ -261,7 +261,7 @@ export default function StudiesDomWrapper({
           return
         }
 
-        case 'VIEW_BIBLE_STRONG': {
+        case 'VIEW_STRONG_BIBLE': {
           pushRouteOnce({
             pathname: '/strong',
             params: msgData.payload as RouterParams | undefined,
@@ -283,9 +283,9 @@ export default function StudiesDomWrapper({
         }
 
         case 'SELECT_BIBLE_VERSE':
-        case 'SELECT_BIBLE_STRONG':
+        case 'SELECT_STRONG_BIBLE':
         case 'SELECT_BIBLE_VERSE_BLOCK':
-        case 'SELECT_BIBLE_STRONG_BLOCK': {
+        case 'SELECT_STRONG_BIBLE_BLOCK': {
           const selectionMode = SELECTION_MODE_MAP[msgData.type]
           navigateToSelectionMode(selectionMode)
           return

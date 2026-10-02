@@ -1,4 +1,4 @@
-import { getSimpleStrongModuleId } from '@bible-strong/resource-domain/strong-lexicon'
+import { getSimpleStrongModuleId } from '@empreinte/resource-domain/strong-lexicon'
 import { getPrimaryStrongLexiconAvailability } from '~features/resources/layeredStrongLexiconAccess'
 import { getUniverseColor } from '~themes/universeColors'
 import { keepPreviousData, useQuery } from '@tanstack/react-query'

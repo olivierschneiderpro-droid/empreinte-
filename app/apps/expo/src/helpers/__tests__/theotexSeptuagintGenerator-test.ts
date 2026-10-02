@@ -44,7 +44,7 @@ describe('ThéoTeX Septuagint generator', () => {
     })
   })
 
-  it('maps the Catholic canon and additions to stable Bible Strong identities', () => {
+  it('maps the Catholic canon and additions to stable Empreinte identities', () => {
     const pages = buildSourcePages('https://example.test')
     expect(APP_BOOK_IDS).toEqual([
       ...Array.from({ length: 39 }, (_, index) => index + 1),

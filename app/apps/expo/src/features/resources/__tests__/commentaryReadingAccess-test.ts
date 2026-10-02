@@ -1,6 +1,6 @@
 import { createCommentaryReadingAccess } from '../commentaryReadingAccess'
 import * as Schema from 'effect/Schema'
-import { CommentaryReadingResourceIndex } from '@bible-strong/resource-domain/contracts/commentaryReadingContract'
+import { CommentaryReadingResourceIndex } from '@empreinte/resource-domain/contracts/commentaryReadingContract'
 
 const originalDev = Object.getOwnPropertyDescriptor(globalThis, '__DEV__')
 beforeAll(() => Object.defineProperty(globalThis, '__DEV__', { value: true, configurable: true }))

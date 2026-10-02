@@ -1,10 +1,10 @@
-# Recherche online de production pour Bible Strong — issue #325
+# Recherche online de production pour Empreinte — issue #325
 
 _État de la recherche : 23 août 2026. Sources externes primaires uniquement._
 
 ## Conclusion
 
-La meilleure architecture pour Bible Strong aujourd'hui n'est pas de remplacer Neon par Algolia,
+La meilleure architecture pour Empreinte aujourd'hui n'est pas de remplacer Neon par Algolia,
 Typesense, Meilisearch ou Elastic. C'est de construire une **recherche Lakebase Search / PostgreSQL
 de production dans le Resource Service existant**, puis d'ajouter un mode sémantique ciblé après
 évaluation.
@@ -81,7 +81,7 @@ réunit cette recherche textuelle et `lakebase_vector` pour une fusion hybride
 
 Les limites sont réelles : PostgreSQL ne fournit pas une tolérance aux fautes de niveau Algolia en
 un réglage, son analyse de l'hébreu biblique reste à construire, et le tuning de pertinence nous
-appartient. Mais Bible Strong possède déjà le texte, ses langues, son canon, ses identités de verset
+appartient. Mais Empreinte possède déjà le texte, ses langues, son canon, ses identités de verset
 et son pipeline de publication. Cette connaissance du domaine compte davantage qu'un ranking
 e-commerce prêt à l'emploi.
 
@@ -245,7 +245,7 @@ indexées
 
 ## Comparaison des moteurs hébergés
 
-| Option | Forces pour Bible Strong | Faiblesses / coût / ops | Verdict |
+| Option | Forces pour Empreinte | Faiblesses / coût / ops | Verdict |
 |---|---|---|---|
 | **Neon Lakebase Search / PostgreSQL** | Même source de vérité ; BM25 sur `tsvector`, top-K indexé, filtres, phrases, proximité, global multi-version, `pg_trgm`, vectoriel et RRF ; publication transactionnelle | Typo et pertinence à construire ; linguistique hébraïque limitée ; extension récente à valider sous charge | **Choix recommandé maintenant** |
 | **Typesense Cloud** | Très bonne typo mobile, préfixes, facettes, highlights, filtres, multi-search, vectoriel et hybride ; cluster dédié sans facturation par requête/document | Nouveau datastore dérivé ; HA et réseau augmentent le prix ; clés/host à faire tourner ; pertinence biblique à évaluer | **Meilleur challenger dédié** |
@@ -336,7 +336,7 @@ YouVersion annonce un accès officiel à plus de mille versions et des SDK React
 ([overview](https://developers.youversion.com/overview)), mais l'accès dépend d'une App Key, des
 permissions et de l'accord de licence propre à chaque Bible
 ([license API](https://developers.youversion.com/api/licenses)). Son API peut élargir le catalogue ;
-elle ne dispense pas Bible Strong de son propre contrat de recherche, de l'offline, du ranking
+elle ne dispense pas Empreinte de son propre contrat de recherche, de l'offline, du ranking
 global ni de la vérification des droits d'indexation.
 
 Bible Gateway publie un endpoint keyword avec modes `all`, `phrase`, `any`, limites par livres et
@@ -421,7 +421,7 @@ suppression différée de l'ancien index.
 6. Décider par ADR avec qualité, p95/p99, coût mensuel projeté, droits, ops et plan de rollback.
 
 La décision importante est donc moins « quel SaaS est le meilleur ? » que « quelle sémantique
-Bible Strong garantit-elle ? ». Une fois ce contrat et son corpus de mesure en place, **Lakebase
+Empreinte garantit-elle ? ». Une fois ce contrat et son corpus de mesure en place, **Lakebase
 Search sur le PostgreSQL Neon existant** est le meilleur moteur online actuel pour l'app ; Typesense
 est le test comparatif à garder prêt, et le sémantique doit rester une capacité de découverte
 précisément bornée.

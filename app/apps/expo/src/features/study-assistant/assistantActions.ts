@@ -1,4 +1,4 @@
-import { parseAssistantAction, type AssistantAction } from '@bible-strong/ai-contract/contract'
+import { parseAssistantAction, type AssistantAction } from '@empreinte/ai-contract/contract'
 import { createPassageTab } from '~features/app-switcher/tabOpenRequest'
 import { getBook } from '~helpers/bibleBookCatalog'
 import generateUUID from '~helpers/generateUUID'

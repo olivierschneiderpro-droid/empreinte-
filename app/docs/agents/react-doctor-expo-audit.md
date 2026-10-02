@@ -8,7 +8,7 @@ Command:
 CI=1 npx -y react-doctor@latest apps/expo --verbose
 ```
 
-The audit covers the complete `@bible-strong/expo` workspace, including application code,
+The audit covers the complete `@empreinte/expo` workspace, including application code,
 tests, scripts, Expo DOM code, and checked-in third-party browser assets.
 
 ## Result

@@ -8,7 +8,7 @@ import {
   sourceIdFromLink,
   sourceLink,
   type StudySource,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 import { sourceRoute } from '../sourceNavigation'
 import remarkBibleLinks from '../remarkBibleLinks'
 const commentary: StudySource = {

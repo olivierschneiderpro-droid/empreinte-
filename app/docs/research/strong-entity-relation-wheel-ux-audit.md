@@ -131,7 +131,7 @@ alors aucune disposition visuelle ne permet de déduire avec certitude si C est 
 
 Les formats généalogiques introduisent pour cette raison un regroupement de famille ou d’union. Dans GEDCOM 7, un enregistrement `FAM` relie les partenaires et ses enfants ; une personne peut participer à plusieurs familles comme conjoint/parent et appartenir à plusieurs structures parentales. La spécification reconnaît aussi les limites des affichages à deux partenaires et des modèles familiaux historiques. [FamilySearch GEDCOM 7 Specification](https://gedcom.io/specifications/FamilySearchGEDCOMv7.html)
 
-Pour Bible Strong, cela conduit à deux choix honnêtes :
+Pour Empreinte, cela conduit à deux choix honnêtes :
 
 1. si la source connaît l’union parentale, la représenter comme un groupe explicite (`unionId`, couple/famille ou relation parentale commune) ;
 2. si la source ne la connaît pas, afficher les conjoints et les enfants séparément sans suggérer leur rattachement.
@@ -239,9 +239,9 @@ En bref : il n’existe pas de meilleur concept unique. Le noyau actuel est trè
 
 ## Limites de l’audit
 
-- Aucun test utilisateur du composant Bible Strong n’a été conduit ; les recommandations restent des hypothèses à valider.
+- Aucun test utilisateur du composant Empreinte n’a été conduit ; les recommandations restent des hypothèses à valider.
 - Les études citées comparent des tâches et données différentes : hiérarchies de fichiers ou musique, graphes généraux, arbres statiques. Elles éclairent les compromis mais ne prouvent pas directement la performance de ce produit.
-- Les produits FamilySearch et MyHeritage sont des benchmarks de structure fonctionnelle, pas des preuves que tous leurs choix conviennent au public de Bible Strong.
+- Les produits FamilySearch et MyHeritage sont des benchmarks de structure fonctionnelle, pas des preuves que tous leurs choix conviennent au public d’Empreinte.
 - L’audit ne vérifie pas ici la fidélité ni l’exhaustivité des relations bibliques sources.
 - L’accessibilité gestuelle, les tailles de cibles, le lecteur d’écran et les préférences de mouvement nécessitent un audit séparé ; ils ne changent pas la décision d’architecture d’information présentée ici.
 

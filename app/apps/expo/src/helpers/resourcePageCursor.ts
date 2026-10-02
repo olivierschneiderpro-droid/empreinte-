@@ -1,1 +1,1 @@
-export * from '@bible-strong/resource-domain/resource-page-cursor'
+export * from '@empreinte/resource-domain/resource-page-cursor'

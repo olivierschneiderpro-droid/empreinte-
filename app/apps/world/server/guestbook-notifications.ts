@@ -30,7 +30,7 @@ export function notificationEmail(entry: GuestbookEntry, env: NotificationEnv) {
   return {
     from: env.GUESTBOOK_NOTIFICATION_FROM,
     to: env.GUESTBOOK_NOTIFICATION_TO,
-    subject: 'Bible Strong World — nouveau message dans le livre d’or',
+    subject: 'Empreinte World — nouveau message dans le livre d’or',
     text: [
       'Un nouveau message a été publié dans le livre d’or.',
       '',

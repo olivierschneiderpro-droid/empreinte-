@@ -2,7 +2,7 @@ import * as FileSystem from 'expo-file-system/legacy'
 import type {
   InterlinearChapterTokens,
   InterlinearToken,
-} from '@bible-strong/resource-domain/interlinear-bible'
+} from '@empreinte/resource-domain/interlinear-bible'
 
 import { getBibleVersionMetadata } from './biblesDb'
 import { getSharedSqliteDirPath, type ResourceLanguage } from './databaseTypes'
@@ -28,7 +28,7 @@ export type {
   InterlinearIdentityKind,
   InterlinearSegment,
   InterlinearToken,
-} from '@bible-strong/resource-domain/interlinear-bible'
+} from '@empreinte/resource-domain/interlinear-bible'
 
 class InterlinearSidecarMissingError extends Error {}
 

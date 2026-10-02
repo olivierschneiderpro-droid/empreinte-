@@ -19,11 +19,11 @@ On Web, choose the shell from Firebase authentication state:
   shell;
 - authentication resolution blocks shell selection briefly so the public shell never flashes for
   a restored authenticated session;
-- “Open Bible Strong” lets a guest explicitly enter the workspace for the current browser session
+- “Open Empreinte” lets a guest explicitly enter the workspace for the current browser session
   without changing the canonical URL.
 
 The public shell reuses the same route component and Resource access layer. It adds only a compact
-Bible Strong header and disables the workspace panel frame and account-specific chrome. Legacy and
+Empreinte header and disables the workspace panel frame and account-specific chrome. Legacy and
 non-public application routes continue to use the workspace.
 
 ## Consequences

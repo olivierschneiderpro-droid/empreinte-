@@ -10,7 +10,7 @@ import { importPublicationBundle } from '../../repositories/publicationImporter'
 const bundlePath = process.env.RESOURCE_LSG_BUNDLE
 const connectionString =
   process.env.RESOURCE_DATABASE_URL ??
-  'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong'
+  'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte'
 
 describe('Complete LSG publication', { skip: !bundlePath }, () => {
   it('preserves every declared book, chapter, verse, and presentation value', async () => {

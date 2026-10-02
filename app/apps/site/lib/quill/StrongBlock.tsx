@@ -57,7 +57,7 @@ class StrongBlock extends Embed {
         ?.classList.contains('ql-disabled')
       if (isReadOnly) {
         console.log(`${codeStrong} ${book}`)
-        console.log('VIEW_BIBLE_STRONG', {
+        console.log('VIEW_STRONG_BIBLE', {
           reference: codeStrong,
           book,
         })

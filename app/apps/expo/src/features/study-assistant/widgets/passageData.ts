@@ -1,4 +1,4 @@
-import type { PassageTarget } from '@bible-strong/ai-contract/contract'
+import type { PassageTarget } from '@empreinte/ai-contract/contract'
 import type { BibleContentAccess } from '~features/resources/bibleContentAccess'
 export function passageKeys(p: PassageTarget) {
   return Array.from(

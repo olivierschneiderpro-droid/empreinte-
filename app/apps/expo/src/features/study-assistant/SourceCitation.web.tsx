@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { useSetAtom } from 'jotai'
 import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
 import { previewHistoryAtom } from '~features/bibleReferencePreview/state'
-import type { StudySource } from '@bible-strong/ai-contract/contract'
+import type { StudySource } from '@empreinte/ai-contract/contract'
 import { sourceRoute, sourceDisplayTitle } from './sourceNavigation'
 export default function SourceCitation({
   source,

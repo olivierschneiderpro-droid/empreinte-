@@ -92,7 +92,7 @@ function PlaygroundContent({ dark, onTheme }: { dark: boolean; onTheme: () => vo
           <ArrowLeft size={16} /> Playground
         </a>
         <span>
-          <FlaskConical size={16} /> Bible Strong · Atelier IA
+          <FlaskConical size={16} /> Empreinte · Atelier IA
         </span>
         <button
           onClick={onTheme}
@@ -205,7 +205,7 @@ function PlaygroundContent({ dark, onTheme }: { dark: boolean; onTheme: () => vo
           <div className="ai-pg-stage">
             <div className={`ai-pg-preview ${wide ? 'ai-pg-preview-wide' : ''}`}>
               <div className="ai-pg-preview-caption">
-                <span>ASSISTANT BIBLE STRONG</span>
+                <span>ASSISTANT EMPREINTE</span>
                 <span>{wide ? 'Vue de travail' : 'Format conversation'}</span>
               </div>
               {query.isPending ? (

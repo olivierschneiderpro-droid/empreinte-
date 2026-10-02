@@ -11,7 +11,7 @@ import { useTheme } from '~themes/ThemeProvider'
 import AssistantMarkdown from './AssistantMarkdown'
 import { askAssistant } from './client'
 import { assistantAccessible, assistantAvailable } from './assistantConfig'
-import type { HistoryMessage } from '@bible-strong/ai-contract/contract'
+import type { HistoryMessage } from '@empreinte/ai-contract/contract'
 
 type Turn = { question: string; answer: string }
 export default function StudyAssistantScreen() {

@@ -9,7 +9,7 @@ import {
 export type {
   StrongBibleIdentityKind,
   StrongBibleSpan,
-} from '@bible-strong/resource-domain/strong-bible'
+} from '@empreinte/resource-domain/strong-bible'
 
 export type CanonicalStrongVerseRun =
   | { kind: 'text'; text: string }

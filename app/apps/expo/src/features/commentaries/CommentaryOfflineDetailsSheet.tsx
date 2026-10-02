@@ -1,5 +1,5 @@
 import { useConfirmDialog } from '~common/ConfirmDialog/useConfirmDialog'
-import type { CommentaryCatalogEntry } from '@bible-strong/resource-catalog/commentaries'
+import type { CommentaryCatalogEntry } from '@empreinte/resource-catalog/commentaries'
 import { useTheme } from '~themes/ThemeProvider'
 import React from 'react'
 

@@ -1,9 +1,9 @@
 {
-  "name": "@bible-strong/resource-studio",
+  "name": "@empreinte/resource-studio",
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "description": "Editorial studio for acquiring, transforming, validating, and packaging Bible Strong resources.",
+  "description": "Editorial studio for acquiring, transforming, validating, and packaging Empreinte resources.",
   "scripts": {
     "dev": "tsx src/index.ts",
     "commentaries:export": "node workflows/commentaries/scripts/export-firestore.mjs",
@@ -129,9 +129,9 @@
     "strong:audit:snapshot": "NODE_OPTIONS=\"--disable-warning=ExperimentalWarning $NODE_OPTIONS\" tsx src/strongAuditWorkflow.ts snapshot",
     "strong:audit:verify": "NODE_OPTIONS=\"--disable-warning=ExperimentalWarning $NODE_OPTIONS\" tsx src/strongAuditWorkflow.ts verify",
     "strong:audit:residuals": "NODE_OPTIONS=\"--disable-warning=ExperimentalWarning $NODE_OPTIONS\" tsx src/strongAuditWorkflow.ts residuals",
-    "strong:goal:status": "tsx src/multiBibleStrongGoal.ts status",
-    "strong:goal:merge-decisions": "tsx src/multiBibleStrongGoal.ts merge-decisions",
-    "strong:goal:report": "tsx src/multiBibleStrongGoal.ts report",
+    "strong:goal:status": "tsx src/multiStrongBibleGoal.ts status",
+    "strong:goal:merge-decisions": "tsx src/multiStrongBibleGoal.ts merge-decisions",
+    "strong:goal:report": "tsx src/multiStrongBibleGoal.ts report",
     "compare:s21:concordance": "tsx src/compareS21Concordance.ts",
     "viewer": "yarn viewer:build && tsx src/viewerServer.ts",
     "viewer:server": "tsx src/viewerServer.ts",
@@ -264,7 +264,7 @@
     "typescript-eslint": "^8.33.1"
   },
   "dependencies": {
-    "@bible-strong/resource-domain": "workspace:*",
+    "@empreinte/resource-domain": "workspace:*",
     "@radix-ui/react-dialog": "^1.1.17",
     "@radix-ui/react-label": "^2.1.10",
     "@radix-ui/react-progress": "^1.1.10",
