@@ -24,7 +24,8 @@ import { TabContextProvider } from './context/TabContext'
 import { useResponsiveWorkspace, WORKSPACE_SIDEBAR_WIDTH } from './utils/useResponsiveWorkspace'
 import { getWorkspacePageForPath, workspacePagePath } from './workspaceRoutes'
 
-const PAGES_EN_PANNEAU = ['/pericope']
+// Pages de lecture : Sommaire (péricopes) et journée de plan, comme le lecteur Bible.
+const PAGES_EN_PANNEAU = ['/pericope', '/plan', '/plan-slice']
 
 export default function WorkspaceLayout({
   children,
@@ -86,7 +87,7 @@ export default function WorkspaceLayout({
   const isWorkspace = pathname === '/'
   // Empreinte : les pages de lecture reposent dans un panneau arrondi, comme la Bible ;
   // les autres pages restent sur le fond uniforme, avec leurs propres éléments arrondis.
-  const enPanneau = isWide && PAGES_EN_PANNEAU.some(page => pathname.startsWith(page))
+  const enPanneau = isWide && PAGES_EN_PANNEAU.includes(pathname)
   const visitPage = (page: 'home' | 'settings') => {
     setOverlayOpen(false)
     if (pathname !== workspacePagePath[page])
