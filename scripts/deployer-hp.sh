@@ -48,7 +48,7 @@ case "$MODE" in
     cd apps/expo
     rm -rf "$DEST"
     echo "Compilation de la version web…"
-    CI=1 EXPO_NO_TELEMETRY=1 NODE_ENV=production corepack yarn expo export --platform web --output-dir "$DEST"
+    CI=1 EXPO_NO_TELEMETRY=1 NODE_ENV=production EXPO_UNSTABLE_METRO_OPTIMIZE_GRAPH=1 EXPO_UNSTABLE_TREE_SHAKING=1 corepack yarn expo export --platform web --output-dir "$DEST"
     ;;
   *)
     echo "Usage : $0 [github | archive <empreinte-web.tar.gz> | source]"; exit 1 ;;

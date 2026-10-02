@@ -9,8 +9,10 @@
 //   node scripts/servir-empreinte.mjs <dossier-web> [port]
 //   ex. : node scripts/servir-empreinte.mjs ~/empreinte-web 8080
 import { createServer } from 'node:http'
-import { createReadStream, statSync, watchFile } from 'node:fs'
-import { readFile } from 'node:fs/promises'
+import { createReadStream, createWriteStream, statSync, watchFile } from 'node:fs'
+import { readFile, readdir, rename, unlink } from 'node:fs/promises'
+import { pipeline } from 'node:stream/promises'
+import { constants, createBrotliCompress, createGzip } from 'node:zlib'
 import { dirname, extname, join, normalize, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { Readable } from 'node:stream'
@@ -26,6 +28,10 @@ const YOUVERSION = 'https://api.youversion.com'
 const CLE_YOUVERSION = process.env.YOUVERSION_KEY ?? ''
 // Annonce le relais à l'app (lu dans resourceAccess.web.tsx).
 const ANNONCE = '<script>window.__EMPREINTE_RELAIS__=location.origin</script>'
+// Écran d'attente, visible dès les premiers octets, remplacé par l'app quand elle démarre.
+const ATTENTE = `<div id="empreinte-attente" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#f4f4f2;font:600 15px system-ui,sans-serif;color:#111113;z-index:0">
+<svg width="44" height="44" viewBox="0 0 32 32" fill="none" stroke="#111113" stroke-width="2" stroke-linecap="round" style="animation:empreinte-souffle 1.6s ease-in-out infinite alternate"><path d="M8 25c-2-2.6-3-5.6-3-9a11 11 0 0 1 22 0"/><path d="M12 27c-1.6-2.4-2.6-5.6-2.6-9.6a6.6 6.6 0 0 1 13.2 0c0 3-.5 5.6-1.6 8"/><path d="M16 28c-1-2.6-1.8-6.2-1.8-10.6a1.8 1.8 0 0 1 3.6 0c0 3.4-.2 6-.8 8.6"/></svg>
+Empreinte<style>@keyframes empreinte-souffle{from{opacity:.35;transform:scale(.94)}to{opacity:1;transform:scale(1)}}@media (prefers-color-scheme:dark){#empreinte-attente{background:#111113!important;color:#f4f4f2!important}#empreinte-attente svg{stroke:#f4f4f2}}</style></div>`
 const SANS = new Set(['host', 'origin', 'referer', 'connection', 'content-length', 'accept-encoding'])
 
 const relayer = async (req, res, cible = API + req.url, entetes = {}) => {
@@ -81,11 +87,104 @@ const fichier = chemin => {
   }
 }
 
-const envoyer = (res, chemin, cache) => {
-  res.writeHead(200, {
+// Compression : l'app web pèse plusieurs dizaines de Mo non compressée ; compressée (Brotli),
+// elle descend à quelques Mo. Chaque fichier reçoit une fois pour toutes sa copie « .br »,
+// préparée en arrière-plan ; en attendant, il part compressé à la volée (gzip).
+const COMPRESSIBLES = new Set(['.html', '.js', '.css', '.json', '.txt', '.svg', '.ttf', '.otf', '.wasm', '.map'])
+const enPreparation = new Set()
+// Une copie « .br » plus ancienne que son fichier (mise à jour) n'est jamais servie.
+const brotliAJour = chemin => {
+  try {
+    return statSync(`${chemin}.br`).mtimeMs >= statSync(chemin).mtimeMs
+  } catch {
+    return false
+  }
+}
+const preparerBrotli = async chemin => {
+  // Seulement dans l'export de l'app : le dossier du site appartient au dépôt git.
+  if (!chemin.startsWith(racine) || enPreparation.has(chemin) || brotliAJour(chemin)) return
+  enPreparation.add(chemin)
+  const provisoire = `${chemin}.br.${process.pid}`
+  try {
+    await pipeline(
+      createReadStream(chemin),
+      createBrotliCompress({
+        params: {
+          [constants.BROTLI_PARAM_QUALITY]: 9,
+          [constants.BROTLI_PARAM_SIZE_HINT]: statSync(chemin).size,
+        },
+      }),
+      createWriteStream(provisoire)
+    )
+    await rename(provisoire, `${chemin}.br`)
+  } catch {
+    await unlink(provisoire).catch(() => {})
+  } finally {
+    enPreparation.delete(chemin)
+  }
+}
+// Au démarrage, prépare tout l'export de l'app, un fichier après l'autre (sans bloquer le serveur).
+const preparerDossier = async dossier => {
+  for (const entree of await readdir(dossier, { withFileTypes: true }).catch(() => [])) {
+    const chemin = join(dossier, entree.name)
+    if (entree.isDirectory()) await preparerDossier(chemin)
+    else if (COMPRESSIBLES.has(extname(chemin)) && statSync(chemin).size > 1024) await preparerBrotli(chemin)
+  }
+}
+
+// Le site précharge l'app pendant la lecture : « Ouvrir l'app » démarre alors presque aussitôt.
+let memoireScripts = { date: 0, scripts: [] }
+const scriptsApp = async () => {
+  try {
+    const date = statSync(join(racine, 'index.html')).mtimeMs
+    if (date !== memoireScripts.date) {
+      const html = await readFile(join(racine, 'index.html'), 'utf8')
+      memoireScripts = {
+        date,
+        scripts: [...html.matchAll(/<script src="(\/app\/_expo\/[^"]+\.js)"/g)].map(([, src]) => src),
+      }
+    }
+  } catch {
+    memoireScripts = { date: 0, scripts: [] }
+  }
+  return memoireScripts.scripts
+}
+
+const envoyer = (req, res, chemin, cache, statut = 200, transformer) => {
+  const entetes = {
     'Content-Type': TYPES[extname(chemin)] ?? 'application/octet-stream',
     'Cache-Control': cache ? 'public, max-age=31536000, immutable' : 'no-cache',
-  })
+    Vary: 'Accept-Encoding',
+  }
+  const accepte = String(req.headers['accept-encoding'] ?? '')
+  const compressible = COMPRESSIBLES.has(extname(chemin))
+  if (transformer) {
+    // Page modifiée à la volée (index.html de l'app) : petite, compressée directement.
+    return void readFile(chemin, 'utf8').then(
+      texte => {
+        const corps = Buffer.from(transformer(texte))
+        if (/\bgzip\b/.test(accepte)) {
+          res.writeHead(statut, { ...entetes, 'Content-Encoding': 'gzip' })
+          const gz = createGzip()
+          gz.pipe(res)
+          gz.end(corps)
+        } else res.writeHead(statut, entetes).end(corps)
+      },
+      () => res.writeHead(503, { 'Content-Type': TYPES['.txt'] }).end("L'app web n'est pas encore installée.")
+    )
+  }
+  if (compressible && /\bbr\b/.test(accepte) && brotliAJour(chemin)) {
+    res.writeHead(statut, { ...entetes, 'Content-Encoding': 'br' })
+    return void createReadStream(`${chemin}.br`).pipe(res)
+  }
+  if (compressible && statSync(chemin).size > 1024) {
+    void preparerBrotli(chemin)
+    if (/\bgzip\b/.test(accepte)) {
+      res.writeHead(statut, { ...entetes, 'Content-Encoding': 'gzip' })
+      return void pipeline(createReadStream(chemin), createGzip({ level: 6 }), res).catch(() => {})
+    }
+  }
+  res.writeHead(statut, entetes)
   createReadStream(chemin).pipe(res)
 }
 
@@ -112,26 +211,29 @@ createServer((req, res) => {
     if (!demande.startsWith(racine)) return void res.writeHead(403).end()
     const trouve = fichier(demande) ?? fichier(join(demande, 'index.html'))
     if (trouve && !trouve.endsWith('index.html'))
-      return void envoyer(res, trouve, url.startsWith('/app/_expo/'))
-    readFile(trouve ?? join(racine, 'index.html'), 'utf8').then(
-      html => {
-        res.writeHead(200, { 'Content-Type': TYPES['.html'], 'Cache-Control': 'no-cache' })
-        res.end(html.replace('<head>', `<head>${ANNONCE}`))
-      },
-      () => res.writeHead(503, { 'Content-Type': TYPES['.txt'] }).end("L'app web n'est pas encore installée.")
+      return void envoyer(req, res, trouve, url.startsWith('/app/_expo/') || url.startsWith('/app/assets/'))
+    return void envoyer(req, res, trouve ?? join(racine, 'index.html'), false, 200, html =>
+      html.replace('<head>', `<head>${ANNONCE}`).replace('<div id="root"></div>', `<div id="root">${ATTENTE}</div>`)
     )
-    return
   }
 
   // Le site de présentation.
   const demande = normalize(join(site, url))
   if (!demande.startsWith(site)) return void res.writeHead(403).end()
   const trouve = fichier(demande) ?? fichier(join(demande, 'index.html'))
-  if (trouve) return void envoyer(res, trouve, false)
+  if (trouve?.endsWith('.html'))
+    return void scriptsApp().then(scripts =>
+      envoyer(req, res, trouve, false, 200, html =>
+        html.replace(
+          '</head>',
+          `${scripts.map(src => `<link rel="prefetch" href="${src}" as="script">`).join('')}</head>`
+        )
+      )
+    )
+  if (trouve) return void envoyer(req, res, trouve, false)
   const introuvable = fichier(join(site, '404.html')) ?? fichier(join(site, 'index.html'))
   if (!introuvable) return void res.writeHead(404).end()
-  res.writeHead(404, { 'Content-Type': TYPES['.html'] })
-  createReadStream(introuvable).pipe(res)
+  envoyer(req, res, introuvable, false, 404)
 }).listen(port, '0.0.0.0', () => {
   // Mise à jour automatique : si ce script change (git pull), on s'arrête et systemd
   // relance aussitôt la nouvelle version (Restart=always).
@@ -139,6 +241,7 @@ createServer((req, res) => {
     console.log('Serveur mis à jour : redémarrage.')
     process.exit(0)
   })
+  void preparerDossier(racine)
   console.log(
     `Empreinte sur http://0.0.0.0:${port} : site ${site}, app ${racine} (sous /app), API relayée : ${API}`
   )
