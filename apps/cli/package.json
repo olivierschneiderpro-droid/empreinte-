@@ -6,5 +6,5 @@
     "@empreinte/core": "*",
     "qrcode": "^1.5.4"
   },
-  "license": "GPL-3.0-or-later"
+  "license": "UNLICENSED"
 }

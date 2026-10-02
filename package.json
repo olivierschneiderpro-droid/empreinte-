@@ -4,7 +4,7 @@
   "private": true,
   "description": "Empreinte — relier la réalité physique et sa représentation numérique, sans que l'une remplace l'autre.",
   "type": "module",
-  "license": "GPL-3.0-or-later",
+  "license": "UNLICENSED",
   "workspaces": [
     "packages/*",
     "apps/*"

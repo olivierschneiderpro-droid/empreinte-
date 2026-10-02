@@ -9,6 +9,8 @@ import { FeatherIcon } from '~common/ui/Icon'
 import Text from '~common/ui/Text'
 import { useBottomBarHeightInTab } from '~features/app-switcher/context/TabContext'
 import { HEADER_HEIGHT } from '~features/app-switcher/utils/constants'
+import { POLICES, police, styleVerre, useVerre } from '~features/empreinte/lumiere'
+import { Icone } from '~features/empreinte/icones'
 export interface AudioContainerProps {
   children: React.ReactNode
   onReduce: () => void
@@ -49,13 +51,15 @@ const AudioContainer = ({ children, onReduce, audioMode, onChangeMode }: AudioCo
   const { bottomBarHeight } = useBottomBarHeightInTab()
   const isFullScreenBible = useAtomValue(isFullScreenBibleAtom)
   const isBibleOverlayOpen = useAtomValue(isBibleOverlayOpenAtom)
+  const verre = useVerre()
 
   if (isBibleOverlayOpen) return null
 
   return (
     <AnimatedBox
-      className="overflow-hidden border-continuous h-auto bg-reverse border-border border-[1px] px-[20px] pb-[20px] left-[20px] right-[20px] absolute rounded-[30px]"
+      className="overflow-hidden border-continuous h-auto px-[20px] pb-[20px] left-[16px] right-[16px] absolute"
       style={[
+        styleVerre(verre, 28),
         { bottom: 20 + bottomBarHeight },
         {
           transform: [{ translateY: isFullScreenBible ? HEADER_HEIGHT : 0 }],
@@ -95,7 +99,20 @@ const AudioContainer = ({ children, onReduce, audioMode, onChangeMode }: AudioCo
           Audibible
         </Chip>
       </HStack>
-      <Box className="overflow-hidden border-continuous items-center justify-center mb-[10px]">
+      <HStack className="absolute top-[12px] left-[20px] items-center gap-[6px]">
+        <Icone nom="headph" taille={14} />
+        <Text
+          style={{
+            fontFamily: police(POLICES.mono),
+            fontSize: 10.5,
+            letterSpacing: 1.2,
+            textTransform: 'uppercase',
+          }}
+        >
+          Bible audio
+        </Text>
+      </HStack>
+      <Box className="overflow-hidden border-continuous items-center justify-center mb-[10px] mt-[4px]">
         <TouchableBox
           className="overflow-hidden border-continuous p-[5px]"
           onPress={onReduce}

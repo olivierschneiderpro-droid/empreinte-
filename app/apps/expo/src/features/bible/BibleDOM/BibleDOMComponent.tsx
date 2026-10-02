@@ -267,11 +267,11 @@ const Container = styled('div')<
   ...(!isParallelVerse
     ? {
         '@media (max-width: 767px)': {
-          width: 'calc(100% - 24px)',
+          width: 'calc(100% - 16px)',
           marginTop: `${headerHeight + 6}px`,
-          paddingTop: '20px',
-          paddingLeft: '20px',
-          paddingRight: '20px',
+          paddingTop: '18px',
+          paddingLeft: '16px',
+          paddingRight: '16px',
           borderRadius: '28px',
           border: '1px solid rgba(255,255,255,.9)',
           boxShadow: '0 8px 24px rgba(17,17,19,.06)',
