@@ -2,7 +2,7 @@
 # Installe Empreinte (version web) sur le serveur HP (Linux, Node 20+), avec les mises à jour
 # automatiques : à lancer une seule fois, ensuite tout se met à jour tout seul.
 #
-#   ./scripts/deployer-hp.sh           version compilée par GitHub (recommandé)
+#   ./scripts/deployer-hp.sh           dernière version (dépôt ou GitHub) + mises à jour auto
 #   ./scripts/deployer-hp.sh archive   version livrée dans le dépôt (deploiement/)
 #   ./scripts/deployer-hp.sh source    compilation sur le serveur (long)
 #
@@ -10,7 +10,7 @@
 # Avec sudo et systemd, deux services sont installés :
 #   - « empreinte »          : le serveur web, relancé seul au redémarrage du HP ;
 #   - « empreinte-maj.timer » : toutes les 30 secondes, récupère la dernière version
-#                               publiée sur GitHub (scripts/mise-a-jour-hp.sh).
+#                               (dépôt ou GitHub, scripts/mise-a-jour-hp.sh).
 set -euo pipefail
 
 MODE=${1:-github}
@@ -30,12 +30,10 @@ installer_archive() {
 
 case "$MODE" in
   github)
-    # Dernière version compilée par GitHub ; à défaut, celle livrée dans le dépôt.
-    rm -f "$DEST/.version"
-    if ! bash "$ICI/scripts/mise-a-jour-hp.sh" || [ ! -f "$DEST/.version" ]; then
-      echo "Pas encore de version publiée sur GitHub : installation de celle du dépôt."
-      installer_archive "$ICI/deploiement/empreinte-web.tar.gz"
-    fi
+    # Repart de zéro : installe l'archive du dépôt, puis la version GitHub si elle existe.
+    rm -rf "$HOME/.empreinte-maj"
+    bash "$ICI/scripts/mise-a-jour-hp.sh"
+    [ -f "$DEST/index.html" ] || installer_archive "$ICI/deploiement/empreinte-web.tar.gz"
     ;;
   archive)
     ARCHIVE=${2:-$ICI/deploiement/empreinte-web.tar.gz}
