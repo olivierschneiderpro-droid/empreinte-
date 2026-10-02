@@ -1,11 +1,11 @@
 import { Image } from 'expo-image'
 import { useRouter } from 'expo-router'
-import { useEffect } from 'react'
-import { ActivityIndicator, ScrollView } from 'react-native'
+import { useEffect, useState } from 'react'
+import { ActivityIndicator, ScrollView, useWindowDimensions } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import Link from '~common/Link'
-import type { OnlinePlan } from '~common/types'
+import type { OnlinePlan, Section } from '~common/types'
 import Box from '~common/ui/Box'
 import Button from '~common/ui/Button'
 import Text from '~common/ui/Text'
@@ -18,6 +18,11 @@ import { useFireStorage } from './plan.hooks'
 import { getEditorialKind } from './readingCalendar'
 import { hasPlanParticipation, getPlanResumeDay } from './planProgress'
 import { filterReadingPlans, type ReadingPlanFilters } from './readingPlanFilters'
+import { chargerCatalogueLocal } from './catalogueLocal'
+import { DOMAINES, FORMATS, domaineDuPlan, formatsDuPlan, type FormatPlan } from './domainesPlans'
+import { Icone } from '~features/empreinte/icones'
+import { useTheme } from '~themes/ThemeProvider'
+import { POLICES, police, styleVerre, useVerre } from '~features/empreinte/lumiere'
 
 const ReadingPlanCard = ({ plan, active }: { plan: OnlinePlan; active: boolean }) => {
   const { t } = useTranslation()
@@ -103,6 +108,72 @@ const ReadingPlanCard = ({ plan, active }: { plan: OnlinePlan; active: boolean }
   )
 }
 
+/** Empreinte : carte illustrée d'un plan (couverture, durée, formats). */
+const CartePlan = ({
+  plan,
+  formats,
+  largeur,
+}: {
+  plan: OnlinePlan
+  formats: FormatPlan[]
+  largeur: number
+}) => {
+  const { t, i18n } = useTranslation()
+  const router = useRouter()
+  const image = useFireStorage(plan.image)
+  const verre = useVerre()
+  const en = i18n.language.startsWith('en')
+  return (
+    <Link
+      onPress={() => router.push({ pathname: '/plan', params: { planId: plan.id } })}
+      accessibilityLabel={plan.title}
+      style={{ width: largeur }}
+    >
+      <Box style={[styleVerre(verre, 22), { overflow: 'hidden' }]}>
+        <Box style={{ width: '100%', aspectRatio: 16 / 9 }} className="bg-light-grey">
+          {image ? (
+            <Image
+              source={{ uri: image }}
+              contentFit="cover"
+              style={{ width: '100%', height: '100%' }}
+            />
+          ) : (
+            <Box className="flex-1 items-center justify-center">
+              <Icone nom="book" taille={28} />
+            </Box>
+          )}
+        </Box>
+        <Box className="p-[14px] gap-[6px]">
+          <Text numberOfLines={2} style={{ fontFamily: police(POLICES.titre), fontSize: 15 }}>
+            {plan.title}
+          </Text>
+          <Text className="text-grey text-[12.5px]">
+            {plan.duration
+              ? t('readingPlans.duration', { count: plan.duration })
+              : t('readingPlans.journey')}
+          </Text>
+          {!!formats.length && (
+            <Box className="flex-row flex-wrap gap-[6px] mt-[2px]">
+              {FORMATS.filter(format => formats.includes(format.id)).map(format => (
+                <Box
+                  key={format.id}
+                  className="flex-row items-center gap-[4px] px-[8px] h-[24px] rounded-[12px]"
+                  style={{ backgroundColor: verre.doux }}
+                >
+                  <Icone nom={format.icone} taille={12} />
+                  <Text style={{ fontSize: 11.5, fontFamily: police(POLICES.moyen) }}>
+                    {en ? format.en : format.fr}
+                  </Text>
+                </Box>
+              ))}
+            </Box>
+          )}
+        </Box>
+      </Box>
+    </Link>
+  )
+}
+
 const ReadingPlansScreen = ({ filters }: { filters: ReadingPlanFilters }) => {
   const { t } = useTranslation()
   const dispatch = useDispatch<AppDispatch>()
@@ -120,8 +191,23 @@ const ReadingPlansScreen = ({ filters }: { filters: ReadingPlanFilters }) => {
   useEffect(() => {
     dispatch(fetchPlans())
   }, [dispatch])
+  const { i18n } = useTranslation()
+  const en = i18n.language.startsWith('en')
+  const [format, setFormat] = useState<FormatPlan | null>(null)
+  const [sectionsLocales, setSectionsLocales] = useState<Record<string, Section[]>>({})
+  useEffect(() => {
+    void chargerCatalogueLocal().then(catalogue => setSectionsLocales(catalogue.sections))
+  }, [])
+  const formatsDe = (plan: OnlinePlan) =>
+    formatsDuPlan(local.find(item => item.id === plan.id)?.sections ?? sectionsLocales[plan.id])
+  const { width } = useWindowDimensions()
+  const largeurCarte = width >= 1100 ? 260 : width >= 700 ? 230 : 220
+  const verre = useVerre()
+  const theme = useTheme()
   return (
-    <ScrollView contentContainerStyle={[pageContentStyle, { padding: 24, paddingBottom: 48 }]}>
+    <ScrollView
+      contentContainerStyle={[pageContentStyle, { maxWidth: 1180, padding: 24, paddingBottom: 48 }]}
+    >
       {!!active.length && (
         <Text className="text-default font-bold text-[18px] mb-[16px]">
           {t('readingPlans.yours')}
@@ -149,17 +235,70 @@ const ReadingPlansScreen = ({ filters }: { filters: ReadingPlanFilters }) => {
           {t(plans.length ? 'readingPlans.noMatchingPlans' : 'readingPlans.noAvailablePlans')}
         </Text>
       )}
-      {(['fr', 'en'] as const).map(language => {
-        const entries = discoverable.filter(plan => plan.lang === language)
+      {/* Empreinte : formats (les étapes restent séparées, tout peut se combiner). */}
+      {!!discoverable.length && (
+        <Box className="flex-row flex-wrap gap-[8px] mb-[22px]">
+          {[null, ...FORMATS.map(item => item.id)].map(id => {
+            const libelle = id
+              ? en
+                ? FORMATS.find(item => item.id === id)!.en
+                : FORMATS.find(item => item.id === id)!.fr
+              : en
+                ? 'All'
+                : 'Tout'
+            const actif = format === id
+            return (
+              <Link key={id ?? 'tout'} onPress={() => setFormat(id)} accessibilityLabel={libelle}>
+                <Box
+                  className="px-[14px] h-[34px] rounded-[17px] justify-center"
+                  style={
+                    actif ? { backgroundColor: theme.colors.default } : styleVerre(verre, 17, false)
+                  }
+                >
+                  <Text
+                    style={{
+                      fontFamily: police(POLICES.titre),
+                      fontSize: 13,
+                      color: actif ? theme.colors.reverse : theme.colors.default,
+                    }}
+                  >
+                    {libelle}
+                  </Text>
+                </Box>
+              </Link>
+            )
+          })}
+        </Box>
+      )}
+      {DOMAINES.map(domaine => {
+        const entries = discoverable.filter(
+          plan =>
+            domaineDuPlan(plan) === domaine.id && (!format || formatsDe(plan).includes(format))
+        )
         if (!entries.length) return null
         return (
-          <Box key={language} className="mb-[20px]">
-            <Text accessibilityRole="header" className="text-grey font-bold text-[14px] mb-[12px]">
-              {t(language === 'fr' ? 'Français' : 'Anglais')}
+          <Box key={domaine.id} className="mb-[28px]">
+            <Text
+              accessibilityRole="header"
+              className="mb-[12px]"
+              style={{ fontFamily: police(POLICES.gras), fontSize: 19, letterSpacing: -0.3 }}
+            >
+              {en ? domaine.en : domaine.fr}
             </Text>
-            {entries.map(plan => (
-              <ReadingPlanCard key={plan.id} plan={plan} active={isActive(plan.id)} />
-            ))}
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              contentContainerStyle={{ gap: 14, paddingBottom: 6 }}
+            >
+              {entries.map(plan => (
+                <CartePlan
+                  key={plan.id}
+                  plan={plan}
+                  formats={formatsDe(plan)}
+                  largeur={largeurCarte}
+                />
+              ))}
+            </ScrollView>
           </Box>
         )
       })}

@@ -38,6 +38,7 @@ import ParamsModal from './ParamsModal'
 import ReadButton from './ReadButton'
 import ReferenceParagraph from './ReferenceParagraph'
 import Slice from './Slice'
+import { EnteteEtape, ResumeEtapes, etapesNumerotees } from './Etapes'
 import { chapterSliceToText, verseSliceToText, videoSliceToText } from './share'
 import { type SheetRef } from '~common/sheet'
 import { useLocalSearchParams, useRouter } from 'expo-router'
@@ -335,8 +336,13 @@ const PlanSliceScreen = ({
             </ReferenceParagraph>
           </Box>
         )}
-        {slices?.map(slice => (
-          <Slice key={slice.id} {...slice} planLanguage={planLanguage} />
+        {/* Empreinte : le parcours du jour, étape par étape (lire, écouter, regarder, méditer). */}
+        <ResumeEtapes slices={slices ?? []} />
+        {etapesNumerotees(slices ?? []).map(({ slice, numero }) => (
+          <Box key={slice.id}>
+            {numero ? <EnteteEtape numero={numero} type={slice.type} /> : null}
+            <Slice {...slice} planLanguage={planLanguage} />
+          </Box>
         ))}
         <Box className="overflow-hidden border-continuous h-[80px] items-center justify-center mt-[30px]">
           {canRecordProgress && (

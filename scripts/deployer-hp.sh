@@ -65,6 +65,8 @@ After=network.target
 
 [Service]
 User=$UTILISATEUR
+# Clés des services (YOUVERSION_KEY=…), gardées hors du dépôt public.
+EnvironmentFile=-$HOME/.empreinte-cles
 ExecStart=$(command -v node) $SERVEUR $DEST $PORT
 Restart=always
 RestartSec=1
