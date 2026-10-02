@@ -3,10 +3,12 @@ import { useRouter } from 'expo-router'
 import { produce } from 'immer'
 import { getDefaultStore } from 'jotai/vanilla'
 import books from '~assets/bible_versions/books-desc'
-import { activeTabIndexAtom, tabsAtomsAtom, type BibleTab } from '~state/tabs'
+import { activeTabIndexAtom, tabsAtomsAtom, type BibleTab, type VersionCode } from '~state/tabs'
+import { versions } from '~helpers/bibleVersions'
+import { selectBibleTabVersion } from '~helpers/bibleTabVersionSelection'
 import { useWorkspaceRoutePanel } from '~navigation/useWorkspaceRoutePanel'
 
-export type PassageBible = { book: number; chapter: number; verse?: number }
+export type PassageBible = { book: number; chapter: number; verse?: number; version?: string }
 
 /** Lit une référence « v=livre-chapitre-versets » (liens des ressources d'étude). */
 export const passageDepuisLien = (valeur: string): PassageBible | undefined => {
@@ -28,7 +30,7 @@ export const useOuvrirDansLaBible = () => {
   const { showsStudy } = useWorkspaceRoutePanel()
 
   return useCallback(
-    ({ book, chapter, verse = 1 }: PassageBible) => {
+    ({ book, chapter, verse = 1, version }: PassageBible) => {
       const store = getDefaultStore()
       const onglets = store.get(tabsAtomsAtom)
       const actif = store.get(activeTabIndexAtom)
@@ -48,6 +50,11 @@ export const useOuvrirDansLaBible = () => {
         onglets[index],
         produce(brouillon => {
           if (brouillon.type !== 'bible') return
+          if (version && version in versions)
+            (brouillon as BibleTab).data = selectBibleTabVersion(
+              (brouillon as BibleTab).data,
+              version as VersionCode
+            )
           const donnees = (brouillon as BibleTab).data
           donnees.selectedBook = livre
           donnees.selectedChapter = chapter

@@ -8,6 +8,11 @@ const mockPushRoute = jest.fn()
 jest.mock('react-redux', () => ({ useSelector: () => mockBookmark }))
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }))
 jest.mock('~navigation/usePushRouteOnce', () => ({ usePushRouteOnce: () => mockPushRoute }))
+jest.mock('react-native', () => ({ Platform: { OS: 'ios' } }))
+jest.mock('expo-router', () => ({ useRouter: () => ({ navigate: jest.fn() }) }))
+jest.mock('~features/empreinte/ouvrirDansLaBible', () => ({
+  useOuvrirDansLaBible: () => jest.fn(),
+}))
 jest.mock('~common/Link', () => {
   const ReactModule = jest.requireActual<typeof React>('react')
   return {

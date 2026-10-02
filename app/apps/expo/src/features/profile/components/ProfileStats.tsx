@@ -58,7 +58,7 @@ const ProfileStats = ({ desktop = false }: { desktop?: boolean }) => {
         )}
         <Box
           dataSet={desktop ? { 'home-stats-grid': '' } : undefined}
-          style={desktop ? { backgroundColor: theme.colors.border } : undefined}
+          style={undefined}
           className={desktop ? 'flex-row gap-[12px]' : 'gap-[10px]'}
         >
           <HStack

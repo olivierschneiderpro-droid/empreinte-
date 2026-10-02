@@ -86,21 +86,27 @@
   grid-template-columns: minmax(0, 1.75fr) minmax(300px, 1fr);
   align-items: start;
   gap: 20px;
-  grid-template-rows: auto 1fr;
 }
 
-.bs-home-grid > .bs-home-search {
-  grid-column: 2;
-  grid-row: 1;
+/* Empreinte : en-tête de l'accueil, la date à gauche, la recherche à droite. */
+.bs-home-entete {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px 32px;
 }
-
-.bs-home-grid > .bs-home-search > * {
+.bs-home-recherche {
+  flex: 0 1 560px;
+  min-width: 280px;
+}
+.bs-home-recherche > * {
   width: 100%;
 }
 
 .bs-home-main {
   grid-column: 1;
-  grid-row: 1 / 3;
+  grid-row: 1;
   container: home-main / inline-size;
   display: flex;
   flex-direction: column;
@@ -110,7 +116,7 @@
 
 .bs-home-aside {
   grid-column: 2;
-  grid-row: 2;
+  grid-row: 1;
   display: grid;
   gap: 20px;
   min-width: 0;
@@ -164,36 +170,33 @@
 .bs-home-main [data-home-stats-group] > *::after {
   content: '';
   position: absolute;
-  top: 0;
+  top: 16px;
   right: -1px;
-  bottom: 0;
+  bottom: 16px;
   width: 1px;
-  border-top: 14px solid var(--color-reverse);
-  border-bottom: 14px solid var(--color-reverse);
+  background: var(--color-border);
   pointer-events: none;
 }
 
 @container home (max-width: 999px) {
   .bs-home-grid {
     grid-template-columns: minmax(0, 1fr);
-    grid-template-rows: auto auto auto;
-  }
-  .bs-home-grid > .bs-home-search {
-    grid-column: 1;
-    grid-row: 1;
   }
   .bs-home-main {
     grid-column: 1;
-    grid-row: 2;
+    grid-row: 1;
   }
   .bs-home-aside {
     grid-column: 1;
-    grid-row: 3;
+    grid-row: 2;
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
 @container home (max-width: 759px) {
+  .bs-home-recherche {
+    flex-basis: 100%;
+  }
   .bs-home-content {
     padding: 20px 24px 24px;
   }
