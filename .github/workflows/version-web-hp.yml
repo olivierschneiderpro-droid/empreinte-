@@ -44,6 +44,8 @@ jobs:
           CI: '1'
           EXPO_NO_TELEMETRY: '1'
           NODE_ENV: production
+          EXPO_UNSTABLE_METRO_OPTIMIZE_GRAPH: '1'
+          EXPO_UNSTABLE_TREE_SHAKING: '1'
           NODE_OPTIONS: --max-old-space-size=6144
         run: yarn expo export --platform web --output-dir "$GITHUB_WORKSPACE/empreinte-web-hp"
 

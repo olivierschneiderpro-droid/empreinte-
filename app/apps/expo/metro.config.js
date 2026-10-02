@@ -56,6 +56,9 @@ config.transformer = {
   ...config.transformer,
   getTransformOptions: async () => ({
     transform: {
+      // Empreinte : l'élagage (EXPO_UNSTABLE_TREE_SHAKING) retire le code jamais importé
+      // (icônes, langues, etc.) ; il demande la prise en charge directe des import ES.
+      experimentalImportSupport: process.env.EXPO_UNSTABLE_TREE_SHAKING === '1',
       inlineRequires: true,
     },
   }),
