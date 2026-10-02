@@ -12,16 +12,19 @@ import {
   useWorkspaceRoutePanel,
   workspaceSidebarDockedAtom,
   workspaceSidebarHiddenAtom,
+  rouvrirBarreLateraleAtom,
 } from '~navigation/useWorkspaceRoutePanel'
 import Box, { HStack, TouchableBox } from '~common/ui/Box'
 import { FeatherIcon } from '~common/ui/Icon'
 import SharedBibleDOM from '~features/bible/SharedBibleDOM'
 import CachedTabScreens from './CachedTabScreens'
 import WorkspaceSidebar from './WorkspaceSidebar'
-import { Aurore, styleVerre, useVerre } from '~features/empreinte/lumiere'
+import { styleVerre, useVerre } from '~features/empreinte/lumiere'
 import { TabContextProvider } from './context/TabContext'
 import { useResponsiveWorkspace, WORKSPACE_SIDEBAR_WIDTH } from './utils/useResponsiveWorkspace'
 import { getWorkspacePageForPath, workspacePagePath } from './workspaceRoutes'
+
+const PAGES_EN_PANNEAU = ['/pericope']
 
 export default function WorkspaceLayout({
   children,
@@ -50,6 +53,14 @@ export default function WorkspaceLayout({
     if (Platform.OS === 'web') setSidebarDocked(panel.sidebarDocked)
   }, [panel.sidebarDocked, setSidebarDocked])
   const sidebarVisible = isWide && (overlayMode ? overlayOpen : !sidebarHidden)
+  const setRouvrir = useSetAtom(rouvrirBarreLateraleAtom)
+  useEffect(() => {
+    setRouvrir(
+      isWide && !sidebarVisible
+        ? { rouvrir: () => (overlayMode ? setOverlayOpen(true) : setSidebarHidden(false)) }
+        : null
+    )
+  }, [isWide, sidebarVisible, overlayMode, setRouvrir, setSidebarHidden])
   useEffect(() => {
     setOverlayOpen(false)
   }, [overlayMode, isWide, pathname])
@@ -58,7 +69,9 @@ export default function WorkspaceLayout({
     if (Platform.OS !== 'web') return
     document.documentElement.style.setProperty(
       '--workspace-restore-inset',
-      isWide && (overlayMode || sidebarHidden) ? '44px' : '0px'
+      // Empreinte : barre fermée, le bouton de réouverture est en haut à gauche des pages ;
+      // dans la Bible, il est intégré à l'en-tête, avant le bouton du livre.
+      isWide && !sidebarVisible && pathname !== '/' ? '52px' : '0px'
     )
     document.documentElement.style.setProperty(
       '--workspace-content-left',
@@ -68,9 +81,12 @@ export default function WorkspaceLayout({
       document.documentElement.style.removeProperty('--workspace-content-left')
       document.documentElement.style.removeProperty('--workspace-restore-inset')
     }
-  }, [isWide, overlayMode, sidebarHidden, sidebarVisible])
+  }, [isWide, overlayMode, sidebarHidden, sidebarVisible, pathname])
 
   const isWorkspace = pathname === '/'
+  // Empreinte : les pages de lecture reposent dans un panneau arrondi, comme la Bible ;
+  // les autres pages restent sur le fond uniforme, avec leurs propres éléments arrondis.
+  const enPanneau = isWide && PAGES_EN_PANNEAU.some(page => pathname.startsWith(page))
   const visitPage = (page: 'home' | 'settings') => {
     setOverlayOpen(false)
     if (pathname !== workspacePagePath[page])
@@ -90,7 +106,6 @@ export default function WorkspaceLayout({
       }
       style={{ display: mode === 'pending' ? 'none' : 'flex' }}
     >
-      {workspaceActive && <Aurore />}
       {workspaceActive && <GlobalCommandPalette />}
       {workspaceActive && (
         <WorkspaceKeyboardShortcuts
@@ -160,10 +175,12 @@ export default function WorkspaceLayout({
         />
       )}
       <Box testID="workspace-main-surface" className="flex-1 min-w-0">
-        {isWide && !sidebarVisible && (
-          <Box className="absolute left-0 top-0 z-20 bg-transparent">
+        {isWide && !sidebarVisible && !isWorkspace && (
+          // Empreinte : barre fermée, le bouton pour la rouvrir est en haut à gauche des pages.
+          <Box className="absolute left-[16px] top-[10px] z-20 bg-transparent">
             <TouchableBox
-              className="items-center justify-center w-[44px] h-[54px]"
+              className="items-center justify-center w-[44px] h-[44px]"
+              style={styleVerre(verre, 22)}
               onPress={() => (overlayMode ? setOverlayOpen(true) : setSidebarHidden(false))}
               accessibilityRole="button"
               accessibilityLabel={t('workspace.showSidebar')}
@@ -185,7 +202,7 @@ export default function WorkspaceLayout({
                   display: isWorkspace || showsStudy ? 'flex' : 'none',
                   top: 16,
                   bottom: 16,
-                  left: sidebarVisible && !overlayMode ? 16 : 52,
+                  left: 16,
                   right: (panel.open ? panel.reservedWidth : 0) + 16,
                 },
               ]}
@@ -204,18 +221,23 @@ export default function WorkspaceLayout({
                 : undefined
             }
             className="flex-1 overflow-hidden"
-            style={{
-              display: isWide && isWorkspace ? 'none' : 'flex',
-              ...(showsStudy
-                ? {
-                    position: 'absolute',
-                    top: 0,
-                    bottom: 0,
-                    right: 0,
-                    width: panel.reservedWidth,
-                  }
-                : undefined),
-            }}
+            style={[
+              enPanneau && !showsStudy ? styleVerre(verre, 28) : null,
+              {
+                display: isWide && isWorkspace ? 'none' : 'flex',
+                ...(showsStudy
+                  ? {
+                      position: 'absolute',
+                      top: 0,
+                      bottom: 0,
+                      right: 0,
+                      width: panel.reservedWidth,
+                    }
+                  : enPanneau
+                    ? { position: 'absolute', top: 16, bottom: 16, left: 16, right: 16 }
+                    : undefined),
+              },
+            ]}
           >
             {children}
           </Box>

@@ -124,9 +124,11 @@ const WorkspaceSidebar = ({
           <HStack className="overflow-hidden border-continuous items-center pl-[22px] pr-[10px] pt-[16px] pb-[8px]">
             <TouchableBox
               className="flex-1 flex-row items-center min-h-[40px]"
-              onPress={openHome}
-              accessibilityRole="button"
-              accessibilityLabel={`Empreinte — ${t('Accueil')}`}
+              // Empreinte : sur le web, le logo ramène au site de présentation (racine) ;
+              // le bouton Accueil reste l'accueil de l'app.
+              onPress={() => (Platform.OS === 'web' ? window.location.assign('/') : openHome())}
+              accessibilityRole="link"
+              accessibilityLabel="Empreinte — site de présentation"
             >
               <Marque taille={18} />
             </TouchableBox>

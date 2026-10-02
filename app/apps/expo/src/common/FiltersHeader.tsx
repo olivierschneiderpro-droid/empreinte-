@@ -12,6 +12,8 @@ import Text from '~common/ui/Text'
 import PageContent from '~common/ui/PageContent'
 import Back from './Back'
 import ContextualPanel from './ContextualPanel'
+import { Icone } from '~features/empreinte/icones'
+import { POLICES, police, styleVerre, useVerre } from '~features/empreinte/lumiere'
 import type { PanelScreen } from './ContextualPanel/types'
 export type FiltersHeaderItem = {
   key: string
@@ -49,6 +51,7 @@ export default function FiltersHeader({
 }) {
   const { t } = useTranslation()
   const theme = useTheme()
+  const verre = useVerre()
   const [searches, setSearches] = useState<Record<string, string>>({})
   const isWeb = Platform.OS === 'web'
   const activeCount = filters.filter(filter => filter.active).length
@@ -159,19 +162,30 @@ export default function FiltersHeader({
     />
   )
   if (buttonOnly) return filterButton
+  // Empreinte : barre sans fond ni filet (même verre que la page), retour rond collé à
+  // gauche, filtres collés à droite.
   return (
-    <Box className="bg-reverse border-b border-border" testID="workspace-page-header">
-      <PageContent className="min-h-[54px] items-center flex-row">
+    <Box testID="workspace-page-header">
+      <Box className="min-h-[64px] items-center flex-row px-[16px] gap-[12px]">
         {hasBackButton ? (
-          <Back padding>
-            <FeatherIcon name="arrow-left" size={20} />
+          <Back>
+            <Box
+              className="items-center justify-center"
+              style={[styleVerre(verre, 22), { width: 44, height: 44 }]}
+            >
+              <Icone nom="back" taille={20} />
+            </Box>
           </Back>
         ) : (
-          <Box className="w-[15px]" />
+          <Box className="w-[4px]" />
         )}
-        <Text className="flex-1 text-[14px] font-bold">{title}</Text>
-        {filterButton}
-      </PageContent>
+        <Text className="flex-1" style={{ fontFamily: police(POLICES.titre), fontSize: 17 }}>
+          {title}
+        </Text>
+        <Box className="justify-center" style={[styleVerre(verre, 22), { minHeight: 44 }]}>
+          {filterButton}
+        </Box>
+      </Box>
       {children && <PageContent>{children}</PageContent>}
     </Box>
   )

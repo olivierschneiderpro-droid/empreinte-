@@ -7,7 +7,8 @@ import { useTranslation } from 'react-i18next'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { isBibleOverlayOpenAtom, isFullScreenBibleAtom } from 'src/state/app'
 import Box, { AnimatedHStack, AnimatedTouchableBox, TouchableBox } from '~common/ui/Box'
-import { FeatherIcon } from '~common/ui/Icon'
+import { Icone } from '~features/empreinte/icones'
+import { styleVerre, useVerre } from '~features/empreinte/lumiere'
 import { useBottomBarHeightInTab } from '~features/app-switcher/context/TabContext'
 import { HEADER_HEIGHT } from '~features/app-switcher/utils/constants'
 import AudioButton from './AudioButton'
@@ -40,6 +41,7 @@ const BasicFooter = ({
   const insets = useSafeAreaInsets()
   const isFullScreenBible = useAtomValue(isFullScreenBibleAtom)
   const isBibleOverlayOpen = useAtomValue(isBibleOverlayOpenAtom)
+  const verre = useVerre()
 
   const fullScreenTranslateY = isFullScreenBible ? HEADER_HEIGHT + insets.bottom + 60 : 0
   const centerTranslateY = isFullScreenBible ? HEADER_HEIGHT : 0
@@ -50,16 +52,18 @@ const BasicFooter = ({
     <Box
       pointerEvents="box-none"
       className="absolute top-0 w-full h-full self-center"
-      style={{ maxWidth: isWide && !isParallel ? 710 : undefined }}
+      // Empreinte : les flèches vont aux bords du panneau, pas autour de la colonne de texte.
+      style={{ maxWidth: undefined }}
     >
       <AnimatedTouchableBox
-        className="border-continuous overflow-visible w-[40px] h-[40px] border-[2px] rounded-[20px] border-light-grey bg-reverse items-center justify-center absolute left-[10px]"
+        className="border-continuous overflow-visible w-[44px] h-[44px] items-center justify-center absolute left-[16px]"
         disabled={isDisabled || !onPrevChapter}
         onPress={onPrevChapter}
         accessibilityRole="button"
         accessibilityLabel={t('accessibility.previousChapter')}
         accessibilityState={{ disabled: isDisabled || !onPrevChapter }}
         style={[
+          styleVerre(verre, 22),
           { opacity: isDisabled || !onPrevChapter ? 0.6 : 1 },
           [
             {
@@ -74,7 +78,7 @@ const BasicFooter = ({
           ],
         ]}
       >
-        <FeatherIcon name="arrow-left" size={20} color="tertiary" />
+        <Icone nom="back" taille={20} />
       </AnimatedTouchableBox>
       <PlayableButtons
         onPlay={onPlay}
@@ -86,13 +90,14 @@ const BasicFooter = ({
         centerTranslateY={centerTranslateY}
       />
       <AnimatedTouchableBox
-        className="border-continuous overflow-visible w-[40px] h-[40px] items-center justify-center border-[2px] rounded-[20px] border-light-grey bg-reverse absolute right-[10px]"
+        className="border-continuous overflow-visible w-[44px] h-[44px] items-center justify-center absolute right-[16px]"
         disabled={isDisabled || !onNextChapter}
         onPress={onNextChapter}
         accessibilityRole="button"
         accessibilityLabel={t('accessibility.nextChapter')}
         accessibilityState={{ disabled: isDisabled || !onNextChapter }}
         style={[
+          styleVerre(verre, 22),
           { opacity: isDisabled || !onNextChapter ? 0.6 : 1 },
           [
             {
@@ -107,7 +112,7 @@ const BasicFooter = ({
           ],
         ]}
       >
-        <FeatherIcon name="arrow-right" size={20} color="tertiary" />
+        <Icone nom="fwd" taille={20} />
       </AnimatedTouchableBox>
     </Box>
   )

@@ -1,6 +1,13 @@
 import React from 'react'
 import { act, create } from 'react-test-renderer'
 import BasicFooter from '../BasicFooter'
+jest.mock('~features/empreinte/icones', () => ({ Icone: () => null }))
+jest.mock('~features/empreinte/lumiere', () => ({
+  POLICES: { titre: 'Geist SemiBold' },
+  police: (nom: string) => nom,
+  styleVerre: () => ({}),
+  useVerre: () => ({}),
+}))
 jest.mock('~themes/ThemeProvider', () => ({
   useTheme: () => jest.requireActual('../../../../../test/themeFixture').themeFixture,
 }))

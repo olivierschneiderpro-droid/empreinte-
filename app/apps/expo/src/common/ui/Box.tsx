@@ -63,7 +63,13 @@ export const SafeAreaBox = ({
           : { marginTop: insets.top, marginBottom: insets.bottom },
         style,
       ]}
-      className={twMerge('flex-1 bg-reverse overflow-hidden border-continuous', className)}
+      // Empreinte : sur le web, les pages laissent voir le fond uniforme de l'espace de travail.
+      className={twMerge(
+        Platform.OS === 'web'
+          ? 'flex-1 bg-transparent overflow-hidden border-continuous'
+          : 'flex-1 bg-reverse overflow-hidden border-continuous',
+        className
+      )}
     />
   )
 }
