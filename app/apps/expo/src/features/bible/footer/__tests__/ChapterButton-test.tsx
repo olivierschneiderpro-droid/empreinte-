@@ -16,7 +16,7 @@ jest.mock('~common/ui/Box', () => {
   }
 })
 
-jest.mock('~common/ui/Icon', () => ({ IonIcon: () => null }))
+jest.mock('~features/empreinte/icones', () => ({ Icone: () => null }))
 
 jest.mock('react-i18next', () => ({
   useTranslation: () => ({ t: (key: string) => key }),

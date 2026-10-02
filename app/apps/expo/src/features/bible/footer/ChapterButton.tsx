@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTranslation } from 'react-i18next'
 import Box, { TouchableBox } from '~common/ui/Box'
-import { IonIcon } from '~common/ui/Icon'
+import { Icone } from '~features/empreinte/icones'
 export interface ChapterButtonProps {
   hasNextChapter: boolean
   disabled?: boolean
@@ -29,11 +29,7 @@ const ChapterButton = ({ direction, hasNextChapter, disabled, onPress }: Chapter
             accessibilityState={{ disabled }}
             style={[{ opacity: disabled ? 0.6 : 1 }, [{ opacity: disabled ? 0.6 : 1 }]]}
           >
-            <IonIcon
-              name={`play-skip-${direction === 'left' ? 'back' : 'forward'}`}
-              size={20}
-              color="tertiary"
-            />
+            <Icone nom={direction === 'left' ? 'back' : 'fwd'} taille={22} />
           </TouchableBox>
         </>
       )}

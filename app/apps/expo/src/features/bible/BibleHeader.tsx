@@ -3,7 +3,6 @@ import DisplayModeTrigger from './DisplayModeTrigger'
 import BibleSelectorTrigger from './BibleSelectorTrigger'
 import BibleBookmarkTrigger from '~features/bookmarks/BibleBookmarkTrigger'
 import BibleOptionsMenu from './BibleOptionsMenu'
-import { PAGE_CONTENT_MAX_WIDTH } from '~common/ui/PageContent'
 import { useEffect, useRef } from 'react'
 import { MenuView, type MenuAction } from '~common/ui/MenuView'
 import { useRouter } from 'expo-router'
@@ -419,7 +418,7 @@ const Header = ({
 
         <HStack
           className="border-continuous overflow-visible mx-auto items-center w-[100%]"
-          style={{ maxWidth: PAGE_CONTENT_MAX_WIDTH }}
+          style={{ maxWidth: '100%' }}
         >
           <Box className="w-[80px] h-[40px] justify-center items-start">
             {hasBackButton && (
@@ -475,7 +474,7 @@ const Header = ({
 
         <HStack
           className="overflow-hidden border-continuous mx-auto items-center w-[100%]"
-          style={{ maxWidth: PAGE_CONTENT_MAX_WIDTH }}
+          style={{ maxWidth: '100%' }}
         >
           {hasBackButton && (
             <Back
@@ -520,7 +519,7 @@ const Header = ({
 
       <HStack
         className="overflow-visible border-continuous mx-auto items-center w-[100%] px-[16px] gap-[8px]"
-        style={{ maxWidth: PAGE_CONTENT_MAX_WIDTH }}
+        style={{ maxWidth: '100%' }}
       >
         {hasBackButton ? (
           <Back
@@ -691,6 +690,28 @@ const Header = ({
                   </MenuView>
                 )}
 
+                {!isSmall && !isParallel && (
+                  <TouchableBox
+                    className="overflow-hidden border-continuous items-center justify-center"
+                    style={[styleVerre(verre, 22), { width: 44, height: 44, opacity: fullScreenOpacity }]}
+                    onPress={addParallelVersion}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('Affichage parallèle')}
+                  >
+                    <ParallelIcon color="default" />
+                  </TouchableBox>
+                )}
+                {!isSmall && (
+                  <TouchableBox
+                    className="overflow-hidden border-continuous items-center justify-center"
+                    style={[styleVerre(verre, 22), { width: 44, height: 44, opacity: fullScreenOpacity }]}
+                    onPress={onBibleParamsClick}
+                    accessibilityRole="button"
+                    accessibilityLabel={t('Police et paramêtres')}
+                  >
+                    <Text style={{ fontFamily: police(POLICES.titre), fontSize: 15 }}>Aa</Text>
+                  </TouchableBox>
+                )}
                 {strongModeButton}
                 {interlinearModeButton}
 
