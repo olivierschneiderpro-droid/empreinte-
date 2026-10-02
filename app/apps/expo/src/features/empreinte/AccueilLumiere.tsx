@@ -231,7 +231,7 @@ export function TeteAccueil({ compact = false }: { compact?: boolean }) {
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
             <LogoEmpreinte taille={22} />
             <Text style={{ fontFamily: police(POLICES.gras), fontSize: 18, letterSpacing: -0.36 }}>
-              empreinte
+              Empreinte
             </Text>
           </View>
           <Pressable
@@ -381,7 +381,7 @@ export function PileRealites({ bibleRef }: { bibleRef?: string }) {
   )
 }
 
-/** Verset du jour (Bible Strong) dans la carte de la maquette. */
+/** Verset du jour (Empreinte) dans la carte de la maquette. */
 export function CarteVerset({ large = false }: { large?: boolean }) {
   const theme = useTheme()
   const router = useRouter()
@@ -412,7 +412,7 @@ export function CarteVerset({ large = false }: { large?: boolean }) {
   )
 }
 
-/** Mission (registre Empreinte) et plan de lecture (Bible Strong), côte à côte. */
+/** Mission (registre Empreinte) et plan de lecture (Empreinte), côte à côte. */
 export function CartesMissionPlan() {
   const theme = useTheme()
   const router = useRouter()
@@ -483,7 +483,7 @@ export function CartesMissionPlan() {
   )
 }
 
-/** Accueil mobile de la maquette, posé au-dessus des contenus de Bible Strong. */
+/** Accueil mobile de la maquette, posé au-dessus des contenus d’Empreinte. */
 export default function AccueilLumiere() {
   return (
     <View style={{ paddingHorizontal: 20, paddingTop: 12, paddingBottom: 8, gap: 16 }}>

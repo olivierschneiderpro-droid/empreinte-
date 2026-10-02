@@ -1,1 +1,1 @@
-export * from '@bible-strong/resource-domain/strong-bible-concordance'
+export * from '@empreinte/resource-domain/strong-bible-concordance'

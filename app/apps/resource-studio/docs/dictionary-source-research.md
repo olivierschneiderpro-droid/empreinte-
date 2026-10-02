@@ -8,7 +8,7 @@ Related issue: [#327 — Rebuild dictionaries as multilingual multi-dictionary R
 
 The agreed initial catalog is now five independently identified resources:
 
-1. **Westphal (French)** — the current Bible Strong resource, retained with explicit identity and
+1. **Westphal (French)** — the current Empreinte resource, retained with explicit identity and
    provenance.
 2. **Easton + Webster 1828 (English)** — the current combined English database, retained as one
    honestly named resource because Easton supplies the biblical articles while Webster supplies
@@ -30,15 +30,15 @@ works. The 2026-08-30 candidate contains 5,436 Westphal entries, 8,620 Easton + 
 without automatically inferred verse anchors until a conservative, auditable linker is available;
 this avoids recreating the legacy short-token false positives described in issue #327.
 
-## Existing Bible Strong authorization
+## Existing Empreinte authorization
 
-The maintainer states that Thomas Mathey, creator of levangile.com, granted Bible Strong the rights
+The maintainer states that Thomas Mathey, creator of levangile.com, granted Empreinte the rights
 to use the site's Westphal, Bost, Calmet, and Lelièvre content. This private authorization changes
 the product decision even though the public terms visible on levangile.com and CrossWire are more
 restrictive.
 
 Before republishing the rebuilt work, retain evidence that the authorization covers the operations
-Bible Strong actually performs:
+Empreinte actually performs:
 
 - extraction and bulk ingestion;
 - correction, normalization, structured conversion, and derived indexes;
@@ -49,20 +49,20 @@ Bible Strong actually performs:
   material included in the source.
 
 The current Resource Studio metadata is too generic for that purpose. The French and English
-dictionary manifests name `Bible Strong editorial team` as holder and say only that source terms are
+dictionary manifests name `Empreinte editorial team` as holder and say only that source terms are
 recorded in provenance; they do not name Westphal, levangile.com, Thomas Mathey, or the grant.
 
 The public CrossWire Westphal module must not itself be treated as the permission document: its
 [module notice](https://www.crosswire.org/sword/modules/ModInfo.jsp?modName=FreDAW) limits public
-distribution to non-commercial use in SWORD format. Bible Strong should cite its separate private
+distribution to non-commercial use in SWORD format. Empreinte should cite its separate private
 authorization and pin the exact authorized source revision.
 
 ## Recommended French sources
 
 ### 1. Dictionnaire encyclopédique de la Bible — Alexandre Westphal
 
-- **Status for Bible Strong:** authorized by private agreement, according to the maintainer.
-- **Available source:** existing Bible Strong database and levangile.com source; a downloadable SWORD
+- **Status for Empreinte:** authorized by private agreement, according to the maintainer.
+- **Available source:** existing Empreinte database and levangile.com source; a downloadable SWORD
   module also exists but has a narrower public licence.
 - **Why keep it:** broad, familiar French coverage and already integrated in the product.
 - **Work required:** rebuild malformed formatting, recover structured articles and references, create
@@ -154,7 +154,7 @@ Strong's lexical surfaces.
   the structured TBESH and TBESG extended-Strong lexicons.
 - **Value:** deterministic TSV/text data, extended Strong identities, Hebrew BDB-derived summaries,
   and broad Greek coverage.
-- **Recommendation:** retain as the canonical lexical foundation already used by Bible Strong; do
+- **Recommendation:** retain as the canonical lexical foundation already used by Empreinte; do
   not present it as another French encyclopedic dictionary. Layer reviewed French glosses and
   definitions over the pinned STEP identities.
 
@@ -224,13 +224,13 @@ scan-rights, OCR-quality, and product-value audit before acquisition.
 - **Hastings Dictionary of the Bible:** rich and digitized by CCEL/NEUU, but the multi-author rights
   analysis and complex large-volume structure deserve a separate audit before publication.
 - **Torrey's New Topical Textbook and Nave:** topical indexes, not general dictionaries; Nave is
-  already part of the Bible Strong resource catalog.
+  already part of Empreinte resource catalog.
 
 ## Source-provider assessment
 
 ### levangile.com
 
-The site is a useful authorized source for Bible Strong because of the maintainer's private agreement.
+The site is a useful authorized source for Empreinte because of the maintainer's private agreement.
 Its public [legal notice](https://www.levangile.com/mentions.php) does not itself grant bulk reuse,
 so the private grant—not public website availability—must be the recorded rights basis.
 
@@ -242,7 +242,7 @@ automatically prove authority to sublicense every underlying work or third-party
 
 CrossWire is the best broad downloadable catalog: modules have explicit info pages, language,
 edition, distribution licence, and raw ZIP download links. SWORD is a good acquisition format, not
-the Bible Strong canonical format. Convert it in Resource Studio while preserving the module config,
+Empreinte canonical format. Convert it in Resource Studio while preserving the module config,
 exact ZIP checksum, entry markup, and licence notice in provenance.
 
 ### CCEL

@@ -2,7 +2,7 @@
 
 Date de recherche : 21 août 2026
 
-Portée : assistant Bible Strong entièrement en ligne, fondé sur des sources
+Portée : assistant Empreinte entièrement en ligne, fondé sur des sources
 
 Statut : recommandation technique et éditoriale, pas un avis juridique
 
@@ -10,13 +10,13 @@ Statut : recommandation technique et éditoriale, pas un avis juridique
 
 Le modèle peut utiliser sa connaissance interne pour comprendre une question, reformuler, classer une intention et rédiger. Il ne devrait pas l'utiliser comme source invisible pour une affirmation biblique, historique, lexicale ou doctrinale présentée comme vraie. OpenAI rappelle que les modèles produisent encore des affirmations plausibles mais fausses et recommande de favoriser l'abstention plutôt que la supposition ([OpenAI, « Why language models hallucinate »](https://openai.com/index/why-language-models-hallucinate/)).
 
-Pour Bible Strong, la règle produit recommandée est donc :
+Pour Empreinte, la règle produit recommandée est donc :
 
 > Le LLM apporte la langue et le raisonnement ; les corpus apportent les faits et les citations.
 
 Il existe un noyau ouvert et techniquement très exploitable : Bibles du domaine public, textes hébreu et grec, données STEPBible, ressources déjà normalisées par Bible Aquifer, notes unfoldingWord, renvois OpenBible, géographie OpenBible/Pleiades et Wikidata. En revanche, il n'existe pas de corpus unique, historiquement complet, multiconfessionnel et juridiquement simple que l'on puisse « brancher » tel quel.
 
-La langue source n'est pas une contrainte forte. Bible Strong peut rechercher dans le meilleur corpus anglais, grec ou hébreu, puis répondre en français. Il est préférable de traduire seulement les extraits effectivement récupérés plutôt que de prétraduire toute la bibliothèque. Le système doit néanmoins conserver l'extrait source, afficher sa provenance et évaluer séparément la fidélité de la traduction française.
+La langue source n'est pas une contrainte forte. Empreinte peut rechercher dans le meilleur corpus anglais, grec ou hébreu, puis répondre en français. Il est préférable de traduire seulement les extraits effectivement récupérés plutôt que de prétraduire toute la bibliothèque. Le système doit néanmoins conserver l'extrait source, afficher sa provenance et évaluer séparément la fidélité de la traduction française.
 
 Le volume n'est pas le principal problème. Une première version utile peut tenir dans quelques dizaines de milliers de segments textuels et quelques centaines de milliers de relations structurées. Le vrai travail est de :
 
@@ -64,7 +64,7 @@ Trois statuts explicites suffisent pour le MVP :
 
 - `answered_from_sources` : les affirmations sont soutenues par les segments récupérés ;
 - `contested` : les sources ou traditions divergent et la réponse les nomme ;
-- `insufficient_sources` : Bible Strong ne possède pas encore de source suffisante.
+- `insufficient_sources` : Empreinte ne possède pas encore de source suffisante.
 
 On peut techniquement ajouter plus tard un encart « connaissance générale du modèle, non vérifiée ». Il est déconseillé dans la première version : l'utilisateur distinguera mal une phrase issue d'une source éditoriale d'une phrase issue des poids du modèle.
 
@@ -113,7 +113,7 @@ Une licence actuelle autorisant Bible Strong à afficher une traduction ou un co
 
 eBible offre USFM, USFX, SQL et texte verset-par-ligne selon les permissions de chaque traduction ([formats eBible](https://ebible.org/about.php)). Il faut importer une édition épinglée et sa notice de droits, pas aspirer le catalogue entier.
 
-Bible Strong possède déjà de nombreuses traductions. Pour la recherche sémantique, il n'est pas nécessaire d'embarquer quarante fois le même contenu dans l'index vectoriel. Recommandation :
+Empreinte possède déjà de nombreuses traductions. Pour la recherche sémantique, il n'est pas nécessaire d'embarquer quarante fois le même contenu dans l'index vectoriel. Recommandation :
 
 - une base sémantique française ouverte, par exemple LSG 1910 ;
 - une base sémantique anglaise ouverte, par exemple WEB ;
@@ -161,7 +161,7 @@ L'[inventaire officiel Aquifer](https://github.com/BibleAquifer/docs/blob/main/a
 
 Aquifer distribue aussi les [UBS Dictionary of the Greek New Testament](https://github.com/BibleAquifer/UBSGreekNTDictionary) et [UBS Dictionary of Biblical Hebrew](https://github.com/BibleAquifer/UBSHebrewDictionary), sous CC BY-SA 4.0, avec localisations dont le français. Les [schémas JSON officiels](https://github.com/BibleAquifer/docs/tree/main/schemas) rendent ces ressources beaucoup plus faciles à ingérer qu'une collection de pages web.
 
-Limite essentielle : des échantillons actuels portent `review_level: "None"`. Cela ne signifie pas nécessairement que le texte source n'a jamais été édité, mais que le statut de revue exposé par Aquifer ne permet pas d'en déduire une validation pour Bible Strong. Il faut donc auditer les métadonnées, échantillonner la qualité et attribuer un statut interne avant de présenter ces notes comme vérifiées.
+Limite essentielle : des échantillons actuels portent `review_level: "None"`. Cela ne signifie pas nécessairement que le texte source n'a jamais été édité, mais que le statut de revue exposé par Aquifer ne permet pas d'en déduire une validation pour Empreinte. Il faut donc auditer les métadonnées, échantillonner la qualité et attribuer un statut interne avant de présenter ces notes comme vérifiées.
 
 Une autre ressource prête à l'emploi est [unfoldingWord Translation Notes](https://git.door43.org/unfoldingWord/en_tn). Les notes sont segmentées par passage, disponibles en TSV, et expliquent notamment les implicites, figures de style et éléments culturels ou linguistiques. [Translation Words](https://git.door43.org/unfoldingWord/en_tw) fournit des articles thématiques reliés au texte. Bible Aquifer republie également plusieurs ressources unfoldingWord dans son schéma commun.
 
@@ -175,7 +175,7 @@ Ces ressources sont en CC BY-SA 4.0. Elles sont techniquement excellentes pour l
 Pour la première version commerciale, deux options sont raisonnables :
 
 1. utiliser ces notes dans un canal CC BY-SA clairement attribué et juridiquement validé ;
-2. s'en servir comme matériau de découverte pour rédiger un petit corpus éditorial propre à Bible Strong, en revenant aux sources autorisées et sans copier une adaptation non compatible.
+2. s'en servir comme matériau de découverte pour rédiger un petit corpus éditorial propre à Empreinte, en revenant aux sources autorisées et sans copier une adaptation non compatible.
 
 Il n'est donc pas nécessaire d'attendre un corpus entièrement français. Une requête française peut utiliser des embeddings multilingues ou être traduite en requête anglaise, récupérer une note anglaise, puis produire une réponse française sourcée. La traduction étant elle-même une adaptation, les obligations CC BY-SA restent applicables lorsque la sortie est publiquement partagée.
 
@@ -197,7 +197,7 @@ CrossWire offre plusieurs modules individuellement déclarés dans le domaine pu
 
 Ces œuvres sont utiles pour l'histoire de l'interprétation et comme voix protestantes historiques. Elles ne doivent pas être présentées comme le consensus historique ou exégétique contemporain. Chaque segment doit porter auteur, date, tradition et type de ressource.
 
-En français, les ressources ouvertes prêtes pour le RAG sont nettement plus rares. Bible Strong possède déjà Nave, le dictionnaire Westphal et des commentaires : leurs droits doivent être audités à partir du contrat ou de la provenance exacte. L'ancienneté apparente d'un livre ou sa présence dans une application ne suffit pas à établir son domaine public en France.
+En français, les ressources ouvertes prêtes pour le RAG sont nettement plus rares. Empreinte possède déjà Nave, le dictionnaire Westphal et des commentaires : leurs droits doivent être audités à partir du contrat ou de la provenance exacte. L'ancienneté apparente d'un livre ou sa présence dans une application ne suffit pas à établir son domaine public en France.
 
 ### 3.5 Renvois, thèmes et relations bibliques
 
@@ -247,7 +247,7 @@ Les limites de citation ou une API gratuite sont généralement destinées à l'
 
 ### Wikipédia
 
-Wikipédia offre une couverture immense, mais sous CC BY-SA, avec une qualité et des perspectives variables. Pour Bible Strong, l'utiliser comme outil de découverte ou source de liens est plus prudent que d'en faire l'autorité finale du RAG biblique.
+Wikipédia offre une couverture immense, mais sous CC BY-SA, avec une qualité et des perspectives variables. Pour Empreinte, l'utiliser comme outil de découverte ou source de liens est plus prudent que d'en faire l'autorité finale du RAG biblique.
 
 ## 5. Corpus de départ recommandé
 
@@ -259,7 +259,7 @@ Wikipédia offre une couverture immense, mais sous CC BY-SA, avec une qualité e
 4. OpenBible Cross References.
 5. OpenBible Geocoding, complété par Pleiades.
 6. Un sous-ensemble Wikidata vérifié pour personnes, royaumes et dates.
-7. Un petit corpus éditorial Bible Strong de fiches historiques relues.
+7. Un petit corpus éditorial Empreinte de fiches historiques relues.
 
 Cette voie reste essentiellement domaine public, CC0 ou CC BY.
 
@@ -284,7 +284,7 @@ Ajouter :
 - répondre à des questions historiques simples lorsque la fiche correspondante existe ;
 - s'abstenir proprement dans les autres cas.
 
-Si Bible Strong accepte et met correctement en œuvre le CC BY-SA, la voie B est le meilleur point de départ produit : Aquifer évite une grande partie du travail de parsing et fournit déjà presque toutes les notes Tyndale en français. Si la question ShareAlike n'est pas résolue, commencer avec la voie A et un corpus éditorial plus petit.
+Si Empreinte accepte et met correctement en œuvre le CC BY-SA, la voie B est le meilleur point de départ produit : Aquifer évite une grande partie du travail de parsing et fournit déjà presque toutes les notes Tyndale en français. Si la question ShareAlike n'est pas résolue, commencer avec la voie A et un corpus éditorial plus petit.
 
 ## 6. Taille opérationnelle : ce n'est pas « énormément de données »
 
@@ -406,7 +406,7 @@ Le fournisseur IA ne reçoit donc jamais « toutes les Bibles et tous les commen
 
 ## 9. Décisions à prendre avant le prototype
 
-1. Les sorties fondées sur CC BY-SA peuvent-elles être publiées sous CC BY-SA dans l'interface Bible Strong ?
+1. Les sorties fondées sur CC BY-SA peuvent-elles être publiées sous CC BY-SA dans l'interface Empreinte ?
 2. Quelles traductions actuellement distribuées ont explicitement des droits IA, embeddings et transfert fournisseur ?
 3. Quelle base sémantique française ouverte choisir : LSG 1910 seule ou LSG + une seconde traduction autorisée ?
 4. Quelle perspective éditoriale attribuer aux notes et commentaires ?
@@ -417,4 +417,4 @@ Le fournisseur IA ne reçoit donc jamais « toutes les Bibles et tous les commen
 
 La stratégie habituelle n'est pas de donner une bibliothèque immense au LLM ni de lui faire confiance « de mémoire ». Elle consiste à construire une bibliothèque relativement petite mais bien structurée, avec une provenance et des droits explicites, puis à ne fournir au modèle que le dossier utile à chaque question.
 
-Pour Bible Strong, le bon premier corpus existe déjà à environ 70 % sous forme ouverte. Le manque principal n'est ni la Bible, ni Strong, ni les renvois, ni la géographie : c'est un corpus historique moderne, francophone, équilibré et éditorialement validé. Cette partie doit être créée progressivement ou licenciée, et non remplacée silencieusement par la mémoire du modèle.
+Pour Empreinte, le bon premier corpus existe déjà à environ 70 % sous forme ouverte. Le manque principal n'est ni la Bible, ni Strong, ni les renvois, ni la géographie : c'est un corpus historique moderne, francophone, équilibré et éditorialement validé. Cette partie doit être créée progressivement ou licenciée, et non remplacée silencieusement par la mémoire du modèle.

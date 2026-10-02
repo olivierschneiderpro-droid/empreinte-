@@ -4,7 +4,7 @@ Date: 2026-06-23
 
 Ce document rassemble les projets, discussions et ressources trouves autour de l'idee d'utiliser des LLMs ou des methodes automatiques pour creer, enrichir ou aligner des Bibles taggees Strong.
 
-Conclusion courte: il existe plusieurs travaux tres proches, mais peu de projets publics semblent publier explicitement une pipeline complete "LLM -> nouvelle Bible Strong complete -> evaluation robuste -> export utilisable". Les precedents publics se divisent surtout en deux familles:
+Conclusion courte: il existe plusieurs travaux tres proches, mais peu de projets publics semblent publier explicitement une pipeline complete "LLM -> nouvelle Empreinte complete -> evaluation robuste -> export utilisable". Les precedents publics se divisent surtout en deux familles:
 
 - pipelines modernes agentiques/LLM pour generer ou aligner des ressources bibliques;
 - outils et datasets non-LLM pour alignement, Strong, morphologie, formats bibliques et evaluation.
@@ -105,7 +105,7 @@ Description: MCP/RAG gateway pour donner a des agents IA acces aux ressources Do
 
 Pertinence:
 
-- Pas un generateur de Bible Strong.
+- Pas un generateur d’Empreinte.
 - Mais tres pertinent comme couche RAG pour agents bibliques.
 - Le repo documente une architecture multi-agent: orchestrateur, scripture agent, notes agent, words agent, academy agent, questions agent, search agent.
 - Il inclut validation de citations pour reduire les hallucinations.
@@ -430,7 +430,7 @@ Ne pas viser "tous les mots originaux visibles dans la Bible francaise".
 
 Viser plutot:
 
-- une Bible Strong lisible, proche du style lecteur des references francaises;
+- une Empreinte lisible, proche du style lecteur des references francaises;
 - des Strong places sur les meilleurs porteurs semantiques francais;
 - des tags vides seulement quand le Strong est legitime mais sans porteur fiable;
 - des phrases multi-mots quand un concept source est rendu par une expression francaise;

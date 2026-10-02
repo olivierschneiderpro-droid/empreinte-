@@ -286,7 +286,7 @@ any stale, altered, missing, scoped, or non-final source artifact.
 
 The individual SQLite ledgers and JSONL publication directories remain the
 canonical generation and audit artifacts. The release folder is a derived
-delivery package for Bible Strong and must not become a second authoring source.
+delivery package for Empreinte and must not become a second authoring source.
 Like other generated full-Bible outputs, it stays under ignored `outputs/` and
 must not be committed.
 

@@ -9,7 +9,7 @@ des résultats sont maintenus. Les recommandations de soumission ci-dessous
 documentent l'option étudiée, pas le comportement final retenu ; voir le README
 de la feature Search pour l'implémentation actuelle.
 
-## Conclusion pour Bible Strong
+## Conclusion pour Empreinte
 
 Pour la **recherche complète multisource**, je recommande de tester une interaction hybride : saisie libre avec aperçu léger (référence reconnue, quelques suggestions), puis **Rechercher** au clavier ou bouton pour lancer les résultats complets, dont le sémantique. Les recherches locales de catégorie peuvent conserver un debounce court. Cette proposition est propre à notre recherche de phrases, aux nombreuses sources et aux problèmes de rendu observés ; aucune source ci-dessous ne prouve qu'un bouton est universellement meilleur.
 

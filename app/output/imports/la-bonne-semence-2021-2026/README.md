@@ -17,7 +17,7 @@ Le recueil perpétuel `plans/lbs` n'est pas modifié.
 - `import_firestore.py` : préconditions d'absence sur chaque écriture ; aucune mise à jour d'un document existant.
 - `rollback.py` : annulation explicite limitée aux documents créés, seulement s'ils n'ont pas changé depuis l'import.
 
-Les textes sont conservés sans réécriture, avec paragraphes et références. L'italique HTML devient du texte simple, conformément au format actuel des lectures de Bible Strong. Les répétitions entre éditions sont signalées, jamais supprimées automatiquement. `editionYear` et `publicationDate` conservent l'année éditoriale ; `calendarDate` contient le mois/jour pour compatibilité avec le lecteur actuel. Chaque édition constitue un recueil distinct ; cet import n'ajoute pas de sélection automatique selon l'année dans le client.
+Les textes sont conservés sans réécriture, avec paragraphes et références. L'italique HTML devient du texte simple, conformément au format actuel des lectures d’Empreinte. Les répétitions entre éditions sont signalées, jamais supprimées automatiquement. `editionYear` et `publicationDate` conservent l'année éditoriale ; `calendarDate` contient le mois/jour pour compatibilité avec le lecteur actuel. Chaque édition constitue un recueil distinct ; cet import n'ajoute pas de sélection automatique selon l'année dans le client.
 
 ## Exécution
 

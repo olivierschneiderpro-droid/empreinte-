@@ -40,7 +40,7 @@ Correction proposée : nom et état accessibles, validation idempotente d'une le
 
 - La couverture du recueil La Bonne Semence 2026 affiche visiblement **2020**, aussi bien dans la fiche que dans le lecteur. Prévoir une couverture d'édition correcte ou une couverture neutre.
 - Sur la page d'un plan commencé, le même « Jour 1 sur 6 » apparaît sous le titre et en tête du calendrier. Garder une hiérarchie plus nette entre progression générale et journée sélectionnée.
-- Les six parcours Bible Strong utilisent une famille de couvertures cohérente, mais leur petit texte devient illisible dans les vignettes de catalogue. Un visuel simplifié pour les petites tailles serait préférable.
+- Les six parcours Empreinte utilisent une famille de couvertures cohérente, mais leur petit texte devient illisible dans les vignettes de catalogue. Un visuel simplifié pour les petites tailles serait préférable.
 
 ## Pages examinées
 
@@ -70,7 +70,7 @@ Correction proposée : nom et état accessibles, validation idempotente d'une le
 - Legacy : action « Définir la date de départ », confirmation explicite même pour aujourd'hui, conservation du suivi ; rappel disponible une fois le calendrier défini.
 - Fin de lecture : valider une relecture ne modifie plus sa progression ; bouton de retour nommé et icône de retour pour les journées déjà terminées. L'annulation reste une action distincte du menu.
 - Poèmes : séparateurs de vers/strophes restaurés dans 114 lectures depuis les sources contrôlées ; 54 sections republiées avec préconditions de version.
-- Couvertures : illustration neutre pour les six éditions La Bonne Semence, vignettes Bible Strong simplifiées.
+- Couvertures : illustration neutre pour les six éditions La Bonne Semence, vignettes Empreinte simplifiées.
 - Progression : suppression du texte répété sous le titre du plan ; barre et journée sélectionnée conservées.
 
 Validation : 120 tests plans/méditations, un test du parseur de poèmes, cinq tests de préparation des plans, typage, ESLint ciblé, garde de styles et export web passent. Les 72 documents publiés sont relus et vérifiés. Les limites de validation native et de réception réelle des notifications restent applicables.

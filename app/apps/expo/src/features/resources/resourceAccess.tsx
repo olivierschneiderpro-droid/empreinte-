@@ -84,7 +84,7 @@ import {
   createHttpCommentaryChapterSource,
   type CommentaryAccess,
 } from '~features/resources/commentaryAccess'
-import { COMMENTARY_CATALOG } from '@bible-strong/resource-catalog/commentaries'
+import { COMMENTARY_CATALOG } from '@empreinte/resource-catalog/commentaries'
 import {
   isLocalResourceAvailable,
   type LocalResourceRef,

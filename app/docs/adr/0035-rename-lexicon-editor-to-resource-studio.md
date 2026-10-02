@@ -16,8 +16,8 @@ an application and `docs/`. It also made publication easy to confuse with produc
 
 ## Decision
 
-Rename `apps/lexicon-editor` and `@bible-strong/lexicon-editor` to `apps/resource-studio` and
-`@bible-strong/resource-studio`.
+Rename `apps/lexicon-editor` and `@empreinte/lexicon-editor` to `apps/resource-studio` and
+`@empreinte/resource-studio`.
 
 Resource Studio owns acquisition, source pinning, editorial transformation, translation,
 normalization, validation, preview tooling, Offline-copy generation, and Resource publication bundle

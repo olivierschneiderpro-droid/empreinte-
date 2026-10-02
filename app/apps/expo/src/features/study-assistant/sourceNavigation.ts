@@ -1,5 +1,5 @@
 import verseToReference from '~helpers/verseToReference'
-import { parseStudySource, type StudySource } from '@bible-strong/ai-contract/contract'
+import { parseStudySource, type StudySource } from '@empreinte/ai-contract/contract'
 import { createStrongDetailRoute } from '~features/lexique/strongDetailRoutes'
 export function sourceRoute(value: StudySource) {
   const source = parseStudySource(value),

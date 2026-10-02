@@ -2,7 +2,7 @@ import { buildSupportEmail, SUPPORT_EMAIL } from '../contactDeveloper'
 
 describe('support email', () => {
   it('preserves accents, newlines and reserved URL characters in the composer', () => {
-    const subject = '[Bible Strong] Idée & retour ?'
+    const subject = '[Empreinte] Idée & retour ?'
     const template = 'Bonjour,\n\nÉtapes : #1 + #2 & résultat'
     const email = buildSupportEmail(subject, template, 'Diagnostic', {
       firebaseUid: 'user-123',

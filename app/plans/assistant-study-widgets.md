@@ -4,7 +4,7 @@ Status: complete. All 17 widgets delivered and verified within the documented re
 
 ## Product and design decisions
 
-- Reuse Bible Strong theme tokens, sans-serif assistant typography, existing contextual preview sheets and external-open action. No hover-only information, no generated HTML or arbitrary component trees.
+- Reuse Empreinte theme tokens, sans-serif assistant typography, existing contextual preview sheets and external-open action. No hover-only information, no generated HTML or arbitrary component trees.
 - Compact widgets fit the current 440px assistant. Comparisons stack by default; wider tables, graphs and timelines open an accessible expanded view. Keyboard navigation and reduced motion must work.
 - Source text comes from resource adapters or validated successful tool reads, never model-authored quotations. Label model analysis separately. Respect source language, translation, precise lexical identity, revision, pagination and uncertainty.
 - Persist widget descriptors with their message. Bound payloads. Reloading must preserve destinations and gracefully handle unavailable or revised resources. Do not replay model or mutation calls on mount/reload.

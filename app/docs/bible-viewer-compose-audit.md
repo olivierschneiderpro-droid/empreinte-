@@ -12,7 +12,7 @@ Perimetre: Android uniquement. Un audit iOS SwiftUI est traite separement.
 
 La migration Android vers un lecteur biblique natif est faisable, mais pas comme un simple remplacement de `BibleDOM` par les composants declaratifs de `@expo/ui/jetpack-compose`. Le rendu basique d'un chapitre, des titres de pericope, des highlights de versets, des notes/liens/tags et d'un mode parallele simple peut etre porte vers Compose. En revanche, les fonctions riches du lecteur actuel reposent fortement sur le DOM: selection mot-a-mot, calcul de rectangles de texte, surlignage multi-ligne, gestes tactiles fins, commentaires HTML et synchronisation de scroll horizontal.
 
-Recommandation: faire une migration progressive avec un composant Android natif custom via Expo module Compose, expose a React Native par une facade TypeScript. `@expo/ui/jetpack-compose` peut servir pour un prototype ou un lecteur simple encapsule dans `Host` avec `LazyColumn`, mais il ne suffit probablement pas pour le lecteur complet de Bible Strong sans ecrire des composants Compose custom.
+Recommandation: faire une migration progressive avec un composant Android natif custom via Expo module Compose, expose a React Native par une facade TypeScript. `@expo/ui/jetpack-compose` peut servir pour un prototype ou un lecteur simple encapsule dans `Host` avec `LazyColumn`, mais il ne suffit probablement pas pour le lecteur complet d’Empreinte sans ecrire des composants Compose custom.
 
 Le choix pragmatique est:
 
@@ -108,7 +108,7 @@ Cette option permet de valider rapidement:
 
 ### Limites pour un lecteur riche
 
-Pour Bible Strong, `@expo/ui/jetpack-compose` seul est probablement trop limite:
+Pour Empreinte, `@expo/ui/jetpack-compose` seul est probablement trop limite:
 
 - le lecteur a besoin de textes riches avec spans cliquables, highlights partiels, underline, couleur de texte, RTL, Strong refs et red words;
 - le mode annotation exige la geometrie precise des mots et lignes;

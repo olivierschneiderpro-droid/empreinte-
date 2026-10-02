@@ -1,12 +1,12 @@
 import {
   getStrongModuleSchema,
   isStandaloneStrongModule,
-} from '@bible-strong/resource-domain/strong-lexicon'
-import { COMMENTARY_READING_INDEX_VERSION } from '@bible-strong/resource-domain/contracts/commentaryReadingContract'
+} from '@empreinte/resource-domain/strong-lexicon'
+import { COMMENTARY_READING_INDEX_VERSION } from '@empreinte/resource-domain/contracts/commentaryReadingContract'
 import {
   buildCommentaryReadingSections,
   createCommentaryReadingIndex,
-} from '@bible-strong/resource-domain/contracts/commentarySections'
+} from '@empreinte/resource-domain/contracts/commentarySections'
 import { createHash } from 'node:crypto'
 import { createReadStream } from 'node:fs'
 import { lstat, readFile, realpath } from 'node:fs/promises'
@@ -20,12 +20,12 @@ import { buildCanonicalBibleFromLegacy, hashCanonicalVerses } from './legacyBibl
 import {
   BibleVersePresentationDto,
   type BibleVersePresentation,
-} from '@bible-strong/resource-domain/contracts/bibleChapterContract'
+} from '@empreinte/resource-domain/contracts/bibleChapterContract'
 import {
   getStrongBibleCatalogIdentity,
   isStrongBibleVersionId,
-} from '@bible-strong/resource-catalog/strong-bibles'
-import { STRONG_IDENTITY_KINDS } from '@bible-strong/resource-domain/strong-identities'
+} from '@empreinte/resource-catalog/strong-bibles'
+import { STRONG_IDENTITY_KINDS } from '@empreinte/resource-domain/strong-identities'
 
 const Sha256 = Schema.String.pipe(Schema.pattern(/^[a-f0-9]{64}$/))
 const Language = Schema.String.pipe(Schema.pattern(/^[a-z]{2,3}(?:-[A-Za-z0-9]+)*$/))

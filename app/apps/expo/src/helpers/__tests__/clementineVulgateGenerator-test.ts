@@ -12,7 +12,7 @@ describe('Clementine Vulgate generator', () => {
     expect(decodeWindows1252(Buffer.from([0x63, 0x9c, 0x75, 0x72, 0x20, 0x85]))).toBe('cœur …')
   })
 
-  it('maps the 73 official source filenames to stable Bible Strong book IDs', () => {
+  it('maps the 73 official source filenames to stable Empreinte book IDs', () => {
     const files = {
       'Gn.lat': '1:1 In principio creavit Deus cælum et terram.',
       'Est.lat': '16:24 Omnis autem provincia.',

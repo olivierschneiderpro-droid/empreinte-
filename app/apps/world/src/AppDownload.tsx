@@ -47,7 +47,7 @@ export function AppDownloadStation({
       href={APP_DOWNLOAD_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label={`Bible Strong — ${copy.download}`}
+      aria-label={`Empreinte — ${copy.download}`}
       data-visible="false"
     >
       <span className="app-download-station-copy">

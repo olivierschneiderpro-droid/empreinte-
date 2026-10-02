@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
-import { getCommentaryByPublicationId } from '@bible-strong/resource-catalog/commentaries'
+import { getCommentaryByPublicationId } from '@empreinte/resource-catalog/commentaries'
 import ContextualSheet from '~common/ContextualPanel/ContextualSheet'
 import { SheetHeader, SheetScrollView, type SheetRef } from '~common/sheet'
 import Box, { TouchableBox } from '~common/ui/Box'

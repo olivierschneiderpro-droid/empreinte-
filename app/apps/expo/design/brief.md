@@ -1,10 +1,10 @@
-# Bible Strong — Brief de passation pour l’onboarding « Abel »
+# Empreinte — Brief de passation pour l’onboarding « Abel »
 
 Date : 6 août 2026
 
 ## 1. Mission de l’agent spécialisé
 
-Concevoir le storyboard, la direction artistique et éventuellement le prototype animé du nouvel onboarding de Bible Strong.
+Concevoir le storyboard, la direction artistique et éventuellement le prototype animé du nouvel onboarding d’Empreinte.
 
 L’onboarding ne doit pas énumérer les fonctionnalités. Il doit montrer, par un parcours concret, comment une personne part d’un verset, approfondit un mot, suit des pistes, conserve ses questions, organise ses découvertes et construit une étude.
 
@@ -13,7 +13,7 @@ Le parcours retenu est celui d’Abel, à partir de Genèse 4.2.
 ## 2. Décisions déjà prises
 
 - L’application est actuellement gratuite. Une offre Premium centrée sur l’IA viendra plus tard ; elle ne doit pas être vendue comme disponible dans cet onboarding.
-- Bible Strong est **offline first**. Les données nécessaires doivent être téléchargées avant l’usage réel.
+- Empreinte est **offline first**. Les données nécessaires doivent être téléchargées avant l’usage réel.
 - Le récit d’onboarding vient **avant** la sélection et le téléchargement des packs.
 - À la fin du récit, le bouton `Continuer` ouvre la préparation de la bibliothèque hors ligne.
 - Pendant le téléchargement, afficher des cartes courtes de type « Le saviez-vous ? » liées aux ressources installées.
@@ -33,7 +33,7 @@ Chaque scène utilise la même ossature :
 
 À éviter : sous-titre explicatif, surtitre « Étape… », liste de fonctions, légende technique, plusieurs CTA, écran surchargé ou reproduction littérale d’un écran de l’application.
 
-Palette light réelle de Bible Strong :
+Palette light réelle d’Empreinte :
 
 - fond : `#F4F7FF` ;
 - bleu principal : `#5983F0` ;
@@ -129,7 +129,7 @@ Le nombre final de scènes peut être condensé après prototypage. Les scènes 
 
 **Animation** : la question s’écrit en quelques traits ; les cartes sources se rapprochent sans encore être toutes connectées.
 
-Important : cette question appartient à l’utilisateur. Bible Strong ne doit pas affirmer qu’Ève considérait Abel comme inutile ni prétendre connaître son intention.
+Important : cette question appartient à l’utilisateur. Empreinte ne doit pas affirmer qu’Ève considérait Abel comme inutile ni prétendre connaître son intention.
 
 ### Scène 7 — Organiser avec des tags
 
@@ -239,7 +239,7 @@ Exemple dans le parcours Abel :
 - la relation `la note référence H1892` conserve le chemin intellectuel ;
 - une relation système peut indiquer qu’une note annote un passage.
 
-## 7. Inventaire des fonctionnalités de Bible Strong
+## 7. Inventaire des fonctionnalités d’Empreinte
 
 Cet inventaire aide à choisir les fonctionnalités visibles dans l’onboarding et celles qui resteront sous forme de pistes annexes.
 
@@ -401,4 +401,4 @@ L’agent spécialisé devrait produire :
 
 ## 14. Résumé en une phrase
 
-Faire vivre à l’utilisateur une mini-étude d’Abel, visuellement légère et presque sans texte, pour lui montrer que Bible Strong permet de partir d’un mot, d’explorer profondément, de taguer largement, de créer des relations précises et de transformer ses découvertes en étude — avant de préparer sa bibliothèque offline.
+Faire vivre à l’utilisateur une mini-étude d’Abel, visuellement légère et presque sans texte, pour lui montrer que Empreinte permet de partir d’un mot, d’explorer profondément, de taguer largement, de créer des relations précises et de transformer ses découvertes en étude — avant de préparer sa bibliothèque offline.

@@ -138,7 +138,7 @@ const DictionaryListScreen = ({
         : ['Alexandre Westphal et collaborateurs'],
     description: '',
     edition: '',
-    source: 'Bible Strong',
+    source: 'Empreinte',
     attribution: '',
     onlineAccess: true,
     offlineDownload: true,

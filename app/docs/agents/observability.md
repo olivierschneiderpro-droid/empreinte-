@@ -29,7 +29,7 @@ yarn agents:logs:startup
 yarn agents:logs:navigation
 ```
 
-In a dev runtime, recent events are also buffered on `globalThis.__BIBLE_STRONG_AGENT_LOGS__` for debugger inspection.
+In a dev runtime, recent events are also buffered on `globalThis.__EMPREINTE_AGENT_LOGS__` for debugger inspection.
 
 Useful startup log prefixes include:
 

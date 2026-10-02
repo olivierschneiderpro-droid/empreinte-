@@ -1,6 +1,6 @@
-# Bible Strong Monorepo
+# Empreinte Monorepo
 
-This repository is the shared Yarn workspace for Bible Strong products and supporting packages.
+This repository is the shared Yarn workspace for Empreinte products and supporting packages.
 
 ## Read context first
 
@@ -12,10 +12,10 @@ This repository is the shared Yarn workspace for Bible Strong products and suppo
 
 ## Workspace layout
 
-- `apps/expo` — multiplatform Expo application for iOS, Android, and Web (`@bible-strong/expo`).
-- `apps/site` — public TanStack Start site (`@bible-strong/site`).
-- `apps/api` — API workspace and Firebase functions (`@bible-strong/api-functions`).
-- `apps/resource-studio` — resource authoring application and workflows (`@bible-strong/resource-studio`).
+- `apps/expo` — multiplatform Expo application for iOS, Android, and Web (`@empreinte/expo`).
+- `apps/site` — public TanStack Start site (`@empreinte/site`).
+- `apps/api` — API workspace and Firebase functions (`@empreinte/api-functions`).
+- `apps/resource-studio` — resource authoring application and workflows (`@empreinte/resource-studio`).
 - `packages/resource-service` — resource publication and delivery service.
 - `packages/bible-reference-parser` — Bible passage reference parser.
 

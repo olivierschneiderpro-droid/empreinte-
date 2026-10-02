@@ -2,6 +2,6 @@ steps:
   - tap:
       x: 0.18
       y: 0.173
-executionPrerequisite: Bible Strong development app on the HTML Native / Expo
+executionPrerequisite: Empreinte development app on the HTML Native / Expo
   DOM playground, status Prêt or Terminé, fixtures loaded and no benchmark
   running. Runs five alternating rounds automatically.

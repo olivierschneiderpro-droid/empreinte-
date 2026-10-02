@@ -7,7 +7,7 @@
 
 The Expo app shares its interface across iOS, Android and Web. Emotion provided both
 native styled components and the theme context. We want Tailwind classes while
-preserving Bible Strong's layouts, reading typography, eight palettes and animations.
+preserving Empreinte's layouts, reading typography, eight palettes and animations.
 The Bible DOM document has its own Web rendering boundary and receives serializable
 settings, including colors; it cannot inherit a native React context.
 

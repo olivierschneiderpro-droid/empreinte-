@@ -5,8 +5,8 @@ import { assistantLanguagePreferences } from './languagePreferences'
 import { getLanguage } from '~i18n'
 import { store } from '~redux/store'
 import { fetch as expoFetch } from 'expo/fetch'
-import { readStudyStream } from '@bible-strong/ai-contract/stream'
-import type { StudyRequest, StudyEvent } from '@bible-strong/ai-contract/contract'
+import { readStudyStream } from '@empreinte/ai-contract/stream'
+import type { StudyRequest, StudyEvent } from '@empreinte/ai-contract/contract'
 import { getCurrentAuthUser } from '~helpers/firebaseAuthRuntime'
 import { getResourceAppCheckToken } from '~helpers/resourceAppCheck'
 import type { DictationConnection } from './dictationAdapter'
@@ -96,7 +96,7 @@ export async function askAssistant(
 export async function compactAssistant(
   input: {
     summary: string
-    history: import('@bible-strong/ai-contract/contract').HistoryMessage[]
+    history: import('@empreinte/ai-contract/contract').HistoryMessage[]
   },
   signal: AbortSignal
 ): Promise<string> {

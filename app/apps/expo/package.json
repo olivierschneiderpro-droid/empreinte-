@@ -1,5 +1,5 @@
 {
-  "name": "@bible-strong/expo",
+  "name": "@empreinte/expo",
   "version": "27.1.1",
   "main": "expo-router/entry",
   "scripts": {
@@ -65,11 +65,6 @@
     "@babel/plugin-transform-private-methods": "^7.25.9",
     "@babel/plugin-transform-private-property-in-object": "^7.25.9",
     "@babel/preset-env": "^7.26.9",
-    "@bible-strong/ai-contract": "workspace:*",
-    "@bible-strong/avatar-react": "0.1.0",
-    "@bible-strong/bible-reference-parser": "workspace:*",
-    "@bible-strong/resource-catalog": "workspace:*",
-    "@bible-strong/resource-domain": "workspace:*",
     "@blobatar/react": "2.7.0",
     "@blobatar/react-native": "2.7.0",
     "@convective/react-native-reanimated-progress": "^1.0.8",
@@ -77,6 +72,11 @@
     "@dnd-kit/dom": "^0.5.0",
     "@dnd-kit/helpers": "^0.5.0",
     "@dnd-kit/react": "^0.5.0",
+    "@empreinte/ai-contract": "workspace:*",
+    "@empreinte/avatar-react": "npm:@bible-strong/avatar-react@0.1.0",
+    "@empreinte/bible-reference-parser": "workspace:*",
+    "@empreinte/resource-catalog": "workspace:*",
+    "@empreinte/resource-domain": "workspace:*",
     "@expo/material-symbols": "^0.1.1",
     "@expo/metro-runtime": "~56.0.15",
     "@expo/ui": "patch:@expo/ui@npm%3A56.0.18#~/.yarn/patches/@expo-ui-npm-56.0.18-1c9708e21e.patch",
@@ -264,10 +264,10 @@
     "testPathIgnorePatterns": [],
     "moduleNameMapper": {
       "^@sentry/react-native$": "<rootDir>/test/jestSentryMock.js",
-      "/modules/bible-strong-archive$": "<rootDir>/test/jestBibleStrongArchiveMock.js"
+      "/modules/empreinte-archive$": "<rootDir>/test/jestEmpreinteArchiveMock.js"
     },
     "transformIgnorePatterns": [
-      "/node_modules/(?!@bible-strong/bible-reference-parser/)"
+      "/node_modules/(?!@empreinte/bible-reference-parser/)"
     ]
   },
   "staticFeatureFlags": {

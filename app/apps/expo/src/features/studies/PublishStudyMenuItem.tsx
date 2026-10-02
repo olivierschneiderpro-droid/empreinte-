@@ -99,7 +99,7 @@ const PublishStudyMenuItem = ({ study, onClosed }: Props) => {
           PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
           {
             title: t('Accès au dossier de téléchargement'),
-            message: t('Bible Strong aimerait stocker les études dans votre dossier "Downloads"'),
+            message: t('Empreinte aimerait stocker les études dans votre dossier "Downloads"'),
             buttonNeutral: t('Demandez plus tard'),
             buttonNegative: t('Annuler'),
             buttonPositive: t('Ok'),

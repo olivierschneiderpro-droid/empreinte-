@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/react-native'
-import type { CommentaryCatalogEntry } from '@bible-strong/resource-catalog/commentaries'
+import type { CommentaryCatalogEntry } from '@empreinte/resource-catalog/commentaries'
 import { isTag, isText, type AnyNode } from 'domhandler'
 import { parseDocument } from 'htmlparser2'
 import { Share } from 'react-native'

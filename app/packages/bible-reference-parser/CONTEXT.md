@@ -1,6 +1,6 @@
 # Bible Reference Parsing
 
-The Bible reference parser recognizes French and English textual Bible references and returns canonical passage coordinates for Bible Strong clients.
+The Bible reference parser recognizes French and English textual Bible references and returns canonical passage coordinates for Empreinte clients.
 
 ## Language
 

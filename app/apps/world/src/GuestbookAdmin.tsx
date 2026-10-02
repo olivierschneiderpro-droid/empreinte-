@@ -145,7 +145,7 @@ export default function GuestbookAdmin() {
     <main className="guestbook-admin">
       <header>
         <div>
-          <span className="admin-eyebrow">BIBLE STRONG · {t.subtitle}</span>
+          <span className="admin-eyebrow">EMPREINTE · {t.subtitle}</span>
           <h1>{t.title}</h1>
         </div>
         <select

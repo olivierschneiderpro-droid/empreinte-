@@ -1,4 +1,4 @@
-import type { StudyWidget } from '@bible-strong/ai-contract/contract'
+import type { StudyWidget } from '@empreinte/ai-contract/contract'
 export type WidgetExample = {
   id: string
   category: string

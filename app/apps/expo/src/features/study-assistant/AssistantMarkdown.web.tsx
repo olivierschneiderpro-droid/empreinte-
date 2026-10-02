@@ -5,7 +5,7 @@ import {
   sourceIdFromLink,
   type StudySource,
   type StudyWidget,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 import SourceCitation from './SourceCitation.web'
 import { useTheme } from '~themes/ThemeProvider'
 import { Streamdown, defaultRemarkPlugins } from 'streamdown'

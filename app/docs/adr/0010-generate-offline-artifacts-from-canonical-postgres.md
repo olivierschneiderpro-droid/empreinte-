@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Bible Strong currently downloads Bible JSON files and complete resource SQLite databases whose URLs
+Empreinte currently downloads Bible JSON files and complete resource SQLite databases whose URLs
 and formats are declared in the mobile application. There is no shared publication pipeline or
 working resource-update model, and the existing SQLite schemas contain storage-specific and
 historical conventions. Copying those schemas directly into Neon would make the new remote system

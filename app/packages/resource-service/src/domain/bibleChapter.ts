@@ -13,8 +13,8 @@ import {
   BibleVerseTextsDto,
   type BibleVerseLocation,
   type BibleVersePresentation,
-} from '@bible-strong/resource-domain/contracts/bibleChapterContract'
-import { isOrdinaryBibleVersionId } from '@bible-strong/resource-catalog/ordinary-bibles'
+} from '@empreinte/resource-domain/contracts/bibleChapterContract'
+import { isOrdinaryBibleVersionId } from '@empreinte/resource-catalog/ordinary-bibles'
 
 export type BibleChapterLocation = {
   versionId: string

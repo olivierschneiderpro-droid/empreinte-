@@ -9,7 +9,7 @@ jest.mock('~common/ui/Paragraph', () => {
   }
 })
 
-jest.mock('../BibleStrongReference', () => {
+jest.mock('../StrongVerseReference', () => {
   const mockReact = jest.requireActual<typeof import('react')>('react')
   return {
     __esModule: true,

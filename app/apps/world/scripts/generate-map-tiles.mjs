@@ -14,7 +14,7 @@ const root = resolve(scriptDirectory, '..')
 const input = process.argv[2] ? resolve(process.argv[2]) : null
 
 if (!input) {
-  console.error('Usage: yarn workspace @bible-strong/world tiles /absolute/path/to/map.png')
+  console.error('Usage: yarn workspace @empreinte/world tiles /absolute/path/to/map.png')
   process.exit(1)
 }
 

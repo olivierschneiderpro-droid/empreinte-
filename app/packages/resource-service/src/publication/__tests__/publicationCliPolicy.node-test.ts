@@ -6,7 +6,7 @@ import { formatPublicationCliFailure, resolveCatalogImportPolicy } from '../publ
 describe('publication CLI policy', () => {
   it('keeps the local catalog bootstrap permissive for local-development publications', () => {
     assert.deepEqual(resolveCatalogImportPolicy({ mode: 'local' }), {
-      connectionString: 'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong',
+      connectionString: 'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte',
       activateForLocalDevelopment: true,
     })
   })

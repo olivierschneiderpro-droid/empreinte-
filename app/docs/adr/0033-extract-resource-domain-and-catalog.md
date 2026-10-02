@@ -16,9 +16,9 @@ Resource service and editorial tooling produce, publish and serve the same artif
 
 Create two platform-neutral packages:
 
-- `@bible-strong/resource-domain` owns resource wire schemas, DTOs, cursors, identities and pure
+- `@empreinte/resource-domain` owns resource wire schemas, DTOs, cursors, identities and pure
   invariants shared by clients and producers.
-- `@bible-strong/resource-catalog` owns the generated artifact catalog, immutable publication
+- `@empreinte/resource-catalog` owns the generated artifact catalog, immutable publication
   catalogs and pure catalog lookups.
 
 The mobile app and Resource service may depend on both packages. Neither package may depend on a
@@ -34,7 +34,7 @@ must update that file atomically.
 
 ## Consequences
 
-- `@bible-strong/resource-service` no longer depends on `@bible-strong/expo`.
+- `@empreinte/resource-service` no longer depends on `@empreinte/expo`.
 - Server tests use the shared interface or test the server directly; mobile adapter behavior remains
   covered by mobile tests.
 - Shared contracts cannot import platform or infrastructure modules.

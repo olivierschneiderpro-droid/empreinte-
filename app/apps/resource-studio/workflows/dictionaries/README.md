@@ -47,11 +47,11 @@ La configuration canonique reste
 absent apparaît indisponible. Pour régénérer Bost, Calmet et Lelièvre :
 
 ```bash
-yarn workspace @bible-strong/resource-studio resources:dictionary:acquire-levangile \
+yarn workspace @empreinte/resource-studio resources:dictionary:acquire-levangile \
   --work bost --output-dir outputs/dictionary-sources/bost
-yarn workspace @bible-strong/resource-studio resources:dictionary:acquire-levangile \
+yarn workspace @empreinte/resource-studio resources:dictionary:acquire-levangile \
   --work calmet --output-dir outputs/dictionary-sources/calmet
-yarn workspace @bible-strong/resource-studio resources:dictionary:acquire-levangile \
+yarn workspace @empreinte/resource-studio resources:dictionary:acquire-levangile \
   --work lelievre --output-dir outputs/dictionary-sources/lelievre
 ```
 

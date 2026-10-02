@@ -114,14 +114,14 @@ const parseArgs = argv => {
 }
 
 const printHelp = () => {
-  console.log(`Generate Bible Strong JSON for the BPC revised Darby Bible.
+  console.log(`Generate Empreinte JSON for the BPC revised Darby Bible.
 
 Usage:
   yarn bible:dbr:generate [--output .scratch/generated/bible-dbr.json] [--pretty]
 
 Source:
   The script fetches ${SOURCE_PAGE_URL}, discovers the DBR OSIS XML URL, then
-  downloads and converts that XML into the existing Bible Strong JSON shape:
+  downloads and converts that XML into the existing Empreinte JSON shape:
   { "book": { "chapter": { "verse": "text" } } }.
 
 Attribution:

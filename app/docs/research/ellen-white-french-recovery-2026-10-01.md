@@ -154,8 +154,8 @@ La validation du bundle par le Resource service et sa correspondance avec le cat
 - Le lint global initial a été interrompu car il parcourait les bundles générés dans
   `apps/expo/.scratch/`. Relancé avec `--ignore-pattern '.scratch/**'`, le lint Expo termine avec
   184 erreurs préexistantes dans des fichiers non modifiés : 183 dans le rapport Android généré
-  `modules/bible-strong-archive/android/build/reports/tests/testDebugUnitTest/js/report.js`, et
-  `Buffer` non déclaré dans `plugins/withBibleStrongArchiveKeys.js:24`. Ces fichiers n’ont pas été modifiés.
+  `modules/empreinte-archive/android/build/reports/tests/testDebugUnitTest/js/report.js`, et
+  `Buffer` non déclaré dans `plugins/withEmpreinteArchiveKeys.js:24`. Ces fichiers n’ont pas été modifiés.
 - Contrôle du texte final : les 34 227 corps français et les 21 674 listes de versets sont préservés.
 - Validation Resource service du bundle et de sa concordance avec le catalogue : succès.
 

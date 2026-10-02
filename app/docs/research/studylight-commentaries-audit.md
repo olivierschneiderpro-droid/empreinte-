@@ -2,11 +2,11 @@
 
 Date de l'audit : 28 août 2026
 
-Périmètre : prototype JSON des commentaires Bible Strong ; aucun import ni aucune modification de données n'a été effectué.
+Périmètre : prototype JSON des commentaires Empreinte ; aucun import ni aucune modification de données n'a été effectué.
 
 ## Conclusion opérationnelle
 
-StudyLight est un **très bon catalogue de découverte et de comparaison**, mais ce n'est pas, en l'état, une source d'acquisition en masse suffisamment sûre pour Bible Strong.
+StudyLight est un **très bon catalogue de découverte et de comparaison**, mais ce n'est pas, en l'état, une source d'acquisition en masse suffisamment sûre pour Empreinte.
 
 - L'interface publique en direct affiche **154 commentaires anglais** et 72 entrées dans six autres langues, soit 226 fiches linguistiques. Les résultats de recherche et certains éléments de navigation affichent encore **144** en anglais : le catalogue n'est donc pas un référentiel versionné ou parfaitement cohérent ([catalogue anglais](https://www.studylight.org/commentaries/eng.html)).
 - Les commentaires sont exposés sous forme de pages HTML par langue, corpus, livre et chapitre ; une version imprimable HTML existe, mais aucun téléchargement global ni aucune API JSON publique de commentaires n'a été identifié. La propre [bibliothèque hors ligne](https://www.studylight.org/offline-library.html) de StudyLight ne propose que les traductions bibliques et plans de lecture, pas les commentaires.

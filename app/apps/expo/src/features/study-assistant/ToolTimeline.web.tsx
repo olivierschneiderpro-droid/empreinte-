@@ -10,7 +10,7 @@ import {
   WrenchIcon,
   CircleAlertIcon,
 } from 'lucide-react'
-import type { ToolActivity } from '@bible-strong/ai-contract/contract'
+import type { ToolActivity } from '@empreinte/ai-contract/contract'
 import { ToolTimeline as OfficialToolTimeline } from './components/assistant-ui/elements/tool-timeline'
 
 function target(tool: ToolActivity): string {

@@ -4,13 +4,13 @@ Date de recherche : 6 août 2026
 
 ## Question étudiée
 
-Comment concevoir l’onboarding de Bible Strong, application mobile gratuite et riche en fonctionnalités, pour faire découvrir rapidement sa valeur sans imposer un long tutoriel, tout en préparant une future offre premium centrée sur l’IA ?
+Comment concevoir l’onboarding d’Empreinte, application mobile gratuite et riche en fonctionnalités, pour faire découvrir rapidement sa valeur sans imposer un long tutoriel, tout en préparant une future offre premium centrée sur l’IA ?
 
-Cette note confronte les recommandations officielles Apple, Android et W3C à des données first-party d’Amplitude. Les propositions propres à Bible Strong sont des déductions produit, pas des prescriptions de ces sources.
+Cette note confronte les recommandations officielles Apple, Android et W3C à des données first-party d’Amplitude. Les propositions propres à Empreinte sont des déductions produit, pas des prescriptions de ces sources.
 
 ## Conclusion
 
-Il n’existe pas de nombre universel de pages d’onboarding recommandé par les plateformes. Apple demande un flux « rapide, amusant et facultatif » et recommande les conseils contextuels ; Android recommande de séparer ce qui est indispensable avant l’usage de ce qui peut être appris en contexte, puis de fractionner les parcours longs en petites étapes. La meilleure structure pour Bible Strong est donc :
+Il n’existe pas de nombre universel de pages d’onboarding recommandé par les plateformes. Apple demande un flux « rapide, amusant et facultatif » et recommande les conseils contextuels ; Android recommande de séparer ce qui est indispensable avant l’usage de ce qui peut être appris en contexte, puis de fractionner les parcours longs en petites étapes. La meilleure structure pour Empreinte est donc :
 
 - un **onboarding initial de 3 écrans maximum**, skippable et sans compte obligatoire ;
 - une **micro-personnalisation facultative par intention**, sans enfermer l’utilisateur dans un profil ;
@@ -25,7 +25,7 @@ Le premier onboarding ne doit pas inventorier les dizaines de fonctions. Il doit
 
 Apple recommande explicitement d’enseigner par l’interaction, car effectuer une tâche est plus facile à comprendre et à retenir que regarder une explication. Apple recommande également de placer une instruction près de la zone de l’interface concernée et d’envisager une collection de conseils contextuels plutôt qu’un tutoriel unique. Android décrit l’onboarding « just-in-time » comme un moyen de fractionner l’éducation en étapes plus petites, mémorables et gérables, et d’apprendre en faisant.
 
-Conséquence pour Bible Strong : une animation montrant successivement 40 traductions, les plans, les notes, l’audio, la timeline et les outils d’étude créerait de la notoriété, mais pas de compétence ni de valeur vécue. Le premier parcours doit faire accomplir une action représentative.
+Conséquence pour Empreinte : une animation montrant successivement 40 traductions, les plans, les notes, l’audio, la timeline et les outils d’étude créerait de la notoriété, mais pas de compétence ni de valeur vécue. Le premier parcours doit faire accomplir une action représentative.
 
 Sources : [Apple HIG — Onboarding](https://developer.apple.com/design/human-interface-guidelines/onboarding), [Android — Authentication & Onboarding](https://developer.android.com/design/ui/mobile/guides/patterns/onboarding).
 
@@ -49,7 +49,7 @@ Ce choix ne doit ni masquer ni verrouiller des fonctions. Il sert uniquement à 
 
 ### Construire l’onboarding comme un système continu
 
-L’onboarding n’est pas terminé quand le carrousel est fermé. Android recommande les infobulles riches, feuilles et dialogues pour la découverte en contexte. Pour Bible Strong, les déclencheurs pourraient être :
+L’onboarding n’est pas terminé quand le carrousel est fermé. Android recommande les infobulles riches, feuilles et dialogues pour la découverte en contexte. Pour Empreinte, les déclencheurs pourraient être :
 
 | Moment réel | Conseil contextuel unique |
 |---|---|
@@ -60,11 +60,11 @@ L’onboarding n’est pas terminé quand le carrousel est fermé. Android recom
 | Première ressource indisponible hors ligne | Télécharger pour l’usage hors connexion |
 | Plusieurs contextes d’étude ouverts | Présenter les onglets/groupes |
 
-Chaque conseil doit être dismissible, ne pas réapparaître après rejet et rester consultable dans une aide « Découvrir Bible Strong ».
+Chaque conseil doit être dismissible, ne pas réapparaître après rejet et rester consultable dans une aide « Découvrir Empreinte ».
 
 Source : [Android — Authentication & Onboarding](https://developer.android.com/design/ui/mobile/guides/patterns/onboarding), [Apple HIG — Onboarding](https://developer.apple.com/design/human-interface-guidelines/onboarding).
 
-## 2. Parcours initial recommandé pour Bible Strong
+## 2. Parcours initial recommandé pour Empreinte
 
 ### Écran 1 — La promesse et l’intention
 
@@ -76,7 +76,7 @@ Une animation peut faire apparaître un verset, puis révéler discrètement qu�
 
 Présenter un vrai verset court et inviter la personne à toucher un mot signalé. Le toucher révèle une carte compacte : terme hébreu ou grec, translittération, sens principal et occurrences. La personne apprend ainsi le geste central en obtenant une information authentique.
 
-Cette étape doit être une interaction réversible, fonctionner sans téléchargement et proposer un bouton explicite en plus du geste. Elle établit la première différence concrète entre Bible Strong et un simple lecteur biblique.
+Cette étape doit être une interaction réversible, fonctionner sans téléchargement et proposer un bouton explicite en plus du geste. Elle établit la première différence concrète entre Empreinte et un simple lecteur biblique.
 
 ### Écran 3 — De la découverte à l’étude personnelle
 
@@ -92,7 +92,7 @@ Les Relations ne remplacent donc pas le lexique comme premier « aha moment » ;
 
 Apple recommande d’intégrer une permission à l’onboarding seulement si l’application ne peut pas fonctionner sans elle ; sinon, il faut la demander au premier usage de la fonction concernée. Android demande explicitement de solliciter les permissions en contexte, de permettre l’annulation de l’explication et de dégrader élégamment la fonction en cas de refus.
 
-Pour Bible Strong :
+Pour Empreinte :
 
 - ne demander **aucune permission système** dans le carrousel initial ;
 - demander les notifications seulement après que l’utilisateur choisit un rappel de lecture ou de verset ;
@@ -122,11 +122,11 @@ Sources : [Apple HIG — Accessibility](https://developer.apple.com/design/human
 
 ## 5. Mesurer l’activation plutôt que la fin du carrousel
 
-La complétion de l’onboarding est un indicateur de friction, pas une preuve de valeur. Amplitude définit dans son rapport 2025 l’activation comme le retour d’un nouvel utilisateur un jour donné après sa première visite, tout en recommandant de distinguer une simple ouverture d’une action alignée sur la proposition de valeur. Son analyse anonymisée porte sur plus de 2 600 entreprises, 10 600 produits et la période septembre 2023–septembre 2024 ; elle observe une association entre activation précoce et rétention, sans établir qu’un design d’onboarding particulier cause la rétention. Ces benchmarks, multi-industries, ne doivent donc pas devenir des objectifs copiés tels quels pour Bible Strong.
+La complétion de l’onboarding est un indicateur de friction, pas une preuve de valeur. Amplitude définit dans son rapport 2025 l’activation comme le retour d’un nouvel utilisateur un jour donné après sa première visite, tout en recommandant de distinguer une simple ouverture d’une action alignée sur la proposition de valeur. Son analyse anonymisée porte sur plus de 2 600 entreprises, 10 600 produits et la période septembre 2023–septembre 2024 ; elle observe une association entre activation précoce et rétention, sans établir qu’un design d’onboarding particulier cause la rétention. Ces benchmarks, multi-industries, ne doivent donc pas devenir des objectifs copiés tels quels pour Empreinte.
 
 ### Définition proposée
 
-Définir un événement d’activation propre à Bible Strong, atteint quand une personne effectue dans ses premières sessions au moins une boucle de valeur :
+Définir un événement d’activation propre à Empreinte, atteint quand une personne effectue dans ses premières sessions au moins une boucle de valeur :
 
 1. ouvre un passage ;
 2. approfondit ce passage en ouvrant une entrée Strong, une comparaison ou une Relation ;
@@ -185,7 +185,7 @@ Sources : [Apple App Review Guidelines, sections 3.1.2 et 5.6](https://developer
 ## 7. Ordre de validation recommandé
 
 1. Tester qualitativement la promesse et le prototype interactif avec des personnes ayant des niveaux d’étude biblique différents.
-2. Vérifier qu’elles peuvent expliquer, sans reprendre les mots de l’interface, ce que Bible Strong leur permet de faire.
+2. Vérifier qu’elles peuvent expliquer, sans reprendre les mots de l’interface, ce que Empreinte leur permet de faire.
 3. Livrer une première version instrumentée avec trois écrans maximum et quelques conseils contextuels.
 4. Vérifier accessibilité et Reduce Motion avant d’ajouter davantage d’effets.
 5. Observer activation et rétention par cohorte avant d’ajouter une quatrième étape.

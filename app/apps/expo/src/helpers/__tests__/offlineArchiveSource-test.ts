@@ -6,7 +6,7 @@ const mockUnzip = jest.fn((_source: string, _target: string, _charset: string) =
 const encryptedSha256 = 'e'.repeat(64)
 const plainSha256 = 'a'.repeat(64)
 
-jest.mock('../../../modules/bible-strong-archive', () => ({
+jest.mock('../../../modules/empreinte-archive', () => ({
   isEncryptedArchiveSupported: (keyVersion: number) => mockIsSupported(keyVersion),
   extractEncryptedArchive: (options: unknown) => mockExtractEncrypted(options),
 }))

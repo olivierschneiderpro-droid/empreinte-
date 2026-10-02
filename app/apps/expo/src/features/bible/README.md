@@ -2,7 +2,7 @@
 
 ## Vue d'ensemble
 
-La feature Bible est le cœur de l'application Bible Strong. Elle fournit une expérience de lecture complète et interactive de la Bible avec support pour multiples versions, annotations, audio et outils d'étude avancés.
+La feature Bible est le cœur de l'application Empreinte. Elle fournit une expérience de lecture complète et interactive de la Bible avec support pour multiples versions, annotations, audio et outils d'étude avancés.
 
 ## Fonctionnalités principales
 

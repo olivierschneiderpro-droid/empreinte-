@@ -2,7 +2,7 @@ jest.mock('../../../i18n', () => ({
   getLanguage: jest.fn(() => 'fr'),
 }))
 
-jest.mock('@bible-strong/bible-reference-parser/reference-parser', () => ({
+jest.mock('@empreinte/bible-reference-parser/reference-parser', () => ({
   createBibleReferenceParser: (language: 'fr' | 'en') => ({
     language,
     lastVerse: () => undefined,

@@ -1,7 +1,7 @@
 import {
   createBibleReferenceParser,
   type BibleReferenceParser,
-} from '@bible-strong/bible-reference-parser/reference-parser'
+} from '@empreinte/bible-reference-parser/reference-parser'
 
 import { getLanguage } from '../../i18n'
 import { getSupportedOsisBookNumber, normalizeOsisReference } from './osisReference'

@@ -4,7 +4,7 @@
 
 ## Conclusion
 
-Il n’existe pas aujourd’hui de « RAG biblique open source prêt pour la production » que Bible Strong pourrait simplement déployer. Les meilleurs projets apportent chacun une brique différente :
+Il n’existe pas aujourd’hui de « RAG biblique open source prêt pour la production » que Empreinte pourrait simplement déployer. Les meilleurs projets apportent chacun une brique différente :
 
 1. **TheologAI** est la meilleure référence pour la provenance des sources, les contrats d’outils, la recherche diversifiée et les états d’erreur explicites. Certains de ses textes historiques du domaine public peuvent devenir des candidats à l’ingestion, après audit édition par édition.
 2. **Claude of Alexandria** est la meilleure référence pour les garde-fous épistémiques et la méthode d’évaluation RED/GREEN, mais pas pour son code GPL ni comme autorité théologique neutre.
@@ -13,11 +13,11 @@ Il n’existe pas aujourd’hui de « RAG biblique open source prêt pour la pro
 5. **BibleMate Agentic Workspace** est une référence intéressante pour découper une étude longue en phases et rendre les textes bibliques exacts depuis une base structurée. Ce n’est toutefois ni un RAG sourcé ni une base de production réutilisable : ses garde-fous sont principalement des prompts, ses corpus ne sont pas auditables depuis le dépôt et son modèle de permissions est trop large.
 6. **context-grounded-bible / mybibletoolbox-data** proposent une convention de fichiers par verset et par source, mais aucun moteur RAG. Le dépôt de données actuel présente des défauts de provenance, de licence et d’intégrité qui interdisent une ingestion directe.
 
-La recommandation est donc de **construire le RAG de Bible Strong dans l’infrastructure existante**, en empruntant des patrons précis à ces projets, et non de forker un chatbot existant ou de dépendre d’un MCP public anonyme.
+La recommandation est donc de **construire le RAG d’Empreinte dans l’infrastructure existante**, en empruntant des patrons précis à ces projets, et non de forker un chatbot existant ou de dépendre d’un MCP public anonyme.
 
 ## Classement et décision
 
-| Rang | Projet | Apport réel | Maturité observée | Décision Bible Strong |
+| Rang | Projet | Apport réel | Maturité observée | Décision Empreinte |
 |---:|---|---|---|---|
 | 1 | [TheologAI](https://github.com/TJ-Frederick/TheologAI) | Provenance, recherche FTS structurée, outils MCP typés, limites et statuts explicites | Actif, nombreux tests et audits de données ; corpus encore limité | **Réutiliser les concepts et certains schémas ; évaluer les textes un par un** |
 | 2 | [Claude of Alexandria](https://github.com/davebream/claude-of-alexandria) | Garde-fous exégétiques, niveaux de confiance, controverses, évaluations RED/GREEN | Actif et bien documenté ; évaluations encore dépendantes de juges LLM | **Référencer ; ne pas forker sans accepter la GPL-3.0** |
@@ -46,7 +46,7 @@ TheologAI n’est pas un chatbot complet et ne fait pas de RAG sémantique : c�
 
 Le [modèle de provenance](https://github.com/TJ-Frederick/TheologAI/blob/main/src/kernel/editionProvenanceFoundation.ts), le [SQL de recherche diversifiée](https://github.com/TJ-Frederick/TheologAI/blob/main/src/adapters/shared/primarySourceSearchSql.ts), le [service de recherche historique](https://github.com/TJ-Frederick/TheologAI/blob/main/src/services/historical/PrimarySourceSearchService.ts) et le [manifeste du corpus “core eight”](https://github.com/TJ-Frederick/TheologAI/blob/main/data/historical-source-packs/core-eight/manifest.json) sont les fichiers les plus directement utiles.
 
-Le dépôt contient des confessions et des textes historiques normalisés : Irénée, Athanase, Augustin, Anselme, Jean Damascène, Calvin, Bunyan, Wesley, ainsi que d’autres auteurs patristiques et modernes. Le manifeste fournit souvent URL d’acquisition, édition et hash. Toutefois, la mention interne `no_known_conflict` n’est pas une garantie juridique ; Bible Strong doit vérifier indépendamment l’édition précise et ne pas supposer que le scan source est redistribuable parce que l’œuvre sous-jacente est dans le domaine public.
+Le dépôt contient des confessions et des textes historiques normalisés : Irénée, Athanase, Augustin, Anselme, Jean Damascène, Calvin, Bunyan, Wesley, ainsi que d’autres auteurs patristiques et modernes. Le manifeste fournit souvent URL d’acquisition, édition et hash. Toutefois, la mention interne `no_known_conflict` n’est pas une garantie juridique ; Empreinte doit vérifier indépendamment l’édition précise et ne pas supposer que le scan source est redistribuable parce que l’œuvre sous-jacente est dans le domaine public.
 
 **Décision :** reprendre la structure de provenance, les contrats d’outils et la diversification. Pour le corpus, constituer une liste blanche d’éditions approuvées puis importer depuis les sources primaires épinglées, pas depuis un service MCP public.
 
@@ -81,7 +81,7 @@ Son [rapport d’évaluation](https://github.com/calebyhan/bible-rag/blob/main/b
 | Hybride + reranker | 0,198 | 0,310 | 0,185 | 2 635 ms |
 | + expansion LLM | 0,210 | 0,315 | 0,192 | 8 215 ms |
 
-Le jeu est petit, mais les conclusions sont utiles : l’hybride ne gagne pas automatiquement ; le reranking améliore ici le NDCG d’environ 26 % au prix d’une latence presque triplée ; l’expansion LLM n’ajoute qu’environ 4 % de NDCG avec plus de trois fois la latence du reranking. Le [jeu de requêtes](https://github.com/calebyhan/bible-rag/blob/main/backend/eval/queries.json) est un bon modèle de format, pas un benchmark suffisant pour Bible Strong.
+Le jeu est petit, mais les conclusions sont utiles : l’hybride ne gagne pas automatiquement ; le reranking améliore ici le NDCG d’environ 26 % au prix d’une latence presque triplée ; l’expansion LLM n’ajoute qu’environ 4 % de NDCG avec plus de trois fois la latence du reranking. Le [jeu de requêtes](https://github.com/calebyhan/bible-rag/blob/main/backend/eval/queries.json) est un bon modèle de format, pas un benchmark suffisant pour Empreinte.
 
 Points à ne pas reprendre :
 
@@ -116,7 +116,7 @@ Le dépôt [BibleMate Agentic Workspace](https://github.com/eliranwong/biblemate
 
 ### Ce que l’architecture fait réellement
 
-Le [workflow principal](https://github.com/eliranwong/biblemate-agentic-workspace/blob/b699299e55ad6ce842ac392ddb635dd34efbaac8/.agents/skills/biblemate/SKILL.md) déroule planification, récupération locale, exégèse, synthèse théologique, application, aperçu puis rédaction/audit. Les résultats intermédiaires sont persistés, ce qui limite la pression sur la fenêtre de contexte et permet une reprise. L’inventaire des skills est découvert dynamiquement. Ce sont de bons patrons pour un futur mode « étude approfondie » asynchrone de Bible Strong.
+Le [workflow principal](https://github.com/eliranwong/biblemate-agentic-workspace/blob/b699299e55ad6ce842ac392ddb635dd34efbaac8/.agents/skills/biblemate/SKILL.md) déroule planification, récupération locale, exégèse, synthèse théologique, application, aperçu puis rédaction/audit. Les résultats intermédiaires sont persistés, ce qui limite la pression sur la fenêtre de contexte et permet une reprise. L’inventaire des skills est découvert dynamiquement. Ce sont de bons patrons pour un futur mode « étude approfondie » asynchrone d’Empreinte.
 
 La couche factuelle réellement déterministe est plus étroite que le README ne le suggère :
 
@@ -126,7 +126,7 @@ La couche factuelle réellement déterministe est plus étroite que le README ne
 
 Il n’y a dans le workspace aucun pipeline d’embedding, indexation vectorielle, retrieval sémantique, reranking, attribution par chunk ou évaluation de retrieval. Le package de données télécharge bien des fichiers nommés `vectors/*.db`, mais aucun code du workspace inspecté ne les utilise. Appeler ce projet un RAG serait donc trompeur : c’est une **orchestration agentique sur outils de lookup**, suivie de nombreuses étapes génératives.
 
-Le point le plus réutilisable est la règle « ne jamais citer un verset de mémoire ». Elle est inscrite dans les [règles globales des personas](https://github.com/eliranwong/biblemate-agentic-workspace/blob/b699299e55ad6ce842ac392ddb635dd34efbaac8/.agents/agents.md#L1-L6). Bible Strong doit en faire une propriété technique plus forte : le modèle renvoie des références structurées, le serveur vérifie qu’elles appartiennent aux résultats de l’outil, puis Postgres fournit le texte exact.
+Le point le plus réutilisable est la règle « ne jamais citer un verset de mémoire ». Elle est inscrite dans les [règles globales des personas](https://github.com/eliranwong/biblemate-agentic-workspace/blob/b699299e55ad6ce842ac392ddb635dd34efbaac8/.agents/agents.md#L1-L6). Empreinte doit en faire une propriété technique plus forte : le modèle renvoie des références structurées, le serveur vérifie qu’elles appartiennent aux résultats de l’outil, puis Postgres fournit le texte exact.
 
 ### Où la provenance et les citations s’arrêtent
 
@@ -144,7 +144,7 @@ Les données principales ne sont pas versionnées dans ce dépôt. Le package s�
 
 Le petit registre local de témoignages illustre le même problème : son [JSON](https://github.com/eliranwong/biblemate-agentic-workspace/blob/b699299e55ad6ce842ac392ddb635dd34efbaac8/.agents/skills/testimony/data/testimonies.json) contient des récits rédigés et des références parfois limitées à une page éditeur ou à un chapitre général, sans citation paginée, hash, statut de droits ou trace de la rédaction. Il ne doit pas être considéré comme un corpus historique vérifié.
 
-Pour Bible Strong, STEPBible couvre déjà les Bibles, Strong, langues originales et morphologie avec une chaîne mieux maîtrisée. BibleMate n’apporte donc aucun corpus qu’il serait rationnel de réimporter. Les commentaires anciens éventuellement intéressants doivent être acquis depuis leurs sources primaires, édition par édition.
+Pour Empreinte, STEPBible couvre déjà les Bibles, Strong, langues originales et morphologie avec une chaîne mieux maîtrisée. BibleMate n’apporte donc aucun corpus qu’il serait rationnel de réimporter. Les commentaires anciens éventuellement intéressants doivent être acquis depuis leurs sources primaires, édition par édition.
 
 ### Sécurité : architecture incompatible avec un service full online
 
@@ -157,7 +157,7 @@ Le risque le plus important est l’autorité accordée à l’agent :
 - l’[updater](https://github.com/eliranwong/biblemate-agentic-workspace/blob/b699299e55ad6ce842ac392ddb635dd34efbaac8/.agents/skills/update/updater.py) télécharge et extrait le dernier ZIP de la branche principale sans version, signature ni checksum épinglé ;
 - aucune défense systématique contre l’injection indirecte, aucun filtrage de sortie, quota, rate limiting distribué, isolation par utilisateur ou politique de confidentialité du service n’est fourni.
 
-Ces choix peuvent être tolérables dans un workspace personnel local et conscient de ses permissions ; ils sont inacceptables pour une API mobile multi-utilisateur. Bible Strong doit exposer uniquement des outils métier read-only, à paramètres bornés et schémas stricts. Le modèle ne doit recevoir ni shell, ni écriture de fichiers, ni Git, ni SQL générique, ni accès réseau libre.
+Ces choix peuvent être tolérables dans un workspace personnel local et conscient de ses permissions ; ils sont inacceptables pour une API mobile multi-utilisateur. Empreinte doit exposer uniquement des outils métier read-only, à paramètres bornés et schémas stricts. Le modèle ne doit recevoir ni shell, ni écriture de fichiers, ni Git, ni SQL générique, ni accès réseau libre.
 
 Les prompts et personas sont publics, comme ils le seront toujours en pratique après observation des réponses. Il ne faut donc pas chercher à empêcher le « reverse engineering » par le secret du prompt : la sécurité doit venir de l’absence de secrets dans le contexte, des autorisations côté serveur, de la validation des appels et des sorties, et de limites impossibles à contourner par instruction.
 
@@ -171,7 +171,7 @@ Le « quality score » de l’[orchestrateur](https://github.com/eliranwong/bibl
 
 ### Décision détaillée
 
-| Élément | Décision | Adaptation pour Bible Strong |
+| Élément | Décision | Adaptation pour Empreinte |
 |---|---|---|
 | Lookup déterministe avant citation | **Réutiliser le principe** | Fonctions Postgres read-only et validation serveur des références/sourceIds |
 | Workflow plan → retrieval → analyse → synthèse → audit | **Référencer** | Réserver à un mode « étude approfondie » asynchrone, avec budgets et étapes persistées |
@@ -183,7 +183,7 @@ Le « quality score » de l’[orchestrateur](https://github.com/eliranwong/bibl
 | Permissions, Git sync et web app | **Éviter absolument** | Aucun shell/Git/écriture ; auth, quotas, isolation, modération et observabilité côté backend |
 | Quality score et auto-audit | **Ne pas traiter comme une eval** | Benchmark de retrieval, citation entailment, exactitude, pluralité, refus et injections |
 
-**Verdict :** BibleMate mérite une place comme **référence de workflow agentique pour les études longues**, après simplification radicale. Il n’est ni un fournisseur de données fiable, ni un RAG sourcé, ni une base de code ou de sécurité adaptée au full online. Son meilleur apport à Bible Strong est de montrer la valeur d’une séparation retrieval/analyse/synthèse et d’artefacts reprenables ; son principal contre-exemple est de confier shell, fichiers et Git à l’agent tout en assimilant volume et auto-révision à de la qualité.
+**Verdict :** BibleMate mérite une place comme **référence de workflow agentique pour les études longues**, après simplification radicale. Il n’est ni un fournisseur de données fiable, ni un RAG sourcé, ni une base de code ou de sécurité adaptée au full online. Son meilleur apport à Empreinte est de montrer la valeur d’une séparation retrieval/analyse/synthèse et d’artefacts reprenables ; son principal contre-exemple est de confier shell, fichiers et Git à l’agent tout en assimilant volume et auto-révision à de la qualité.
 
 ## 6. context-grounded-bible et mybibletoolbox-data : un générateur et son dépôt de données, pas un RAG
 
@@ -199,7 +199,7 @@ Il n’y a dans les deux dépôts nommés ni embeddings, ni index vectoriel, ni 
 
 L’unité de découpage est déterministe : **un verset × un type de source × un fichier YAML**. C’est une convention lisible et utile pour éviter les fichiers monolithiques, mais ce n’est pas une stratégie RAG. Aucun score ne sélectionne les passages pertinents et aucune diversification ne borne l’influence d’une source. Certaines entrées eBible par verset dépassent 500 Ko ; concaténer « tout le contexte » augmenterait fortement coût et bruit. Bible Strong devrait au contraire filtrer par type de source, traduction, licence et budget, puis appliquer FTS/embeddings et reranking uniquement aux contenus textuels qui justifient une recherche sémantique.
 
-Le seul index directement exploitable est [`verse-strongs.sqlite`](https://github.com/authenticwalk/mybibletoolbox-data/blob/8fb72a3b204615bd1678d24adf58ddd9cfbb221d/databases/verse-strongs.sqlite) : une table de 29 749 références contenant une liste d’identifiants Strong, la langue et un nombre de mots. C’est un lookup exact, non un moteur de recherche. Bible Strong possède déjà l’équivalent et davantage via STEPBible dans Postgres.
+Le seul index directement exploitable est [`verse-strongs.sqlite`](https://github.com/authenticwalk/mybibletoolbox-data/blob/8fb72a3b204615bd1678d24adf58ddd9cfbb221d/databases/verse-strongs.sqlite) : une table de 29 749 références contenant une liste d’identifiants Strong, la langue et un nombre de mots. C’est un lookup exact, non un moteur de recherche. Empreinte possède déjà l’équivalent et davantage via STEPBible dans Postgres.
 
 ### Corpus réellement présent et écart avec les promesses
 
@@ -237,7 +237,7 @@ Il n’existe aucun benchmark de retrieval, fidélité aux citations, exactitude
 
 ### Décision détaillée
 
-| Élément | Décision | Adaptation pour Bible Strong |
+| Élément | Décision | Adaptation pour Empreinte |
 |---|---|---|
 | Convention `USFM/chapitre/verset/source.yaml` | **Référencer** | Conserver des `sourceId` et types de source, mais pas nécessairement un fichier physique par verset |
 | Lookup verset → Strong | **Ne pas reprendre** | Déjà couvert avec davantage de garanties par STEPBible/Postgres |
@@ -265,7 +265,7 @@ Le graphe thème → versets dérive des votes et scores OpenBible.info. Les th�
 
 ### bible-ai-assistant
 
-Le dépôt documente de bons modes d’échec — référence inventée, fuite de prompt, répétition, remplissage verbeux, réponse biblique forcée à toute question — et quelques protections d’API. Mais ses propres résultats rendent son modèle local impropre à la production : précision des versets de 9,3 % pour la variante F16, taux d’hallucination de 26 %, et résultats encore inférieurs pour Q4. Le model card annonce parallèlement des chiffres plus favorables, le document d’évaluation détaillé est vide, un JSON annoncé manque, et une exécution du juge versionnée a obtenu uniquement des zéros à cause d’un endpoint en erreur 404. Cela confirme qu’un fine-tuning local n’est pas une priorité pour Bible Strong.
+Le dépôt documente de bons modes d’échec — référence inventée, fuite de prompt, répétition, remplissage verbeux, réponse biblique forcée à toute question — et quelques protections d’API. Mais ses propres résultats rendent son modèle local impropre à la production : précision des versets de 9,3 % pour la variante F16, taux d’hallucination de 26 %, et résultats encore inférieurs pour Q4. Le model card annonce parallèlement des chiffres plus favorables, le document d’évaluation détaillé est vide, un JSON annoncé manque, et une exécution du juge versionnée a obtenu uniquement des zéros à cause d’un endpoint en erreur 404. Cela confirme qu’un fine-tuning local n’est pas une priorité pour Empreinte.
 
 ## Licence du code ≠ licence des données
 
@@ -290,7 +290,7 @@ Il n’est pas nécessaire de traduire préalablement tout le corpus en françai
 
 Il faut néanmoins comparer trois stratégies sur le même benchmark français : embedding direct de la question française, traduction FR → langue source avant recherche, et fusion des deux résultats par RRF. Une traduction de requête peut améliorer la recherche exacte tout en introduisant des glissements sémantiques ; cela se mesure, cela ne se suppose pas.
 
-## Architecture concrète recommandée pour Bible Strong
+## Architecture concrète recommandée pour Empreinte
 
 ```text
 Question ou contexte de lecture
@@ -336,4 +336,4 @@ Règles de départ :
 4. **Corpus :** importer depuis les détenteurs ou dépôts primaires seulement ; lancer un contrôle de droits et une revue éditoriale avant indexation.
 5. **Production :** ajouter validation des citations, budgets, rate limiting distribué, modération, observabilité respectueuse de la vie privée, versionnement du corpus et rollback.
 
-La bonne unité de réutilisation n’est donc pas un « bot Bible » entier : ce sont des **contrats de sources, tests, outils métier et garde-fous vérifiables** assemblés autour des données déjà maîtrisées par Bible Strong.
+La bonne unité de réutilisation n’est donc pas un « bot Bible » entier : ce sont des **contrats de sources, tests, outils métier et garde-fous vérifiables** assemblés autour des données déjà maîtrisées par Empreinte.

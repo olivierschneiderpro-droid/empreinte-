@@ -28,7 +28,7 @@ css += '  }\n}\n'
 const destination = path.join(appRoot, 'global.css')
 if (process.argv.includes('--check')) {
   if (fs.readFileSync(destination, 'utf8') !== css)
-    throw new Error('Theme CSS is stale. Run yarn workspace @bible-strong/expo themes:generate')
+    throw new Error('Theme CSS is stale. Run yarn workspace @empreinte/expo themes:generate')
 } else {
   if (!fs.existsSync(destination) || fs.readFileSync(destination, 'utf8') !== css)
     fs.writeFileSync(destination, css)

@@ -79,7 +79,7 @@ Précaution conseillée, même si elle n’est pas juridiquement imposée :
 Source text: Clementine Text Project
 Source revision: edc85da058be630183d26e4deb6714ade80e600c
 Source status: Public Domain
-Converted and normalized for Bible Strong; formatting markers removed.
+Converted and normalized for Empreinte; formatting markers removed.
 ```
 
 Cette recherche constitue une vérification de provenance technique, pas un avis
@@ -118,7 +118,7 @@ Le texte utilise :
 - `<...>` pour un locuteur ou une indication telle que `<Prologus>`.
 
 Le générateur JSON doit prendre une décision explicite pour ces marqueurs. Pour le
-format actuel de Bible Strong, la stratégie la plus sûre est :
+format actuel d’Empreinte, la stratégie la plus sûre est :
 
 1. convertir Windows-1252 vers UTF-8 ;
 2. conserver tout le contenu lexical ;
@@ -253,7 +253,7 @@ Clementine Text Project
     archive tar.gz + SHA-256
       conversion Windows-1252 → UTF-8
         normalisation déclarée des marqueurs éditoriaux
-          JSON Bible Strong + manifeste de génération
+          JSON Empreinte + manifeste de génération
             publication sur le CDN
 ```
 
@@ -270,4 +270,4 @@ Le manifeste de génération devrait au minimum conserver :
 - le SHA-256 du JSON produit.
 
 Cette chaîne suffit pour générer un candidat d’import de la Vulgate clémentine pour
-Bible Strong sans mélanger des éditions ni dépendre d’une source juridiquement ambiguë.
+Empreinte sans mélanger des éditions ni dépendre d’une source juridiquement ambiguë.

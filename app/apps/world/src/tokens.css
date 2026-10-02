@@ -1,4 +1,4 @@
-/* Bible Strong design tokens for the World: colours from apps/expo/src/themes/colors.ts
+/* Empreinte design tokens for the World: colours from apps/expo/src/themes/colors.ts
    and bible-strong.app. Every dialog, HUD element and game reads these. */
 :root {
   --bs-navy: #101b35;

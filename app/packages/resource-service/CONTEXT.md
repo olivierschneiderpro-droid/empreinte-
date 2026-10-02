@@ -1,6 +1,6 @@
 # Resource Delivery
 
-The Resource service owns the validated publication and delivery of Bible Strong editorial resources. It separates immutable editorial input from runtime storage and Online or Offline-copy delivery.
+The Resource service owns the validated publication and delivery of Empreinte editorial resources. It separates immutable editorial input from runtime storage and Online or Offline-copy delivery.
 
 ## Language
 

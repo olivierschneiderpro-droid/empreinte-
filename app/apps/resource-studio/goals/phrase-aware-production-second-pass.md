@@ -144,7 +144,7 @@ Analyser les pires versets restants, surtout ceux ou:
 
 Ajouter des corrections seulement si elles sont defendables par:
 
-- au moins une Bible Strong de reference locale;
+- au moins une Empreinte de reference locale;
 - l'inventaire original WLC/SBLGNT ou STEP;
 - le contexte du verset;
 - et, si besoin, une suggestion LLM relue.

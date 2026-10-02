@@ -6,7 +6,7 @@ import { useTheme } from '~themes/ThemeProvider'
 import { useEmpreinte } from './registreEmpreinte'
 import { Corps, Marque, Points, Surtitre, Verre } from './lumiere'
 
-/** Carte d'accueil : s'ajoute au-dessus des widgets de Bible Strong, sans en retirer aucun. */
+/** Carte d'accueil : s'ajoute au-dessus des widgets d’Empreinte, sans en retirer aucun. */
 const EmpreinteWidget = ({ style }: { style?: object }) => {
   const theme = useTheme()
   const router = useRouter()

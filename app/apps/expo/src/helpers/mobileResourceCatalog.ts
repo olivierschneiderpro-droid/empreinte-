@@ -4,7 +4,7 @@ import {
   type MobileResourceCatalogEntry,
   type MobileResourceCatalogFileEntry,
   type MobileResourceEntryRole,
-} from '@bible-strong/resource-catalog/catalog'
+} from '@empreinte/resource-catalog/catalog'
 import { ORDINARY_BIBLE_VERSION_IDS } from './ordinaryBibleVersions'
 import { atom, getDefaultStore } from 'jotai/vanilla'
 
@@ -14,7 +14,7 @@ export type {
   MobileResourceCatalogFileEntry,
   MobileResourceEntryRole,
   MobileResourceInstallationStrategy,
-} from '@bible-strong/resource-catalog/catalog'
+} from '@empreinte/resource-catalog/catalog'
 
 export const MOBILE_RESOURCE_CATALOG_URL = 'https://api.bible-strong.app/v1/offline-catalog'
 export const MOBILE_RESOURCE_ARTIFACT_BASE_URL =

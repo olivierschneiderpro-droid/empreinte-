@@ -344,7 +344,7 @@ function Gallery() {
         <a className="lab-brand" href="/game-lab.html">
           ✦{' '}
           <span>
-            GAME LAB<small>Bible Strong · atelier UI</small>
+            GAME LAB<small>Empreinte · atelier UI</small>
           </span>
         </a>
         <label className="lab-search">

@@ -38,7 +38,7 @@ const fetchCached = async ({ url, cachePath, json = false }) => {
   let lastError
   for (let attempt = 1; attempt <= 4; attempt += 1) {
     try {
-      const response = await fetch(url, { headers: { 'user-agent': 'BibleStrongCommentaryAudit/1.0 (+https://bible-strong.app)', accept: json ? 'application/json' : '*/*' } })
+      const response = await fetch(url, { headers: { 'user-agent': 'EmpreinteCommentaryAudit/1.0 (+https://bible-strong.app)', accept: json ? 'application/json' : '*/*' } })
       if (!response.ok) throw new Error(`HTTP ${response.status}`)
       const bytes = Buffer.from(await response.arrayBuffer())
       await mkdir(path.dirname(cachePath), { recursive: true })
@@ -70,7 +70,7 @@ const main = async () => {
     authorization: {
       status: 'confirmed-by-project-owner',
       confirmedAt: '2026-08-28',
-      scope: 'Le responsable Bible Strong confirme avoir obtenu de STEP et des auteurs les droits nécessaires à l’usage, la transformation et la redistribution des ressources de cette vague.',
+      scope: 'Le responsable Empreinte confirme avoir obtenu de STEP et des auteurs les droits nécessaires à l’usage, la transformation et la redistribution des ressources de cette vague.',
     },
     resources: {},
     exclusions: {
@@ -78,7 +78,7 @@ const main = async () => {
       Spurious: 'Appareil sur les passages contestés du Nouveau Testament, distinct d’un commentaire biblique.',
     },
     nonCommentaryResources: {
-      TSK: 'Corpus de références croisées déjà distribué par Bible Strong sous l’identité TRESOR ; conservé dans l’audit source mais exclu du lecteur de commentaires.',
+      TSK: 'Corpus de références croisées déjà distribué par Empreinte sous l’identité TRESOR ; conservé dans l’audit source mais exclu du lecteur de commentaires.',
     },
   }
 

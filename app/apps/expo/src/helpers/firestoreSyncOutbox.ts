@@ -6,7 +6,7 @@ const STORAGE_KEY = 'firestore_sync_outbox_v1'
 const MAX_BACKOFF_MS = 5 * 60 * 1000
 
 export type SerializableDocument = Record<string, unknown>
-const DELETE_FIELD_MARKER = '__bibleStrongFirestoreDeleteField__'
+const DELETE_FIELD_MARKER = '__empreinteFirestoreDeleteField__'
 
 export type FirestoreSyncIntent =
   | {

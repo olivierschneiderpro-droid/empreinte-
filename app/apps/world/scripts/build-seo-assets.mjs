@@ -65,7 +65,7 @@ const layout = Buffer.from(`<svg xmlns="http://www.w3.org/2000/svg" width="1200"
 <rect width="1200" height="630" fill="#f4f7ff"/>
 <circle cx="1030" cy="310" r="290" fill="#e4ecff"/>
 <g font-family="Arial, sans-serif" fill="#182444">
-<text x="72" y="112" font-size="26" letter-spacing="4" fill="#4a68ae">BIBLE STRONG</text>
+<text x="72" y="112" font-size="26" letter-spacing="4" fill="#4a68ae">EMPREINTE</text>
 <text x="68" y="264" font-size="118" font-weight="700">World</text>
 <text x="72" y="347" font-size="38" font-weight="700">Explore la Bible autrement.</text>
 <text x="72" y="406" font-size="25" fill="#52617b">Un monde à découvrir. Des rencontres.</text>

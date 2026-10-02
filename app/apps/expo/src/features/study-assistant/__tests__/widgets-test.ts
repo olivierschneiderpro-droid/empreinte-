@@ -1,5 +1,5 @@
 import { textDifferences } from '../widgets/textDifferences'
-import { parseStudyWidget } from '@bible-strong/ai-contract/contract'
+import { parseStudyWidget } from '@empreinte/ai-contract/contract'
 import { loadWidgetPassage } from '../widgets/passageData'
 import type { Conversation } from '../conversations'
 const p = { book: 43, chapter: 3, start: 16, end: 16, version: 'LSG' }

@@ -19,7 +19,7 @@ export default function LegalDocument({
     <main className="legal-page" lang={locale}>
       <article className="legal-content">
         <nav aria-label={french ? 'Navigation des informations légales' : 'Legal information navigation'}>
-          <a href={french ? '/fr' : '/'}>Bible Strong</a>
+          <a href={french ? '/fr' : '/'}>Empreinte</a>
           <a href={paths.privacy}>{french ? 'Confidentialité' : 'Privacy'}</a>
           <a href={paths.terms}>{french ? 'Conditions d’utilisation' : 'Terms of use'}</a>
           <a href={paths.deletion}>{french ? 'Supprimer mes données' : 'Delete my data'}</a>

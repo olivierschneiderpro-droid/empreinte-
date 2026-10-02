@@ -78,7 +78,7 @@ export async function sendHostingerNotification(
       ...init,
       body: JSON.stringify({
         to: [mail.to],
-        displayName: 'Bible Strong World',
+        displayName: 'Empreinte World',
         subject,
         text: mail.text,
       }),

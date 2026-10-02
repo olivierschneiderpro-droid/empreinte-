@@ -161,7 +161,7 @@ const uploadEvidenceAttachments = evidenceAttachmentPaths => {
   run('git', ['init'], { cwd: tempDir })
   run('git', ['checkout', '-b', branch], { cwd: tempDir })
   run('git', ['config', 'user.email', 'agents@bible-strong.local'], { cwd: tempDir })
-  run('git', ['config', 'user.name', 'Bible Strong Agents'], { cwd: tempDir })
+  run('git', ['config', 'user.name', 'Empreinte Agents'], { cwd: tempDir })
   run('git', ['add', `issue-${issue.number}`], { cwd: tempDir })
   run('git', ['commit', '-m', `docs(evidence): add issue ${issue.number} artifacts`], {
     cwd: tempDir,

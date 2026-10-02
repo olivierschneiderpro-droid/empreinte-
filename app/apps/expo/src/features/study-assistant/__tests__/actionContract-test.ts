@@ -2,7 +2,7 @@ import {
   parseAssistantAction,
   parseStudyEvent,
   parseStudyRequest,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 
 const openGenesisInDarby = {
   id: 'open-genesis-4-3',

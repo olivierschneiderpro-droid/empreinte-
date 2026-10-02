@@ -5,8 +5,8 @@ import Study from '@/pages/studies/[id]'
 export const Route = createFileRoute('/studies/$id')({
   loader: ({ params }) => loadStudy({ data: { id: params.id } }),
   head: ({ loaderData }) => ({ meta: loaderData ? [
-    { title: `${loaderData.title} - Bible Strong App` },
-    { name: 'description', content: `${loaderData.title} - Bible Strong App. Cette étude a été rédigée par ${loaderData.user.displayName}` },
+    { title: `${loaderData.title} - Empreinte App` },
+    { name: 'description', content: `${loaderData.title} - Empreinte App. Cette étude a été rédigée par ${loaderData.user.displayName}` },
     { property: 'og:title', content: loaderData.title },
     { property: 'og:type', content: 'website' },
     { property: 'og:updated_time', content: loaderData.modified_at.toString() },

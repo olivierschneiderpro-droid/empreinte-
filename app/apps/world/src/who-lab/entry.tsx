@@ -188,7 +188,7 @@ function App() {
     <main>
       <header>
         <div>
-          <div className="eyebrow">BIBLE STRONG · {t('ATELIER DES INDICES', 'CLUE WORKSHOP')}</div>
+          <div className="eyebrow">EMPREINTE · {t('ATELIER DES INDICES', 'CLUE WORKSHOP')}</div>
           <h1>{t('Qui suis-je ?', 'Who am I?')}</h1>
           <p>
             {identities.length}{' '}

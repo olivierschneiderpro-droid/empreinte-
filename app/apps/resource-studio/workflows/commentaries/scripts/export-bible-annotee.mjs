@@ -46,7 +46,7 @@ const fetchCached = async ({ url, cachePath }) => {
   let lastError
   for (let attempt = 1; attempt <= 4; attempt += 1) {
     try {
-      const response = await fetch(url, { headers: { 'user-agent': 'BibleStrongCommentaryAudit/1.0 (+https://bible-strong.app)' } })
+      const response = await fetch(url, { headers: { 'user-agent': 'EmpreinteCommentaryAudit/1.0 (+https://bible-strong.app)' } })
       if (!response.ok) throw new Error(`HTTP ${response.status}`)
       const bytes = Buffer.from(await response.arrayBuffer())
       await mkdir(path.dirname(cachePath), { recursive: true })
@@ -196,7 +196,7 @@ const main = async () => {
     authorization: {
       status: 'confirmed-by-project-owner',
       confirmedAt: '2026-08-28',
-      scope: 'Usage, transformation et redistribution dans Bible Strong confirmés par le responsable du projet ; pièce d’archive à rattacher au manifeste.',
+      scope: 'Usage, transformation et redistribution dans Empreinte confirmés par le responsable du projet ; pièce d’archive à rattacher au manifeste.',
     },
     format: 'commentary-json-v1',
     counts,

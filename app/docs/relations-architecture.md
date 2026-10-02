@@ -1,13 +1,13 @@
 # Relations Architecture
 
-This document describes a target architecture for a unified relation system in Bible Strong.
+This document describes a target architecture for a unified relation system in Empreinte.
 It is intentionally separate from the migration plan: the goal here is to define the domain
 model, storage shape, query strategy, denormalization strategy, and performance constraints before
 moving existing `studyRelations`, tags, notes, links, or verse metadata.
 
 ## Context
 
-Bible Strong already has several features that behave like relations:
+Empreinte already has several features that behave like relations:
 
 - a note attached to a verse or word annotation;
 - an external link attached to a verse selection;

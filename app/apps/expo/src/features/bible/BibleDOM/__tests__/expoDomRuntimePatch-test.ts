@@ -48,7 +48,7 @@ describe('Expo DOM runtime patch', () => {
     [
       'embedded asset first',
       {
-        embedded: 'file:///App/BibleStrong.app/assets/icon.png',
+        embedded: 'file:///App/Empreinte.app/assets/icon.png',
         dom: 'file:///Caches/ExpoUpdates/update/reader.html',
       },
     ],
@@ -56,7 +56,7 @@ describe('Expo DOM runtime patch', () => {
       'updated DOM asset first',
       {
         dom: 'file:///Caches/ExpoUpdates/update/reader.html',
-        embedded: 'file:///App/BibleStrong.app/assets/icon.png',
+        embedded: 'file:///App/Empreinte.app/assets/icon.png',
       },
     ],
   ])('resolves the requested OTA DOM asset with %s', (_label, localAssets) => {
@@ -82,7 +82,7 @@ describe('Expo DOM runtime patch', () => {
           isEnabled: true,
           isEmbeddedLaunch: true,
           localAssets: {
-            dom: 'file:///App/BibleStrong.app/www.bundle/reader.html',
+            dom: 'file:///App/Empreinte.app/www.bundle/reader.html',
           },
         },
       },

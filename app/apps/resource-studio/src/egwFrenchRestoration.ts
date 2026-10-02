@@ -1,7 +1,7 @@
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
-import { COMMENTARY_READING_INDEX_VERSION } from "@bible-strong/resource-domain/contracts/commentaryReadingContract";
+import { COMMENTARY_READING_INDEX_VERSION } from "@empreinte/resource-domain/contracts/commentaryReadingContract";
 import {
   materializeCommentaryBibleLinks,
   sanitizeCommentaryPublicationHtml

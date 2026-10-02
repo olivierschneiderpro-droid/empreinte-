@@ -2,11 +2,11 @@ import * as Schema from 'effect/Schema'
 import {
   buildCommentaryReadingSections,
   buildNormalizedCommentaryReadingSections,
-} from '@bible-strong/resource-domain/contracts/commentarySections'
+} from '@empreinte/resource-domain/contracts/commentarySections'
 import {
   CommentaryReadingResourceIndex,
   CommentaryReadingSectionResponse,
-} from '@bible-strong/resource-domain/contracts/commentaryReadingContract'
+} from '@empreinte/resource-domain/contracts/commentaryReadingContract'
 import { getCommentaryDbPath } from '~helpers/databases'
 import { openSQLiteDatabase } from '~helpers/sqlite'
 import { getLocalResourceAvailability } from './resourceAvailability'

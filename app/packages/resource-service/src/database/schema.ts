@@ -15,7 +15,7 @@ import {
   uniqueIndex,
 } from 'drizzle-orm/pg-core'
 
-import type { BibleVersePresentation } from '@bible-strong/resource-domain/contracts/bibleChapterContract'
+import type { BibleVersePresentation } from '@empreinte/resource-domain/contracts/bibleChapterContract'
 
 const vector = customType<{ data: number[]; driverData: string; config: { dimensions: number } }>({
   dataType: config => `vector(${config!.dimensions})`,

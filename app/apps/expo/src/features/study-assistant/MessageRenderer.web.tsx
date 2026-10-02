@@ -9,7 +9,7 @@ import type {
   StudySource,
   StudyWidget as StudyWidgetDescriptor,
   ToolActivity,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 import AssistantMessageMarkdown from './AssistantMessageMarkdown.web'
 import ToolTimeline from './ToolTimeline.web'
 import StudyWidget from './widgets/StudyWidget.web'
@@ -28,8 +28,8 @@ const toolActivities = (parts: readonly MessagePart[]): ToolActivity[] =>
   parts.flatMap(part => {
     if (part.type !== 'tool-call') return []
     const savedState =
-      part.artifact && typeof part.artifact === 'object' && 'bibleStrongState' in part.artifact
-        ? part.artifact.bibleStrongState
+      part.artifact && typeof part.artifact === 'object' && 'empreinteState' in part.artifact
+        ? part.artifact.empreinteState
         : undefined
     const state: ToolActivity['state'] =
       savedState === 'interrupted'

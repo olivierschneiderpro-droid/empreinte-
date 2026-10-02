@@ -2,7 +2,7 @@ import { DatabaseSync } from "node:sqlite";
 import {
   buildCommentaryReadingSections,
   createCommentaryReadingIndex
-} from "@bible-strong/resource-domain/contracts/commentarySections";
+} from "@empreinte/resource-domain/contracts/commentarySections";
 
 /** Build once during packaging; full text stays only in the existing source tables. */
 export function writeCommentaryReadingIndex(

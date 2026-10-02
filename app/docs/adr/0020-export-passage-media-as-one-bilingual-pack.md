@@ -8,7 +8,7 @@ Accepted
 
 The BibleProject curation workspace contains raw YouTube inventory, rejected videos, transcripts,
 editorial evidence, human decisions, localized editions, and reviewed Bible or Strong anchors. The
-application only needs the publishable subset. Bible Strong exposes these resources for free and its
+application only needs the publishable subset. Empreinte exposes these resources for free and its
 route language determines which localized edition is visible.
 
 Separate French and English artifacts would duplicate work identity, anchors, indexes, and release

@@ -1,4 +1,4 @@
-import { createBibleReferenceParser } from '@bible-strong/bible-reference-parser/reference-parser'
+import { createBibleReferenceParser } from '@empreinte/bible-reference-parser/reference-parser'
 
 const createFrenchParser = () => {
   return createBibleReferenceParser('fr')

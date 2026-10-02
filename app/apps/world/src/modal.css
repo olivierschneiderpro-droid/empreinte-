@@ -1,4 +1,4 @@
-/* Shared dialog base: every World dialog inherits the Bible Strong sheet look.
+/* Shared dialog base: every World dialog inherits Empreinte sheet look.
    Individual dialogs only add their layout. */
 .world-modal {
   border: 0;

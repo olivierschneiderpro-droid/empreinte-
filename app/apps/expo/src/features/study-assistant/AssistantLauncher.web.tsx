@@ -16,8 +16,8 @@ import {
   useExternalStoreRuntime,
   type AppendMessage,
 } from '@assistant-ui/react'
-import { createAvatar } from '@bible-strong/avatar-react'
-import '@bible-strong/avatar-react/styles.css'
+import { createAvatar } from '@empreinte/avatar-react'
+import '@empreinte/avatar-react/styles.css'
 import { selectUserLoginInfo } from '~redux/selectors/user'
 import { resolveFontFamily } from '~themes/styleValues'
 import { getCurrentAuthUser } from '~helpers/firebaseAuthRuntime'

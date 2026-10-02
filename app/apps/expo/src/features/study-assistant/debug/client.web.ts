@@ -1,7 +1,7 @@
 import { fetch as expoFetch } from 'expo/fetch'
 import { getCurrentAuthUser } from '~helpers/firebaseAuthRuntime.web'
 import { getResourceAppCheckToken } from '~helpers/resourceAppCheck'
-import type { StudyEvent, StudyRequest } from '@bible-strong/ai-contract/contract'
+import type { StudyEvent, StudyRequest } from '@empreinte/ai-contract/contract'
 import { readDebugStream, type DebugEntry, type DebugSession } from './trace'
 
 async function authenticatedRequest(

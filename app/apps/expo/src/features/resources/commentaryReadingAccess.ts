@@ -6,7 +6,7 @@ import {
   CommentaryReadingResourceIndex,
   CommentaryReadingSectionRequest,
   CommentaryReadingSectionResponse,
-} from '@bible-strong/resource-domain/contracts/commentaryReadingContract'
+} from '@empreinte/resource-domain/contracts/commentaryReadingContract'
 import { ResourceAccessError } from './resourceAccessError'
 import { runWithRequestDeadline } from '~helpers/resourceAppCheckRequest'
 

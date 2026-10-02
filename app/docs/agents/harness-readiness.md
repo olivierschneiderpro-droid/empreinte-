@@ -90,7 +90,7 @@ Inferred from source tree and docs:
 
 ### Inferred Product Surface
 
-Bible Strong is a Bible study app for French-speaking users with English support. Critical user-facing surfaces include Bible reading, search, Strong's concordance, notes/highlights/bookmarks, reading plans, Nave/dictionary/timeline study tools, downloads/offline resources, audio/TTS, settings, auth, backups, and sync.
+Empreinte is a Bible study app for French-speaking users with English support. Critical user-facing surfaces include Bible reading, search, Strong's concordance, notes/highlights/bookmarks, reading plans, Nave/dictionary/timeline study tools, downloads/offline resources, audio/TTS, settings, auth, backups, and sync.
 
 ### Sensitive Areas
 
@@ -113,7 +113,7 @@ Documented in `docs/agents/sensitive-areas.md`:
 - Agent domain quality scan through `yarn agents:quality:check`.
 - GitHub Actions PR check under `.github/workflows/pr-checks.yml`.
 - Manual/mobile smoke checklist and recent iOS Simulator evidence in `docs/agents/smoke-tests.md`.
-- Mobile-sequential orchestration policy in `docs/agents/orchestration.md`: Bible Strong issue work uses one branch in the current worktree with a local mobile verification loop before PR readiness.
+- Mobile-sequential orchestration policy in `docs/agents/orchestration.md`: Empreinte issue work uses one branch in the current worktree with a local mobile verification loop before PR readiness.
 - Queryable local log capture via `yarn agents:start:logged` and `yarn agents:logs:*`.
 
 ### Existing Mechanical Constraints

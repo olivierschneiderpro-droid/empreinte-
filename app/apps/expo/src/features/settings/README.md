@@ -2,7 +2,7 @@
 
 ## Vue d'ensemble
 
-La feature Settings centralise tous les paramètres et configurations de l'application Bible Strong. Elle gère les préférences utilisateur, les téléchargements de contenu, la personnalisation visuelle, l'authentification et l'import/export de données.
+La feature Settings centralise tous les paramètres et configurations de l'application Empreinte. Elle gère les préférences utilisateur, les téléchargements de contenu, la personnalisation visuelle, l'authentification et l'import/export de données.
 
 ## Fonctionnalités principales
 

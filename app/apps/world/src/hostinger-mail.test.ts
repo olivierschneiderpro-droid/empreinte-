@@ -42,7 +42,7 @@ describe('Hostinger notification transport', () => {
     expect(new Headers(init?.headers).get('Authorization')).toBe('Bearer test-only-token')
     expect(JSON.parse(String(init?.body))).toEqual({
       to: [mail.to],
-      displayName: 'Bible Strong World',
+      displayName: 'Empreinte World',
       subject: `${mail.subject} [guestbook:${id}]`,
       text: mail.text,
     })

@@ -20,7 +20,7 @@ first vertical slice is LSG chapter loading; a distinct SQLite-backed resource s
 only after that slice works end to end.
 
 Resource Studio owns generating and validating each versioned Resource publication bundle. The
-Bible Strong repository owns the Resource domain API contracts, service, PostgreSQL migrations, and
+Empreinte repository owns the Resource domain API contracts, service, PostgreSQL migrations, and
 the importer that loads those bundles into the canonical database. Mobile databases installed in a
 simulator are never publication inputs.
 

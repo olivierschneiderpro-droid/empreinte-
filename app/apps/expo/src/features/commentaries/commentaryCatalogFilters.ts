@@ -1,7 +1,7 @@
 import {
   COMMENTARY_CATALOG,
   type CommentaryCatalogEntry,
-} from '@bible-strong/resource-catalog/commentaries'
+} from '@empreinte/resource-catalog/commentaries'
 
 export const COMMENTARY_TRADITIONS = [
   ...new Set(COMMENTARY_CATALOG.map(entry => entry.tradition)),

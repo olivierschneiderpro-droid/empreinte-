@@ -1,1 +1,1 @@
-export * from '@bible-strong/resource-catalog/interlinear-bible'
+export * from '@empreinte/resource-catalog/interlinear-bible'

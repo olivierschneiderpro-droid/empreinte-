@@ -15,7 +15,7 @@ describe(
     it('imports both locales without STEP core, preserves every definition and resolves exact variants', async () => {
       const isolated = await createIsolatedPostgres(
         process.env.RESOURCE_DATABASE_URL ??
-          'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong',
+          'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte',
         'simple_strong',
         1
       )

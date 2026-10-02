@@ -1,7 +1,7 @@
-# Mission: Comprendre la recherche intelligente de Bible Strong
+# Mission: Comprendre la recherche intelligente d’Empreinte
 
 ## Why
-Comprendre suffisamment la chaîne de recherche de Bible Strong pour prendre de bonnes décisions produit et techniques sur sa qualité, sa vitesse et son coût, sans devoir devenir spécialiste du machine learning.
+Comprendre suffisamment la chaîne de recherche d’Empreinte pour prendre de bonnes décisions produit et techniques sur sa qualité, sa vitesse et son coût, sans devoir devenir spécialiste du machine learning.
 
 ## Success looks like
 - Expliquer le rôle distinct de la recherche textuelle, des embeddings, de pgvector, du reranking et d'un futur LLM
@@ -9,7 +9,7 @@ Comprendre suffisamment la chaîne de recherche de Bible Strong pour prendre de 
 - Évaluer les compromis entre pertinence, latence, stockage et coût
 
 ## Constraints
-- Le contenu doit rester concret, court et rattaché à l'implémentation réelle de Bible Strong
+- Le contenu doit rester concret, court et rattaché à l'implémentation réelle d’Empreinte
 - Les explications doivent privilégier les exemples bibliques aux mathématiques abstraites
 
 ## Out of scope

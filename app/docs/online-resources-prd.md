@@ -5,12 +5,12 @@
 
 ## Problem Statement
 
-Bible Strong currently treats downloaded editorial resources as a prerequisite for meaningful app
+Empreinte currently treats downloaded editorial resources as a prerequisite for meaningful app
 usage. A first-time user can be blocked until the default Bible version is downloaded, and many
 Bible-study surfaces assume that a complete SQLite or JSON resource already exists on the device.
 
 Offline support should be a user benefit rather than an entry gate. A connected user should be able
-to open Bible Strong, read a Bible version, search, and explore supported study resources without
+to open Empreinte, read a Bible version, search, and explore supported study resources without
 first installing complete databases. A user should still be able to choose complete resources for
 durable offline use, keep using installed resources without a connection, and control bandwidth and
 storage explicitly.
@@ -22,7 +22,7 @@ application also uses an internal lightweight query cache rather than TanStack Q
 branches directly to screens would spread source selection, caching, error handling, and format
 conversion throughout the app.
 
-Bible Strong therefore needs a complete but incremental online/offline resource architecture: one
+Empreinte therefore needs a complete but incremental online/offline resource architecture: one
 stable domain request from the UI, one query lifecycle, separate local and remote adapters, canonical
 server-side resource data, compatible downloadable artifacts, and structured behavior when neither
 source can satisfy a request.
@@ -55,9 +55,9 @@ LSG chapter loading before expanding to search and other resources.
 
 ## User Stories
 
-1. As a first-time user, I want to open Bible Strong without downloading a Bible first, so that I can begin reading immediately when online.
+1. As a first-time user, I want to open Empreinte without downloading a Bible first, so that I can begin reading immediately when online.
 2. As a first-time offline user, I want a clear unavailable state, so that I understand why content cannot load and how to obtain an offline copy.
-3. As a returning user, I want installed resources to work without a network connection, so that Bible Strong remains reliable during travel, church, and poor connectivity.
+3. As a returning user, I want installed resources to work without a network connection, so that Empreinte remains reliable during travel, church, and poor connectivity.
 4. As a reader, I want an installed Bible version to be preferred, so that reading is fast and stable.
 5. As a reader, I want a non-installed supported Bible version to load remotely, so that I can use it without downloading the complete version.
 6. As a reader, I want my installed revision to remain in use until I explicitly update it, so that the displayed text does not change according to connectivity.
@@ -92,7 +92,7 @@ LSG chapter loading before expanding to search and other resources.
 35. As a user of a Bible with a distinct canon or versification, I want its supported coverage declared accurately, so that unavailable locations are not silently invented or discarded.
 36. As a user with notes, highlights, links, tags, studies, relations, bookmarks, and tab groups, I want those objects to remain independent from editorial-resource delivery, so that this migration does not change ownership or sync semantics.
 37. As a user listening to audio, I want audio behavior to remain independent from the text-resource migration, so that existing playback is not disrupted.
-38. As a user of the official Bible Strong app, I want the resource service protected from obvious third-party abuse, so that service capacity is reserved for legitimate app usage.
+38. As a user of the official Empreinte app, I want the resource service protected from obvious third-party abuse, so that service capacity is reserved for legitimate app usage.
 39. As a user without an account, I want remote editorial reads to work, so that reading online does not require authentication.
 40. As a support engineer, I want structured errors to distinguish local storage, offline state, remote service, unsupported content, and genuine absence, so that failures are diagnosable.
 41. As a product owner, I want resource domains migrated independently, so that unmigrated resources continue working locally while rollout risk stays bounded.

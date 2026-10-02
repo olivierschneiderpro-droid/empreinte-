@@ -8,5 +8,5 @@ steps:
   - tool: open-url
     args:
       url: https://web.bible-strong.app
-executionPrerequisite: iPhone 17 Pro booted; Bible Strong development app
+executionPrerequisite: iPhone 17 Pro booted; Empreinte development app
   installed; Metro available at port 8081.

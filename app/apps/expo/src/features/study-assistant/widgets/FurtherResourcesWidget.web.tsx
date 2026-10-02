@@ -3,7 +3,7 @@ import { ArrowUpRightIcon, BookOpenIcon, VideoIcon, LibraryIcon } from 'lucide-r
 import type {
   FurtherResourcesWidget as Descriptor,
   ResourceSuggestion,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
 import { getPassageMediaById, formatPassageMediaDuration } from '~features/bible/passageMedia'
 import WidgetFrame from './WidgetFrame.web'

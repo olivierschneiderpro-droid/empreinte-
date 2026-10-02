@@ -61,7 +61,7 @@ export const dictionaryCopy = {
     ],
     more: 'Ta prochaine découverte ?',
     possibilities:
-      'Explore les personnes, les lieux et les coutumes dans les dictionnaires de Bible Strong.',
+      'Explore les personnes, les lieux et les coutumes dans les dictionnaires d’Empreinte.',
     open: 'Explorer le dictionnaire',
     illustration: 'Deux lecteurs explorent un dictionnaire biblique avec une loupe',
   },
@@ -123,7 +123,7 @@ export const dictionaryCopy = {
       },
     ],
     more: 'What will you discover next?',
-    possibilities: 'Explore people, places and customs in Bible Strong’s dictionaries.',
+    possibilities: 'Explore people, places and customs in Empreinte’s dictionaries.',
     open: 'Explore the dictionary',
     illustration: 'Two readers explore a Bible dictionary with a magnifying glass',
   },

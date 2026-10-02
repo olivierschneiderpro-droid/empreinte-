@@ -10,7 +10,7 @@ The web study assistant originally kept account-scoped conversations in browser 
 That made history specific to one browser and made clearing browser data destructive. The feature
 has not reached production, so no local conversation migration or compatibility path is required.
 
-Bible Strong already uses Firebase Authentication and Firestore for private user-owned data. The
+Empreinte already uses Firebase Authentication and Firestore for private user-owned data. The
 separately deployed assistant service owns model orchestration, not application data ownership.
 
 ## Decision

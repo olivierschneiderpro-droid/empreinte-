@@ -1,6 +1,6 @@
 # Lausanne Bible 1872 source
 
-Bible Strong uses version code `LAU` for the Lausanne Bible (1872).
+Empreinte uses version code `LAU` for the Lausanne Bible (1872).
 
 ## Authoritative import source
 
@@ -22,7 +22,7 @@ The generator preserves the source spelling, punctuation, paragraph marks, brack
 and inline source notes. It decodes the source encoding and converts verse references into Bible
 Strong's numeric book/chapter/verse JSON structure.
 
-The source numbers Joel in three chapters (`20/32/21`). Bible Strong's existing French canon numbers
+The source numbers Joel in three chapters (`20/32/21`). Empreinte's existing French canon numbers
 Joel in four chapters (`20/27/5/21`). The generator explicitly maps source Joel 2:28-32 to output
 Joel 3:1-5 and source Joel 3 to output Joel 4. This keeps navigation and cross-version comparison
 aligned without changing the verse text.
@@ -60,7 +60,7 @@ resource revision.
 
 The authoritative import file was compared on 2026-07-20 with
 [Biblia Universalis](https://www.bibliauniversalis3.com), which independently publishes the
-Lausanne text in the same four-chapter Joel versification used by Bible Strong:
+Lausanne text in the same four-chapter Joel versification used by Empreinte:
 
 - [Exodus 20](https://www.bibliauniversalis3.com/chapitre.php?version=LAU&livre=EXO&chapitre=20)
   has the complete verse 14, `Tu ne commettras point d'adultère.` after normalizing its typographic

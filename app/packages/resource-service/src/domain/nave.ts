@@ -8,7 +8,7 @@ import {
   NaveTopicResponseDto,
   NaveTopicSummaryDto,
   NaveVerseTopicsResponseDto,
-} from '@bible-strong/resource-domain/contracts/naveContract'
+} from '@empreinte/resource-domain/contracts/naveContract'
 
 export type NaveLanguage = 'fr' | 'en'
 

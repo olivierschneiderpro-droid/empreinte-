@@ -255,7 +255,7 @@ function Sidebar({
         <h1>App Flow Map</h1>
         <p className="lede">
           React Flow viewer pour {flowData.nodes.length} captures Argent et {flowData.flows.length}{' '}
-          flows curates Bible Strong.
+          flows curates Empreinte.
         </p>
       </div>
 

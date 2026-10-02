@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import type {
   CommentaryCatalogEntry,
   CommentaryLanguage,
-} from '@bible-strong/resource-catalog/commentaries'
+} from '@empreinte/resource-catalog/commentaries'
 import Box from '~common/ui/Box'
 import Text from '~common/ui/Text'
 import CommentaryAvatar from './CommentaryAvatar'

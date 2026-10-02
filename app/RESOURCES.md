@@ -24,4 +24,4 @@
 
 ## Gaps
 
-- Un corpus d'évaluation Bible Strong, validé humainement en français et en anglais, reste nécessaire pour comparer objectivement embedding, seuils et reranking.
+- Un corpus d'évaluation Empreinte, validé humainement en français et en anglais, reste nécessaire pour comparer objectivement embedding, seuils et reranking.

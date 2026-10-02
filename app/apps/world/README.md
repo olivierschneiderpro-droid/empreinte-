@@ -1,16 +1,16 @@
-# Bible Strong Study World — PROTOTYPE
+# Empreinte Study World — PROTOTYPE
 
 Question: does joystick movement with collision and selective foreground occlusion feel convincing on the illustrated archipelago, especially on a phone?
 
 ## Run
 
-From the Bible Strong monorepo root:
+From Empreinte monorepo root:
 
 ```sh
 yarn dev:world
 ```
 
-Open http://localhost:5186. On a phone on the same network, use the Network address printed by Vite. No account, API keys, AI service or database is required. The app is the `@bible-strong/world` workspace under `apps/world`.
+Open http://localhost:5186. On a phone on the same network, use the Network address printed by Vite. No account, API keys, AI service or database is required. The app is the `@empreinte/world` workspace under `apps/world`.
 
 ## Multiplayer
 
@@ -57,8 +57,8 @@ Detailed objects add 98 smaller ground footprints (16 vertices each), with `deta
 ## Verify
 
 ```sh
-yarn workspace @bible-strong/world test
-yarn workspace @bible-strong/world build
+yarn workspace @empreinte/world test
+yarn workspace @empreinte/world build
 ```
 
 Focused geometry tests check land/water/table collision, every detailed footprint, walking behind a canopy, bounded diagonal speed, release, long-frame collision, usable resource markers, reachability of all six stations and non-destructive saved-document migration. Browser QA additionally exercises joystick input, bridge traversal, release, keyboard, camera and phone-sized rendering. Physical iPhone/Android validation is still needed.
@@ -80,7 +80,7 @@ The script writes the PNGs under `public/assets/occlusion`, metadata under `src/
 Regenerate the progressive map from an upscale with:
 
 ```sh
-yarn workspace @bible-strong/world tiles /absolute/path/to/upscale.png
+yarn workspace @empreinte/world tiles /absolute/path/to/upscale.png
 ```
 
 This command preserves the logical 1671 × 941 coordinate system, writes the lightweight preview and 2×/4× tiles under `public/assets/map`, and updates `src/generated/map-tiles.json`. The high-resolution source remains outside the repository.
@@ -101,7 +101,7 @@ The high-resolution source can be kept locally under the ignored `art-workbench/
 Put `FAL_KEY=…` in the ignored repository-root `.env`, then run the ten-object SAM 3 pilot against the same upscale used for the map:
 
 ```sh
-yarn workspace @bible-strong/world segment:benchmark --source=/absolute/path/to/upscale.png
+yarn workspace @empreinte/world segment:benchmark --source=/absolute/path/to/upscale.png
 ```
 
 Use `--only=object-id` to retry one target. The script normalizes the source to the exact 6684 × 3764 tile raster, uploads one crop per object with a one-hour lifetime, sends text + box + positive/negative points to `fal-ai/sam-3/image`, and writes an ignored review report under `segmentation-qa/sam3-benchmark/index.html`. It never modifies production occluders. fal billing must have a positive balance before uploads are accepted.
@@ -118,7 +118,7 @@ See [rules, local setup, limits and validation](docs/bible-games.md).
 ## Game Lab (local UI gallery)
 
 Open **http://localhost:5186/game-lab.html** while `yarn dev:world` is running.
-For UI-only work, `yarn workspace @bible-strong/world dev:client` is sufficient:
+For UI-only work, `yarn workspace @empreinte/world dev:client` is sufficient:
 no Worker, second player, credentials, Resources or AI calls are needed.
 
 The gallery renders the production presentation components with 55 selectable
@@ -147,7 +147,7 @@ Bible challenge. The answer bank is never included in the production client.
 
 ### The central story book
 
-The central Bible now opens the bilingual story of Bible Strong, also available
+The central Bible now opens the bilingual story of Empreinte, also available
 from the exploration menu. Six anchors scroll one continuous article; the active
 chapter follows scrolling. On mobile the chapter navigation stays above the
 scrolling content. The About section intentionally contains a photo placeholder

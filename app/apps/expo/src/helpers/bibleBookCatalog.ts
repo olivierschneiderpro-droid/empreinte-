@@ -1,5 +1,5 @@
 import books, { type Book } from '~assets/bible_versions/books-desc'
-import { isBibleCanonId, type BibleCanonId } from '@bible-strong/resource-domain/bible-canon'
+import { isBibleCanonId, type BibleCanonId } from '@empreinte/resource-domain/bible-canon'
 
 export { isBibleCanonId }
 export type { BibleCanonId }

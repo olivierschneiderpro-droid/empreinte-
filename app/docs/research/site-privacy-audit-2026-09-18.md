@@ -1,4 +1,4 @@
-# Audit des pages légales Bible Strong — 18 septembre 2026
+# Audit des pages légales Empreinte — 18 septembre 2026
 
 ## Statut
 
@@ -72,9 +72,9 @@ Ces points ne sont pas des demandes d'autorisation supplémentaires pour les mod
 
 ## Validation de cette réécriture
 
-- `yarn workspace @bible-strong/site typecheck` : réussi.
-- `yarn workspace @bible-strong/site build` : réussi (avertissements du bundler, pas d'échec).
-- `yarn workspace @bible-strong/site test` : 16 tests existants réussis.
+- `yarn workspace @empreinte/site typecheck` : réussi.
+- `yarn workspace @empreinte/site build` : réussi (avertissements du bundler, pas d'échec).
+- `yarn workspace @empreinte/site test` : 16 tests existants réussis.
 - React Doctor sur les changements du site : aucune anomalie signalée, score 97/100.
 - Serveur de production local sur un port temporaire : 12 URL légales + 2 accueils vérifiés par requêtes HTTP. Statut 200, langues du document et du contenu, titre principal unique, identifiants de sections et références ARIA, coordonnées du responsable, liens d'accueil et absence du script Google Tag Manager vérifiés.
 - `git diff --check` : réussi.
@@ -89,15 +89,15 @@ Ces points ne sont pas des demandes d'autorisation supplémentaires pour les mod
 
 ## Référence HelloBible et vérification Gloo — 18 septembre 2026
 
-Le propriétaire confirme que Bible Strong utilise également Gloo AI. Cette identité est ajoutée à la confidentialité FR/EN avec des liens vers les conditions AI Studio et le DPA. Aucun modèle précis n'est attribué à Bible Strong sans vérification de son routage.
+Le propriétaire confirme que Empreinte utilise également Gloo AI. Cette identité est ajoutée à la confidentialité FR/EN avec des liens vers les conditions AI Studio et le DPA. Aucun modèle précis n'est attribué à Empreinte sans vérification de son routage.
 
 Sources consultées :
 - [CGU HelloBible](https://www.hellobible.ai/fr/legal/mentions-legales), révision annoncée du 21 août 2026.
 - [Confidentialité HelloBible](https://www.hellobible.ai/fr/legal/confidentialite), même date.
 - [Conditions spécifiques Gloo AI Studio](https://gloo.com/legal/ai-studio-supplemental-terms-of-service).
 
-HelloBible distingue le routage Gloo du stockage de son application et expose les limites des réponses bibliques automatiques. Sa personnalisation et sa conservation de profils ne constituent pas une preuve du fonctionnement de Bible Strong. Ses engagements ne sont pas recopiés comme garanties de notre application.
+HelloBible distingue le routage Gloo du stockage de son application et expose les limites des réponses bibliques automatiques. Sa personnalisation et sa conservation de profils ne constituent pas une preuve du fonctionnement d’Empreinte. Ses engagements ne sont pas recopiés comme garanties de notre application.
 
-Les conditions Gloo AI Studio prévoient une permission explicite séparée pour l'entraînement, désactivé par défaut. Elles décrivent aussi des usages optionnels de transmission vers d'autres offres et de contenus hors prompts pour enrichir des réponses, avec des réglages de retrait. Ces catégories ne doivent pas être confondues. Elles ne prouvent ni une rétention nulle ni l'état de nos réglages. Vérifier le contrat applicable, les options du compte Gloo et les fournisseurs effectivement sollicités avant toute garantie « jamais utilisé pour l'entraînement » ou « aucun stockage ». Les garanties affichées pour Data Engine ou Ministry Chat ne sont pas automatiquement celles de l'API utilisée par Bible Strong.
+Les conditions Gloo AI Studio prévoient une permission explicite séparée pour l'entraînement, désactivé par défaut. Elles décrivent aussi des usages optionnels de transmission vers d'autres offres et de contenus hors prompts pour enrichir des réponses, avec des réglages de retrait. Ces catégories ne doivent pas être confondues. Elles ne prouvent ni une rétention nulle ni l'état de nos réglages. Vérifier le contrat applicable, les options du compte Gloo et les fournisseurs effectivement sollicités avant toute garantie « jamais utilisé pour l'entraînement » ou « aucun stockage ». Les garanties affichées pour Data Engine ou Ministry Chat ne sont pas automatiquement celles de l'API utilisée par Empreinte.
 
 Les TOS FR/EN précisent désormais que les réponses du logiciel ne constituent pas une autorité doctrinale. Les questions ouvertes restent : modèles et sous-traitants, logs et rétention côté serveur/Gloo/modèles, entraînement et usages optionnels, transferts et suppression distante.

@@ -53,7 +53,7 @@ export default function GivePage() {
       <section className="flex basis-1/2 bg-[#fcfcfc]">
         <div className="top-0 flex flex-1 items-center justify-center lg:sticky lg:h-screen lg:justify-end">
           <div className="mx-10 flex max-w-[380px] flex-col gap-10 py-10 [counter-reset:donation-steps] lg:mx-20">
-            <a href={isAudibible ? 'https://audibible.app' : '/'}><img src={isAudibible ? '/images/svg/logo-full-audibible.svg' : '/images/svg/logo-full.svg'} className="h-[52px] w-60" alt="Bible Strong" /></a>
+            <a href={isAudibible ? 'https://audibible.app' : '/'}><img src={isAudibible ? '/images/svg/logo-full-audibible.svg' : '/images/svg/logo-full.svg'} className="h-[52px] w-60" alt="Empreinte" /></a>
             <DonationStep label={t('donate.step1')}>
               <div className="flex" onChange={(event) => chooseMode((event.target as HTMLInputElement).value as DonationMode)}>
                 <RadioButton name="donationMode" value="one-time" checked={mode === 'one-time'} onChange={() => undefined} label={t('one-time')} />

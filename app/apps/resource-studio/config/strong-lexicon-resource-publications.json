@@ -4,23 +4,23 @@
   "rightsReviewedAt": "2026-08-17",
   "modules": {
     "core": {
-      "holder": "STEP Bible / Bible Strong contributors",
+      "holder": "STEP Bible / Empreinte contributors",
       "termsReference": "README.md#strong-lexicon-publications",
-      "attribution": "STEP Bible lexical data and Bible Strong French enrichment",
+      "attribution": "STEP Bible lexical data and Empreinte French enrichment",
       "online": true,
       "offline": true
     },
     "resources": {
-      "holder": "STEP Bible / Bible Strong contributors",
+      "holder": "STEP Bible / Empreinte contributors",
       "termsReference": "README.md#strong-lexicon-publications",
-      "attribution": "STEP Bible, TFLSJ and Bible Strong French enrichment",
+      "attribution": "STEP Bible, TFLSJ and Empreinte French enrichment",
       "online": true,
       "offline": true
     },
     "entities": {
-      "holder": "STEP Bible / Bible Strong contributors",
+      "holder": "STEP Bible / Empreinte contributors",
       "termsReference": "README.md#strong-lexicon-publications",
-      "attribution": "STEP Bible entity data and Bible Strong French enrichment",
+      "attribution": "STEP Bible entity data and Empreinte French enrichment",
       "online": true,
       "offline": true
     }

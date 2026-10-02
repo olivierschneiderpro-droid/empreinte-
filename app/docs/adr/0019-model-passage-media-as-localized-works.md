@@ -7,7 +7,7 @@ Accepted
 ## Context
 
 BibleProject publishes localized French and English videos for many of the same editorial works,
-while YouTube IDs and presentation metadata can change independently. Bible Strong needs durable
+while YouTube IDs and presentation metadata can change independently. Empreinte needs durable
 media identities, predictable discovery in the Bible view, and language behavior that never mixes
 resources unexpectedly. A content category such as book overview or word study also does not say
 where that content belongs in Scripture.

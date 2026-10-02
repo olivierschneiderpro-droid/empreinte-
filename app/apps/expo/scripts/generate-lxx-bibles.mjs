@@ -65,7 +65,7 @@ const parseArgs = argv => {
 }
 
 const printHelp = () =>
-  console.log(`Generate the Greek ThéoTeX Septuagint for Bible Strong.
+  console.log(`Generate the Greek ThéoTeX Septuagint for Empreinte.
 
 Usage:
   yarn bible:lxx:generate [--pretty]
@@ -74,9 +74,9 @@ Outputs:
   Legacy JSON: ${DEFAULT_LEGACY_OUTPUT}
   Canonical V4 ZIP: ${DEFAULT_CANONICAL_ARCHIVE_OUTPUT}
 
-The canonical Catholic books use Bible Strong IDs 1-39 and 67-73. The additional
+The canonical Catholic books use Empreinte IDs 1-39 and 67-73. The additional
 ThéoTeX works use IDs 74-77. Ezra/Nehemiah, the Letter of Jeremiah, Susanna,
-and Bel and the Dragon are normalized to stable Bible Strong identities.
+and Bel and the Dragon are normalized to stable Empreinte identities.
 `)
 
 const fetchPage = async page => {
@@ -222,15 +222,15 @@ const main = async () => {
       77: 'Psalms of Solomon',
     },
     includedAppendices: ['Psalm 151', 'Sirach translator prologue (chapter 52)'],
-    rights: 'Authorized for redistribution by Bible Strong',
+    rights: 'Authorized for redistribution by Empreinte',
     rightsHolder: 'Éditions ThéoTeX',
     rightsReviewDate: '2026-08-04',
-    termsReference: 'Authorization confirmed by the Bible Strong project owner on 2026-08-04',
+    termsReference: 'Authorization confirmed by Empreinte project owner on 2026-08-04',
     permittedDeliveryModes: {
       online: true,
       offline: true,
     },
-    attribution: 'Source text: ThéoTeX Éditions (theotex.org). Converted for Bible Strong.',
+    attribution: 'Source text: ThéoTeX Éditions (theotex.org). Converted for Empreinte.',
   }
   await fs.writeFile(manifestPath, `${JSON.stringify(manifest, null, 2)}\n`)
 

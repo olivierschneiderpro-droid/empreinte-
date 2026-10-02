@@ -1,9 +1,9 @@
 import {
   getStrongModuleSchema,
   isStandaloneStrongModule,
-} from '@bible-strong/resource-domain/strong-lexicon'
+} from '@empreinte/resource-domain/strong-lexicon'
 import * as FileSystem from 'expo-file-system/legacy'
-import type { StrongLexiconModuleAvailability } from '@bible-strong/resource-domain/strong-lexicon'
+import type { StrongLexiconModuleAvailability } from '@empreinte/resource-domain/strong-lexicon'
 
 import { installAtomicResourceFile, restoreOrphanedResourceBackup } from './atomicResourceFile'
 import { AsyncConnectionRegistry } from './asyncConnectionRegistry'
@@ -26,7 +26,7 @@ import {
 } from './strongLexiconPublications'
 import type { ResourceInstallationLifecycle } from './resourceInstallationLifecycle'
 
-export type { StrongLexiconModuleAvailability } from '@bible-strong/resource-domain/strong-lexicon'
+export type { StrongLexiconModuleAvailability } from '@empreinte/resource-domain/strong-lexicon'
 
 export interface StrongLexiconInstallCallbacks {
   onDownloadProgress?: FileSystem.DownloadProgressCallback

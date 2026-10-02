@@ -101,7 +101,7 @@ const MigrationModal = () => {
   const isBibleMigration = progress.type === 'bible'
 
   const handleContactSupport = () => {
-    const subject = encodeURIComponent('Bible Strong - Migration Issue')
+    const subject = encodeURIComponent('Empreinte - Migration Issue')
     const failedLabels = isBibleMigration
       ? progress.failedCollections.join(', ')
       : progress.failedCollections.map(c => getCollectionLabel(c as SubcollectionName)).join(', ')

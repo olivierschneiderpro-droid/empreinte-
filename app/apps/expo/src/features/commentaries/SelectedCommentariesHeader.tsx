@@ -3,7 +3,7 @@ import { twMerge } from '~common/ui/classNames'
 import type {
   CommentaryCatalogEntry,
   CommentaryLanguage,
-} from '@bible-strong/resource-catalog/commentaries'
+} from '@empreinte/resource-catalog/commentaries'
 import React from 'react'
 import { Pressable } from 'react-native'
 import { useTranslation } from 'react-i18next'

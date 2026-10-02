@@ -15,7 +15,7 @@ export type LegalDocumentContent = {
 export const privacyContent: Record<Locale, LegalDocumentContent> = {
   fr: {
     title: 'Politique de confidentialité',
-    introduction: 'Cette politique décrit les traitements liés au site Bible Strong, à l’application mobile et à l’application web. Le Studio 316 est le responsable du traitement. Les données utilisées dépendent des fonctionnalités que vous utilisez et de votre connexion à un compte.',
+    introduction: 'Cette politique décrit les traitements liés au site Empreinte, à l’application mobile et à l’application web. Le Studio 316 est le responsable du traitement. Les données utilisées dépendent des fonctionnalités que vous utilisez et de votre connexion à un compte.',
     sections: [
       {
         id: 'account', title: 'Compte et données d’étude',
@@ -23,7 +23,7 @@ export const privacyContent: Record<Locale, LegalDocumentContent> = {
       },
       {
         id: 'sharing', title: 'Études publiées et partage',
-        paragraphs: ['Lorsque vous publiez une étude, son contenu et les informations d’auteur associées deviennent accessibles sur une page publique. Toute personne disposant du lien peut les consulter et les partager. Évitez d’y inclure des informations privées concernant vous-même ou d’autres personnes.', 'Dépublier une étude retire son accès public dans Bible Strong. Cela ne supprime pas les copies ou exports déjà enregistrés par des tiers. La suppression du compte déclenche aussi la suppression de ses études, privées ou publiées, et de leurs aperçus hébergés par Bible Strong.'],
+        paragraphs: ['Lorsque vous publiez une étude, son contenu et les informations d’auteur associées deviennent accessibles sur une page publique. Toute personne disposant du lien peut les consulter et les partager. Évitez d’y inclure des informations privées concernant vous-même ou d’autres personnes.', 'Dépublier une étude retire son accès public dans Empreinte. Cela ne supprime pas les copies ou exports déjà enregistrés par des tiers. La suppression du compte déclenche aussi la suppression de ses études, privées ou publiées, et de leurs aperçus hébergés par Empreinte.'],
       },
       {
         id: 'search', title: 'Recherches et statistiques de recherche',
@@ -80,7 +80,7 @@ export const privacyContent: Record<Locale, LegalDocumentContent> = {
   },
   en: {
     title: 'Privacy policy',
-    introduction: 'This policy describes processing associated with the Bible Strong website, mobile application and web application. Le Studio 316 is the data controller. The data used depends on the features you use and whether you sign in to an account.',
+    introduction: 'This policy describes processing associated with Empreinte website, mobile application and web application. Le Studio 316 is the data controller. The data used depends on the features you use and whether you sign in to an account.',
     sections: [
       {
         id: 'account', title: 'Account and study data',
@@ -88,7 +88,7 @@ export const privacyContent: Record<Locale, LegalDocumentContent> = {
       },
       {
         id: 'sharing', title: 'Published studies and sharing',
-        paragraphs: ['When you publish a study, its content and associated author information become accessible on a public page. Anyone with the link can view and share them. Avoid including private information about yourself or others.', 'Unpublishing removes public access to the study within Bible Strong. It does not remove copies or exports already saved by others. Deleting your account also triggers deletion of its private and published studies and their previews hosted by Bible Strong.'],
+        paragraphs: ['When you publish a study, its content and associated author information become accessible on a public page. Anyone with the link can view and share them. Avoid including private information about yourself or others.', 'Unpublishing removes public access to the study within Empreinte. It does not remove copies or exports already saved by others. Deleting your account also triggers deletion of its private and published studies and their previews hosted by Empreinte.'],
       },
       {
         id: 'search', title: 'Searches and search statistics',
@@ -148,10 +148,10 @@ export const privacyContent: Record<Locale, LegalDocumentContent> = {
 export const termsContent: Record<Locale, LegalDocumentContent> = {
   fr: {
     title: 'Conditions d’utilisation',
-    introduction: 'Ces conditions concernent le site, l’application mobile et l’application web Bible Strong, édités par Le Studio 316. Elles décrivent les règles d’accès aux outils de lecture, d’étude et de partage.',
+    introduction: 'Ces conditions concernent le site, l’application mobile et l’application web Empreinte, édités par Le Studio 316. Elles décrivent les règles d’accès aux outils de lecture, d’étude et de partage.',
     sections: [
       {
-        id: 'service', title: 'Utilisation de Bible Strong',
+        id: 'service', title: 'Utilisation d’Empreinte',
         paragraphs: ['Bible Strong propose des ressources bibliques et des outils d’étude. Les fonctionnalités disponibles varient selon la plateforme, la connexion internet, les ressources installées et les éventuelles phases de test. Certaines fonctionnalités nécessitent un compte.', 'Utilisez le service conformément à la loi et aux droits des autres personnes. N’essayez pas d’accéder aux comptes d’autrui, de contourner les contrôles de sécurité ou de perturber les services. Les droits accordés par les licences libres et les exceptions légales restent applicables.'],
       },
       {
@@ -173,7 +173,7 @@ export const termsContent: Record<Locale, LegalDocumentContent> = {
       },
       {
         id: 'support', title: 'Soutien financier et paiements',
-        paragraphs: ['Les modalités d’un soutien financier, notamment son montant et son caractère ponctuel ou récurrent, sont présentées au moment du paiement. Les opérations effectuées auprès d’un prestataire ou d’une boutique d’applications sont également soumises à leurs conditions applicables.', 'Supprimer un compte Bible Strong ou désinstaller l’application ne résilie pas automatiquement un paiement récurrent. Gérez-le auprès du prestataire ou de la boutique utilisés. Aucun avantage fiscal ne doit être présumé du seul fait d’un soutien à Bible Strong.'],
+        paragraphs: ['Les modalités d’un soutien financier, notamment son montant et son caractère ponctuel ou récurrent, sont présentées au moment du paiement. Les opérations effectuées auprès d’un prestataire ou d’une boutique d’applications sont également soumises à leurs conditions applicables.', 'Supprimer un compte Empreinte ou désinstaller l’application ne résilie pas automatiquement un paiement récurrent. Gérez-le auprès du prestataire ou de la boutique utilisés. Aucun avantage fiscal ne doit être présumé du seul fait d’un soutien à Empreinte.'],
       },
       {
         id: 'availability', title: 'Disponibilité et responsabilité',
@@ -192,10 +192,10 @@ export const termsContent: Record<Locale, LegalDocumentContent> = {
   },
   en: {
     title: 'Terms of use',
-    introduction: 'These terms cover the Bible Strong website, mobile application and web application, published by Le Studio 316. They describe access to the reading, study and sharing tools.',
+    introduction: 'These terms cover Empreinte website, mobile application and web application, published by Le Studio 316. They describe access to the reading, study and sharing tools.',
     sections: [
       {
-        id: 'service', title: 'Using Bible Strong',
+        id: 'service', title: 'Using Empreinte',
         paragraphs: ['Bible Strong provides Bible resources and study tools. Available features vary by platform, internet connection, installed resources and any testing phases. Some features require an account.', 'Use the service lawfully and respect other people’s rights. Do not access other people’s accounts, bypass security controls or disrupt services. Rights granted by open-source licences and statutory exceptions remain applicable.'],
       },
       {
@@ -217,7 +217,7 @@ export const termsContent: Record<Locale, LegalDocumentContent> = {
       },
       {
         id: 'support', title: 'Financial support and payments',
-        paragraphs: ['The terms of financial support, including the amount and whether it is one-time or recurring, are presented at payment. Transactions through a payment provider or app store are also subject to its applicable terms.', 'Deleting a Bible Strong account or uninstalling the application does not automatically cancel recurring payments. Manage them with the provider or store you used. Supporting Bible Strong does not in itself imply eligibility for a tax benefit.'],
+        paragraphs: ['The terms of financial support, including the amount and whether it is one-time or recurring, are presented at payment. Transactions through a payment provider or app store are also subject to its applicable terms.', 'Deleting a Empreinte account or uninstalling the application does not automatically cancel recurring payments. Manage them with the provider or store you used. Supporting Empreinte does not in itself imply eligibility for a tax benefit.'],
       },
       {
         id: 'availability', title: 'Availability and liability',
@@ -239,7 +239,7 @@ export const termsContent: Record<Locale, LegalDocumentContent> = {
 export const deletionContent: Record<Locale, LegalDocumentContent> = {
   fr: {
     title: 'Supprimer mon compte et mes données',
-    introduction: 'La suppression de votre compte supprime aussi vos études privées et publiées ainsi que leurs aperçus hébergés par Bible Strong. Les copies locales et les exports sur vos appareils se gèrent séparément.',
+    introduction: 'La suppression de votre compte supprime aussi vos études privées et publiées ainsi que leurs aperçus hébergés par Empreinte. Les copies locales et les exports sur vos appareils se gèrent séparément.',
     sections: [
       {
         id: 'before', title: 'Avant de supprimer votre compte',
@@ -260,14 +260,14 @@ export const deletionContent: Record<Locale, LegalDocumentContent> = {
       },
       {
         id: 'limits', title: 'Autres données et paiements',
-        paragraphs: ['Les copies détenues par d’autres personnes ne peuvent pas être effacées à distance par Bible Strong. Certains journaux, sauvegardes ou justificatifs peuvent avoir une durée de conservation distincte, notamment en raison d’obligations légales. Une demande concernant ces données est examinée selon leur nature et les obligations applicables. Si une conservation reste nécessaire, nous vous en expliquons le motif.', 'La suppression du compte ne résilie pas un soutien récurrent ou un abonnement souscrit auprès d’un prestataire. Résiliez-le auprès de la boutique ou du service de paiement concerné.'],
+        paragraphs: ['Les copies détenues par d’autres personnes ne peuvent pas être effacées à distance par Empreinte. Certains journaux, sauvegardes ou justificatifs peuvent avoir une durée de conservation distincte, notamment en raison d’obligations légales. Une demande concernant ces données est examinée selon leur nature et les obligations applicables. Si une conservation reste nécessaire, nous vous en expliquons le motif.', 'La suppression du compte ne résilie pas un soutien récurrent ou un abonnement souscrit auprès d’un prestataire. Résiliez-le auprès de la boutique ou du service de paiement concerné.'],
         links: [{ label: 'Politique de confidentialité et droits', href: '/fr/politique-de-confidentialite' }],
       },
     ],
   },
   en: {
     title: 'Delete my account and data',
-    introduction: 'Deleting your account also deletes your private and published studies and their previews hosted by Bible Strong. Local copies and exports on your devices are managed separately.',
+    introduction: 'Deleting your account also deletes your private and published studies and their previews hosted by Empreinte. Local copies and exports on your devices are managed separately.',
     sections: [
       {
         id: 'before', title: 'Before deleting your account',
@@ -288,7 +288,7 @@ export const deletionContent: Record<Locale, LegalDocumentContent> = {
       },
       {
         id: 'limits', title: 'Other data and payments',
-        paragraphs: ['Bible Strong cannot remotely erase copies held by other people. Some logs, backups or records may have separate retention periods, including for legal obligations. Requests concerning these records are assessed according to their nature and applicable obligations. If retention remains necessary, we explain the reason.', 'Deleting your account does not cancel recurring support payments or subscriptions with a provider. Cancel these through the relevant store or payment service.'],
+        paragraphs: ['Empreinte cannot remotely erase copies held by other people. Some logs, backups or records may have separate retention periods, including for legal obligations. Requests concerning these records are assessed according to their nature and applicable obligations. If retention remains necessary, we explain the reason.', 'Deleting your account does not cancel recurring support payments or subscriptions with a provider. Cancel these through the relevant store or payment service.'],
         links: [{ label: 'Privacy policy and rights', href: '/privacy-policy' }],
       },
     ],

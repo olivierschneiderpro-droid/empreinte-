@@ -71,7 +71,7 @@ const run = async () => {
     const database = makeLocalDatabase({
       connectionString:
         process.env.RESOURCE_DATABASE_URL ??
-        'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong',
+        'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte',
       maxConnections: 1,
     })
     try {

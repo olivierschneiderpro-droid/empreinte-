@@ -342,7 +342,7 @@
         - generic [ref=e352]:
           - paragraph [ref=e353]: Easton + Webster 1828
           - heading "Aaron" [level=2] [ref=e354]
-          - paragraph [ref=e355]: Matthew George Easton, Noah Webster · Bible Strong combined digital edition
+          - paragraph [ref=e355]: Matthew George Easton, Noah Webster · Empreinte combined digital edition
         - generic [ref=e356]:
           - paragraph [ref=e782]:
             - strong [ref=e783]: Aaron - (Easton's Bible Dictionary)
@@ -374,16 +374,16 @@
             - definition [ref=e802]: Matthew George Easton, Noah Webster
           - generic [ref=e803]:
             - term [ref=e804]: Édition
-            - definition [ref=e805]: Bible Strong combined digital edition
+            - definition [ref=e805]: Empreinte combined digital edition
           - generic [ref=e806]:
             - term [ref=e807]: Source
-            - definition [ref=e808]: Bible Strong legacy English dictionary database
+            - definition [ref=e808]: Empreinte legacy English dictionary database
           - generic [ref=e809]:
             - term [ref=e810]: Version source
             - definition [ref=e811]: easton-webster-bible-strong-legacy-v1
           - generic [ref=e812]:
             - term [ref=e813]: Droits
-            - definition [ref=e814]: Public-domain works; Bible Strong digital compilation
+            - definition [ref=e814]: Public-domain works; Empreinte digital compilation
         - generic [ref=e815]:
           - generic [ref=e816]:
             - strong [ref=e817]: 8 620
@@ -393,5 +393,5 @@
             - text: ancres
         - paragraph [ref=e820]: Matthew George Easton, Easton’s Bible Dictionary; Noah Webster, American Dictionary of the English Language (1828)
   - contentinfo [ref=e51]:
-    - generic [ref=e52]: Bible Strong · laboratoire local
+    - generic [ref=e52]: Empreinte · laboratoire local
     - generic [ref=e53]: 5/5 SQLite disponibles · données locales uniquement

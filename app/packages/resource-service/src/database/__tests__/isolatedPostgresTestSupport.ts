@@ -14,7 +14,7 @@ export const createIsolatedPostgres = async (
   label: string,
   maxConnections = 4
 ) => {
-  const databaseName = `bible_strong_${label}_${randomUUID().replaceAll('-', '')}`
+  const databaseName = `empreinte_${label}_${randomUUID().replaceAll('-', '')}`
   const databaseUrl = new URL(connectionString)
   databaseUrl.pathname = `/${databaseName}`
   const admin = new Pool({ connectionString, max: 1 })

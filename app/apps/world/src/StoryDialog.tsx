@@ -52,7 +52,7 @@ export function StoryDialog({
         <div className="story-brand">
           <JournalIcon />
           <div>
-            <strong>Bible Strong World</strong>
+            <strong>Empreinte World</strong>
             <small>{t.tagline}</small>
           </div>
         </div>

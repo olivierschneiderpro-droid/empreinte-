@@ -5,7 +5,7 @@ import {
   CommentaryReadingResourceIndex,
   CommentaryReadingSectionRequest,
   CommentaryReadingSectionResponse,
-} from '@bible-strong/resource-domain/contracts/commentaryReadingContract'
+} from '@empreinte/resource-domain/contracts/commentaryReadingContract'
 import { Context, Data, Effect } from 'effect'
 
 import {
@@ -14,7 +14,7 @@ import {
   CommentaryVerseResponseDto,
   CrossReferenceResponseDto,
   SupplementaryRevisionDto,
-} from '@bible-strong/resource-domain/contracts/supplementaryContract'
+} from '@empreinte/resource-domain/contracts/supplementaryContract'
 
 export type SupplementaryLanguage = 'fr' | 'en'
 export type CommentaryVerseLookup = {

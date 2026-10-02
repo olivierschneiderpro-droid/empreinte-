@@ -81,7 +81,7 @@ export type ResourceAccessRegistry = {
 
 const isOnline = async () => onlineManager.isOnline()
 // Empreinte : servie par scripts/servir-empreinte.mjs, la page annonce un relais vers l'API
-// (même origine), car l'API de Bible Strong n'accepte que les sites de Bible Strong (CORS).
+// (même origine), car l'API d’Empreinte n'accepte que les sites d’Empreinte (CORS).
 const relaisEmpreinte =
   typeof window !== 'undefined'
     ? (window as { __EMPREINTE_RELAIS__?: string }).__EMPREINTE_RELAIS__

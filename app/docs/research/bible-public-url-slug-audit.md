@@ -4,7 +4,7 @@ Date : 2026-09-19
 
 ## Recommandation
 
-Bible Strong devrait utiliser une identité de livre invariante, fondée sur l’OSIS déjà
+Empreinte devrait utiliser une identité de livre invariante, fondée sur l’OSIS déjà
 présent dans le dépôt, et la normaliser en minuscules dans les URLs :
 
 ```text
@@ -114,7 +114,7 @@ Donc :
 | Slug invariant OSIS   | `/bible/lsg/john/3/16`    | Recommandé : lisible, stable et déjà aligné sur parser/Resource Studio.                      |
 | Abréviation technique | `/bible/lsg/jhn/3/16`     | Bon alias entrant ; moins clair et non identique à l’OSIS canonique `John`.                  |
 | Numéro de catalogue   | `/bible/lsg/43/3/16`      | À réserver au stockage/API ; peu lisible et couplé au catalogue.                             |
-| Locale + OSIS         | `/fr/bible/lsg/john/3/16` | Cible future si Bible Strong publie de vraies pages françaises et anglaises.                 |
+| Locale + OSIS         | `/fr/bible/lsg/john/3/16` | Cible future si Empreinte publie de vraies pages françaises et anglaises.                 |
 
 ## Mise en œuvre recommandée
 

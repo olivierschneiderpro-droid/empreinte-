@@ -9,7 +9,7 @@ explicitement développé par les textes :
 > **Abel / *hevel* → vapeur fugitive → une vie interrompue → son sang crie → mort, il parle encore
 > → le sang de Jésus parle mieux.**
 
-Ce parcours démontre particulièrement bien la promesse de Bible Strong : un mot ouvre le texte
+Ce parcours démontre particulièrement bien la promesse d’Empreinte : un mot ouvre le texte
 original, mène à d’autres occurrences, révèle des relations entre passages et personnages, puis se
 replie dans le verset initial.
 

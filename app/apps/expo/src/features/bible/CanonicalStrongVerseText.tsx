@@ -4,7 +4,7 @@ import type { Verse } from '~common/types'
 import Paragraph from '~common/ui/Paragraph'
 import { buildCanonicalStrongVerseRuns } from '~helpers/canonicalStrongVerse'
 import { getStrongReferenceNumber } from '~helpers/strongIdentities'
-import BibleStrongReference, { type StrongVerseTextStyle } from './BibleStrongReference'
+import StrongVerseReference, { type StrongVerseTextStyle } from './StrongVerseReference'
 
 type Props = {
   verse: Pick<Verse, 'Texte' | 'Livre' | 'StrongSpans'>
@@ -42,7 +42,7 @@ const CanonicalStrongVerseText = ({ verse, concordanceFor, small, textStyle }: P
       if (!firstTarget) return []
 
       return [
-        <BibleStrongReference
+        <StrongVerseReference
           small={small}
           concordanceFor={concordanceFor}
           book={verse.Livre}

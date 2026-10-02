@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import { ArrowUpRightIcon, CalendarDaysIcon } from 'lucide-react'
-import type { ReadingWidget as Descriptor } from '@bible-strong/ai-contract/contract'
+import type { ReadingWidget as Descriptor } from '@empreinte/ai-contract/contract'
 import { useReadingContent } from '~features/daily-reading/useDailyMeditation'
 import { getEditorialKind, getMeditationTitle } from '~features/plans/readingCalendar'
 import ReferenceParagraph from '~features/plans/PlanSliceScreen/ReferenceParagraph'

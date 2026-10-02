@@ -14,7 +14,7 @@ yarn resources:commentaries:serve
 
 Puis ouvrir <http://127.0.0.1:4177>. Le port peut être changé avec `COMMENTARY_READER_PORT`.
 
-Quand la bibliothèque locale a été construite, le lecteur expose trente-deux corpus disponibles en JSON. Les 329 339 ancres source sont normalisées en 323 682 unités éditoriales et découpées par chapitre afin que le navigateur ne charge que les fichiers nécessaires au passage consulté. La différence provient de la déduplication réversible des plages Barnes : chaque ancre et chaque variante française historique restent conservées. La bibliothèque comprend les douze corpus initiaux, la Bible Annotée de Neuchâtel, seize commentaires de la vague 3 issue de STEP/CrossWire, le SDA Bible Commentary enrichi par les compléments EGW, la ressource documentaire distincte `EGW Writings` et les annotations originales Douay–Rheims. TSK reste la source historique de la ressource de références croisées `TRESOR` de Bible Strong et n’est donc pas présentée comme un commentaire.
+Quand la bibliothèque locale a été construite, le lecteur expose trente-deux corpus disponibles en JSON. Les 329 339 ancres source sont normalisées en 323 682 unités éditoriales et découpées par chapitre afin que le navigateur ne charge que les fichiers nécessaires au passage consulté. La différence provient de la déduplication réversible des plages Barnes : chaque ancre et chaque variante française historique restent conservées. La bibliothèque comprend les douze corpus initiaux, la Bible Annotée de Neuchâtel, seize commentaires de la vague 3 issue de STEP/CrossWire, le SDA Bible Commentary enrichi par les compléments EGW, la ressource documentaire distincte `EGW Writings` et les annotations originales Douay–Rheims. TSK reste la source historique de la ressource de références croisées `TRESOR` d’Empreinte et n’est donc pas présentée comme un commentaire.
 
 Le jeu versionné `data/comments.json` ne sert plus que de repli léger lorsque la bibliothèque complète, volontairement ignorée par Git, n'est pas présente. `data/catalog.json` inventorie aussi les autres œuvres examinées, même quand leur contenu n'est pas encore importé.
 
@@ -130,7 +130,7 @@ yarn resources:commentaries:normalize-links
 
 ## Importer les annotations originales Douay–Rheims
 
-Le dépôt `janvier-s/original-douay-rheims` est la source éditoriale retenue. Son JSON est accepté tel que publié : Bible Strong ne le collationne pas avec les fac-similés, ne reconstitue pas les informations absentes et ne modifie pas le contenu des annotations. L’export ne fait qu’une conversion mécanique vers le schéma du prototype et conserve le commit ainsi que les hashes de provenance.
+Le dépôt `janvier-s/original-douay-rheims` est la source éditoriale retenue. Son JSON est accepté tel que publié : Empreinte ne le collationne pas avec les fac-similés, ne reconstitue pas les informations absentes et ne modifie pas le contenu des annotations. L’export ne fait qu’une conversion mécanique vers le schéma du prototype et conserve le commit ainsi que les hashes de provenance.
 
 ```bash
 yarn resources:commentaries:export-douay-rheims
@@ -142,7 +142,7 @@ L’instantané courant est épinglé au commit `0bf4218b9b46b5b00d29a703b5b7422
 
 ## Exporter et installer le SDA Bible Commentary
 
-Le responsable Bible Strong confirme disposer des autorisations couvrant l’usage, l’extraction, la transformation et la redistribution du SDA Bible Commentary complet et des ressources EGW associées. Le prototype reste exclusivement en JSON. Les PDF des volumes 1 à 7 sont récupérés livre par livre depuis l’archive `SdaBibleCommentary1980`, mis en cache localement, convertis en texte avec conservation de la mise en page puis découpés en introductions et commentaires bibliques.
+Le responsable Empreinte confirme disposer des autorisations couvrant l’usage, l’extraction, la transformation et la redistribution du SDA Bible Commentary complet et des ressources EGW associées. Le prototype reste exclusivement en JSON. Les PDF des volumes 1 à 7 sont récupérés livre par livre depuis l’archive `SdaBibleCommentary1980`, mis en cache localement, convertis en texte avec conservation de la mise en page puis découpés en introductions et commentaires bibliques.
 
 ```bash
 yarn resources:commentaries:export-egw
@@ -171,7 +171,7 @@ l’installation.
 
 ## Importer la Bible Annotée de Neuchâtel
 
-L’autorisation ThéoTeX couvrant l’usage, la transformation et la redistribution a été confirmée par le responsable de Bible Strong. La pièce d’archive correspondante reste à rattacher au manifeste. L’import actuel ne produit que du JSON : aucun schéma SQL ou fichier SQLite n’est créé.
+L’autorisation ThéoTeX couvrant l’usage, la transformation et la redistribution a été confirmée par le responsable d’Empreinte. La pièce d’archive correspondante reste à rattacher au manifeste. L’import actuel ne produit que du JSON : aucun schéma SQL ou fichier SQLite n’est créé.
 
 ```bash
 yarn resources:commentaries:export-bible-annotee
@@ -184,7 +184,7 @@ Les pages HTML originales sont mises en cache sous `.local/sources/theotex-bible
 
 ## Exporter et installer la vague 3 STEP/CrossWire
 
-Le responsable Bible Strong confirme avoir obtenu de STEP et des auteurs l’autorisation nécessaire pour l’usage, la transformation et la redistribution des ressources concernées. Cette confirmation est inscrite dans le manifeste ; les pièces originales doivent rester archivées dans le registre de provenance.
+Le responsable Empreinte confirme avoir obtenu de STEP et des auteurs l’autorisation nécessaire pour l’usage, la transformation et la redistribution des ressources concernées. Cette confirmation est inscrite dans le manifeste ; les pièces originales doivent rester archivées dans le registre de provenance.
 
 ```bash
 yarn resources:commentaries:export-wave-3
@@ -193,7 +193,7 @@ yarn resources:commentaries:install-wave-3
 yarn resources:commentaries:validate-library
 ```
 
-La vague source contient Abbott, Burkitt, Catena Aurea, Darby Notes, Family Notes, Geneva Notes, Keil & Delitzsch, KingComments, Lightfoot, Luther, Matthew Henry complet, Matthew Henry Modern English, People’s New Testament, Robertson’s Word Pictures, Scofield, Fourfold Gospel et Treasury of Scripture Knowledge. Les seize modules historiques sont téléchargés depuis le dépôt officiel CrossWire ; MHM est exporté depuis l’API STEP, chapitre par chapitre, avec un hash pour chacune des 1 189 réponses. TSK reste inventoriée dans l’audit de provenance, mais elle est exclue de la bibliothèque de commentaires parce que Bible Strong la distribue déjà comme références croisées sous l’identité `TRESOR`.
+La vague source contient Abbott, Burkitt, Catena Aurea, Darby Notes, Family Notes, Geneva Notes, Keil & Delitzsch, KingComments, Lightfoot, Luther, Matthew Henry complet, Matthew Henry Modern English, People’s New Testament, Robertson’s Word Pictures, Scofield, Fourfold Gospel et Treasury of Scripture Knowledge. Les seize modules historiques sont téléchargés depuis le dépôt officiel CrossWire ; MHM est exporté depuis l’API STEP, chapitre par chapitre, avec un hash pour chacune des 1 189 réponses. TSK reste inventoriée dans l’audit de provenance, mais elle est exclue de la bibliothèque de commentaires parce que Empreinte la distribue déjà comme références croisées sous l’identité `TRESOR`.
 
 `TNotes` n’est pas réimporté : STEP le décrit comme la même œuvre _Tyndale Open Study Notes_ déjà présente depuis le dépôt officiel Aquifer. `Spurious` est volontairement exclu parce qu’il s’agit d’un appareil signalant des passages contestés du Nouveau Testament, pas d’un commentaire. Aucune traduction française n’est produite dans cette vague.
 
@@ -228,7 +228,7 @@ références. Le cas historique attesté de Genèse 39 est réparé en amont par
 plan Hyksos reste sous le verset 1 et les vrais commentaires des versets 2, 6 et 7 sont restaurés.
 
 ```bash
-yarn workspace @bible-strong/resource-studio commentaries:sdabc:translations:prepare
+yarn workspace @empreinte/resource-studio commentaries:sdabc:translations:prepare
 ```
 
 La sortie locale se trouve sous `.local/sdabc-french-translation-plan/`. Le manifeste et les lots
@@ -246,7 +246,7 @@ la clé voisine lorsqu'une référence ou une citation interrompt la prose.
 Pour éprouver un seul lot avant toute exécution complète :
 
 ```bash
-yarn workspace @bible-strong/resource-studio commentaries:sdabc:translations:run -- \
+yarn workspace @empreinte/resource-studio commentaries:sdabc:translations:run -- \
   --batch sdabc-fr-IDENTIFIANT_DU_LOT
 ```
 
@@ -254,10 +254,10 @@ Une exécution complète reprend les receipts valides et ne rappelle pas le mod�
 scellés :
 
 ```bash
-yarn workspace @bible-strong/resource-studio commentaries:sdabc:translations:run
-yarn workspace @bible-strong/resource-studio commentaries:sdabc:translations:validate
-yarn workspace @bible-strong/resource-studio commentaries:sdabc:translations:audit
-yarn workspace @bible-strong/resource-studio commentaries:sdabc:translations:persist
+yarn workspace @empreinte/resource-studio commentaries:sdabc:translations:run
+yarn workspace @empreinte/resource-studio commentaries:sdabc:translations:validate
+yarn workspace @empreinte/resource-studio commentaries:sdabc:translations:audit
+yarn workspace @empreinte/resource-studio commentaries:sdabc:translations:persist
 ```
 
 La validation exige la cardinalité et l'ordre exacts des tâches et segments, tous les hashes
@@ -366,9 +366,9 @@ candidat de rapprochement avec la nouvelle collection anglaise :
 ```bash
 node apps/resource-studio/workflows/commentaries/scripts/restore-egw-french.mjs
 
-yarn workspace @bible-strong/resource-studio exec tsx src/packageEgwFrenchRestoration.ts --update-catalog
+yarn workspace @empreinte/resource-studio exec tsx src/packageEgwFrenchRestoration.ts --update-catalog
 
-yarn workspace @bible-strong/resource-service bundle:validate \
+yarn workspace @empreinte/resource-service bundle:validate \
   --bundle "$PWD/apps/resource-studio/outputs/resource-publications/commentaries/egw-writings-fr"
 ```
 

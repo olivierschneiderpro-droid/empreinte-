@@ -67,7 +67,7 @@ questions for solo/Bible challenge and 200 identities for Who am I. No new exter
 database service, Gloo key, Resource binding or question-generation call is needed.
 
 `question-bank/*.json` and `who-bank/*.json` are the server-only seed sources.
-`yarn workspace @bible-strong/world catalogue:build` produces a content-hashed import
+`yarn workspace @empreinte/world catalogue:build` produces a content-hashed import
 manifest; dev/build/deploy refresh it automatically. The catalogue reconciles its
 SQLite rows atomically when that revision changes, retaining player history.
 The local dev watcher also rebuilds the manifest when either bank changes.
@@ -123,7 +123,7 @@ prevention or a production spend guarantee. Provider-side spending limits remain
 2. Run **`yarn dev:world`** and open `http://localhost:5186` in independent sessions.
 
 **Do not start `yarn dev:resources` for games.** No Resource service, PostgreSQL,
-service binding or `get_passage` tool is needed. Other Bible Strong products still
+service binding or `get_passage` tool is needed. Other Empreinte products still
 use Resources; their commands and service are unchanged. Provider secrets must
 never use a `VITE_` prefix. Production needs only the Jev key for non-exact answers. Deploying the World Worker
 applies the additive catalogue migration and seeds cloud SQLite on its first use.
@@ -132,8 +132,8 @@ No deployment is required for local tests.
 ## Validation
 
 ```sh
-yarn workspace @bible-strong/world test
-yarn workspace @bible-strong/world build
+yarn workspace @empreinte/world test
+yarn workspace @empreinte/world build
 # Real local Worker/SQLite: continuous solo/final review, reconnect, 2/4 players, privacy, sources.
 node apps/world/scripts/test-game-catalogue.mjs
 # Optional real Jev calibration (uses the server-only key):
@@ -157,7 +157,7 @@ Generated with built-in imagegen in the `bible-strong-univers-v1` style:
 
 Transparent PNG masters are retained beside the 600px WebP UI exports. Violet and
 gold are palette choices for these games. The AI artwork was checked for alpha,
-small-size readability and consistency with the supplied Bible Strong references.
+small-size readability and consistency with the supplied Empreinte references.
 
 ## Game feedback and mobile presentation — 2026-09-22
 

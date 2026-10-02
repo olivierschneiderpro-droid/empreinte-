@@ -191,7 +191,7 @@ export function SoloGameView({
       {celebrate && <Confetti seed={game.id} />}
       <header className="games-header">
         <span className="games-eyebrow">
-          {choose('Défi solo · Bible Strong', 'Solo challenge · Bible Strong')}
+          {choose('Défi solo · Empreinte', 'Solo challenge · Empreinte')}
         </span>
         <h1 id={titleId}>{choose('4 à la suite', 'Four in a row')}</h1>
         <p>

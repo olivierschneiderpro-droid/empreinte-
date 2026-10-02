@@ -1,7 +1,7 @@
 import {
   extractEncryptedArchive,
   isEncryptedArchiveSupported,
-} from '../../modules/bible-strong-archive'
+} from '../../modules/empreinte-archive'
 import { toNativeFilePath } from './fileIntegrity'
 import { MOBILE_RESOURCE_CATALOG } from './mobileResourceCatalog'
 

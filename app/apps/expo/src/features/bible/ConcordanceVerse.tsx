@@ -9,7 +9,7 @@ import type { Theme as AppTheme } from '~themes'
 
 import Text from '~common/ui/Text'
 import { getBook } from '~helpers/bibleBookCatalog'
-import type { StrongVerseTextStyle } from './BibleStrongReference'
+import type { StrongVerseTextStyle } from './StrongVerseReference'
 import CanonicalStrongVerseText from './CanonicalStrongVerseText'
 
 import type { TFunction } from 'react-i18next'

@@ -12,8 +12,8 @@ Both use `smontlouis/bible-strong`, with `master` as the production branch.
 - Production branch: `master`
 - Trigger: every push to `master`, or a manual workflow dispatch
 - Runtime: Node 22, Corepack, Yarn from the root manifest
-- Build command: `yarn workspace @bible-strong/expo web:build`
-- Deploy command: `yarn workspace @bible-strong/resource-service exec wrangler deploy --config ../../apps/expo/wrangler.jsonc`
+- Build command: `yarn workspace @empreinte/expo web:build`
+- Deploy command: `yarn workspace @empreinte/resource-service exec wrangler deploy --config ../../apps/expo/wrangler.jsonc`
 - Repository secret: `CLOUDFLARE_WEB_API_TOKEN`
 
 The dedicated Cloudflare token has Workers Scripts Edit and Account Settings Read
@@ -41,7 +41,7 @@ The custom domain is declared in Wrangler; DNS and TLS are managed by Cloudflare
 
 ## Verification
 
-Run `yarn workspace @bible-strong/expo web:build`, then validate the assets/config:
+Run `yarn workspace @empreinte/expo web:build`, then validate the assets/config:
 
 ```sh
 npx wrangler@4.124.0 deploy --config apps/expo/wrangler.jsonc --dry-run

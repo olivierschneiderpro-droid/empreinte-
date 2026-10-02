@@ -1,7 +1,7 @@
 # Format des renvois bibliques dans les notes canoniques V3
 
 _Recherche réalisée le 24 juillet 2026 à partir des artefacts V3, du code de
-Bible Strong et des spécifications OSIS officielles._
+Empreinte et des spécifications OSIS officielles._
 
 ## Mise en œuvre
 

@@ -1,10 +1,10 @@
 # Bible Annotée de Neuchâtel — audit des droits et des sources numériques
 
-Audit réalisé le 28 août 2026. Il s'agit d'une analyse documentaire destinée à orienter l'intégration dans Bible Strong, pas d'un avis juridique.
+Audit réalisé le 28 août 2026. Il s'agit d'une analyse documentaire destinée à orienter l'intégration dans Empreinte, pas d'un avis juridique.
 
 ## Décision courte
 
-**Décision mise à jour le 28 août 2026 : le responsable de Bible Strong confirme disposer de l’autorisation ThéoTeX couvrant l’intégralité de la ressource. L’import de la transcription ThéoTeX peut donc avancer dans le prototype JSON. La pièce établissant cet accord doit encore être rattachée au registre de provenance.**
+**Décision mise à jour le 28 août 2026 : le responsable d’Empreinte confirme disposer de l’autorisation ThéoTeX couvrant l’intégralité de la ressource. L’import de la transcription ThéoTeX peut donc avancer dans le prototype JSON. La pièce établissant cet accord doit encore être rattachée au registre de provenance.**
 
 L’œuvre imprimée historique est par ailleurs dans le domaine public. L’absence de licence ouverte affichée publiquement sur le site avait conduit l’audit initial à recommander une attente ; cette réserve est levée pour Bible Strong par l’autorisation directe confirmée par le responsable du projet.
 
@@ -85,7 +85,7 @@ Ces conditions ne sont pas une licence compatible avec une redistribution JSON/S
 | [RERO](https://bib.rero.ch/global/documents/1237784) | Notice bibliographique du NT en quatre volumes | Métadonnées, pas de texte intégral | Sans objet |
 | CrossWire `FreBBB` | Texte biblique Bovet-Bonnet uniquement, sans commentaires | Module SWORD | Configuration officielle : `Copyrighted; Free non-commercial distribution`; ce module n'est ni une licence pour les commentaires ni une source ouverte suffisante pour notre corpus |
 
-Google indique dans sa [présentation officielle de Google Books](https://books.google.com/googlebooks/about/) qu'un livre du domaine public peut être téléchargé en PDF. Son [aide](https://support.google.com/websearch/answer/43729) décrit aussi les téléchargements PDF/EPUB. Pour réduire les risques et améliorer la provenance, Bible Strong devrait utiliser ces fichiers uniquement comme fac-similés de contrôle/OCR, ne pas redistribuer les scans Google et publier son propre texte corrigé avec références de pages et empreintes des fichiers d'entrée.
+Google indique dans sa [présentation officielle de Google Books](https://books.google.com/googlebooks/about/) qu'un livre du domaine public peut être téléchargé en PDF. Son [aide](https://support.google.com/websearch/answer/43729) décrit aussi les téléchargements PDF/EPUB. Pour réduire les risques et améliorer la provenance, Empreinte devrait utiliser ces fichiers uniquement comme fac-similés de contrôle/OCR, ne pas redistribuer les scans Google et publier son propre texte corrigé avec références de pages et empreintes des fichiers d'entrée.
 
 Aucun dépôt officiel JSON, XML, OSIS, USFM ou SQLite couvrant les commentaires complets avec une licence ouverte n'a été trouvé. Le module SWORD identifié ne contient que la traduction biblique.
 
@@ -102,7 +102,7 @@ L'accord doit autoriser explicitement :
 
 1. l'extraction de la totalité du texte biblique, des notes, introductions et études ;
 2. la correction, la normalisation des références et le découpage par unités bibliques ;
-3. la conversion et la redistribution en JSON, SQL et SQLite, y compris hors ligne dans les applications Bible Strong ;
+3. la conversion et la redistribution en JSON, SQL et SQLite, y compris hors ligne dans les applications Empreinte ;
 4. les mises à jour, corrections éditoriales et migrations de format ;
 5. la diffusion gratuite mondiale, sans durée limitée ;
 6. le régime d'attribution précis et, si une restriction commerciale subsiste, sa définition par rapport aux boutiques d'applications, dons et services payants.
@@ -127,4 +127,4 @@ Cette voie est légalement plus robuste mais lourde : l'ensemble représente plu
 
 Avant confirmation de l’accord ThéoTeX, la Bible Annotée de Neuchâtel n’était pas bloquée par les droits de ses auteurs historiques, mais par **la provenance et les conditions de la transcription moderne disponible**. La recommandation documentaire était donc de demander la permission ou de préparer un OCR indépendant.
 
-Cette condition est désormais réputée satisfaite pour l’intégration Bible Strong sur confirmation du responsable du projet. L’analyse précédente reste conservée ci-dessus pour expliquer pourquoi l’autorisation directe et son archivage sont importants.
+Cette condition est désormais réputée satisfaite pour l’intégration Empreinte sur confirmation du responsable du projet. L’analyse précédente reste conservée ci-dessus pour expliquer pourquoi l’autorisation directe et son archivage sont importants.

@@ -49,7 +49,7 @@ class InlineTooltip extends Tooltip {
       if (this.type === 'inline-verse') {
         dispatch('SELECT_BIBLE_VERSE', undefined, this.quill.container)
       } else if (this.type === 'inline-strong') {
-        dispatch('SELECT_BIBLE_STRONG', undefined, this.quill.container)
+        dispatch('SELECT_STRONG_BIBLE', undefined, this.quill.container)
       } else {
         dispatch('SELECT_STUDY_ENTITY_LINK', undefined, this.quill.container)
       }

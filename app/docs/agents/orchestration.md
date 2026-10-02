@@ -41,7 +41,7 @@ Options:
 - `--run-codex`: run `codex exec` non-interactively with the generated prompt and write the final agent message to `.scratch/issues/<issue-number>/codex-final.md`.
 - `--codex-sandbox <mode>`: choose the sandbox passed to `codex exec` when using `--run-codex`. Supported modes are `read-only`, `workspace-write`, and `danger-full-access`; the default is `danger-full-access`.
 
-Do not use `--worktree` for Bible Strong mobile user-facing issue work. This repo currently uses `mobile-sequential`: one issue branch in the current worktree, one local mobile verification loop, then PR readiness.
+Do not use `--worktree` for Empreinte mobile user-facing issue work. This repo currently uses `mobile-sequential`: one issue branch in the current worktree, one local mobile verification loop, then PR readiness.
 
 The default `danger-full-access` is intentional for this mobile-sequential harness because runtime validation needs host-level tools such as iOS Simulator/CoreSimulator. For routine static-only implementation work, pass `--codex-sandbox workspace-write` explicitly.
 
@@ -98,7 +98,7 @@ Each agent must state in its PR:
 
 ## Mobile Orchestration Mode
 
-Bible Strong is a mobile-first Expo/React Native app. Treat runtime validation as host-only unless a future runner explicitly proves simulator or device access.
+Empreinte is a mobile-first Expo/React Native app. Treat runtime validation as host-only unless a future runner explicitly proves simulator or device access.
 
 Selected mode: `mobile-sequential`.
 

@@ -203,7 +203,7 @@ const installDatabase = async (
   }
 }
 
-const installBibleStrongSidecar = async (
+const installEmpreinteSidecar = async (
   item: StrongBibleIndexDownloadItem,
   callbacks: ResourceInstallationCallbacks
 ) => {
@@ -265,7 +265,7 @@ export const installResourceDatabaseItem = async (
     case 'bible':
       return installBible(item, callbacks)
     case 'bible-strong-sidecar':
-      return installBibleStrongSidecar(item, callbacks)
+      return installEmpreinteSidecar(item, callbacks)
     case 'bible-interlinear-sidecar':
       return installBibleInterlinearSidecar(item, callbacks)
     case 'strong-lexicon-module':

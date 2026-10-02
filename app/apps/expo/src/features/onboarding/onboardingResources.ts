@@ -1,4 +1,4 @@
-import { isStandaloneStrongModule } from '@bible-strong/resource-domain/strong-lexicon'
+import { isStandaloneStrongModule } from '@empreinte/resource-domain/strong-lexicon'
 import type { DownloadItem } from '~state/downloadQueue'
 import {
   createBibleDownloadItem,
@@ -18,7 +18,7 @@ import type { StrongBibleVersionId } from '~helpers/strongBiblePublications'
 import type { StrongLexiconModuleId } from '~helpers/strongLexiconPublications'
 import { createOfflineCopyId, type OfflineCopyIdentity } from '~helpers/offlineCopyId'
 import { getOnboardingResourceSelectionId } from './onboardingResourceSelectionId'
-import { getCommentaryByPublicationId } from '@bible-strong/resource-catalog/commentaries'
+import { getCommentaryByPublicationId } from '@empreinte/resource-catalog/commentaries'
 
 export { getOnboardingResourceSelectionId } from './onboardingResourceSelectionId'
 

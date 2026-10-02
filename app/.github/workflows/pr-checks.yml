@@ -17,20 +17,20 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     env:
-      RESOURCE_DATABASE_URL: postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong
+      RESOURCE_DATABASE_URL: postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte
       RESOURCE_EXTERNAL_POSTGRES: '1'
 
     services:
       postgres:
         image: pgvector/pgvector:pg17
         env:
-          POSTGRES_DB: bible_strong
-          POSTGRES_USER: bible_strong
-          POSTGRES_PASSWORD: bible_strong
+          POSTGRES_DB: empreinte
+          POSTGRES_USER: empreinte
+          POSTGRES_PASSWORD: empreinte
         ports:
           - 54329:5432
         options: >-
-          --health-cmd "pg_isready -U bible_strong -d bible_strong"
+          --health-cmd "pg_isready -U empreinte -d empreinte"
           --health-interval 2s
           --health-timeout 3s
           --health-retries 20

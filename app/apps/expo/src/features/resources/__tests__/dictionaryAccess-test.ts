@@ -33,7 +33,7 @@ describe('HTTP dictionary access', () => {
         abbreviation: 'Bost',
         authors: ['Jean-Augustin Bost'],
         description: 'Dictionnaire biblique français.',
-        edition: 'Édition numérique Bible Strong',
+        edition: 'Édition numérique Empreinte',
         source: 'levangile.com',
         attribution: 'Jean-Augustin Bost, source levangile.com',
         onlineAccess: true,

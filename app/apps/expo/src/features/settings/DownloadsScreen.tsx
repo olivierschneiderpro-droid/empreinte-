@@ -1,4 +1,4 @@
-import { getSimpleStrongModuleId } from '@bible-strong/resource-domain/strong-lexicon'
+import { getSimpleStrongModuleId } from '@empreinte/resource-domain/strong-lexicon'
 import { useConfirmDialog } from '~common/ConfirmDialog/useConfirmDialog'
 import React, { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
@@ -56,7 +56,7 @@ import { resourceIdentityFromOfflineCopy } from '~features/resources/resourceMod
 import useConnection from '~helpers/useConnection'
 import ResourceUnavailableView from '~features/resources/ResourceUnavailableView'
 import { buildBibleItems, type UnifiedDownloadItem } from './downloadBibleItems'
-import { getCommentaryCatalogForLanguage } from '@bible-strong/resource-catalog/commentaries'
+import { getCommentaryCatalogForLanguage } from '@empreinte/resource-catalog/commentaries'
 import type { DictionaryWork } from '~features/resources/dictionaryAccess'
 import {
   buildDownloadResourceSections,

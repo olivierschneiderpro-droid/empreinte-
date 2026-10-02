@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Bible Strong historically identifies the 66 Protestant books with numeric IDs 1–66. The
+Empreinte historically identifies the 66 Protestant books with numeric IDs 1–66. The
 Clementine Vulgate contains the 73 canonical Catholic books, integrates additions into Esther and
 Daniel, and uses chapter and verse numbering that differs from the application's default
 versification. Some printed Vulgates also contain non-canonical appendix material.
@@ -27,7 +27,7 @@ Clementine resource contains exactly the 73 canonical books and excludes the Pra
 and III–IV Esdras.
 
 Declare `clementine-vulgate` as both the canon and versification of version `VUL`. Preserve its
-native references, including Joel in three chapters. Bible Strong does not automatically convert
+native references, including Joel in three chapters. Empreinte does not automatically convert
 references between this versification and another version.
 
 Keep durable verse identity version-independent for highlights, notes, links, bookmarks, and study

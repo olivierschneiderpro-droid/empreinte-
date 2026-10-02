@@ -1,4 +1,4 @@
-/* Bible games: one visual language shared with the Bible Strong app.
+/* Bible games: one visual language shared with Empreinte app.
    Tokens first, then the dialog shell, then each screen. Mobile is a bottom sheet
    with a pinned footer; tablet and desktop keep a centred panel. */
 .games-dialog,

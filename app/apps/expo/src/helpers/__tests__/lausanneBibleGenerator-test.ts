@@ -11,7 +11,7 @@ describe('Lausanne Bible generator', () => {
     expect(decodeWindows1252(Buffer.from([0x63, 0x9c, 0x75, 0x72, 0x20, 0x85]))).toBe('cœur …')
   })
 
-  it('maps Lausanne references to the Bible Strong JSON shape without rewriting the text', () => {
+  it('maps Lausanne references to Empreinte JSON shape without rewriting the text', () => {
     const source = [
       'Gen 1:1 ¶ Au commencement Dieu créa les cieux et la terre.',
       "Exo 20:14 Tu ne commettras point d'adultère.",

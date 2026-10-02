@@ -1,5 +1,5 @@
 import type { ThreadMessageLike } from '@assistant-ui/react'
-import type { ToolActivity } from '@bible-strong/ai-contract/contract'
+import type { ToolActivity } from '@empreinte/ai-contract/contract'
 import type { ReadonlyJSONObject } from 'assistant-stream/utils'
 import type { LocalMessage } from './conversations'
 
@@ -40,7 +40,7 @@ export function convertMessage(message: LocalMessage): ThreadMessageLike {
       argsText: tool.request,
       ...(tool.state === 'running' ? {} : { result: tool.result }),
       ...(tool.state === 'error' || tool.state === 'interrupted' ? { isError: true } : {}),
-      artifact: { bibleStrongState: tool.state },
+      artifact: { empreinteState: tool.state },
     })),
     ...(message.routing || []).map(data => ({
       type: 'data' as const,

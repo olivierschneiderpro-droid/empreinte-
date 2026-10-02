@@ -76,7 +76,7 @@ test("packages prepared entry links and exact passage anchors", async (t) => {
   assert.deepEqual(directoryManifest.rights, {
     holder: "Selon les ressources dictionnaires participantes",
     termsReference: "Voir les droits de chaque dictionnaire participant.",
-    attribution: "Index de découverte des dictionnaires Bible Strong",
+    attribution: "Index de découverte des dictionnaires Empreinte",
     online: true,
     offline: true
   });

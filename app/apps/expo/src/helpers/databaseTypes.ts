@@ -1,7 +1,7 @@
 import * as FileSystem from 'expo-file-system/legacy'
-import type { ResourceLanguage } from '@bible-strong/resource-domain/interlinear-bible'
+import type { ResourceLanguage } from '@empreinte/resource-domain/interlinear-bible'
 
-export type { ResourceLanguage } from '@bible-strong/resource-domain/interlinear-bible'
+export type { ResourceLanguage } from '@empreinte/resource-domain/interlinear-bible'
 
 export type DatabaseId = 'DICTIONNAIRE' | 'NAVE' | 'TRESOR' | 'MHY' | 'TIMELINE' | 'BIBLES'
 

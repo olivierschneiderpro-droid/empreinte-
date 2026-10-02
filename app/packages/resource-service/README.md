@@ -61,7 +61,7 @@ RESOURCE_PUBLICATION_ROOTS="/path/to/ordinary:/path/to/strong:/path/to/interline
 
 The Resource service never scans Resource Studio's working files. The handoff input is
 an explicit immutable publication bundle produced and validated by Resource Studio. Copy or
-mount that bundle at a path selected explicitly for local validation or import; Bible Strong does
+mount that bundle at a path selected explicitly for local validation or import; Empreinte does
 not generate its manifest, editorial metadata, or Offline-copy artifact:
 
 ```bash
@@ -374,7 +374,7 @@ yarn resources:offline:encrypt:prod --dry-run --resource bible:LSG
 yarn resources:offline:encrypt:prod
 ```
 
-The command reads `BIBLE_STRONG_ARCHIVE_KEYS` from `.env.resource-publication.local`, the same value
+The command reads `EMPREINTE_ARCHIVE_KEYS` from `.env.resource-publication.local`, the same value
 as `apps/expo/.env.local`, and encrypts with the latest key version. For each catalog resource it
 looks up the private R2 index `encrypted-archives/v<key version>/<plain sha256>.json`. Without an
 index entry it reads the plain archive from R2, derives the per-archive password, encrypts, decrypts

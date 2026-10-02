@@ -48,7 +48,7 @@ export const lexiconCopy = {
     ],
     more: 'Et ce n’est que le début…',
     possibilities:
-      'Recherche des mots, explore leurs liens et approfondis les définitions dans Bible Strong.',
+      'Recherche des mots, explore leurs liens et approfondis les définitions dans Empreinte.',
     open: 'Ouvrir le lexique',
     finish: 'Continuer l’exploration',
     illustration: 'Un lecteur explore les mots hébreux et grecs avec une loupe',
@@ -94,7 +94,7 @@ export const lexiconCopy = {
     ],
     more: 'And this is just the beginning…',
     possibilities:
-      'Search for words, explore their connections and dig into definitions in Bible Strong.',
+      'Search for words, explore their connections and dig into definitions in Empreinte.',
     open: 'Open the lexicon',
     finish: 'Keep exploring',
     illustration: 'A reader explores Hebrew and Greek words with a magnifying glass',

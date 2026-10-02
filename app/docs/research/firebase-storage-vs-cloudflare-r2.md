@@ -22,7 +22,7 @@ Le dépôt configure actuellement `bible-strong-app.appspot.com` dans les trois 
 
 Sources : [tarifs Firebase](https://firebase.google.com/pricing), [tarifs Google Cloud Storage](https://cloud.google.com/storage/pricing), [tarifs R2](https://developers.cloudflare.com/r2/pricing/).
 
-Pour les nouveaux buckets Firebase `*.firebasestorage.app`, Firebase annonce mensuellement 5 GB-mois, 100 GB téléchargés, 5 000 uploads et 50 000 downloads gratuits, puis renvoie vers les tarifs GCS. Cela ne décrit pas le bucket historique utilisé actuellement par Bible Strong. Les tarifs GCS varient par emplacement ; il faut donc contrôler le SKU et la région réels avant toute projection définitive.
+Pour les nouveaux buckets Firebase `*.firebasestorage.app`, Firebase annonce mensuellement 5 GB-mois, 100 GB téléchargés, 5 000 uploads et 50 000 downloads gratuits, puis renvoie vers les tarifs GCS. Cela ne décrit pas le bucket historique utilisé actuellement par Empreinte. Les tarifs GCS varient par emplacement ; il faut donc contrôler le SKU et la région réels avant toute projection définitive.
 
 ### Ordre de grandeur
 
@@ -56,7 +56,7 @@ Google Cloud Storage propose également des URL signées temporaires. Firebase f
 
 Si chaque téléchargement privé passe par un Worker, ajouter son coût : le plan gratuit couvre 100 000 requêtes/jour ; le plan payant commence à 5 $/mois avec 10 millions de requêtes mensuelles et du temps CPU inclus. [Tarifs Workers](https://developers.cloudflare.com/workers/platform/pricing/)
 
-## Recommandation pour Bible Strong
+## Recommandation pour Empreinte
 
 Adopter **R2 Standard + domaine personnalisé + cache** pour les artefacts éditoriaux publics ou simplement destinés à être distribués largement dans l'app : bases de ressources, JSON versionnés, images et audio librement redistribuable. Utiliser des clés immuables contenant la révision et des `Cache-Control` longs ; publier un petit manifeste pour pointer vers la révision active.
 

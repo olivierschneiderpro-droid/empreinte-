@@ -1,4 +1,4 @@
-# Intégration IA dans Bible Strong : état de l'art et architecture recommandée
+# Intégration IA dans Empreinte : état de l'art et architecture recommandée
 
 _Recherche effectuée le 21 août 2026. Les capacités, tarifs et politiques des fournisseurs évoluent rapidement ; les éléments datés doivent être revérifiés avant contractualisation ou mise en production._
 
@@ -6,10 +6,10 @@ _Recherche effectuée le 21 août 2026. Les capacités, tarifs et politiques des
 
 La bonne architecture n'est **ni un gros prompt système**, ni **un RAG branché directement sur toute la base PostgreSQL**, ni **un chatbot généraliste auquel on demande d'être chrétien**.
 
-Pour Bible Strong, l'option la plus robuste est un **assistant de recherche biblique fondé sur des sources**, composé de plusieurs étapes explicites :
+Pour Empreinte, l'option la plus robuste est un **assistant de recherche biblique fondé sur des sources**, composé de plusieurs étapes explicites :
 
 1. déterminer le type de demande et son contexte biblique ;
-2. appeler des outils de lecture bornés et typés sur les ressources Bible Strong ;
+2. appeler des outils de lecture bornés et typés sur les ressources Empreinte ;
 3. effectuer, quand nécessaire, une recherche hybride lexicale + sémantique ;
 4. reranker et filtrer les résultats par langue, type de ressource, droits et perspective théologique ;
 5. générer une réponse structurée dont chaque affirmation vérifiable renvoie à une source ouvrable ;
@@ -23,8 +23,8 @@ Le premier produit à livrer ne devrait pas être un « pasteur IA ». Il devrai
 ## Comment lire cette note
 
 - **Fait sourcé** : affirmation directement étayée par une source primaire ou une publication originale.
-- **Inférence** : conséquence raisonnable tirée des sources et du contexte de Bible Strong, mais non affirmée telle quelle par la source.
-- **Recommandation** : choix proposé pour Bible Strong ; il reste à valider par le produit, l'éditorial, le juridique et des essais mesurés.
+- **Inférence** : conséquence raisonnable tirée des sources et du contexte d’Empreinte, mais non affirmée telle quelle par la source.
+- **Recommandation** : choix proposé pour Empreinte ; il reste à valider par le produit, l'éditorial, le juridique et des essais mesurés.
 
 ## 1. Ce que l'état de l'art permet — et ne permet pas
 
@@ -60,7 +60,7 @@ Ne pas envoyer une bibliothèque entière « parce que le modèle accepte beauco
 
 **Recommandation.** Ne pas fine-tuner en première version. Le contenu éditorial doit rester dans un corpus versionné et récupérable. Envisager plus tard un fine-tuning pour un comportement étroit et mesurable — classement d'intention, style, format d'abstention — uniquement si le prompt + les exemples + les sorties structurées ne suffisent pas et si un jeu d'évaluation prouve le gain.
 
-## 2. Architecture cible pour Bible Strong
+## 2. Architecture cible pour Empreinte
 
 ### 2.1 Vue d'ensemble
 
@@ -69,7 +69,7 @@ App mobile
   |
   | contexte explicite : passage, version, Strong, langue, mode
   v
-Cloudflare Worker / AI Gateway Bible Strong
+Cloudflare Worker / AI Gateway Empreinte
   |- authentification optionnelle, App Check, quotas, rate limiting
   |- modération / détection de hors-sujet / budget
   |- routeur déterministe ou petit modèle structuré
@@ -220,7 +220,7 @@ La mémoire doit être désactivée par défaut ou très courte. Si un historiqu
 
 ### 4.1 Une politique éditoriale explicite avant le prompt
 
-**Recommandation.** Bible Strong doit décider et publier :
+**Recommandation.** Empreinte doit décider et publier :
 
 - le socle doctrinal éventuel du produit ;
 - les traditions couvertes et la manière de traiter les désaccords ;
@@ -240,7 +240,7 @@ Le modèle doit marquer les affirmations comme :
 3. **interprétation** : lecture d'une tradition/auteur nommé ;
 4. **application** : piste de réflexion, jamais parole divine personnalisée.
 
-Pour un sujet disputé, la réponse nomme les positions, indique les principaux textes mobilisés et évite de fabriquer un faux consensus. Si Bible Strong choisit une perspective confessionnelle, elle doit être visible et non cachée dans le prompt.
+Pour un sujet disputé, la réponse nomme les positions, indique les principaux textes mobilisés et évite de fabriquer un faux consensus. Si Empreinte choisit une perspective confessionnelle, elle doit être visible et non cachée dans le prompt.
 
 ### 4.3 Signaux venant de produits et institutions chrétiennes
 
@@ -250,7 +250,7 @@ Les déclarations publiques ci-dessous sont des faits sur le **positionnement an
 
 **Magisterium AI — corpus confessionnel explicite.** Le produit annonce des citations inline ouvrant le document et son contexte. Son mode « Magisterial » limite la recherche aux enseignements officiels catholiques ; d'autres modes élargissent les sources. Il annonce aussi pouvoir s'abstenir quand les sources sont insuffisantes ou la demande hors corpus ([citations](https://help.magisterium.com/chat/understanding-citations), [modes de sources](https://help.magisterium.com/chat/prompt-modes-explained), [refus](https://help.magisterium.com/chat/answer-bailed-out-or-flagged)). Ce n'est pas une neutralité générale : la perspective et la hiérarchie d'autorité sont visibles. Sa politique de confidentialité mentionne plusieurs sous-traitants et des chats conservés par défaut ; ce modèle de rétention ne devrait pas être repris sans décision explicite ([Privacy Policy](https://www.magisterium.com/privacy-policy)).
 
-**Anchor — règles pastorales publiées.** Anchor annonce une règle « cite or refuse », des versets provenant du corpus indexé et non de la mémoire du modèle, cinq lentilles théologiques nommées, et des refus pour prononcer le salut d'une personne, interpréter un rêve comme parole de Dieu, prophétiser, diagnostiquer ou donner des conseils médicaux/juridiques/financiers. Pour l'automutilation, il dit présenter les ressources de crise avant le contenu biblique et affirme tester ces catégories adversarialement ([fonctionnement](https://www.anchor.bible/), [corpus](https://www.anchor.bible/sources)). Cette liste est une excellente matière pour des tests Bible Strong. Réserve importante : la page technique déclare envoyer les questions à Gemini, tandis que la page de confidentialité ne nomme pas Google parmi les destinataires ([Privacy](https://www.anchor.bible/privacy)) ; ses promesses de confidentialité nécessitent donc clarification.
+**Anchor — règles pastorales publiées.** Anchor annonce une règle « cite or refuse », des versets provenant du corpus indexé et non de la mémoire du modèle, cinq lentilles théologiques nommées, et des refus pour prononcer le salut d'une personne, interpréter un rêve comme parole de Dieu, prophétiser, diagnostiquer ou donner des conseils médicaux/juridiques/financiers. Pour l'automutilation, il dit présenter les ressources de crise avant le contenu biblique et affirme tester ces catégories adversarialement ([fonctionnement](https://www.anchor.bible/), [corpus](https://www.anchor.bible/sources)). Cette liste est une excellente matière pour des tests Empreinte. Réserve importante : la page technique déclare envoyer les questions à Gemini, tandis que la page de confidentialité ne nomme pas Google parmi les destinataires ([Privacy](https://www.anchor.bible/privacy)) ; ses promesses de confidentialité nécessitent donc clarification.
 
 **Bible Chat — validation de marché mais référence de confiance plus faible.** L'éditeur affirme utiliser RAG, citations, choix de dénomination et supervision par un conseil multi-traditions, tout en disant que l'IA ne remplace ni Église ni responsable religieux ([About](https://thebiblechat.com/about-us/), [limites annoncées](https://thebiblechat.com/blog/embracing-technology-with-faith-exploring-bible-chat-and-ais-role/)). Ses conditions excluent le conseil médical, psychologique, juridique ou pastoral, mais sa politique permet de collecter notamment dénomination, croyances, prompts et outputs et liste de nombreux prestataires ([Privacy](https://thebiblechat.com/privacy-policy/), [Terms](https://thebiblechat.com/terms-and-conditions/)). Cela montre pourquoi la promesse « Bible + RAG » ne suffit pas à une posture de confidentialité.
 
@@ -315,7 +315,7 @@ Mesures concrètes :
 
 ## 6. Évaluation, supervision et observabilité
 
-### 6.1 Un jeu d'évaluation Bible Strong est indispensable
+### 6.1 Un jeu d'évaluation Empreinte est indispensable
 
 Le benchmark doit être créé **avant** le choix définitif du modèle. Il devrait contenir des questions françaises et anglaises relues par des personnes compétentes, réparties par surface : référence exacte, résumé, histoire, Strong, recherche sémantique, comparaison, désaccord doctrinal, absence de preuve, crise pastorale, hors-sujet, injection et extraction.
 
@@ -348,7 +348,7 @@ Déployer par canary : évaluations préproduction, équipe interne, petit pourc
 
 ### 7.1 Le fournisseur ne doit jamais être appelé depuis l'app
 
-Toutes les requêtes passent par la passerelle Bible Strong. Cela protège la clé, permet quotas/abuse controls, redaction, routage, observabilité et changement de fournisseur. Le contrat interne doit être indépendant d'un format OpenAI/Anthropic/Google.
+Toutes les requêtes passent par la passerelle Empreinte. Cela protège la clé, permet quotas/abuse controls, redaction, routage, observabilité et changement de fournisseur. Le contrat interne doit être indépendant d'un format OpenAI/Anthropic/Google.
 
 ### 7.2 Les conditions « API commerciale » comptent plus que la marque
 
@@ -422,7 +422,7 @@ Deux LLM qui se valident peuvent partager les mêmes erreurs. La diversité de f
 - résumé/contexte de chapitre ;
 - explication Strong et dictionnaire ;
 - réponses structurées, sources ouvrables, feedback ;
-- uniquement corpus éditorial Bible Strong, outils read-only, pas de mémoire personnelle.
+- uniquement corpus éditorial Empreinte, outils read-only, pas de mémoire personnelle.
 
 ### Phase 2 — Recherche biblique IA
 
@@ -447,7 +447,7 @@ Deux LLM qui se valident peuvent partager les mêmes erreurs. La diversité de f
 
 ## 11. Décisions à prendre dans l'issue
 
-1. Bible Strong revendique-t-il une perspective confessionnelle précise, un socle nicéen large, ou une présentation pluraliste nommée ?
+1. Empreinte revendique-t-il une perspective confessionnelle précise, un socle nicéen large, ou une présentation pluraliste nommée ?
 2. Quelles sources sont autorisées pour recherche, embedding, transfert à un fournisseur et citation générée ?
 3. Quel niveau d'autorité humaine valide les résumés, les cas de benchmark et les incidents théologiques ?
 4. Quelles fonctionnalités restent strictement read-only, et lesquelles pourront modifier notes/tags après confirmation ?
@@ -457,4 +457,4 @@ Deux LLM qui se valident peuvent partager les mêmes erreurs. La diversité de f
 
 ## Conclusion
 
-L'état de l'art ne permet pas de garantir une IA qui « ne part jamais en freestyle ». Il permet en revanche de construire un produit dont les erreurs sont moins probables, visibles, bornées et révocables. Pour Bible Strong, la sûreté vient principalement de la qualité du corpus et de ses droits, d'outils read-only étroits, d'une récupération hybride évaluée, de citations réellement vérifiées, d'une politique théologique explicite, de l'abstention et de la supervision humaine. Le modèle et son prompt viennent à l'intérieur de ce système ; ils ne sont pas le système.
+L'état de l'art ne permet pas de garantir une IA qui « ne part jamais en freestyle ». Il permet en revanche de construire un produit dont les erreurs sont moins probables, visibles, bornées et révocables. Pour Empreinte, la sûreté vient principalement de la qualité du corpus et de ses droits, d'outils read-only étroits, d'une récupération hybride évaluée, de citations réellement vérifiées, d'une politique théologique explicite, de l'abstention et de la supervision humaine. Le modèle et son prompt viennent à l'intérieur de ce système ; ils ne sont pas le système.

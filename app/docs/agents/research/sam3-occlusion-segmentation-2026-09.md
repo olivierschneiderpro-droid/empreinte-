@@ -1,4 +1,4 @@
-# SAM 3 pour régénérer les occlusions de Bible Strong World
+# SAM 3 pour régénérer les occlusions d’Empreinte World
 
 Recherche du 20 septembre 2026, sources Meta et fal.ai officielles uniquement. Cette note compare les options documentées ; elle ne contient ni appel d'inférence, ni modification du pipeline ou des assets.
 
@@ -36,7 +36,7 @@ Le `Sam3Processor` officiel :
 4. réinterpole bilinéairement les logits vers la hauteur et la largeur originales ;
 5. binarise à 0,5.
 
-Le masque local final a donc bien la taille de l'image fournie, mais sa frontière dérive d'une représentation 1008 × 1008. Pour Bible Strong World, un crop serré dont les dimensions restent au plus proches de cette résolution préserve beaucoup plus d'information qu'une inférence sur la carte panoramique complète. [Implémentation officielle de `Sam3Processor`](https://github.com/facebookresearch/sam3/blob/main/sam3/model/sam3_image_processor.py)
+Le masque local final a donc bien la taille de l'image fournie, mais sa frontière dérive d'une représentation 1008 × 1008. Pour Empreinte World, un crop serré dont les dimensions restent au plus proches de cette résolution préserve beaucoup plus d'information qu'une inférence sur la carte panoramique complète. [Implémentation officielle de `Sam3Processor`](https://github.com/facebookresearch/sam3/blob/main/sam3/model/sam3_image_processor.py)
 
 ### Exécution locale officielle
 

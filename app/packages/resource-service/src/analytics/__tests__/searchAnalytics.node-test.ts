@@ -4,7 +4,7 @@ import { describe, it } from 'node:test'
 import {
   SearchAnalyticsEventDto,
   SearchAnalyticsResultCountsDto,
-} from '@bible-strong/resource-domain/contracts/searchAnalyticsContract'
+} from '@empreinte/resource-domain/contracts/searchAnalyticsContract'
 import {
   redactSearchQuery,
   sanitizeSearchAnalyticsEvent,

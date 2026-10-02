@@ -21,7 +21,7 @@ export const journalCopy = {
     avatar: 'Mon avatar',
     customize: 'Personnaliser',
     language: 'Langue du monde',
-    site: 'Site Bible Strong',
+    site: 'Site Empreinte',
     siteHint: 'Prolonger la découverte',
     resume: 'Reprendre l’exploration',
     close: 'Fermer le carnet',
@@ -53,7 +53,7 @@ export const journalCopy = {
     avatar: 'My avatar',
     customize: 'Customize',
     language: 'World language',
-    site: 'Bible Strong website',
+    site: 'Empreinte website',
     siteHint: 'Keep discovering',
     resume: 'Resume exploring',
     close: 'Close journal',
@@ -133,7 +133,7 @@ export function ExplorationJournal({
       <div className="journal-spread">
         <section className="journal-page journal-destinations" aria-labelledby="journal-explorer">
           <div className="journal-eyebrow">
-            <JournalIcon /> Bible Strong <span>—</span> World
+            <JournalIcon /> Empreinte <span>—</span> World
           </div>
           <h2 id="journal-explorer">
             {t.explorer}
@@ -289,7 +289,7 @@ export function ExplorationJournal({
             <JournalIcon />
             <span>
               <strong>
-                Bible Strong x ASI Europe
+                Empreinte x ASI Europe
               </strong>
               <small>
                 {language === 'fr'

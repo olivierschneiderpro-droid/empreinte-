@@ -1,8 +1,8 @@
-import { isStandaloneStrongModule } from '@bible-strong/resource-domain/strong-lexicon'
+import { isStandaloneStrongModule } from '@empreinte/resource-domain/strong-lexicon'
 import {
   buildCommentaryReadingSections,
   createCommentaryReadingIndex,
-} from '@bible-strong/resource-domain/contracts/commentarySections'
+} from '@empreinte/resource-domain/contracts/commentarySections'
 import { createHash } from 'node:crypto'
 
 import { Data, Effect } from 'effect'

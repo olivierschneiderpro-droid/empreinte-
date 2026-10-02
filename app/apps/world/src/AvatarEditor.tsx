@@ -100,7 +100,7 @@ export function AvatarEditor({
             if (next) onSave(next)
           }}
         >
-          <p className="avatar-eyebrow">BIBLE STRONG · WORLD</p>
+          <p className="avatar-eyebrow">EMPREINTE · WORLD</p>
           <h1 id="avatar-title">{t.title}</h1>
           <p className="avatar-intro">{t.intro}</p>
           <label className="avatar-field" htmlFor="avatar-name">

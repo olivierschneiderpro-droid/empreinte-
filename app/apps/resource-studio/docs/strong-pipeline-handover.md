@@ -17,7 +17,7 @@ exportees et des revues ciblees.
 - Revue de trous/relocations: `npm run strong:review:gaps`.
 - LLM seulement en review ciblee: `npm run strong:review:llm` ou packets agent.
 
-La strategie produit reste: produire une Bible Strong lisible, proche du style
+La strategie produit reste: produire une Empreinte lisible, proche du style
 visible de `Sg1910`, `Darby` et `DarbyR`, avec STEP TAHOT/TAGNT comme
 inventaire original de production.
 

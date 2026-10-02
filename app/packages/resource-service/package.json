@@ -1,5 +1,5 @@
 {
-  "name": "@bible-strong/resource-service",
+  "name": "@empreinte/resource-service",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -41,11 +41,11 @@
     "topics:embeddings:dev": "wrangler dev --config wrangler.embedding.jsonc --port 8791"
   },
   "dependencies": {
-    "@bible-strong/bible-reference-parser": "workspace:*",
-    "@bible-strong/resource-catalog": "workspace:*",
-    "@bible-strong/resource-domain": "workspace:*",
     "@effect/platform": "0.97.1",
     "@effect/platform-node": "0.108.1",
+    "@empreinte/bible-reference-parser": "workspace:*",
+    "@empreinte/resource-catalog": "workspace:*",
+    "@empreinte/resource-domain": "workspace:*",
     "@neondatabase/serverless": "1.0.2",
     "@zip.js/zip.js": "2.18.2",
     "drizzle-orm": "0.45.2",

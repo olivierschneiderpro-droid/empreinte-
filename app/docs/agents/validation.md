@@ -22,10 +22,10 @@ Copy `apps/expo/.env.example` to the appropriate app-local environment file and 
 | Agent architecture              | `yarn agents:architecture:check`                                                                                           | Feature boundary, helper, SQLite, Firebase, logging, or shared architecture changes |
 | Primitive styling guard         | `yarn agents:styles:check`                                                                                                 | UI or component changes; rejects new feature-level `styled` usage                   |
 | Agent domain quality            | `yarn agents:quality:check`                                                                                                | Feature/domain changes, PR readiness, or harness changes                            |
-| i18n extraction                 | `yarn workspace @bible-strong/expo i18n`                                                                                 | Mobile user-facing string additions or translation key changes                      |
+| i18n extraction                 | `yarn workspace @empreinte/expo i18n`                                                                                 | Mobile user-facing string additions or translation key changes                      |
 | Resource architecture           | `yarn resources:architecture:check`                                                                                        | Resource domain, service, runtime, or UI access changes                             |
 | Resource unit tests             | `yarn resources:test`                                                                                                      | Bundle, importer, API, repository, or runtime changes                               |
-| Expo Web export                 | `yarn workspace @bible-strong/expo web:export`                                                                           | Mobile Web runtime, routing, platform adapters, or browser dependencies             |
+| Expo Web export                 | `yarn workspace @empreinte/expo web:export`                                                                           | Mobile Web runtime, routing, platform adapters, or browser dependencies             |
 | Resource Postgres integration   | `yarn resources:test:integration`                                                                                          | Schema, migrations, importer, or persistence changes                                |
 | Complete LSG parity             | Run the relevant Resource service integration test with its local bundle root                                              | Publication, API response, or Bible presentation changes                            |
 | Complete Strong Bible parity    | Run the relevant Resource service integration test with `RESOURCE_STRONG_BIBLE_BUNDLES_ROOT`                               | Strong publication, importer, API, or sidecar changes                               |
@@ -69,7 +69,7 @@ For the local production-shaped resource stack:
 yarn resources:db:up
 yarn resources:migrate
 RESOURCE_PUBLICATION_BUNDLES_ROOT=/absolute/path/to/publications yarn dev:resources
-RESOURCE_PUBLICATION_BUNDLES_ROOT=/absolute/path/to/publications yarn workspace @bible-strong/resource-service serve:artifacts
+RESOURCE_PUBLICATION_BUNDLES_ROOT=/absolute/path/to/publications yarn workspace @empreinte/resource-service serve:artifacts
 ```
 
 The development client defaults to `http://127.0.0.1:8787` on iOS and `http://10.0.2.2:8787` on Android when `EXPO_PUBLIC_RESOURCE_API_URL` is not configured. These defaults are development-only.
@@ -77,11 +77,11 @@ The development client defaults to `http://127.0.0.1:8787` on iOS and `http://10
 For the online-only Expo Web runtime, set `EXPO_PUBLIC_RESOURCE_API_URL` explicitly and start it with:
 
 ```bash
-yarn workspace @bible-strong/expo web
+yarn workspace @empreinte/expo web
 ```
 
 The Resource service must allow the browser origin through `RESOURCE_WEB_ORIGINS`. Validate a
-production-shaped SPA bundle with `yarn workspace @bible-strong/expo web:export`; the deployment
+production-shaped SPA bundle with `yarn workspace @empreinte/expo web:export`; the deployment
 host must fall back to `index.html` for Expo Router paths.
 
 Offline-copy archives use the App Check-protected Resource API route backed by private R2. Set
@@ -116,14 +116,14 @@ Prefer a local Node 20/18 runtime for Expo development until this compatibility 
 ## Device And Simulator Runs
 
 ```bash
-yarn workspace @bible-strong/expo ios
-yarn workspace @bible-strong/expo android
+yarn workspace @empreinte/expo ios
+yarn workspace @empreinte/expo android
 ```
 
 These commands require local platform tooling and a custom development client. For iOS simulator development builds, the repo also exposes:
 
 ```bash
-yarn workspace @bible-strong/expo build:ios:dev-sim
+yarn workspace @empreinte/expo build:ios:dev-sim
 ```
 
 ## Build Checks
@@ -131,14 +131,14 @@ yarn workspace @bible-strong/expo build:ios:dev-sim
 Build commands use EAS local builds and can be slow. Run only when the change affects native config, Expo plugins, build profiles, Firebase service files, app identity, updates, audio background modes, or release behavior.
 
 ```bash
-yarn workspace @bible-strong/expo build:android:dev
-yarn workspace @bible-strong/expo build:android:staging
-yarn workspace @bible-strong/expo build:android:prod
-yarn workspace @bible-strong/expo build:android:prod:apk
-yarn workspace @bible-strong/expo build:ios:dev
-yarn workspace @bible-strong/expo build:ios:dev-sim
-yarn workspace @bible-strong/expo build:ios:staging
-yarn workspace @bible-strong/expo build:ios:prod
+yarn workspace @empreinte/expo build:android:dev
+yarn workspace @empreinte/expo build:android:staging
+yarn workspace @empreinte/expo build:android:prod
+yarn workspace @empreinte/expo build:android:prod:apk
+yarn workspace @empreinte/expo build:ios:dev
+yarn workspace @empreinte/expo build:ios:dev-sim
+yarn workspace @empreinte/expo build:ios:staging
+yarn workspace @empreinte/expo build:ios:prod
 ```
 
 ## UI Validation Notes

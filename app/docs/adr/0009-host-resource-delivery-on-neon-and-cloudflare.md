@@ -7,7 +7,7 @@ Accepted
 ## Context
 
 The online resource system needs managed PostgreSQL, an anonymous domain API, cacheable global
-delivery, and storage for downloadable offline artifacts. Bible Strong already uses Firebase for
+delivery, and storage for downloadable offline artifacts. Empreinte already uses Firebase for
 authentication and user-owned data, so adopting another bundled backend platform would duplicate
 capabilities that the resource context does not need. The target architecture should remain
 economical around 100,000 monthly active users and allow the team to trade some integration

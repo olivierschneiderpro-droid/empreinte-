@@ -7,7 +7,7 @@ import type {
   ToolActivity,
   RoutingDecision,
   AssistantAction,
-} from '@bible-strong/ai-contract/contract'
+} from '@empreinte/ai-contract/contract'
 import { type Conversation, type LocalMessage, type ReadingContext } from './conversations'
 const errorKeys: Record<string, string> = {
   SIGN_IN_REQUIRED: 'assistant.signIn',

@@ -1,4 +1,4 @@
-import mobileResourceCatalog from '@bible-strong/resource-catalog/catalog'
+import mobileResourceCatalog from '@empreinte/resource-catalog/catalog'
 import { resourceEtagMatches } from '../http/conditionalRequest'
 import { withResourceCorsHeaders } from '../http/cors'
 import { resourceRequestIdFrom } from '../http/requestId'

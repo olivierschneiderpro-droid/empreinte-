@@ -15,4 +15,4 @@ its display bounds and depth anchor in the occlusion manifest are scaled likewis
 
 The tile generator applies this patch to the original normalized map before
 producing both tile levels and the preview. Always pass the original full map
-source to `yarn workspace @bible-strong/world tiles <source>`.
+source to `yarn workspace @empreinte/world tiles <source>`.

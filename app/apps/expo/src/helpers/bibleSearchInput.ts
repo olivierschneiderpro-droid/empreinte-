@@ -1,1 +1,1 @@
-export * from '@bible-strong/resource-domain/bible-search-input'
+export * from '@empreinte/resource-domain/bible-search-input'

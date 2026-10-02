@@ -29,7 +29,7 @@ Révision du paquet local validé : `dictionary-isbe-en-cd07667689f5b1ac93d8`.
 - Attribution exigée et conservée : « The original work by unfoldingWord is available from
   https://www.unfoldingword.org/utw ».
 
-La ressource Bible Strong est explicitement une adaptation : Markdown converti en HTML sûr, liens
+La ressource Empreinte est explicitement une adaptation : Markdown converti en HTML sûr, liens
 relatifs convertis en renvois de mots, liens bibliques `rc://` convertis puis contrôlés par le BCV
 parser, et quatre fichiers à intitulé identique regroupés sans perte. Conformément aux instructions
 de marque de la licence source, le produit dérivé est intitulé simplement « Translation Words ».

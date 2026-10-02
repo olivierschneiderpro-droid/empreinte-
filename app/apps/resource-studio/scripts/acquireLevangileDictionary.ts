@@ -73,7 +73,7 @@ const fetchText = async (url: string, delayMs: number): Promise<string> => {
         headers: {
           accept: "text/html;charset=UTF-8",
           "user-agent":
-            "BibleStrongResourceStudio/1.0 (+https://github.com/smontlouis/bible-strong)"
+            "EmpreinteResourceStudio/1.0 (+https://github.com/smontlouis/bible-strong)"
         },
         signal: AbortSignal.timeout(30_000)
       });

@@ -62,7 +62,7 @@ export const comparisonsCopy = {
     ],
     more: 'Une nouvelle façon de lire',
     possibilities: 'Les versions se répondent. Ton étude prend de la profondeur.',
-    open: 'Comparer dans Bible Strong',
+    open: 'Comparer dans Empreinte',
   },
   en: {
     label: 'COMPARISONS',
@@ -119,6 +119,6 @@ export const comparisonsCopy = {
     ],
     more: 'A fresh way to read',
     possibilities: 'Let translations inform one another and take your study further.',
-    open: 'Compare in Bible Strong',
+    open: 'Compare in Empreinte',
   },
 }

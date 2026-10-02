@@ -56,5 +56,5 @@ canonical JSON while moving Strong occurrences into the paired SQLite. It must
 also retain source-only morphology/transliteration data in an auditable
 sidecar or manifest if the first mobile schema does not expose it.
 
-No ESV text was synthesized or reused from the existing Bible Strong CDN
+No ESV text was synthesized or reused from the existing Empreinte CDN
 JSONs. No `KJVS` dataset was created.

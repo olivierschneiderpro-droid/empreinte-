@@ -1,6 +1,6 @@
 ---
 name: resource-publication
-description: Publish Bible Strong resource bundles, catalogs, Neon revisions, or R2 artifacts. Use for production or staging resource release workflows in this repository.
+description: Publish Empreinte resource bundles, catalogs, Neon revisions, or R2 artifacts. Use for production or staging resource release workflows in this repository.
 ---
 
 # Resource Publication

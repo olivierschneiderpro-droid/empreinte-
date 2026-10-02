@@ -1,6 +1,6 @@
 export type CatalogImportMode = 'local' | 'hosted'
 
-const localConnectionString = 'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong'
+const localConnectionString = 'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte'
 
 const redactDatabaseUrls = (message: string) =>
   message.replace(/postgres(?:ql)?:\/\/\S+/giu, '[REDACTED_DATABASE_URL]')

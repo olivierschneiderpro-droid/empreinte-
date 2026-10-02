@@ -1,7 +1,7 @@
 import { useQuery } from '@tanstack/react-query'
 import { useTranslation } from 'react-i18next'
 import { ArrowUpRightIcon, MapPinIcon, UserRoundIcon, NetworkIcon } from 'lucide-react'
-import type { EntityWidget as Descriptor } from '@bible-strong/ai-contract/contract'
+import type { EntityWidget as Descriptor } from '@empreinte/ai-contract/contract'
 import { useResourceAccess } from '~features/resources/resourceAccess'
 import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
 import { StrongEntitySummaryCard } from '~features/lexique/StrongDetailUI'

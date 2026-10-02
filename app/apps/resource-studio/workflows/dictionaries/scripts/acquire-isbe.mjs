@@ -36,7 +36,7 @@ const exists = async (filePath) => {
 
 const download = async (url, destination) => {
   const response = await fetch(url, {
-    headers: { "user-agent": "BibleStrongResourceStudio/1.0" },
+    headers: { "user-agent": "EmpreinteResourceStudio/1.0" },
     signal: AbortSignal.timeout(120_000)
   });
   if (!response.ok) throw new Error(`isbe-download-http-${response.status}`);

@@ -8,7 +8,7 @@ import { fileURLToPath } from 'node:url'
 import { Effect } from 'effect'
 import { Pool } from 'pg'
 
-import { getMobileBibleVersionIds } from '@bible-strong/resource-catalog/catalog'
+import { getMobileBibleVersionIds } from '@empreinte/resource-catalog/catalog'
 import { makeLocalDatabase } from '../../database/localDatabase'
 import { makeResourceWebHandler } from '../../http/app'
 import { makeKyselyBibleChapterRepository } from '../../repositories/bibleChapterRepository'
@@ -24,11 +24,11 @@ const root = process.env.RESOURCE_BIBLE_BUNDLES_ROOT
 const runIntegration = process.env.RESOURCE_INTEGRATION === '1' && Boolean(root)
 const connectionString =
   process.env.RESOURCE_DATABASE_URL ??
-  'postgresql://bible_strong:bible_strong@127.0.0.1:54329/bible_strong'
+  'postgresql://empreinte:empreinte@127.0.0.1:54329/empreinte'
 const migrationDirectory = fileURLToPath(new URL('../../../drizzle', import.meta.url))
 
 const createIsolatedDatabase = async () => {
-  const databaseName = `bible_strong_issue_302_${randomUUID().replaceAll('-', '')}`
+  const databaseName = `empreinte_issue_302_${randomUUID().replaceAll('-', '')}`
   const databaseUrl = new URL(connectionString)
   databaseUrl.pathname = `/${databaseName}`
   const admin = new Pool({ connectionString, max: 1 })
