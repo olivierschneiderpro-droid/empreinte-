@@ -35,15 +35,21 @@ const ScrollView = (
       style={
         [
           {
-            backgroundColor: backgroundColor
-              ? theme.colors[backgroundColor as keyof typeof theme.colors] || backgroundColor
-              : theme.colors.reverse,
-            ...(orientation.tablet && {
-              marginTop: 20,
-              marginBottom: 50,
-              borderBottomLeftRadius: 30,
-              borderBottomRightRadius: 30,
-            }),
+            // Empreinte : sur le web, les pages défilent sur le fond uniforme, sans arrondi
+            // de « tablette » ni marges (ni fond blanc).
+            backgroundColor:
+              NativeUI.Platform.OS === 'web'
+                ? 'transparent'
+                : backgroundColor
+                  ? theme.colors[backgroundColor as keyof typeof theme.colors] || backgroundColor
+                  : theme.colors.reverse,
+            ...(orientation.tablet &&
+              NativeUI.Platform.OS !== 'web' && {
+                marginTop: 20,
+                marginBottom: 50,
+                borderBottomLeftRadius: 30,
+                borderBottomRightRadius: 30,
+              }),
           },
           props.style,
         ] as UIComponentProps<typeof NativeUI.ScrollView>['style']
@@ -75,7 +81,7 @@ export const HomeScrollView = ({
       showsVerticalScrollIndicator={showsVerticalScrollIndicator}
       contentContainerStyle={{
         ...(!props.horizontal && pageContentStyle),
-        backgroundColor: theme.colors.lightGrey,
+        backgroundColor: NativeUI.Platform.OS === 'web' ? 'transparent' : theme.colors.lightGrey,
         paddingTop: insets.top,
         paddingBottom: insets.bottom,
         ...StyleSheet.flatten(contentContainerStyle),

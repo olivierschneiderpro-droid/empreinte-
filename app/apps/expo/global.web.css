@@ -234,3 +234,10 @@ a {
   aspect-ratio: 1;
   min-width: 0;
 }
+
+/* Empreinte : dans l'espace de travail, le fond blanc pleine page des écrans hérités de Bible
+   Strong devient transparent, pour un fond uniforme sous la barre latérale et sous la page.
+   Les cartes (blanches, sans flex-1) gardent leur fond. */
+[data-testid='workspace-main-surface'] :is(.flex-\[1\], .flex-1).bg-reverse {
+  background-color: transparent;
+}

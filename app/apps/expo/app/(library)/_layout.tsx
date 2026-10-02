@@ -1,3 +1,4 @@
+import { Platform } from 'react-native'
 import { useTheme } from '~themes/ThemeProvider'
 import { Stack } from 'expo-router'
 const LibraryLayout = () => {
@@ -8,7 +9,8 @@ const LibraryLayout = () => {
       screenOptions={{
         headerShown: false,
         contentStyle: {
-          backgroundColor: theme.colors.reverse,
+          // Empreinte : sur le web, le fond uniforme de l'espace de travail reste visible.
+          backgroundColor: Platform.OS === 'web' ? 'transparent' : theme.colors.reverse,
         },
       }}
     >
