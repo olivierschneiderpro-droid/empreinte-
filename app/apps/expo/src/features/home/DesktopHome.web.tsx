@@ -27,7 +27,6 @@ import OfflineNotice from './OfflineNotice'
 import PlanHome from './PlanHome'
 import MeditationsHome from './MeditationsHome'
 import ResumeBookmark from './ResumeBookmark'
-import { LoginPrompt } from './UserWidget'
 import VerseOfTheDay from './VerseOfTheDay'
 import {
   CarteAVerifier,
@@ -188,9 +187,10 @@ export default function DesktopHome() {
         <div className="bs-home-content">
           <Events />
           <OfflineNotice />
-          <div className="bs-home-grid">
-            <div className="bs-home-search">
-              <LoginPrompt className="mx-0 rounded-[24px] px-[16px] py-[16px]" />
+          {/* Empreinte : la date et la recherche sur une même ligne, en tête de page. */}
+          <div className="bs-home-entete">
+            <TeteAccueil compact avecTraces={vue === 'realites'} />
+            <div className="bs-home-recherche">
               <LinkBox
                 onPress={event => {
                   if (event?.currentTarget instanceof HTMLElement)
@@ -198,10 +198,10 @@ export default function DesktopHome() {
                   openCommandPalette(true)
                 }}
                 accessibilityLabel={t('commandPalette.label')}
-                className="flex-row items-center gap-[12px] bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[16px] px-[16px] py-[14px]"
+                className="flex-row items-center gap-[12px] bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[20px] px-[20px] h-[56px]"
               >
-                <FeatherIcon name="search" size={19} color="grey" />
-                <Text className="text-grey text-[13px] flex-1 min-w-0" numberOfLines={1}>
+                <FeatherIcon name="search" size={20} color="grey" />
+                <Text className="text-grey text-[15px] flex-1 min-w-0" numberOfLines={1}>
                   {t('home.dashboard.search')}
                 </Text>
                 <kbd className="bs-home-shortcut">
@@ -211,14 +211,19 @@ export default function DesktopHome() {
                 </kbd>
               </LinkBox>
             </div>
+          </div>
+          <div className="bs-home-grid">
             <div className="bs-home-main">
-              <TeteAccueil compact avecTraces={vue === 'realites'} />
               {/* Empreinte : l'accueil reste centré sur la Parole ; les réalités (factures,
                   missions, vérifications) ont leur propre vue, selon le profil. */}
               <BasculeAccueil vue={vue} onChange={setVue} />
               {vue === 'parole' ? (
                 <>
                   <DailyVerse />
+                  {/* Empreinte : ce qu'on a marqué dans la Parole, juste sous le verset du jour. */}
+                  <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[4px]">
+                    <ProfileStats desktop />
+                  </Box>
                   <Box>
                     <SectionTitle>{t('Apprendre')}</SectionTitle>
                     <div className="bs-home-learning">
@@ -250,9 +255,6 @@ export default function DesktopHome() {
                 <>
                   <PileRealites />
                   <CartesMissionPlan />
-                  <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[4px]">
-                    <ProfileStats desktop />
-                  </Box>
                 </>
               )}
             </div>
@@ -266,9 +268,7 @@ export default function DesktopHome() {
               ) : null}
               <ResumeBookmark card />
               <MeditationsHome />
-              <Box className="bg-reverse/60 border border-reverse/90 shadow-[0_8px_24px_rgba(17,17,19,0.06)] rounded-[24px] p-[16px] shadow-[0_8px_24px_rgba(17,17,19,0.06)]">
-                <PlanHome compact />
-              </Box>
+              <PlanHome compact />
               <LinkBox
                 href="https://click.audibible.app/5nmN/stephane30"
                 className="rounded-[24px] overflow-hidden p-[24px] min-h-[200px]"
@@ -296,7 +296,7 @@ export default function DesktopHome() {
               </LinkBox>
             </div>
           </div>
-          <HStack className="items-center flex-wrap gap-[24px] border-t border-border pt-[16px]">
+          <HStack className="items-center flex-wrap gap-[24px] pt-[8px]">
             <ResourceLink href="/">{t('home.desktop.support')}</ResourceLink>
             <ResourceLink route="FAQ">{t('FAQ')}</ResourceLink>
             <ResourceLink href="/">{t('Suivre')}</ResourceLink>

@@ -6,6 +6,9 @@ import { FeatherIcon, IonIcon } from '~common/ui/Icon'
 import Text from '~common/ui/Text'
 import books from '~assets/bible_versions/books-desc'
 import { getBookmarkVerse } from '~features/bookmarks/bookmarkVerse'
+import { Platform } from 'react-native'
+import { useRouter } from 'expo-router'
+import { useOuvrirDansLaBible } from '~features/empreinte/ouvrirDansLaBible'
 import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
 import { selectLatestAddedBookmark } from '~redux/selectors/bookmarks'
 
@@ -14,11 +17,39 @@ export default function ResumeBookmark({ card = false }: { card?: boolean }) {
   const { t } = useTranslation()
   const bookmark = useSelector(selectLatestAddedBookmark)
   const pushRoute = usePushRouteOnce()
+  const router = useRouter()
+  const ouvrirDansLaBible = useOuvrirDansLaBible()
   const verse = getBookmarkVerse(bookmark?.verse)
   const book = books.find(book => book.Numero === bookmark?.book)
   const reference = bookmark
     ? `${book ? t(book.Nom) : bookmark.book} ${bookmark.chapter}${verse ? `:${verse}` : ''}`
     : undefined
+
+  // Empreinte : sur le web, la lecture reprend dans la Bible principale, en grand,
+  // et non dans le panneau latéral réservé aux vérifications rapides.
+  const reprendre = () => {
+    if (Platform.OS === 'web') {
+      if (!bookmark) return router.navigate('/')
+      return ouvrirDansLaBible({
+        book: bookmark.book,
+        chapter: bookmark.chapter,
+        verse,
+        version: bookmark.version,
+      })
+    }
+    pushRoute({
+      pathname: '/bible-view',
+      params: bookmark
+        ? {
+            contextDisplayMode: 'focused',
+            book: String(bookmark.book),
+            chapter: String(bookmark.chapter),
+            ...(verse !== undefined && { verse: String(verse) }),
+            ...(bookmark.version && { version: bookmark.version }),
+          }
+        : undefined,
+    })
+  }
 
   const action = (
     <LinkBox
@@ -30,20 +61,7 @@ export default function ResumeBookmark({ card = false }: { card?: boolean }) {
       accessibilityLabel={
         bookmark ? t('home.desktop.resumeBookmark', { reference }) : t('Lire la Bible')
       }
-      onPress={() =>
-        pushRoute({
-          pathname: '/bible-view',
-          params: bookmark
-            ? {
-                contextDisplayMode: 'focused',
-                book: String(bookmark.book),
-                chapter: String(bookmark.chapter),
-                ...(verse !== undefined && { verse: String(verse) }),
-                ...(bookmark.version && { version: bookmark.version }),
-              }
-            : undefined,
-        })
-      }
+      onPress={reprendre}
     >
       <FeatherIcon name={bookmark ? 'bookmark' : 'book-open'} size={18} color="white" />
       <Box className="gap-[3px]">
@@ -69,20 +87,7 @@ export default function ResumeBookmark({ card = false }: { card?: boolean }) {
         accessibilityLabel={
           bookmark ? t('home.desktop.resumeBookmark', { reference }) : t('Lire la Bible')
         }
-        onPress={() =>
-          pushRoute({
-            pathname: '/bible-view',
-            params: bookmark
-              ? {
-                  contextDisplayMode: 'focused',
-                  book: String(bookmark.book),
-                  chapter: String(bookmark.chapter),
-                  ...(verse !== undefined && { verse: String(verse) }),
-                  ...(bookmark.version && { version: bookmark.version }),
-                }
-              : undefined,
-          })
-        }
+        onPress={reprendre}
       >
         <Box className="w-[44px] h-[44px] shrink-0 rounded-[12px] bg-light-grey items-center justify-center">
           <IonIcon
