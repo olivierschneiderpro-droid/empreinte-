@@ -212,11 +212,12 @@ export default function DesktopHome() {
               </LinkBox>
             </div>
           </div>
+          {/* Empreinte : l'accueil reste centré sur la Parole ; les réalités (factures,
+              missions, vérifications) ont leur propre vue, selon le profil. Placée au-dessus de
+              la grille, la bascule laisse les deux colonnes commencer à la même hauteur. */}
+          <BasculeAccueil vue={vue} onChange={setVue} />
           <div className="bs-home-grid">
             <div className="bs-home-main">
-              {/* Empreinte : l'accueil reste centré sur la Parole ; les réalités (factures,
-                  missions, vérifications) ont leur propre vue, selon le profil. */}
-              <BasculeAccueil vue={vue} onChange={setVue} />
               {vue === 'parole' ? (
                 <>
                   <DailyVerse />
@@ -301,6 +302,12 @@ export default function DesktopHome() {
             <ResourceLink route="FAQ">{t('FAQ')}</ResourceLink>
             <ResourceLink href="/">{t('Suivre')}</ResourceLink>
             <ResourceLink href="/">{t('home.desktop.downloadApp')}</ResourceLink>
+            {/* Empreinte : la version en ligne, pour vérifier d'un coup d'œil que le serveur est à jour. */}
+            {process.env.EXPO_PUBLIC_EMPREINTE_VERSION ? (
+              <Text className="text-grey text-[12px] ml-auto">
+                {`Version du ${process.env.EXPO_PUBLIC_EMPREINTE_VERSION}`}
+              </Text>
+            ) : null}
           </HStack>
         </div>
       </ScrollView>

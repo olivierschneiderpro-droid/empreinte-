@@ -91,7 +91,7 @@
 /* Empreinte : en-tête de l'accueil, la date à gauche, la recherche à droite. */
 .bs-home-entete {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: space-between;
   flex-wrap: wrap;
   gap: 16px 32px;

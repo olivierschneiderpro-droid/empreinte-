@@ -1,6 +1,7 @@
 import { useLocalReadingDate } from '~features/daily-reading/useDailyMeditation'
 import ReminderSettings from '~features/daily-reading/ReminderSettings'
 import { useRouter } from 'expo-router'
+import { useOuvrirDansLaBible } from '~features/empreinte/ouvrirDansLaBible'
 import React, { useEffect, useState } from 'react'
 import { TFunction, useTranslation } from 'react-i18next'
 import { Platform, Share, View, type ViewStyle } from 'react-native'
@@ -107,6 +108,7 @@ const StandaloneVerseOfTheDay = ({
   const { t, i18n } = useTranslation()
   const displayedDate = useLocalReadingDate(addDay)
   const router = useRouter()
+  const ouvrirDansLaBible = useOuvrirDansLaBible()
   const bibleFont = useSelector(selectFontFamily)
   const verseOfTheDay = useVerseOfTheDay(addDay)
   const imageUrls = useImageUrls(verseOfTheDay)
@@ -185,15 +187,28 @@ const StandaloneVerseOfTheDay = ({
       <Link
         key={desktop ? `${addDay}:${version}:${title}:${content}` : 'verse'}
         className={desktop ? 'bs-home-verse-fade' : undefined}
-        route="BibleView"
-        params={{
-          contextDisplayMode: 'focused',
-          book,
-          chapter,
-          verse,
-          version,
-          focusVerses: [verse],
-        }}
+        // Empreinte : sur le web, le verset s'ouvre dans la Bible principale, en grand.
+        {...(Platform.OS === 'web'
+          ? {
+              onPress: () =>
+                ouvrirDansLaBible({
+                  book: Number(book),
+                  chapter: Number(chapter),
+                  verse: Number(verse),
+                  version,
+                }),
+            }
+          : {
+              route: 'BibleView' as const,
+              params: {
+                contextDisplayMode: 'focused',
+                book,
+                chapter,
+                verse,
+                version,
+                focusVerses: [verse],
+              },
+            })}
         style={{ marginTop: desktop ? 22 : 10 }}
       >
         <Paragraph
