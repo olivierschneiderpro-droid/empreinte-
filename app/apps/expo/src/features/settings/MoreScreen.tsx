@@ -148,7 +148,9 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
       className={
         pageTab
           ? 'border-continuous overflow-hidden bg-light-grey'
-          : 'border-continuous overflow-hidden border-l-[1px] border-border bg-light-grey'
+          : Platform.OS === 'web'
+            ? 'border-continuous overflow-hidden bg-light-grey'
+            : 'border-continuous overflow-hidden border-l-[1px] border-border bg-light-grey'
       }
     >
       <Header

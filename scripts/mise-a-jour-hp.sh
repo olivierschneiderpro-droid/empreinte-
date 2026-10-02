@@ -23,28 +23,40 @@ if git -C "$ICI" rev-parse --git-dir >/dev/null 2>&1; then
   git -C "$ICI" merge -q --ff-only origin/main 2>/dev/null || dire "Dépôt local modifié : mise à jour des scripts ignorée."
 fi
 
-# 2. Version web.
+# 2. Version web. Deux sources, la plus récemment changée l'emporte :
+#    - la version « web-latest » compilée par GitHub Actions ;
+#    - l'archive livrée dans le dépôt (deploiement/empreinte-web.tar.gz), mise à jour par git pull.
+MEMOIRE=${MEMOIRE:-$HOME/.empreinte-maj}
+mkdir -p "$MEMOIRE"
+
+installer() { # installer <archive.tar.gz> <libellé>
+  local tmp
+  tmp=$(mktemp -d)
+  tar xzf "$1" -C "$tmp"
+  if [ ! -f "$tmp/empreinte-web-hp/index.html" ]; then
+    dire "Archive incomplète ($2), rien n'est changé."; rm -rf "$tmp"; return 1
+  fi
+  # Bascule : l'ancienne version reste jusqu'au dernier moment.
+  rm -rf "$DEST.ancienne"
+  [ -d "$DEST" ] && mv "$DEST" "$DEST.ancienne"
+  mv "$tmp/empreinte-web-hp" "$DEST"
+  rm -rf "$DEST.ancienne" "$tmp"
+  dire "Version web en ligne ($2)."
+}
+
+ARCHIVE_DEPOT="$ICI/deploiement/empreinte-web.tar.gz"
+if [ -f "$ARCHIVE_DEPOT" ]; then
+  EMPREINTE=$(git -C "$ICI" hash-object "$ARCHIVE_DEPOT" 2>/dev/null || sha1sum "$ARCHIVE_DEPOT" | cut -c1-40)
+  if [ "$EMPREINTE" != "$(cat "$MEMOIRE/depot" 2>/dev/null)" ]; then
+    installer "$ARCHIVE_DEPOT" "archive du dépôt ${EMPREINTE:0:7}" && echo "$EMPREINTE" > "$MEMOIRE/depot"
+  fi
+fi
+
 DISTANTE=$(curl -fsSL "$BASE/version.txt" 2>/dev/null | tr -d '[:space:]') || true
-if [ -z "${DISTANTE:-}" ]; then
-  dire "Aucune version publiée pour l'instant (ou réseau indisponible)."
-  exit 0
+if [ -n "${DISTANTE:-}" ] && [ "$DISTANTE" != "$(cat "$MEMOIRE/github" 2>/dev/null)" ]; then
+  TMP=$(mktemp -d)
+  if curl -fsSL "$BASE/empreinte-web.tar.gz" -o "$TMP/web.tar.gz"; then
+    installer "$TMP/web.tar.gz" "GitHub ${DISTANTE:0:7}" && echo "$DISTANTE" > "$MEMOIRE/github"
+  fi
+  rm -rf "$TMP"
 fi
-LOCALE=$(cat "$DEST/.version" 2>/dev/null || true)
-if [ "$DISTANTE" = "$LOCALE" ]; then
-  exit 0
-fi
-
-dire "Nouvelle version web : ${DISTANTE:0:7} (installée : ${LOCALE:0:7})"
-TMP=$(mktemp -d)
-trap 'rm -rf "$TMP"' EXIT
-curl -fsSL "$BASE/empreinte-web.tar.gz" -o "$TMP/web.tar.gz"
-tar xzf "$TMP/web.tar.gz" -C "$TMP"
-[ -f "$TMP/empreinte-web-hp/index.html" ] || { dire "Archive incomplète, rien n'est changé."; exit 1; }
-echo "$DISTANTE" > "$TMP/empreinte-web-hp/.version"
-
-# Bascule : l'ancienne version reste jusqu'au dernier moment.
-rm -rf "$DEST.ancienne"
-[ -d "$DEST" ] && mv "$DEST" "$DEST.ancienne"
-mv "$TMP/empreinte-web-hp" "$DEST"
-rm -rf "$DEST.ancienne"
-dire "Version ${DISTANTE:0:7} en ligne."

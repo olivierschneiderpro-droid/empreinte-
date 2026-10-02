@@ -9,6 +9,8 @@ export const WORKSPACE_ROUTE_PANEL_BREAKPOINT = 768
 export const workspaceSidebarDockedAtom = atom(true)
 export const workspacePanelClosingAtom = atom(false)
 export const workspaceSidebarHiddenAtom = atom(false)
+/** Empreinte : quand la barre latérale est fermée, de quoi la rouvrir depuis un en-tête. */
+export const rouvrirBarreLateraleAtom = atom<{ rouvrir: () => void } | null>(null)
 const panelRoutes = new Set(['(timeline-search)', '(explore)', '(commentary)', 'strong'])
 
 export function useWorkspaceRoutePanel() {

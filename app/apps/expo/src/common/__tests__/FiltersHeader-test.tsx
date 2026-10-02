@@ -1,6 +1,13 @@
 import React from 'react'
 import { act, create, type ReactTestRenderer } from 'react-test-renderer'
 import FiltersHeader, { type FiltersHeaderItem } from '../FiltersHeader'
+jest.mock('~features/empreinte/icones', () => ({ Icone: () => null }))
+jest.mock('~features/empreinte/lumiere', () => ({
+  POLICES: { titre: 'Geist SemiBold' },
+  police: (nom: string) => nom,
+  styleVerre: () => ({}),
+  useVerre: () => ({}),
+}))
 jest.mock('../ContextualPanel', () => {
   const ReactModule = jest.requireActual<typeof React>('react')
   return ({

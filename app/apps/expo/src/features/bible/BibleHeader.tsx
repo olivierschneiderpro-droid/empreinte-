@@ -22,6 +22,7 @@ import {
 } from 'src/state/tabs'
 import Back from '~common/Back'
 import ParallelIcon from '~common/ParallelIcon'
+import { rouvrirBarreLateraleAtom } from '~navigation/useWorkspaceRoutePanel'
 import { type SheetRef } from '~common/sheet'
 import Box, {
   AnimatedBox,
@@ -193,6 +194,8 @@ const Header = ({
   const isHeaderCollapsed = !isFormSheet && isFullScreenBible
   const headerHeight = isFormSheet ? BIBLE_FORM_SHEET_HEADER_HEIGHT : HEADER_HEIGHT
   const fullScreenOpacity = isHeaderCollapsed ? 0 : 1
+  // Empreinte : barre latérale fermée → bouton pour la rouvrir, avant le bouton du livre.
+  const barreLaterale = useAtomValue(rouvrirBarreLateraleAtom)
   const fullScreenTranslateY = isHeaderCollapsed ? -4 : 0
   const TOP_INSET = isFormSheet ? 0 : insets.top
 
@@ -567,6 +570,17 @@ const Header = ({
           </HStack>
         ) : (
           <>
+            {barreLaterale && (
+              <TouchableBox
+                className="overflow-hidden border-continuous items-center justify-center"
+                style={[styleVerre(verre, 22), { width: 44, height: 44 }]}
+                onPress={barreLaterale.rouvrir}
+                accessibilityRole="button"
+                accessibilityLabel={t('workspace.showSidebar')}
+              >
+                <FeatherIcon name="sidebar" size={18} />
+              </TouchableBox>
+            )}
             <HStack
               className="overflow-hidden border-continuous items-center"
               style={[styleVerre(verre, 22), { height: 44, paddingHorizontal: 4 }]}
@@ -693,7 +707,10 @@ const Header = ({
                 {!isSmall && !isParallel && (
                   <TouchableBox
                     className="overflow-hidden border-continuous items-center justify-center"
-                    style={[styleVerre(verre, 22), { width: 44, height: 44, opacity: fullScreenOpacity }]}
+                    style={[
+                      styleVerre(verre, 22),
+                      { width: 44, height: 44, opacity: fullScreenOpacity },
+                    ]}
                     onPress={addParallelVersion}
                     accessibilityRole="button"
                     accessibilityLabel={t('Affichage parallèle')}
@@ -704,7 +721,10 @@ const Header = ({
                 {!isSmall && (
                   <TouchableBox
                     className="overflow-hidden border-continuous items-center justify-center"
-                    style={[styleVerre(verre, 22), { width: 44, height: 44, opacity: fullScreenOpacity }]}
+                    style={[
+                      styleVerre(verre, 22),
+                      { width: 44, height: 44, opacity: fullScreenOpacity },
+                    ]}
                     onPress={onBibleParamsClick}
                     accessibilityRole="button"
                     accessibilityLabel={t('Police et paramêtres')}

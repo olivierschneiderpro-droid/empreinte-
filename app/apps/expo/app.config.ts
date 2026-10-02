@@ -185,6 +185,8 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
     reactCompiler: true,
     // Empreinte : l'export doit voir packages/core, hors du monorepo d’Empreinte.
     onDemandFilesystem: false,
+    // Empreinte : l'app web vit sous /app ; la racine est le site de présentation (presentation/).
+    baseUrl: '/app',
   } as ExpoConfig['experiments'] & { onDemandFilesystem?: boolean },
   runtimeVersion: RUNTIME_VERSION,
 })

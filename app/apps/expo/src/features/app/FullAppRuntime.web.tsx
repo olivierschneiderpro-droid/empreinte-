@@ -6,10 +6,14 @@ import ConfirmDialogHost from '~common/ConfirmDialog/ConfirmDialogHost.web'
 import { useWorkspaceRoutePanel } from '~navigation/useWorkspaceRoutePanel'
 import WorkspaceLayout from '~features/app-switcher/WorkspaceLayout'
 import * as Sentry from '@sentry/react-native'
-import { Stack, useLocalSearchParams, usePathname, useRouter, useSegments } from 'expo-router'
-import { StyleSheet, View } from 'react-native'
-import PresentationWeb from '~features/empreinte/PresentationWeb'
-import { dejaEntre, retenirEntree } from '~features/empreinte/memoireEntree'
+import {
+  DefaultTheme,
+  Stack,
+  ThemeProvider as NavigationThemeProvider,
+  useLocalSearchParams,
+  usePathname,
+  useSegments,
+} from 'expo-router'
 import { useEffect, useRef, useState } from 'react'
 import { RootSiblingParent } from 'react-native-root-siblings'
 import TrackPlayer from 'react-native-track-player'
@@ -67,49 +71,53 @@ const FullAppRuntime = ({ theme }: { theme: Theme }) => {
     guestWorkspaceRequested,
   })
   const authPending = publicShellMode === 'pending'
-  // Empreinte : la page de présentation s'affiche à la première arrivée (et sur /bienvenue),
-  // par-dessus l'app qui se charge déjà derrière.
-  const router = useRouter()
-  const [entre, setEntre] = useState(dejaEntre)
-  const presentation = pathname === '/bienvenue' || (pathname === '/' && !entre)
   const publicShellActive = publicShellMode === 'public'
   useEffect(() => {
     void TrackPlayer.registerPlaybackService(() => PlaybackService)
   }, [])
 
+  // Empreinte : la navigation n'impose aucun fond ; chaque page laisse voir le fond uniforme.
+  const themeNavigation = {
+    ...DefaultTheme,
+    colors: { ...DefaultTheme.colors, background: 'transparent', card: 'transparent' },
+  }
   const stack = (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-        contentStyle: {
-          marginRight: !publicShellActive && panel.open ? panel.reservedWidth : 0,
-          ...{
-            transitionProperty: 'margin-right',
-            transitionDuration: '240ms',
-            transitionTimingFunction: 'cubic-bezier(0.2, 0, 0, 1)',
+    <NavigationThemeProvider value={themeNavigation}>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+          contentStyle: {
+            // Empreinte : les pages laissent voir le fond uniforme de l'espace de travail.
+            backgroundColor: 'transparent',
+            marginRight: !publicShellActive && panel.open ? panel.reservedWidth : 0,
+            ...{
+              transitionProperty: 'margin-right',
+              transitionDuration: '240ms',
+              transitionTimingFunction: 'cubic-bezier(0.2, 0, 0, 1)',
+            },
           },
-        },
-      }}
-    >
-      <Stack.Screen name="index" />
-      <Stack.Screen
-        name="(timeline-search)"
-        options={createFormSheetOptions(theme, { sheetAllowedDetents: [1] })}
-      />
-      <Stack.Screen
-        name="(explore)"
-        options={createFormSheetOptions(theme, { sheetAllowedDetents: [0.45, 1] })}
-      />
-      <Stack.Screen
-        name="(commentary)"
-        options={createFormSheetOptions(theme, { sheetAllowedDetents: [1] })}
-      />
-      <Stack.Screen name="(library)" />
-      <Stack.Screen
-        name="strong"
-        options={createFormSheetOptions(theme, { sheetAllowedDetents: [1] })}
-      />
-    </Stack>
+        }}
+      >
+        <Stack.Screen name="index" />
+        <Stack.Screen
+          name="(timeline-search)"
+          options={createFormSheetOptions(theme, { sheetAllowedDetents: [1] })}
+        />
+        <Stack.Screen
+          name="(explore)"
+          options={createFormSheetOptions(theme, { sheetAllowedDetents: [0.45, 1] })}
+        />
+        <Stack.Screen
+          name="(commentary)"
+          options={createFormSheetOptions(theme, { sheetAllowedDetents: [1] })}
+        />
+        <Stack.Screen name="(library)" />
+        <Stack.Screen
+          name="strong"
+          options={createFormSheetOptions(theme, { sheetAllowedDetents: [1] })}
+        />
+      </Stack>
+    </NavigationThemeProvider>
   )
 
   return (
@@ -129,25 +137,6 @@ const FullAppRuntime = ({ theme }: { theme: Theme }) => {
               {!publicShellActive && !authPending && <WorkspaceAnalytics />}
               {!publicShellActive && !authPending && <AssistantLauncher />}
               {!publicShellActive && !authPending && <ConfirmDialogHost />}
-              {presentation && (
-                <View
-                  testID="presentation-empreinte"
-                  style={[
-                    StyleSheet.absoluteFill,
-                    // fixe : au-dessus de toute la coque de l'espace de travail.
-                    { position: 'fixed' as 'absolute', zIndex: 100000 },
-                  ]}
-                >
-                  <PresentationWeb
-                    onEntrer={vers => {
-                      retenirEntree()
-                      setEntre(true)
-                      if (vers && vers !== pathname) router.replace(vers)
-                      else if (pathname === '/bienvenue') router.replace('/')
-                    }}
-                  />
-                </View>
-              )}
               <ThemedToaster />
               {!publicShellActive && !authPending && <ChangelogModal />}
               {!publicShellActive && !authPending && <UnifiedTagsModal />}
