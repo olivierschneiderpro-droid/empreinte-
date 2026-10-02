@@ -68,7 +68,8 @@ export const SafeAreaBox = ({
         Platform.OS === 'web'
           ? 'flex-1 bg-transparent overflow-hidden border-continuous'
           : 'flex-1 bg-reverse overflow-hidden border-continuous',
-        className
+        // Le blanc imposé par une page devient lui aussi transparent sur le web.
+        Platform.OS === 'web' ? className?.replace(/\bbg-reverse\b/g, 'bg-transparent') : className
       )}
     />
   )

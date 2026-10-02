@@ -118,7 +118,7 @@ const PassageMediaLibraryScreen = () => {
           </VStack>
         }
         renderSectionHeader={({ section }) => (
-          <Box className="overflow-hidden border-continuous bg-reverse pt-[30px] pb-[20px]">
+          <Box className="overflow-hidden border-continuous pt-[30px] pb-[20px]">
             <Text
               className="text-[19px]"
               style={{ fontFamily: resolveFontFamily(stylingTheme.fontFamily.title) }}
