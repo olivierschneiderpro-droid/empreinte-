@@ -39,6 +39,7 @@ import ReadButton from './ReadButton'
 import ReferenceParagraph from './ReferenceParagraph'
 import Slice from './Slice'
 import { EnteteEtape, ResumeEtapes, etapesNumerotees } from './Etapes'
+import InvitationPriere from '~features/empreinte/InvitationPriere'
 import { chapterSliceToText, verseSliceToText, videoSliceToText } from './share'
 import { type SheetRef } from '~common/sheet'
 import { useLocalSearchParams, useRouter } from 'expo-router'
@@ -338,12 +339,27 @@ const PlanSliceScreen = ({
         )}
         {/* Empreinte : le parcours du jour, étape par étape (lire, écouter, regarder, méditer). */}
         <ResumeEtapes slices={slices ?? []} />
-        {etapesNumerotees(slices ?? []).map(({ slice, numero }) => (
-          <Box key={slice.id}>
-            {numero ? <EnteteEtape numero={numero} type={slice.type} /> : null}
-            <Slice {...slice} planLanguage={planLanguage} />
-          </Box>
-        ))}
+        {etapesNumerotees(slices ?? []).map(({ slice, numero }, index, toutes) => {
+          // Empreinte : entre une lecture (ou une vidéo) et l'étape suivante, une invitation à
+          // prier et à parler au Saint-Esprit, sauf si l'étape suivante est déjà une prière.
+          const suivante = toutes[index + 1]?.slice
+          const lecture = ['Chapter', 'Verse', 'Video', undefined].includes(slice.type)
+          const suivanteEstPriere =
+            !!suivante && 'subType' in suivante && suivante.subType === 'pray'
+          return (
+            <Box key={slice.id}>
+              {numero ? <EnteteEtape numero={numero} type={slice.type} /> : null}
+              <Slice {...slice} planLanguage={planLanguage} />
+              {lecture && !!numero && !!suivante && !suivanteEstPriere ? (
+                <InvitationPriere graine={numero} />
+              ) : null}
+            </Box>
+          )
+        })}
+        {/* Fin de la journée : un dernier temps avec Dieu avant de marquer comme lu. */}
+        {!!slices?.length && (
+          <InvitationPriere texte="Avant de terminer, remettez à Dieu ce que vous avez lu aujourd’hui. Qu’est-ce que vous voulez vivre avec lui ?" />
+        )}
         <Box className="overflow-hidden border-continuous h-[80px] items-center justify-center mt-[30px]">
           {canRecordProgress && (
             <ReadButton isRead={isRead} readingSliceId={id!} planId={planId!} onRead={onRead} />

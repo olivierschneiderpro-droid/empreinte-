@@ -16,7 +16,7 @@ import PageContent, { pageContentStyle } from '~common/ui/PageContent'
 import type { ReactNode } from 'react'
 import { useEffect, useEffectEvent, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { FlatList, Keyboard, TextInput } from 'react-native'
+import { FlatList, Keyboard, Platform, TextInput } from 'react-native'
 import { KeyboardAwareScrollView, useKeyboardState } from '~common/KeyboardAwareScrollView'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
@@ -1131,7 +1131,7 @@ const SQLiteSearchScreen = ({
             )}
             style={{
               flex: 1,
-              backgroundColor: theme.colors.reverse,
+              backgroundColor: Platform.OS === 'web' ? 'transparent' : theme.colors.reverse,
             }}
             ListFooterComponent={
               listBottomInset ? (
@@ -1188,7 +1188,7 @@ const SQLiteSearchScreen = ({
           )}
           style={{
             flex: 1,
-            backgroundColor: theme.colors.reverse,
+            backgroundColor: Platform.OS === 'web' ? 'transparent' : theme.colors.reverse,
           }}
           ListFooterComponent={
             listBottomInset ? (

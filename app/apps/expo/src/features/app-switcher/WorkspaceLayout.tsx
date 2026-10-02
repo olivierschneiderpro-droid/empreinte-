@@ -24,7 +24,8 @@ import { TabContextProvider } from './context/TabContext'
 import { useResponsiveWorkspace, WORKSPACE_SIDEBAR_WIDTH } from './utils/useResponsiveWorkspace'
 import { getWorkspacePageForPath, workspacePagePath } from './workspaceRoutes'
 
-const PAGES_EN_PANNEAU = ['/pericope']
+// Pages de lecture : Sommaire (péricopes) et journée de plan, comme le lecteur Bible.
+const PAGES_EN_PANNEAU = ['/pericope', '/plan', '/plan-slice']
 
 export default function WorkspaceLayout({
   children,
@@ -71,7 +72,7 @@ export default function WorkspaceLayout({
       '--workspace-restore-inset',
       // Empreinte : barre fermée, le bouton de réouverture est en haut à gauche des pages ;
       // dans la Bible, il est intégré à l'en-tête, avant le bouton du livre.
-      isWide && !sidebarVisible && pathname !== '/' ? '52px' : '0px'
+      isWide && !sidebarVisible && pathname !== '/' && !panel.showsStudy ? '52px' : '0px'
     )
     document.documentElement.style.setProperty(
       '--workspace-content-left',
@@ -81,12 +82,12 @@ export default function WorkspaceLayout({
       document.documentElement.style.removeProperty('--workspace-content-left')
       document.documentElement.style.removeProperty('--workspace-restore-inset')
     }
-  }, [isWide, overlayMode, sidebarHidden, sidebarVisible, pathname])
+  }, [isWide, overlayMode, sidebarHidden, sidebarVisible, pathname, panel.showsStudy])
 
   const isWorkspace = pathname === '/'
   // Empreinte : les pages de lecture reposent dans un panneau arrondi, comme la Bible ;
   // les autres pages restent sur le fond uniforme, avec leurs propres éléments arrondis.
-  const enPanneau = isWide && PAGES_EN_PANNEAU.some(page => pathname.startsWith(page))
+  const enPanneau = isWide && PAGES_EN_PANNEAU.includes(pathname)
   const visitPage = (page: 'home' | 'settings') => {
     setOverlayOpen(false)
     if (pathname !== workspacePagePath[page])
@@ -175,9 +176,9 @@ export default function WorkspaceLayout({
         />
       )}
       <Box testID="workspace-main-surface" className="flex-1 min-w-0">
-        {isWide && !sidebarVisible && !isWorkspace && (
+        {isWide && !sidebarVisible && !isWorkspace && !showsStudy && (
           // Empreinte : barre fermée, le bouton pour la rouvrir est en haut à gauche des pages.
-          <Box className="absolute left-[16px] top-[10px] z-20 bg-transparent">
+          <Box className="absolute left-[16px] top-[10px] bg-transparent" style={{ zIndex: 1000 }}>
             <TouchableBox
               className="items-center justify-center w-[44px] h-[44px]"
               style={styleVerre(verre, 22)}
@@ -222,16 +223,18 @@ export default function WorkspaceLayout({
             }
             className="flex-1 overflow-hidden"
             style={[
-              enPanneau && !showsStudy ? styleVerre(verre, 28) : null,
+              enPanneau || showsStudy ? styleVerre(verre, 28) : null,
               {
                 display: isWide && isWorkspace ? 'none' : 'flex',
                 ...(showsStudy
                   ? {
+                      // Empreinte : le panneau d'étude est une page de lecture, arrondi comme
+                      // le lecteur, avec le même écart de 16 px.
                       position: 'absolute',
-                      top: 0,
-                      bottom: 0,
-                      right: 0,
-                      width: panel.reservedWidth,
+                      top: 16,
+                      bottom: 16,
+                      right: 16,
+                      width: panel.reservedWidth - 16,
                     }
                   : enPanneau
                     ? { position: 'absolute', top: 16, bottom: 16, left: 16, right: 16 }

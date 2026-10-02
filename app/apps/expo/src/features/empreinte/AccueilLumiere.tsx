@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react'
+import React, { useEffect, useMemo, useState } from 'react'
 import { Pressable, View } from 'react-native'
 import { useRouter } from 'expo-router'
 import { useSelector } from 'react-redux'
@@ -209,11 +209,23 @@ export function MiniPapier({ realite, largeur = 140 }: { realite: Realite; large
 }
 
 /** En-tête de l'accueil : marque, bouton profil, date en points, traces du jour. */
-export function TeteAccueil({ compact = false }: { compact?: boolean }) {
+export function TeteAccueil({
+  compact = false,
+  avecTraces = true,
+}: {
+  compact?: boolean
+  avecTraces?: boolean
+}) {
   const theme = useTheme()
   const router = useRouter()
   const v = useVerre()
-  const { maintenant, traces, ecarts } = useJourEmpreinte()
+  const { traces, ecarts } = useJourEmpreinte()
+  // L'heure avance toute seule.
+  const [maintenant, setMaintenant] = useState(() => new Date())
+  useEffect(() => {
+    const minuterie = setInterval(() => setMaintenant(new Date()), 30000)
+    return () => clearInterval(minuterie)
+  }, [])
   const initiale = useSelector((state: RootState) =>
     (state.user.displayName || state.user.email || 'O').trim().charAt(0).toUpperCase()
   )
@@ -247,32 +259,53 @@ export function TeteAccueil({ compact = false }: { compact?: boolean }) {
           </Pressable>
         </View>
       ) : null}
-      <Micro>
-        {compact
-          ? `${JOURS[maintenant.getDay()]} ${maintenant.getDate() === 1 ? '1er' : maintenant.getDate()} ${MOIS[maintenant.getMonth()]}`
-          : `${JOURS[maintenant.getDay()]} · ${MOIS[maintenant.getMonth()]}`}
-      </Micro>
-      <Dot
-        taille={compact ? 104 : 96}
-      >{`${deux(maintenant.getDate())}.${deux(maintenant.getMonth() + 1)}`}</Dot>
-      <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4 }}>
-        <Text style={{ fontFamily: police(POLICES.gras), fontSize: 15 }}>
-          {traces} trace{traces > 1 ? 's' : ''}
-        </Text>
-        <Text style={{ fontFamily: police(POLICES.moyen), fontSize: 15, color: theme.colors.grey }}>
-          aujourd’hui
-        </Text>
-        {ecarts.length ? (
-          <>
-            <Text style={{ color: theme.colors.grey }}>•</Text>
-            <Text
-              style={{ fontFamily: police(POLICES.titre), fontSize: 15, color: theme.colors.quart }}
-            >
-              {ecarts.length} écart{ecarts.length > 1 ? 's' : ''}
-            </Text>
-          </>
-        ) : null}
-      </View>
+      {/* Empreinte : la date en toutes lettres, l'heure en dessous, en typographie légère. */}
+      <Text
+        style={{
+          fontFamily: police(POLICES.titre),
+          fontSize: compact ? 26 : 24,
+          letterSpacing: -0.5,
+        }}
+      >
+        {`${JOURS[maintenant.getDay()]} ${maintenant.getDate() === 1 ? '1er' : maintenant.getDate()} ${MOIS[maintenant.getMonth()]} ${maintenant.getFullYear()}`}
+      </Text>
+      <Text
+        style={{
+          fontFamily: police(POLICES.texte),
+          fontSize: compact ? 40 : 36,
+          letterSpacing: -1,
+          color: theme.colors.grey,
+          fontVariant: ['tabular-nums'],
+        }}
+      >
+        {`${deux(maintenant.getHours())}:${deux(maintenant.getMinutes())}`}
+      </Text>
+      {avecTraces ? (
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: 4 }}>
+          <Text style={{ fontFamily: police(POLICES.gras), fontSize: 15 }}>
+            {traces} trace{traces > 1 ? 's' : ''}
+          </Text>
+          <Text
+            style={{ fontFamily: police(POLICES.moyen), fontSize: 15, color: theme.colors.grey }}
+          >
+            aujourd’hui
+          </Text>
+          {ecarts.length ? (
+            <>
+              <Text style={{ color: theme.colors.grey }}>•</Text>
+              <Text
+                style={{
+                  fontFamily: police(POLICES.titre),
+                  fontSize: 15,
+                  color: theme.colors.quart,
+                }}
+              >
+                {ecarts.length} écart{ecarts.length > 1 ? 's' : ''}
+              </Text>
+            </>
+          ) : null}
+        </View>
+      ) : null}
     </View>
   )
 }
@@ -684,6 +717,60 @@ export function OuSontLesOriginaux() {
           </View>
         </View>
       ))}
+    </View>
+  )
+}
+
+/** Bascule de l'accueil : la Parole au centre, les réalités (factures, missions…) à côté. */
+export function BasculeAccueil({
+  vue,
+  onChange,
+}: {
+  vue: 'parole' | 'realites'
+  onChange: (vue: 'parole' | 'realites') => void
+}) {
+  const theme = useTheme()
+  const v = useVerre()
+  return (
+    <View
+      style={[
+        styleVerre(v, 20, false),
+        { flexDirection: 'row', alignSelf: 'flex-start', padding: 4, gap: 4 },
+      ]}
+    >
+      {(
+        [
+          ['parole', 'Parole'],
+          ['realites', 'Réalités'],
+        ] as const
+      ).map(([id, libelle]) => {
+        const actif = vue === id
+        return (
+          <Pressable
+            key={id}
+            onPress={() => onChange(id)}
+            accessibilityRole="tab"
+            accessibilityState={{ selected: actif }}
+            style={{
+              height: 32,
+              paddingHorizontal: 16,
+              borderRadius: 16,
+              justifyContent: 'center',
+              backgroundColor: actif ? theme.colors.default : 'transparent',
+            }}
+          >
+            <Text
+              style={{
+                fontFamily: police(POLICES.titre),
+                fontSize: 13.5,
+                color: actif ? theme.colors.reverse : theme.colors.default,
+              }}
+            >
+              {libelle}
+            </Text>
+          </Pressable>
+        )
+      })}
     </View>
   )
 }

@@ -1,4 +1,5 @@
 import { resolveFontFamily } from '~themes/styleValues'
+import { urlSiteEmpreinte } from '~helpers/siteEmpreinte'
 import { useTheme as useStylingTheme } from '~themes/ThemeProvider'
 import { colorWithOpacity } from '~themes/colorValues'
 import React, { useState } from 'react'
@@ -25,7 +26,7 @@ const FAQScreen = () => {
       id: 'availability',
       question: t('faq.availabilityQuestion'),
       answer: t('faq.availabilityAnswer'),
-      link: { href: 'https://web.bible-strong.app/home', label: t('faq.openWeb') },
+      link: { href: urlSiteEmpreinte('app/home') || '/app/home', label: t('faq.openWeb') },
     },
     { id: 'free', question: t('faq.freeQuestion'), answer: t('faq.freeAnswer') },
     { id: 'account', question: t('faq.accountQuestion'), answer: t('faq.accountAnswer') },
@@ -64,7 +65,7 @@ const FAQScreen = () => {
       id: 'support',
       question: t('faq.supportQuestion'),
       answer: t('faq.supportAnswer'),
-      link: { href: 'https://bible-strong.app/give', label: t('faq.donate') },
+      link: { href: urlSiteEmpreinte() || '/', label: t('faq.donate') },
     },
     { id: 'author', question: t('faq.authorQuestion'), answer: t('faq.authorAnswer') },
   ]
