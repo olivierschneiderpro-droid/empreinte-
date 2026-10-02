@@ -83,20 +83,18 @@ sauf si on la force, et elle reste alors signalée.
 packages/core             modèle et calculs d'Empreinte (TypeScript, sans dépendance lourde)
 packages/bible-references analyseur de références bibliques FR/EN (MIT, issu de Bible Strong)
 apps/cli                  outil en ligne de commande, étiquettes QR (bibliothèque qrcode, MIT)
-app/                      application Empreinte : fork complet de Bible Strong (GPL-3.0)
+app/                      application Empreinte : fork complet de Bible Strong
 docs/VISION.md            la vision d'origine
 ```
 
 ## Sources open source
 
-- **[Bible Strong](https://github.com/smontlouis/bible-strong)** (GPL-3.0) : application
+- **[Bible Strong](https://github.com/smontlouis/bible-strong)** : application
   d'étude biblique React Native/Expo (concordance Strong, lexiques, interlinéaire, hors ligne).
   Forké en entier dans `app/` : c’est la base de l’application Empreinte.
 - **Analyseur de références bibliques** (MIT, Stephen Smith / Bible Strong) : copié dans
   `packages/bible-references`.
 - **[node-qrcode](https://github.com/soldair/node-qrcode)** (MIT) : génération des QR codes.
-
-Empreinte est distribué sous **GPL-3.0-or-later**, compatible avec Bible Strong.
 
 ## Déployer sur le serveur HP
 

@@ -4,7 +4,7 @@ Recherche du 1er octobre 2026. Pour chaque réalité de la vision, les projets o
 qui peuvent y contribuer. Licences lues directement dans le fichier LICENSE de chaque
 dépôt (ou sur npm pour les bibliothèques JavaScript), avec la date du dernier commit.
 
-Empreinte est sous **GPL-3.0** (à cause de Bible Strong). Ce que cela permet :
+Ce que chaque licence permet pour Empreinte :
 
 | Licence | Utilisation dans Empreinte |
 |---|---|
