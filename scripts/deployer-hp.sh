@@ -1,38 +1,48 @@
 #!/usr/bin/env bash
-# Déploie la version web d'Empreinte sur le serveur HP (Linux, Node 20+).
+# Installe Empreinte (version web) sur le serveur HP (Linux, Node 20+), avec les mises à jour
+# automatiques : à lancer une seule fois, ensuite tout se met à jour tout seul.
 #
-# Deux façons :
-#   1. Version déjà compilée (rapide) :  ./scripts/deployer-hp.sh
-#   2. Depuis le code source (long) :    ./scripts/deployer-hp.sh source
+#   ./scripts/deployer-hp.sh           version compilée par GitHub (recommandé)
+#   ./scripts/deployer-hp.sh archive   version livrée dans le dépôt (deploiement/)
+#   ./scripts/deployer-hp.sh source    compilation sur le serveur (long)
 #
-# Ensuite l'app est servie sur http://<adresse-du-hp>:8080 (PORT=… pour changer).
-# Avec sudo et systemd présents, un service « empreinte » est installé pour démarrer
-# tout seul au redémarrage du serveur.
+# L'app est servie sur http://<adresse-du-hp>:8080 (PORT=… pour changer).
+# Avec sudo et systemd, deux services sont installés :
+#   - « empreinte »          : le serveur web, relancé seul au redémarrage du HP ;
+#   - « empreinte-maj.timer » : toutes les 30 secondes, récupère la dernière version
+#                               publiée sur GitHub (scripts/mise-a-jour-hp.sh).
 set -euo pipefail
 
-MODE=${1:-archive}
-ICI_TOT=$(cd "$(dirname "$0")/.." && pwd)
+MODE=${1:-github}
+ICI=$(cd "$(dirname "$0")/.." && pwd)
 PORT=${PORT:-8080}
 DEST=${DEST:-$HOME/empreinte-web}
-ICI=$(cd "$(dirname "$0")/.." && pwd)
+export DEST
 
 command -v node >/dev/null || { echo "Node.js 20 ou plus est nécessaire (https://nodejs.org)."; exit 1; }
 
+installer_archive() {
+  local archive=$1 tmp
+  tmp=$(mktemp -d)
+  tar xzf "$archive" -C "$tmp"
+  rm -rf "$DEST" && mv "$tmp"/empreinte-web-hp "$DEST" && rm -rf "$tmp"
+}
+
 case "$MODE" in
-  archive)
-    # Par défaut : la version déjà compilée, livrée dans le dépôt.
-    ARCHIVE=${2:-$ICI_TOT/deploiement/empreinte-web.tar.gz}
-    if [ ! -f "$ARCHIVE" ]; then
-      echo "Archive introuvable : $ARCHIVE"
-      echo "Copiez-la dans ce dossier, ou compilez depuis le code : $0 source"
-      exit 1
+  github)
+    # Dernière version compilée par GitHub ; à défaut, celle livrée dans le dépôt.
+    rm -f "$DEST/.version"
+    if ! bash "$ICI/scripts/mise-a-jour-hp.sh" || [ ! -f "$DEST/.version" ]; then
+      echo "Pas encore de version publiée sur GitHub : installation de celle du dépôt."
+      installer_archive "$ICI/deploiement/empreinte-web.tar.gz"
     fi
-    TMP=$(mktemp -d)
-    tar xzf "$ARCHIVE" -C "$TMP"
-    rm -rf "$DEST" && mv "$TMP"/empreinte-web-hp "$DEST" && rm -rf "$TMP"
+    ;;
+  archive)
+    ARCHIVE=${2:-$ICI/deploiement/empreinte-web.tar.gz}
+    [ -f "$ARCHIVE" ] || { echo "Archive introuvable : $ARCHIVE"; exit 1; }
+    installer_archive "$ARCHIVE"
     ;;
   source)
-    # Yarn 4 via corepack (fourni avec Node), sans installation globale.
     cd "$ICI/app"
     export COREPACK_ENABLE_DOWNLOAD_PROMPT=0
     echo "Installation des dépendances (quelques minutes la première fois)…"
@@ -43,10 +53,12 @@ case "$MODE" in
     CI=1 EXPO_NO_TELEMETRY=1 NODE_ENV=production corepack yarn expo export --platform web --output-dir "$DEST"
     ;;
   *)
-    echo "Usage : $0 archive <empreinte-web.tar.gz> | source"; exit 1 ;;
+    echo "Usage : $0 [github | archive <empreinte-web.tar.gz> | source]"; exit 1 ;;
 esac
 
 SERVEUR="$ICI/scripts/servir-empreinte.mjs"
+MAJ="$ICI/scripts/mise-a-jour-hp.sh"
+UTILISATEUR=$(id -un)
 if command -v systemctl >/dev/null && sudo -n true 2>/dev/null; then
   sudo tee /etc/systemd/system/empreinte.service >/dev/null <<EOF
 [Unit]
@@ -54,18 +66,44 @@ Description=Empreinte (version web)
 After=network.target
 
 [Service]
-User=$(id -un)
+User=$UTILISATEUR
 ExecStart=$(command -v node) $SERVEUR $DEST $PORT
 Restart=always
+RestartSec=1
 
 [Install]
 WantedBy=multi-user.target
 EOF
+  sudo tee /etc/systemd/system/empreinte-maj.service >/dev/null <<EOF
+[Unit]
+Description=Empreinte : récupérer la dernière version
+After=network-online.target
+
+[Service]
+Type=oneshot
+User=$UTILISATEUR
+Environment=DEST=$DEST HOME=$HOME
+ExecStart=/usr/bin/env bash $MAJ
+EOF
+  sudo tee /etc/systemd/system/empreinte-maj.timer >/dev/null <<EOF
+[Unit]
+Description=Empreinte : vérifier les mises à jour toutes les 30 secondes
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=30s
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target
+EOF
   sudo systemctl daemon-reload
-  sudo systemctl enable --now empreinte
+  sudo systemctl enable --now empreinte empreinte-maj.timer
   sudo systemctl restart empreinte
   echo "Service « empreinte » actif : http://$(hostname -I 2>/dev/null | awk '{print $1}'):$PORT"
+  echo "Mises à jour automatiques actives (toutes les 30 s). Suivi : journalctl -u empreinte-maj -f"
 else
-  echo "Lancement direct (Ctrl+C pour arrêter) :"
+  echo "sudo indisponible : lancez d'abord « sudo -v », puis relancez ce script pour les"
+  echo "mises à jour automatiques. Lancement direct en attendant (Ctrl+C pour arrêter) :"
   exec node "$SERVEUR" "$DEST" "$PORT"
 fi

@@ -1,0 +1,64 @@
+# Compile la version web d'Empreinte à chaque mise à jour de main et la publie dans la
+# version GitHub « web-latest ». Le serveur HP la récupère tout seul (scripts/mise-a-jour-hp.sh).
+name: Version web pour le serveur HP
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/**'
+      - 'packages/**'
+      - '.github/workflows/version-web-hp.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: version-web-hp
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+
+jobs:
+  compiler:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v6
+        with:
+          node-version: 22
+
+      - name: Activer Yarn (corepack)
+        run: corepack enable
+
+      - name: Installer les dépendances
+        working-directory: app
+        env:
+          YARN_ENABLE_IMMUTABLE_INSTALLS: 'false'
+        run: yarn install
+
+      - name: Compiler la version web
+        working-directory: app/apps/expo
+        env:
+          CI: '1'
+          EXPO_NO_TELEMETRY: '1'
+          NODE_ENV: production
+          NODE_OPTIONS: --max-old-space-size=6144
+        run: yarn expo export --platform web --output-dir "$GITHUB_WORKSPACE/empreinte-web-hp"
+
+      - name: Préparer l'archive
+        run: |
+          echo "$GITHUB_SHA" > empreinte-web-hp/.version
+          tar czf empreinte-web.tar.gz empreinte-web-hp
+          echo "$GITHUB_SHA" > version.txt
+
+      - name: Publier dans la version « web-latest »
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if ! gh release view web-latest >/dev/null 2>&1; then
+            gh release create web-latest --title "Version web (dernière)" \
+              --notes "Compilée automatiquement depuis main. Récupérée par le serveur HP." --latest=false
+          fi
+          gh release upload web-latest empreinte-web.tar.gz version.txt --clobber

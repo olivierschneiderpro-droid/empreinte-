@@ -7,7 +7,7 @@
 //   node scripts/servir-empreinte.mjs <dossier-web> [port]
 //   ex. : node scripts/servir-empreinte.mjs ~/empreinte-web 8080
 import { createServer } from 'node:http'
-import { createReadStream, statSync } from 'node:fs'
+import { createReadStream, statSync, watchFile } from 'node:fs'
 import { readFile } from 'node:fs/promises'
 import { extname, join, normalize, resolve } from 'node:path'
 import { Readable } from 'node:stream'
@@ -93,5 +93,11 @@ createServer((req, res) => {
   }
   createReadStream(servi).pipe(res)
 }).listen(port, '0.0.0.0', () => {
+  // Mise à jour automatique : si ce script change (git pull), on s'arrête et systemd
+  // relance aussitôt la nouvelle version (Restart=always).
+  watchFile(new URL(import.meta.url), { interval: 5000 }, () => {
+    console.log('Serveur mis à jour : redémarrage.')
+    process.exit(0)
+  })
   console.log(`Empreinte servi depuis ${racine} sur http://0.0.0.0:${port} (API relayée : ${API})`)
 })
