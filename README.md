@@ -96,14 +96,22 @@ docs/VISION.md            la vision d'origine
   `packages/bible-references`.
 - **[node-qrcode](https://github.com/soldair/node-qrcode)** (MIT) : génération des QR codes.
 
-## Déployer sur le serveur HP
+## Déployer sur le serveur HP (mises à jour automatiques)
 
-Sur le serveur (Linux, Node 20 ou plus), dans une copie de ce dépôt :
+À chaque mise à jour de `main`, GitHub compile la version web et la publie dans la version
+[`web-latest`](../../releases/tag/web-latest) (`.github/workflows/version-web-hp.yml`).
+Le serveur HP vérifie toutes les 30 secondes et installe la nouvelle version tout seul.
+
+Installation, une seule fois, sur le serveur (Linux, Node 20 ou plus) :
 
 ```bash
-./scripts/deployer-hp.sh          # version déjà compilée (deploiement/empreinte-web.tar.gz)
-./scripts/deployer-hp.sh source   # ou en compilant depuis le code (long)
+cd ~/empreinte- && git checkout main && git pull && sudo -v && ./scripts/deployer-hp.sh
 ```
 
-L'app est alors servie sur `http://<adresse-du-hp>:8080` (variable `PORT` pour changer).
-Avec `sudo` et systemd, un service `empreinte` est installé et redémarre avec le serveur.
+- L'app est servie sur `http://<adresse-du-hp>:8080` (variable `PORT` pour changer).
+- Service `empreinte` : le serveur web, relancé seul au démarrage du HP.
+- Minuteur `empreinte-maj.timer` : toutes les 30 s, met à jour les scripts (`git pull`) et la
+  version web (`scripts/mise-a-jour-hp.sh`). Le serveur redémarre seul si son script change.
+- Suivre les mises à jour : `journalctl -u empreinte-maj -f`.
+- Autres modes : `./scripts/deployer-hp.sh archive` (version du dossier `deploiement/`) ou
+  `./scripts/deployer-hp.sh source` (compilation sur le serveur, long).
