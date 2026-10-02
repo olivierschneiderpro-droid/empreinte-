@@ -96,7 +96,7 @@ const AudioContainer = ({ children, onReduce, audioMode, onChangeMode }: AudioCo
           accessibilityRole="link"
           accessibilityLabel={t('accessibility.openAudibible')}
         >
-          Audibible
+          Empreinte Audio
         </Chip>
       </HStack>
       <HStack className="absolute top-[12px] left-[20px] items-center gap-[6px]">

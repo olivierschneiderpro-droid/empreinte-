@@ -25,12 +25,14 @@ et le même défaut utilisateur. Son filtre et sa réinitialisation mettent à j
 les paramètres de navigation ; le choix du verset du jour reste toujours visible.
 
 ### Types de plans
+
 - **Plans annuels** (`yearly`) : Lecture complète de la Bible sur une année
 - **Plans de méditation** (`meditation`) : Études thématiques courtes
 - Support multilingue (Français/Anglais)
 - Plans gratuits et premium
 
 ### Système de progression
+
 - **Statuts de lecture** :
   - `Idle` : Non commencé
   - `Next` : Prochain élément à lire
@@ -41,6 +43,7 @@ les paramètres de navigation ; le choix du verset du jour reste toujours visibl
 - Possibilité de réinitialiser un plan
 
 ### Types de contenu
+
 - **Chapitres bibliques** : Livres entiers ou sections
 - **Versets spécifiques** : Passages ciblés
 - **Textes de méditation** : Réflexions et enseignements
@@ -79,38 +82,39 @@ plans/
 
 ```typescript
 interface Plan {
-  id: string                  // Identifiant unique
-  title: string               // Titre du plan
-  subTitle?: string           // Sous-titre optionnel
-  image?: string              // URL de l'image de couverture
-  author: {                   // Informations sur l'auteur
+  id: string // Identifiant unique
+  title: string // Titre du plan
+  subTitle?: string // Sous-titre optionnel
+  image?: string // URL de l'image de couverture
+  author: {
+    // Informations sur l'auteur
     id: string
     displayName: string
     photoUrl?: string
   }
-  type: 'yearly' | 'meditation'  // Type de plan
-  lang: 'fr' | 'en'             // Langue du plan
-  sections: Section[]            // Sections du plan
+  type: 'yearly' | 'meditation' // Type de plan
+  lang: 'fr' | 'en' // Langue du plan
+  sections: Section[] // Sections du plan
 }
 
 interface Section {
-  id: string                  // ID de la section
-  title: string               // Titre de la section
+  id: string // ID de la section
+  title: string // Titre de la section
   readingSlices: ReadingSlice[] // Tranches de lecture
 }
 
 interface ReadingSlice {
-  id: string                  // ID de la tranche
-  title?: string              // Titre optionnel
-  slices: EntitySlice[]       // Contenu de la tranche
+  id: string // ID de la tranche
+  title?: string // Titre optionnel
+  slices: EntitySlice[] // Contenu de la tranche
 }
 
 interface EntitySlice {
   type: 'Title' | 'Text' | 'Verse' | 'Chapter' | 'Video' | 'Image'
-  title?: string              // Pour les titres
-  text?: string               // Pour le texte
-  viewMore?: string           // Lien "voir plus"
-  subType?: string            // Sous-type (ex: 'quote')
+  title?: string // Pour les titres
+  text?: string // Pour le texte
+  viewMore?: string // Lien "voir plus"
+  subType?: string // Sous-type (ex: 'quote')
 }
 ```
 
@@ -118,8 +122,9 @@ interface EntitySlice {
 
 ```typescript
 interface PlanState {
-  myPlans: Plan[]             // Plans téléchargés localement
-  onlinePlans: {              // Plans disponibles en ligne
+  myPlans: Plan[] // Plans téléchargés localement
+  onlinePlans: {
+    // Plans disponibles en ligne
     data: PlanSummary[]
     isFetching: boolean
   }
@@ -143,12 +148,14 @@ await dispatch(fetchPlan(planId))
 ### Marquer une lecture comme complétée
 
 ```typescript
-dispatch(markAsRead({
-  planId: plan.id,
-  sectionId: section.id,
-  readingSliceId: readingSlice.id,
-  status: 'Completed'
-}))
+dispatch(
+  markAsRead({
+    planId: plan.id,
+    sectionId: section.id,
+    readingSliceId: readingSlice.id,
+    status: 'Completed',
+  })
+)
 ```
 
 ### Réinitialiser un plan
@@ -170,18 +177,21 @@ dispatch(resetPlan(plan.id))
 ## Intégrations
 
 ### Avec la feature Bible
+
 - Chargement des versets via `biblesDb` (SQLite)
 - Navigation vers la lecture complète
 - Support du changement de version biblique
 - Récupération des titres de sections (péricopes)
 
 ### Avec Firebase
+
 - Stockage des plans dans Firestore
 - Synchronisation de la progression
 - Hébergement des images sur Firebase Storage
 - Analytics des événements de lecture
 
 ### Avec la navigation
+
 - Paramètres typés entre écrans
 - Support du deep linking
 - Gestion du back button
@@ -196,19 +206,18 @@ dispatch(resetPlan(plan.id))
 const sectionProgress = completedSlices / totalSlices
 
 // Progression globale d'un plan
-const totalProgress = sections.reduce((acc, section) => {
-  return acc + (sectionProgress(section) * section.weight)
-}, 0) / sections.length
+const totalProgress =
+  sections.reduce((acc, section) => {
+    return acc + sectionProgress(section) * section.weight
+  }, 0) / sections.length
 ```
 
 ### Détermination du prochain élément
 
 ```javascript
 // Trouve le premier élément non complété
-const nextSlice = readingSlices.find(slice => 
-  !ongoingSlices.find(o => 
-    o.id === slice.id && o.status === 'Completed'
-  )
+const nextSlice = readingSlices.find(
+  slice => !ongoingSlices.find(o => o.id === slice.id && o.status === 'Completed')
 )
 ```
 
@@ -222,12 +231,14 @@ const nextSlice = readingSlices.find(slice =>
 ## Personnalisation
 
 ### Paramètres de lecture
+
 - Taille de police ajustable
 - Espacement des lignes
 - Mode sombre/clair
 - Police par défaut ou personnalisée
 
 ### Widget d'accueil
+
 - Affichage du plan en cours
 - Indicateur de progression circulaire
 - Accès rapide à la prochaine lecture
@@ -235,6 +246,7 @@ const nextSlice = readingSlices.find(slice =>
 ## Points d'extension
 
 Pour ajouter un nouveau type de contenu :
+
 1. Créer un nouveau composant dans `Components/`
 2. Ajouter le type dans `EntitySlice`
 3. Implémenter le rendu dans `Slice.tsx`

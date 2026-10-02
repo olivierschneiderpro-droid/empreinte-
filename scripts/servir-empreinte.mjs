@@ -21,19 +21,22 @@ const site = resolve(
 )
 const port = Number(process.argv[3] ?? process.env.PORT ?? 8080)
 const API = process.env.EMPREINTE_API ?? 'https://api.bible-strong.app'
+// YouVersion : la clé reste sur le serveur (variable YOUVERSION_KEY), jamais dans le navigateur.
+const YOUVERSION = 'https://api.youversion.com'
+const CLE_YOUVERSION = process.env.YOUVERSION_KEY ?? ''
 // Annonce le relais à l'app (lu dans resourceAccess.web.tsx).
 const ANNONCE = '<script>window.__EMPREINTE_RELAIS__=location.origin</script>'
 const SANS = new Set(['host', 'origin', 'referer', 'connection', 'content-length', 'accept-encoding'])
 
-const relayer = async (req, res) => {
+const relayer = async (req, res, cible = API + req.url, entetes = {}) => {
   try {
     const headers = Object.fromEntries(
       Object.entries(req.headers).filter(([k]) => !SANS.has(k.toLowerCase()))
     )
     const corps = req.method === 'GET' || req.method === 'HEAD' ? undefined : Readable.toWeb(req)
-    const reponse = await fetch(API + req.url, {
+    const reponse = await fetch(cible, {
       method: req.method,
-      headers,
+      headers: { ...headers, ...entetes },
       body: corps,
       duplex: corps ? 'half' : undefined,
     })
@@ -47,7 +50,7 @@ const relayer = async (req, res) => {
     else res.end()
   } catch (erreur) {
     res.writeHead(502, { 'Content-Type': 'text/plain; charset=utf-8' })
-    res.end(`Relais vers ${API} impossible : ${erreur.message}`)
+    res.end(`Relais vers ${new URL(cible).host} impossible : ${erreur.message}`)
   }
 }
 
@@ -88,6 +91,13 @@ const envoyer = (res, chemin, cache) => {
 
 createServer((req, res) => {
   if ((req.url ?? '').startsWith('/v1/')) return void relayer(req, res)
+  // /youversion/v1/… → api.youversion.com/v1/… avec la clé de l'app.
+  if ((req.url ?? '').startsWith('/youversion/')) {
+    if (!CLE_YOUVERSION) return void res.writeHead(503).end('Clé YouVersion absente (YOUVERSION_KEY).')
+    return void relayer(req, res, YOUVERSION + req.url.slice('/youversion'.length), {
+      'X-YVP-App-Key': CLE_YOUVERSION,
+    })
+  }
   let url
   try {
     url = decodeURIComponent((req.url ?? '/').split('?')[0])

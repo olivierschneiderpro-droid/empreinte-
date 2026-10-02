@@ -31,13 +31,27 @@ jest.mock('react-redux', () => ({
   useDispatch: () => () => {},
 }))
 jest.mock('~redux/modules/plan', () => ({ fetchPlans: () => ({ type: 'fetchPlans' }) }))
-jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }))
+jest.mock('react-i18next', () => ({
+  useTranslation: () => ({ t: (key: string) => key, i18n: { language: 'fr' } }),
+}))
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: () => {} }) }))
 jest.mock('expo-image', () => ({ Image: () => null }))
 jest.mock('../plan.hooks', () => ({ useFireStorage: () => undefined }))
 jest.mock('react-native', () => ({
   ActivityIndicator: () => null,
   ScrollView: ({ children }: React.PropsWithChildren) => children,
+  useWindowDimensions: () => ({ width: 1280, height: 800 }),
+}))
+jest.mock('~features/empreinte/icones', () => ({ Icone: () => null }))
+jest.mock('~features/empreinte/lumiere', () => ({
+  POLICES: {},
+  police: (nom: string) => nom,
+  styleVerre: () => ({}),
+  useVerre: () => ({}),
+}))
+jest.mock('~themes/ThemeProvider', () => ({ useTheme: () => ({ colors: {} }) }))
+jest.mock('../catalogueLocal', () => ({
+  chargerCatalogueLocal: () => new Promise(() => {}),
 }))
 jest.mock('~common/Link', () => ({
   __esModule: true,

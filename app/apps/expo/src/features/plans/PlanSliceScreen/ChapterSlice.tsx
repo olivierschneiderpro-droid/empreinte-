@@ -7,6 +7,7 @@ import { FeatherIcon } from '~common/ui/Icon'
 import Paragraph from '~common/ui/Paragraph'
 import { useChapterToContent } from '../plan.hooks'
 import PauseText from './PauseText'
+import EcouterTexte from '~features/empreinte/EcouterTexte'
 import Loading from '~common/Loading'
 import { useTranslation } from 'react-i18next'
 const ChapterSlice = ({ id, chapters, subType }: ChapterSliceProps) => {
@@ -39,8 +40,14 @@ const ChapterSlice = ({ id, chapters, subType }: ChapterSliceProps) => {
             {t('Entrez dans un temps de prière\n et méditez sur le psaume\nsuivant')}
           </PauseText>
         )}
-        <Box className="overflow-hidden border-continuous">
+        <Box className="overflow-hidden border-continuous flex-row items-center justify-between gap-[12px]">
           <Paragraph scale={5}>{content.bookName}</Paragraph>
+          {/* Empreinte : lire et écouter en même temps. */}
+          <EcouterTexte
+            texte={content.chapters
+              .map(chapter => chapter.verses.map(verse => verse.Texte).join(' '))
+              .join(' ')}
+          />
         </Box>
         {content.chapters.map(chapter => (
           <Box className="overflow-hidden border-continuous" key={chapter.title}>

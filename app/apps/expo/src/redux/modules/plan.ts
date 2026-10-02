@@ -14,6 +14,7 @@ import { RootState } from './reducer'
 import { importData, receiveLiveUpdates, USER_LOGOUT } from './user'
 import { markReadingSliceAsRead } from '~features/plans/planProgress'
 import { getEditorialKind, isCivilDate } from '~features/plans/readingCalendar'
+import { avecDelai, chargerCatalogueLocal, fusionnerPlans } from '~features/plans/catalogueLocal'
 
 type ImageModel = { [key: string]: string }
 
@@ -40,13 +41,22 @@ const docsArr = async (collectionName: string) => {
 }
 
 export const fetchPlans = createAsyncThunk('plan/fetchPlans', async () => {
-  const results = (await docsArr('plans')) as OnlinePlan[]
-  return results
+  // Empreinte : Firestore + plans livrés avec l'app.
+  const [enLigne, local] = await Promise.all([
+    avecDelai(docsArr('plans') as Promise<OnlinePlan[]>, 8000).catch(() => [] as OnlinePlan[]),
+    chargerCatalogueLocal(),
+  ])
+  return fusionnerPlans(enLigne, local.plans)
 })
 
 export const fetchPlan = createAsyncThunk(
   'plan/fetchPlan',
   async ({ id, update = false }: { id: string; update?: boolean; enroll?: boolean }) => {
+    // Empreinte : un plan livré avec l'app se lit sans Firestore.
+    const local = await chargerCatalogueLocal()
+    const planLocal = local.plans.find(plan => plan.id === id)
+    if (planLocal && local.sections[id]) return { ...planLocal, sections: local.sections[id] }
+
     const planRef = doc(firebaseDb, 'plans', id)
 
     const planSnapshot = await getDoc(planRef)
