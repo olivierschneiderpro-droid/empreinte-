@@ -12,6 +12,7 @@ jest.mock('react-native', () => ({ Platform: { OS: 'ios' } }))
 jest.mock('expo-router', () => ({ useRouter: () => ({ navigate: jest.fn() }) }))
 jest.mock('~features/empreinte/ouvrirDansLaBible', () => ({
   useOuvrirDansLaBible: () => jest.fn(),
+  useAllerALaBible: () => jest.fn(),
 }))
 jest.mock('~common/Link', () => {
   const ReactModule = jest.requireActual<typeof React>('react')

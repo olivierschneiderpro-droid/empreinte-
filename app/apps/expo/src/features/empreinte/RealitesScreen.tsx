@@ -104,7 +104,36 @@ const RealitesScreen = () => {
               Réalités
             </Text>
           </View>
-          <Dot taille={34}>{toutes.length}</Dot>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 10 }}>
+            <Dot taille={34}>{toutes.length}</Dot>
+            {/* Empreinte : capturer une réalité se fait ici, depuis la page des réalités. */}
+            <Pressable
+              testID="realites-capturer"
+              accessibilityRole="button"
+              accessibilityLabel="Capturer une réalité"
+              onPress={() => router.push('/empreinte/capturer')}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                gap: 8,
+                height: 44,
+                paddingHorizontal: 18,
+                borderRadius: 22,
+                backgroundColor: theme.colors.default,
+              }}
+            >
+              <Icone nom="scan" taille={17} couleur={theme.colors.reverse} trait={2} />
+              <Text
+                style={{
+                  fontFamily: police(POLICES.titre),
+                  fontSize: 14.5,
+                  color: theme.colors.reverse,
+                }}
+              >
+                Capturer
+              </Text>
+            </Pressable>
+          </View>
         </View>
 
         <View style={{ flexDirection: 'row', gap: 10 }}>
