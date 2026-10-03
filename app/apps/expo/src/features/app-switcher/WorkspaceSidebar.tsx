@@ -8,6 +8,7 @@ import {
   SidebarDragTab,
 } from './SidebarDragDrop'
 import { useCloseWorkspaceTab } from './utils/useCloseWorkspaceTab'
+import { useAllerALaBible } from '~features/empreinte/ouvrirDansLaBible'
 import { resolveThemeColor, colorWithOpacity } from '~themes/colorValues'
 import { useTheme as useStylingTheme } from '~themes/ThemeProvider'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai/react'
@@ -15,7 +16,6 @@ import { collapsedWorkspaceGroupsAtom } from '~state/workspacePreferences'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { usePathname, useRouter } from 'expo-router'
-import { commandPaletteOpenAtom } from './commandPalette/state'
 import { Icone, type NomIcone } from '~features/empreinte/icones'
 import { useEmpreinte } from '~features/empreinte/registreEmpreinte'
 import { Platform, ScrollView } from 'react-native'
@@ -192,7 +192,6 @@ const WorkspaceSidebar = ({
   const router = useRouter()
   const pathname = usePathname()
   const verre = useVerre()
-  const openCommandPalette = useSetAtom(commandPaletteOpenAtom)
   const { anomalies } = useEmpreinte()
   const ecartsEmpreinte = anomalies.filter(a => a.gravite !== 'info').length
   const insets = useSafeAreaInsets()
@@ -227,6 +226,7 @@ const WorkspaceSidebar = ({
   }
 
   const closeTab = useCloseWorkspaceTab()
+  const allerALaBible = useAllerALaBible()
 
   const addTab = () => openInNewTab(undefined, { autoRedirect: true })
 
@@ -268,33 +268,6 @@ const WorkspaceSidebar = ({
               <FeatherIcon name="sidebar" size={18} color="grey" />
             </TouchableBox>
           </HStack>
-          <Box className="px-[12px] pt-[8px] pb-[6px] gap-[4px]">
-            <TouchableBox
-              testID="workspace-search"
-              className="flex-row items-center gap-[8px] px-[12px] h-[40px] rounded-[14px] mb-[12px]"
-              style={{ backgroundColor: verre.fond, borderWidth: 1, borderColor: verre.ligne }}
-              onPress={() => openCommandPalette(true)}
-              accessibilityRole="button"
-              accessibilityLabel={t('commandPalette.label')}
-            >
-              <Icone nom="search" taille={15} couleur={stylingTheme.colors.grey} />
-              <Text
-                className="flex-1 text-[13.5px]"
-                style={{ fontFamily: police(POLICES.moyen), color: stylingTheme.colors.grey }}
-              >
-                Rechercher
-              </Text>
-              <Text
-                style={{
-                  fontFamily: police(POLICES.mono),
-                  fontSize: 10.5,
-                  color: stylingTheme.colors.grey,
-                }}
-              >
-                ⌘K
-              </Text>
-            </TouchableBox>
-          </Box>
           <ScrollView
             style={{
               flex: 1,
@@ -334,7 +307,7 @@ const WorkspaceSidebar = ({
                     entree.id === 'home'
                       ? openHome
                       : entree.id === 'bible'
-                        ? () => onSelectContent?.()
+                        ? allerALaBible
                         : () => router.push(entree.chemin as never)
                   const compte = entree.id === 'verifier' ? ecartsEmpreinte || undefined : undefined
                   return (
@@ -659,22 +632,6 @@ const WorkspaceSidebar = ({
             )}
           </ScrollView>
           <Box className="border-continuous overflow-hidden px-[12px] pt-[8px] pb-[8px] gap-[4px]">
-            <TouchableBox
-              className="flex-row items-center justify-center gap-[8px] h-[46px] rounded-[23px] mb-[6px]"
-              style={{ backgroundColor: stylingTheme.colors.default }}
-              onPress={() => router.push('/empreinte/capturer')}
-              accessibilityRole="button"
-              accessibilityLabel="Capturer une réalité"
-              testID="workspace-capturer"
-            >
-              <Icone nom="scan" taille={18} couleur={stylingTheme.colors.reverse} trait={2} />
-              <Text
-                className="text-[14.5px]"
-                style={{ fontFamily: police(POLICES.titre), color: stylingTheme.colors.reverse }}
-              >
-                Capturer
-              </Text>
-            </TouchableBox>
             {Platform.OS === 'web' ? (
               <HStack
                 className="bg-reverse rounded-[14px] items-center overflow-hidden shadow-[0_2px_7px_rgba(89,131,240,0.1)]"

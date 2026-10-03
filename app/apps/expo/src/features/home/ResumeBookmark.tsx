@@ -8,7 +8,7 @@ import books from '~assets/bible_versions/books-desc'
 import { getBookmarkVerse } from '~features/bookmarks/bookmarkVerse'
 import { Platform } from 'react-native'
 import { useRouter } from 'expo-router'
-import { useOuvrirDansLaBible } from '~features/empreinte/ouvrirDansLaBible'
+import { useAllerALaBible, useOuvrirDansLaBible } from '~features/empreinte/ouvrirDansLaBible'
 import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
 import { selectLatestAddedBookmark } from '~redux/selectors/bookmarks'
 
@@ -19,6 +19,7 @@ export default function ResumeBookmark({ card = false }: { card?: boolean }) {
   const pushRoute = usePushRouteOnce()
   const router = useRouter()
   const ouvrirDansLaBible = useOuvrirDansLaBible()
+  const allerALaBible = useAllerALaBible()
   const verse = getBookmarkVerse(bookmark?.verse)
   const book = books.find(book => book.Numero === bookmark?.book)
   const reference = bookmark
@@ -29,7 +30,7 @@ export default function ResumeBookmark({ card = false }: { card?: boolean }) {
   // et non dans le panneau latéral réservé aux vérifications rapides.
   const reprendre = () => {
     if (Platform.OS === 'web') {
-      if (!bookmark) return router.navigate('/')
+      if (!bookmark) return allerALaBible()
       return ouvrirDansLaBible({
         book: bookmark.book,
         chapter: bookmark.chapter,
