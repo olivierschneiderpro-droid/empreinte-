@@ -44,3 +44,10 @@ Aînés : rides, cheveux gris ou blancs. Enfants : visage rond, grands yeux.
 Une fois les images obtenues, les déposer sous ces noms : l'app les utilise sans autre changement
 (les trois images `new-tab/*` sont aujourd'hui en `.webp` : remplacer par des `.png` du même nom et
 mettre à jour les deux `require` de `src/features/app-switcher/TabScreen/NewTab/`).
+
+## État actuel : dessins de Bible Strong recolorés
+
+En attendant de nouvelles illustrations, les quatorze images ci-dessus sont les dessins d'origine de
+Bible Strong, inchangés, passés dans les teintes d'Empreinte (terre, sauge, ocre, nuit, prune, sable,
+ardoise) par une carte de dégradé sur la luminosité. L'image Audio garde exactement son fond marine
+(#10284D), celui de sa carte : seuls ses violets sont passés au bleu.
