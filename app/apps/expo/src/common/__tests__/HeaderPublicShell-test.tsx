@@ -3,6 +3,9 @@ import { create, type ReactTestRenderer } from 'react-test-renderer'
 
 import Header from '../Header'
 import { PublicShellProvider } from '~navigation/PublicShellContext'
+jest.mock('~features/empreinte/BarreRecherche', () => 'BarreRecherche')
+jest.mock('~features/app-switcher/BlocOnglets', () => 'BoutonOnglets')
+jest.mock('~common/useEnteteBureau', () => ({ useEnteteBureau: () => false }))
 
 jest.mock('~common/ui/classNames', () => ({ twMerge: (...values: string[]) => values.join(' ') }))
 jest.mock('~common/ui/PageContent', () => ({ __esModule: true, default: 'PageContent' }))

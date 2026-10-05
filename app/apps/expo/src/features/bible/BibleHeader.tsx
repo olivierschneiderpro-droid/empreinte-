@@ -1,9 +1,12 @@
 import BibleVerseKeyboardDialog from './BibleVerseKeyboardDialog'
+import BarreRecherche, { BoutonRecherche } from '~features/empreinte/BarreRecherche'
+import BoutonOnglets from '~features/app-switcher/BlocOnglets'
+import { useEnteteBureau } from '~common/useEnteteBureau'
 import DisplayModeTrigger from './DisplayModeTrigger'
 import BibleSelectorTrigger from './BibleSelectorTrigger'
 import BibleBookmarkTrigger from '~features/bookmarks/BibleBookmarkTrigger'
 import BibleOptionsMenu from './BibleOptionsMenu'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { MenuView, type MenuAction } from '~common/ui/MenuView'
 import { useRouter } from 'expo-router'
 import { useAtomValue, useSetAtom } from 'jotai/react'
@@ -196,6 +199,8 @@ const Header = ({
   const fullScreenOpacity = isHeaderCollapsed ? 0 : 1
   // Empreinte : barre latérale fermée → bouton pour la rouvrir, avant le bouton du livre.
   const barreLaterale = useAtomValue(rouvrirBarreLateraleAtom)
+  const bureau = useEnteteBureau()
+  const [rechercheOuverte, setRechercheOuverte] = useState(false)
   const fullScreenTranslateY = isHeaderCollapsed ? -4 : 0
   const TOP_INSET = isFormSheet ? 0 : insets.top
 
@@ -568,6 +573,10 @@ const Header = ({
               </AnimatedBox>
             </BibleOptionsMenu>
           </HStack>
+        ) : bureau && rechercheOuverte ? (
+          // Empreinte : la recherche dépliée prend toute la largeur ; la croix la replie et
+          // fait réapparaître les autres boutons.
+          <BarreRecherche autoFocus onFermer={() => setRechercheOuverte(false)} />
         ) : (
           <>
             {barreLaterale && (
@@ -655,6 +664,9 @@ const Header = ({
                 <FeatherIcon name="chevrons-down" size={20} style={{ opacity: 0.3 }} />
               </AnimatedBox>
             </VerseSelectorPopup>
+            {bureau && !isSelectionMode && (
+              <BoutonRecherche onPress={() => setRechercheOuverte(true)} />
+            )}
             {!isSelectionMode && (
               <HStack className="overflow-visible border-continuous ml-auto items-center gap-[8px]">
                 {isParallel && (
@@ -759,6 +771,7 @@ const Header = ({
                     <Icone nom="more" taille={20} />
                   </AnimatedBox>
                 </BibleOptionsMenu>
+                {bureau && <BoutonOnglets />}
                 {focusVerses && focusVerses.length > 0 && (
                   <TouchableBox
                     className="overflow-hidden border-continuous items-center justify-center w-[40px] h-[32px]"

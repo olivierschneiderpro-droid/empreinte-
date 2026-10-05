@@ -12,6 +12,9 @@ export const commandPaletteReturnFocusAtom = atom<HTMLElement | null>(null)
 // One-shot scope supplied by category launchers; the new-tab page stays intact.
 export const commandPaletteScopeAtom = atom<string | undefined>(undefined)
 
+// Empreinte : texte déjà tapé dans la barre de recherche d'une page.
+export const commandPaletteQueryAtom = atom('')
+
 export const TAB_ACTIONS_SCOPE = 'tab-actions'
 
 // Native category selection replaces the blank tab that launched it.

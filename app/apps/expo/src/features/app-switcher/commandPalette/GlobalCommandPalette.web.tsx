@@ -1,6 +1,7 @@
 import {
   commandPaletteOpenAtom,
   commandPaletteScopeAtom,
+  commandPaletteQueryAtom,
   commandPaletteReturnFocusAtom,
   recentCommandTabIdsAtom,
   TAB_ACTIONS_SCOPE,
@@ -30,8 +31,14 @@ export default function GlobalCommandPalette() {
   }, [activeId, activeType, pathname, mode, setRecentIds])
   const [launchRevision, setLaunchRevision] = useState(0)
   const [initialScope, setInitialScope] = useAtom(commandPaletteScopeAtom)
+  const [initialQuery, setInitialQuery] = useAtom(commandPaletteQueryAtom)
   const [open, setOpen] = useAtom(commandPaletteOpenAtom)
   const [restoreFocus, setRestoreFocus] = useAtom(commandPaletteReturnFocusAtom)
+  // Empreinte : à la fermeture, on oublie le texte et le périmètre de la page.
+  useEffect(() => {
+    if (open) return
+    setInitialQuery('')
+  }, [open, setInitialQuery])
   useEffect(() => {
     const handleKey = (event: KeyboardEvent) => {
       if (
@@ -43,6 +50,7 @@ export default function GlobalCommandPalette() {
         return
       event.preventDefault()
       if (event.repeat) return
+      setInitialQuery('')
       if (!open) {
         setRestoreFocus(
           document.activeElement instanceof HTMLElement ? document.activeElement : null
@@ -60,7 +68,7 @@ export default function GlobalCommandPalette() {
     }
     document.addEventListener('keydown', handleKey, true)
     return () => document.removeEventListener('keydown', handleKey, true)
-  }, [pathname, activeId, mode, open, setOpen, setRestoreFocus, setInitialScope])
+  }, [pathname, activeId, mode, open, setOpen, setRestoreFocus, setInitialScope, setInitialQuery])
   return (
     <Dialog.Root open={open} onOpenChange={setOpen}>
       <Dialog.Portal>
@@ -77,8 +85,9 @@ export default function GlobalCommandPalette() {
         >
           <Dialog.Title className="bs-command-sr-only">{t('commandPalette.label')}</Dialog.Title>
           <CommandPalette
-            key={`${initialScope ?? 'search'}:${launchRevision}`}
+            key={`${initialScope ?? 'search'}:${initialQuery}:${launchRevision}`}
             initialScope={initialScope}
+            initialQuery={initialQuery}
             onDone={() => setOpen(false)}
           />
         </Dialog.Content>

@@ -23,11 +23,25 @@ import { styleVerre, useVerre } from '~features/empreinte/lumiere'
 import { TabContextProvider } from './context/TabContext'
 import { useResponsiveWorkspace, WORKSPACE_SIDEBAR_WIDTH } from './utils/useResponsiveWorkspace'
 import { getWorkspacePageForPath, workspacePagePath } from './workspaceRoutes'
-import BarreRecherche from '~features/empreinte/BarreRecherche'
-import BoutonOnglets from './BlocOnglets'
 
 // Pages de lecture : Sommaire (péricopes) et journée de plan, comme le lecteur Bible.
-const PAGES_EN_PANNEAU = ['/pericope', '/plan', '/plan-slice']
+const PAGES_EN_PANNEAU = [
+  '/pericope',
+  '/plan',
+  '/plan-slice',
+  // Empreinte : les listes d'étude et de bibliothèque reposent dans le même panneau que la
+  // Bible, avec la même marge de 16 px de chaque côté, en haut comme en bas.
+  '/history',
+  '/lexique',
+  '/dictionnaire',
+  '/nave',
+  '/commentary-library',
+  '/studies',
+  '/bible-verse-notes',
+  '/bookmarks',
+  '/highlights',
+  '/tags',
+]
 
 export default function WorkspaceLayout({
   children,
@@ -74,13 +88,7 @@ export default function WorkspaceLayout({
       '--workspace-restore-inset',
       // Empreinte : barre fermée, le bouton de réouverture est en haut à gauche des pages ;
       // dans la Bible, il est intégré à l'en-tête, avant le bouton du livre.
-      isWide &&
-        !sidebarVisible &&
-        pathname !== '/' &&
-        !panel.showsStudy &&
-        pathname === workspacePagePath.home
-        ? '52px'
-        : '0px'
+      isWide && !sidebarVisible && pathname !== '/' && !panel.showsStudy ? '52px' : '0px'
     )
     document.documentElement.style.setProperty(
       '--workspace-content-left',
@@ -93,7 +101,6 @@ export default function WorkspaceLayout({
   }, [isWide, overlayMode, sidebarHidden, sidebarVisible, pathname, panel.showsStudy])
 
   const isWorkspace = pathname === '/'
-  const avecRecherche = isWide && pathname !== workspacePagePath.home
   // Empreinte : les pages de lecture reposent dans un panneau arrondi, comme la Bible ;
   // les autres pages restent sur le fond uniforme, avec leurs propres éléments arrondis.
   const enPanneau = isWide && PAGES_EN_PANNEAU.includes(pathname)
@@ -185,32 +192,7 @@ export default function WorkspaceLayout({
         />
       )}
       <Box testID="workspace-main-surface" className="flex-1 min-w-0">
-        {avecRecherche ? (
-          // Empreinte : une barre de recherche en haut de toutes les pages (l'accueil a la
-          // sienne, sur la ligne de la date). Barre latérale fermée, son bouton est ici, à gauche.
-          <HStack
-            className="items-center gap-[12px] bg-transparent px-[16px] pt-[16px]"
-            style={{ zIndex: 20 }}
-          >
-            {!sidebarVisible && !isWorkspace ? (
-              <TouchableBox
-                className="items-center justify-center w-[48px] h-[48px]"
-                style={styleVerre(verre, 24)}
-                onPress={() => (overlayMode ? setOverlayOpen(true) : setSidebarHidden(false))}
-                accessibilityRole="button"
-                accessibilityLabel={t('workspace.showSidebar')}
-              >
-                <FeatherIcon name="sidebar" size={18} />
-              </TouchableBox>
-            ) : null}
-            <HStack className="flex-1 items-center justify-end gap-[12px] bg-transparent">
-              <Box className="flex-1 items-end bg-transparent">
-                <BarreRecherche />
-              </Box>
-              <BoutonOnglets />
-            </HStack>
-          </HStack>
-        ) : isWide && !sidebarVisible && !isWorkspace && !showsStudy ? (
+        {isWide && !sidebarVisible && !isWorkspace && !showsStudy ? (
           // Empreinte : barre fermée, le bouton pour la rouvrir est en haut à gauche des pages.
           <Box className="absolute left-[16px] top-[10px] bg-transparent" style={{ zIndex: 1000 }}>
             <TouchableBox
