@@ -73,10 +73,17 @@ export interface PaletteProps {
   tabAtom?: PrimitiveAtom<TabItem>
   onDone?: () => void
   initialScope?: string
+  initialQuery?: string
   inputId?: string
 }
 
-export default function CommandPalette({ tabAtom, onDone, inputId, initialScope }: PaletteProps) {
+export default function CommandPalette({
+  tabAtom,
+  onDone,
+  inputId,
+  initialScope,
+  initialQuery,
+}: PaletteProps) {
   const { t, i18n } = useTranslation()
   const theme = useTheme()
   const router = useRouter()
@@ -88,7 +95,7 @@ export default function CommandPalette({ tabAtom, onDone, inputId, initialScope 
   const { triggerSlideNewTab } = useSlideNewTab()
   const openInNewTab = useOpenInNewTab()
   const defaultVersion = useDefaultBibleVersion()
-  const [query, setQuery] = useState('')
+  const [query, setQuery] = useState(initialQuery ?? '')
   const [actionMode, setActionMode] = useState(initialScope === TAB_ACTIONS_SCOPE)
   const [scope, setScope] = useState<PaletteScope | undefined>(() =>
     paletteScopes.find(item => item.type === initialScope)

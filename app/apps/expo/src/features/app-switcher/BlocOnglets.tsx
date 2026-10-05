@@ -60,7 +60,7 @@ export default function BoutonOnglets() {
         onPress={() => setOuvert(valeur => !valeur)}
         style={[
           styleVerre(verre, 20),
-          { flexDirection: 'row', alignItems: 'center', gap: 8, height: 48, paddingHorizontal: 16 },
+          { flexDirection: 'row', alignItems: 'center', gap: 8, height: 44, paddingHorizontal: 16 },
         ]}
       >
         <Icone nom="tabs" taille={17} />
@@ -103,7 +103,7 @@ export default function BoutonOnglets() {
               styleVerre(verre, 22),
               {
                 position: 'absolute',
-                top: 56,
+                top: 52,
                 right: 0,
                 width: 340,
                 maxHeight: 460,

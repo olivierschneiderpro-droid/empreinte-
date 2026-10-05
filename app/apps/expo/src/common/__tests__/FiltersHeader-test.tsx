@@ -1,6 +1,9 @@
 import React from 'react'
 import { act, create, type ReactTestRenderer } from 'react-test-renderer'
 import FiltersHeader, { type FiltersHeaderItem } from '../FiltersHeader'
+jest.mock('~features/empreinte/BarreRecherche', () => 'BarreRecherche')
+jest.mock('~features/app-switcher/BlocOnglets', () => 'BoutonOnglets')
+jest.mock('~common/useEnteteBureau', () => ({ useEnteteBureau: () => false }))
 jest.mock('~features/empreinte/icones', () => ({ Icone: () => null }))
 jest.mock('~features/empreinte/lumiere', () => ({
   POLICES: { titre: 'Geist SemiBold' },

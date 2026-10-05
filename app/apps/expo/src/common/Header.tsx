@@ -8,6 +8,9 @@ import { Icone } from '~features/empreinte/icones'
 import { POLICES, police, styleVerre, useVerre } from '~features/empreinte/lumiere'
 import { useTheme } from '~themes/ThemeProvider'
 import { colorWithOpacity } from '~themes/colorValues'
+import BarreRecherche from '~features/empreinte/BarreRecherche'
+import BoutonOnglets from '~features/app-switcher/BlocOnglets'
+import { useEnteteBureau } from './useEnteteBureau'
 interface Props {
   maxWidth?: number
   background?: boolean
@@ -42,7 +45,59 @@ const Header = ({
   const theme = useTheme()
   const verre = useVerre()
   const showBackButton = hasBackButton && !publicShell.active
+  const bureau = useEnteteBureau() && !isModal
   if (publicShell.active) return null
+  // Empreinte, bureau : retour, titre à côté ; à droite la recherche de la page, les actions
+  // de la page et « Onglets », sur la ligne d'origine (aucune ligne ajoutée au-dessus).
+  if (bureau) {
+    return (
+      <Box {...props} testID="workspace-page-header" className="overflow-visible border-continuous">
+        <Box
+          className="overflow-visible border-continuous flex-row items-center px-[16px] gap-[12px]"
+          style={{ minHeight: 76, zIndex: 20 }}
+        >
+          {showBackButton ? (
+            <Back onCustomPress={onCustomBackPress}>
+              <Box
+                className="items-center justify-center"
+                style={[styleVerre(verre, 22), { width: 44, height: 44 }]}
+              >
+                <Icone nom="back" taille={20} />
+              </Box>
+            </Back>
+          ) : null}
+          <VStack className="overflow-visible shrink" style={{ gap: 2, maxWidth: '40%' }}>
+            <Text
+              accessibilityRole={onTitlePress ? 'button' : 'header'}
+              numberOfLines={1}
+              onPress={onTitlePress}
+              style={{ fontFamily: police(POLICES.titre), fontSize: 17 }}
+            >
+              {title}
+              {detail ? <Text style={{ color: theme.colors.grey }}>{` · ${detail}`}</Text> : null}
+            </Text>
+            {!!subTitle && (
+              <Text className="text-[12px] text-grey" numberOfLines={1}>
+                {subTitle}
+              </Text>
+            )}
+          </VStack>
+          <HStack className="flex-1 items-center justify-end gap-[10px] overflow-visible">
+            <BarreRecherche />
+            {rightComponent ? (
+              <Box className="border-continuous overflow-visible justify-center">
+                {rightComponent}
+              </Box>
+            ) : null}
+            <BoutonOnglets />
+          </HStack>
+        </Box>
+        {children ? (
+          <PageContent style={maxWidth ? { maxWidth } : undefined}>{children}</PageContent>
+        ) : null}
+      </Box>
+    )
+  }
   // Empreinte : forme de la maquette Lumière — retour rond en verre, titre dans une
   // pastille de verre centrée, action ronde à droite, sans filet ni fond opaque.
   return (

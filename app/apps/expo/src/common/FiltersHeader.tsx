@@ -1,4 +1,7 @@
 import { FilterHeaderButtonContent } from './FilterHeaderButton'
+import BarreRecherche from '~features/empreinte/BarreRecherche'
+import BoutonOnglets from '~features/app-switcher/BlocOnglets'
+import { useEnteteBureau } from './useEnteteBureau'
 import FilterChoices from './FilterChoices'
 import { useTranslation } from 'react-i18next'
 import { Platform } from 'react-native'
@@ -7,7 +10,7 @@ import PanelSearch from './ContextualPanel/PanelSearch'
 import { useTheme } from '~themes/ThemeProvider'
 import { resolveThemeColor } from '~themes/colorValues'
 import { FeatherIcon } from '~common/ui/Icon'
-import Box, { TouchableBox } from '~common/ui/Box'
+import Box, { HStack, TouchableBox } from '~common/ui/Box'
 import Text from '~common/ui/Text'
 import PageContent from '~common/ui/PageContent'
 import Back from './Back'
@@ -54,6 +57,7 @@ export default function FiltersHeader({
   const verre = useVerre()
   const [searches, setSearches] = useState<Record<string, string>>({})
   const isWeb = Platform.OS === 'web'
+  const bureau = useEnteteBureau()
   const activeCount = filters.filter(filter => filter.active).length
   const reset =
     activeCount > 0 && onReset ? (
@@ -166,7 +170,10 @@ export default function FiltersHeader({
   // gauche, filtres collés à droite.
   return (
     <Box testID="workspace-page-header">
-      <Box className="min-h-[64px] items-center flex-row px-[16px] gap-[12px]">
+      <Box
+        className="min-h-[64px] items-center flex-row px-[16px] gap-[12px]"
+        style={bureau ? { minHeight: 76, zIndex: 20 } : undefined}
+      >
         {hasBackButton ? (
           <Back>
             <Box
@@ -179,12 +186,28 @@ export default function FiltersHeader({
         ) : (
           <Box className="w-[4px]" />
         )}
-        <Text className="flex-1" style={{ fontFamily: police(POLICES.titre), fontSize: 17 }}>
+        <Text
+          className={bureau ? 'shrink' : 'flex-1'}
+          numberOfLines={1}
+          style={{ fontFamily: police(POLICES.titre), fontSize: 17 }}
+        >
           {title}
         </Text>
-        <Box className="justify-center" style={[styleVerre(verre, 22), { minHeight: 44 }]}>
-          {filterButton}
-        </Box>
+        {/* Empreinte, bureau : la recherche de la page sur la ligne du titre ; « Onglets »
+            collé aux filtres. */}
+        {bureau ? (
+          <HStack className="flex-1 items-center justify-end gap-[10px] overflow-visible">
+            <BarreRecherche />
+            <Box className="justify-center" style={[styleVerre(verre, 22), { minHeight: 44 }]}>
+              {filterButton}
+            </Box>
+            <BoutonOnglets />
+          </HStack>
+        ) : (
+          <Box className="justify-center" style={[styleVerre(verre, 22), { minHeight: 44 }]}>
+            {filterButton}
+          </Box>
+        )}
       </Box>
       {children && <PageContent>{children}</PageContent>}
     </Box>
