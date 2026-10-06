@@ -44,3 +44,11 @@ Aînés : rides, cheveux gris ou blancs. Enfants : visage rond, grands yeux.
 Une fois les images obtenues, les déposer sous ces noms : l'app les utilise sans autre changement
 (les trois images `new-tab/*` sont aujourd'hui en `.webp` : remplacer par des `.png` du même nom et
 mettre à jour les deux `require` de `src/features/app-switcher/TabScreen/NewTab/`).
+
+## État actuel : dessins de Bible Strong recolorés à la main
+
+Les onze personnages ci-dessus (Audio, Nouvel onglet, accueil des nouveaux utilisateurs) gardent le
+dessin d'origine de Bible Strong, mais chaque zone a été recolorée séparément : vraie couleur de peau
+sur tout le corps (visage, cou, oreilles, mains), vraies couleurs de cheveux, nouvelles tenues ; les
+petits motifs bouclés des vêtements sont effacés et quatre personnes ne portent plus de lunettes.
+Les trois photos de l'accueil (cours, plan BibleProject, frise) restent à remplacer.
