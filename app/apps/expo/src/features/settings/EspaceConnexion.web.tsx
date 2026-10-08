@@ -15,6 +15,7 @@ import { useTheme } from '~themes/ThemeProvider'
 import { LogoEmpreinte } from '~features/empreinte/lumiere'
 import ChoixSymbole from '~features/empreinte/ChoixSymbole'
 import { choisirInvite } from '~features/empreinte/compte'
+import { comptesEmpreinteActifs } from '~helpers/compteEmpreinte'
 import './espace-connexion.css'
 
 export type ModeConnexion = 'connexion' | 'inscription'
@@ -184,32 +185,37 @@ export default function EspaceConnexion({ mode: modeInitial }: { mode: ModeConne
               ))}
             </div>
 
-            <HStack className="gap-[10px]">
-              <LinkBox
-                disabled={enCours}
-                onPress={() => void lancer(() => FireAuth.googleLogin())}
-                className="flex-1 flex-row items-center justify-center gap-[10px] h-[48px] rounded-[14px] border border-border bg-reverse"
-              >
-                <Text className="font-bold text-[16px]" style={{ color: '#4285F4' }}>
-                  G
-                </Text>
-                <Text className="font-bold text-[14px]">Google</Text>
-              </LinkBox>
-              <LinkBox
-                disabled={enCours}
-                onPress={() => void lancer(() => FireAuth.appleLogin())}
-                className="flex-1 flex-row items-center justify-center gap-[10px] h-[48px] rounded-[14px]"
-                style={{ backgroundColor: '#111113' }}
-              >
-                <Text className="font-bold text-[14px] text-[white]">Apple</Text>
-              </LinkBox>
-            </HStack>
+            {/* Empreinte : Google et Apple reviendront avec le nom de domaine en HTTPS. */}
+            {!comptesEmpreinteActifs() && (
+              <>
+                <HStack className="gap-[10px]">
+                  <LinkBox
+                    disabled={enCours}
+                    onPress={() => void lancer(() => FireAuth.googleLogin())}
+                    className="flex-1 flex-row items-center justify-center gap-[10px] h-[48px] rounded-[14px] border border-border bg-reverse"
+                  >
+                    <Text className="font-bold text-[16px]" style={{ color: '#4285F4' }}>
+                      G
+                    </Text>
+                    <Text className="font-bold text-[14px]">Google</Text>
+                  </LinkBox>
+                  <LinkBox
+                    disabled={enCours}
+                    onPress={() => void lancer(() => FireAuth.appleLogin())}
+                    className="flex-1 flex-row items-center justify-center gap-[10px] h-[48px] rounded-[14px]"
+                    style={{ backgroundColor: '#111113' }}
+                  >
+                    <Text className="font-bold text-[14px] text-[white]">Apple</Text>
+                  </LinkBox>
+                </HStack>
 
-            <HStack className="items-center gap-[12px]">
-              <Box className="flex-1 h-[1px] bg-border" />
-              <Text className="text-tertiary text-[12px]">{t('auth.orEmail')}</Text>
-              <Box className="flex-1 h-[1px] bg-border" />
-            </HStack>
+                <HStack className="items-center gap-[12px]">
+                  <Box className="flex-1 h-[1px] bg-border" />
+                  <Text className="text-tertiary text-[12px]">{t('auth.orEmail')}</Text>
+                  <Box className="flex-1 h-[1px] bg-border" />
+                </HStack>
+              </>
+            )}
 
             <Box className="gap-[14px]">
               {mode === 'inscription' && (

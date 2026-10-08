@@ -2209,6 +2209,7 @@
   "auth.accountRequired": "Cette page garde ce qui est à vous : connectez-vous pour y accéder, vous y reviendrez aussitôt.",
   "auth.chooseSymbol": "Choisissez votre symbole",
   "auth.continueAsGuest": "Continuer sans compte",
+  "auth.providerSoon": "La connexion avec Google et Apple arrive bientôt.",
   "symbole.title": "Mon symbole",
   "symbole.intro": "Votre symbole vous représente dans Empreinte : dans la barre latérale, sur votre profil et à chaque étape de vos parcours.",
   "symbole.growth": "Il grandit avec votre régularité dans la Parole.",

@@ -1,6 +1,8 @@
 import { usePathname, useRouter } from 'expo-router'
 import { useEffect, useRef } from 'react'
 import { useWebAuthStatus } from '~features/app/useWebAuthStatus'
+import { comptesEmpreinteActifs } from '~helpers/compteEmpreinte'
+import useLogin from '~helpers/useLogin'
 import { PAGES_SANS_COQUE, aChoisiInvite, exigeCompte } from './compte'
 
 /**
@@ -11,7 +13,10 @@ import { PAGES_SANS_COQUE, aChoisiInvite, exigeCompte } from './compte'
 export default function PorteDeConnexion() {
   const pathname = usePathname()
   const router = useRouter()
-  const statut = useWebAuthStatus()
+  const statutFirebase = useWebAuthStatus()
+  const { isLogged } = useLogin()
+  // Comptes Empreinte : l'état du compte est dans l'app ; sinon, on attend Firebase.
+  const statut = isLogged ? 'authenticated' : comptesEmpreinteActifs() ? 'guest' : statutFirebase
   const premiereVisite = useRef(true)
 
   useEffect(() => {

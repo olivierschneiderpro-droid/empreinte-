@@ -2181,6 +2181,7 @@
   "auth.accountRequired": "This page keeps what is yours: sign in to open it, you will come right back here.",
   "auth.chooseSymbol": "Choose your symbol",
   "auth.continueAsGuest": "Continue without an account",
+  "auth.providerSoon": "Sign-in with Google and Apple is coming soon.",
   "symbole.title": "My symbol",
   "symbole.intro": "Your symbol represents you in Empreinte: in the sidebar, on your profile and at each step of your journeys.",
   "symbole.growth": "It grows with your regularity in the Word.",

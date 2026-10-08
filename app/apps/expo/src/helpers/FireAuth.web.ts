@@ -39,6 +39,8 @@ import { firebaseApp } from './firebaseApp.web'
 import { storage } from './storage'
 import { toast } from './toast'
 import { tokenManager } from './TokenManager'
+import { CompteEmpreinteAuth } from './CompteEmpreinteAuth.web'
+import { comptesEmpreinteActifs } from './compteEmpreinte'
 
 export type FireAuthProfile = {
   id: string
@@ -364,4 +366,8 @@ export class WebFireAuth {
   }
 }
 
-export default new WebFireAuth()
+// Empreinte : sur le serveur Empreinte, les comptes sont ceux d'Empreinte (plus ceux de Bible
+// Strong). Ailleurs (développement sans serveur de comptes), l'ancienne connexion reste.
+export default (comptesEmpreinteActifs()
+  ? new CompteEmpreinteAuth()
+  : new WebFireAuth()) as unknown as WebFireAuth
