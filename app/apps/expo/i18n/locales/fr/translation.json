@@ -2766,5 +2766,14 @@
   "contact.diagnosticNotice": "Le brouillon inclut votre identifiant utilisateur et les versions de l’app et du téléphone pour faciliter le diagnostic. Vous pouvez les modifier avant l’envoi.",
   "contact.copied": "Message et adresse copiés",
   "contact.copyFailed": "Impossible de copier le message.",
-  "contact.copyEmail": "Copier le message et l’adresse"
+  "contact.copyEmail": "Copier le message et l’adresse",
+  "compagnon.around": "Autour du passage",
+  "compagnon.aroundEmpty": "Ouvrez un chapitre dans la Bible pour voir ce qui l’accompagne.",
+  "compagnon.aroundTitle": "Autour de {{passage}}",
+  "compagnon.listenChapter": "Écouter ce chapitre",
+  "compagnon.chapterVideos": "Vidéos sur ce chapitre",
+  "compagnon.bookVideos": "Vidéos sur {{book}}",
+  "compagnon.noVideos": "Pas encore de vidéo pour ce passage.",
+  "compagnon.relatedPlans": "Plans de lecture",
+  "compagnon.allPlans": "Tous les plans"
 }

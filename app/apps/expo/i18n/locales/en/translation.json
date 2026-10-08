@@ -2738,5 +2738,14 @@
   "contact.diagnosticNotice": "The draft includes your user ID and app and device versions to help with troubleshooting. You can edit them before sending.",
   "contact.copied": "Message and email address copied",
   "contact.copyFailed": "Unable to copy the message.",
-  "contact.copyEmail": "Copy message and email address"
+  "contact.copyEmail": "Copy message and email address",
+  "compagnon.around": "Around the passage",
+  "compagnon.aroundEmpty": "Open a chapter in the Bible to see what goes with it.",
+  "compagnon.aroundTitle": "Around {{passage}}",
+  "compagnon.listenChapter": "Listen to this chapter",
+  "compagnon.chapterVideos": "Videos on this chapter",
+  "compagnon.bookVideos": "Videos on {{book}}",
+  "compagnon.noVideos": "No video for this passage yet.",
+  "compagnon.relatedPlans": "Reading plans",
+  "compagnon.allPlans": "All plans"
 }

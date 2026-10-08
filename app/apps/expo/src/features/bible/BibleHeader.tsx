@@ -9,7 +9,7 @@ import BibleOptionsMenu from './BibleOptionsMenu'
 import { useEffect, useRef, useState } from 'react'
 import { MenuView, type MenuAction } from '~common/ui/MenuView'
 import { useRouter } from 'expo-router'
-import { useAtomValue, useSetAtom } from 'jotai/react'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai/react'
 import { getDefaultStore, PrimitiveAtom } from 'jotai/vanilla'
 import { useTranslation } from 'react-i18next'
 import { FadeIn, FadeOut } from 'react-native-reanimated'
@@ -111,7 +111,7 @@ const Header = ({
   const setColumnWidth = useSetAtom(parallelColumnWidthAtom)
   const displayMode = useAtomValue(parallelDisplayModeAtom)
   const setDisplayMode = useSetAtom(parallelDisplayModeAtom)
-  const setCompagnon = useSetAtom(compagnonAtom)
+  const [compagnon, setCompagnon] = useAtom(compagnonAtom)
   const setJoursDeLecture = useSetAtom(joursDeLectureAtom)
   const canGoBackInStack = useCanGoBackInStack()
   const publicShell = usePublicShell()
@@ -736,8 +736,8 @@ const Header = ({
                     onPress={
                       Platform.OS === 'web'
                         ? () =>
-                            setCompagnon(actuel =>
-                              actuel?.type === 'bible'
+                            setCompagnon(
+                              compagnon?.type === 'bible'
                                 ? null
                                 : { type: 'bible', book: book.Numero, chapter, version }
                             )
@@ -749,6 +749,23 @@ const Header = ({
                     }
                   >
                     <ParallelIcon color="default" />
+                  </TouchableBox>
+                )}
+                {/* Empreinte (web) : « Autour du passage » — vidéos, écoute, plans liés au chapitre. */}
+                {!isSmall && !isParallel && Platform.OS === 'web' && (
+                  <TouchableBox
+                    className="overflow-hidden border-continuous items-center justify-center"
+                    style={[
+                      styleVerre(verre, 22),
+                      { width: 44, height: 44, opacity: fullScreenOpacity },
+                    ]}
+                    onPress={() =>
+                      setCompagnon(compagnon?.type === 'autour' ? null : { type: 'autour' })
+                    }
+                    accessibilityRole="button"
+                    accessibilityLabel={t('compagnon.around')}
+                  >
+                    <FeatherIcon name="compass" size={19} />
                   </TouchableBox>
                 )}
                 {!isSmall && (
