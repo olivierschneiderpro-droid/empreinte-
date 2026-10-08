@@ -87,7 +87,7 @@ const SECTIONS_NAV: { titre?: string; entrees: EntreeNav[] }[] = [
         libelle: 'Vidéos',
         icone: 'play',
         chemin: '/passage-media',
-        prefixes: ['/passage-media'],
+        prefixes: ['/passage-media', '/video'],
       },
       {
         id: 'recents',

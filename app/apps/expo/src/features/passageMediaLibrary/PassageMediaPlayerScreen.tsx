@@ -1,6 +1,6 @@
 import { resolveFontFamily } from '~themes/styleValues'
 import { useTheme as useStylingTheme } from '~themes/ThemeProvider'
-import { useLocalSearchParams } from 'expo-router'
+import { useIsFocused, useLocalSearchParams } from 'expo-router'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useWindowDimensions } from 'react-native'
@@ -30,6 +30,8 @@ const PassageMediaPlayerScreen = () => {
     requestedLanguage === 'fr' || requestedLanguage === 'en' ? requestedLanguage : preferredLanguage
   const { width: windowWidth } = useWindowDimensions()
   const [playerError, setPlayerError] = useState<string>()
+  // Empreinte : quand on quitte la vidéo, le lecteur disparaît et la lecture s'arrête vraiment.
+  const visible = useIsFocused()
   const item = workId ? getPassageMediaById(workId, language) : null
   const playerWidth = Math.min(windowWidth - 32, 720)
   const playerHeight = (playerWidth * 9) / 16
@@ -61,23 +63,25 @@ const PassageMediaPlayerScreen = () => {
                   overflow: 'visible',
                 }}
               >
-                <YoutubePlayer
-                  height={playerHeight}
-                  width={playerWidth}
-                  videoId={item.providerId}
-                  play
-                  onError={error => setPlayerError(error || 'unknown')}
-                  onReady={() => setPlayerError(undefined)}
-                  initialPlayerParams={{ rel: false }}
-                  webViewProps={{
-                    onShouldStartLoadWithRequest: (request: ShouldStartLoadRequest) => {
-                      const url = request.mainDocumentURL || request.url
-                      return url === 'about:blank' || url.startsWith(YOUTUBE_PLAYER_BASE_URL)
-                    },
-                  }}
-                  viewContainerStyle={{ borderRadius: 14, overflow: 'hidden' }}
-                  webViewStyle={{ borderRadius: 14, overflow: 'hidden' }}
-                />
+                {visible && (
+                  <YoutubePlayer
+                    height={playerHeight}
+                    width={playerWidth}
+                    videoId={item.providerId}
+                    play
+                    onError={error => setPlayerError(error || 'unknown')}
+                    onReady={() => setPlayerError(undefined)}
+                    initialPlayerParams={{ rel: false }}
+                    webViewProps={{
+                      onShouldStartLoadWithRequest: (request: ShouldStartLoadRequest) => {
+                        const url = request.mainDocumentURL || request.url
+                        return url === 'about:blank' || url.startsWith(YOUTUBE_PLAYER_BASE_URL)
+                      },
+                    }}
+                    viewContainerStyle={{ borderRadius: 14, overflow: 'hidden' }}
+                    webViewStyle={{ borderRadius: 14, overflow: 'hidden' }}
+                  />
+                )}
               </Box>
               <VStack className="overflow-hidden border-continuous gap-[7px] px-[2px]">
                 <Text

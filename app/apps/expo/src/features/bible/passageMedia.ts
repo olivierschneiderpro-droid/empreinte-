@@ -15,6 +15,12 @@ type PassageMediaRelevance = 'primary' | 'related'
 
 export type PassageMediaCategory =
   | 'how-to-read'
+  | 'book-overview'
+  | 'book-collection'
+  | 'theme'
+  | 'word-study'
+  | 'visual-commentary'
+  | 'short'
   | 'podcast'
   | 'classroom'
   | 'long-form'
@@ -419,4 +425,23 @@ export const getPassageMediaForBook = (
       return []
     const edition = resolveEdition(work, language, passageMediaCatalog.attribution.label)
     return edition ? [edition] : []
+  })
+
+export type ResolvedPassageMediaCatalogItem = ResolvedPassageMediaLibraryItem & {
+  books: number[]
+}
+
+/** Empreinte : toutes les vidéos du catalogue dans une langue, avec leurs catégories et livres. */
+export const getAllPassageMedia = (language: ActiveLanguage): ResolvedPassageMediaCatalogItem[] =>
+  passageMediaCatalog.works.flatMap(work => {
+    const edition = resolveEdition(work, language, passageMediaCatalog.attribution.label)
+    if (!edition) return []
+    const books = [...new Set(work.anchors.flatMap(anchor => (anchor.book ? [anchor.book] : [])))]
+    return [
+      {
+        ...edition,
+        categories: work.categories?.length ? work.categories : ['uncategorized'],
+        books,
+      },
+    ]
   })

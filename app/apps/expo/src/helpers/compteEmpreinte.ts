@@ -202,3 +202,33 @@ export const compteEmpreinte = {
     )
   },
 }
+
+export type Commentaire = { id: string; nom: string; texte: string; created: string; user: string }
+
+/** Empreinte : les commentaires partagés sur un sujet (une vidéo, un chant, un passage…). */
+export const commentairesEmpreinte = {
+  async lire(sujet: string): Promise<Commentaire[]> {
+    const filtre = encodeURIComponent(`sujet = "${sujet.replace(/"/g, '')}"`)
+    const liste = await appeler<{ items: Commentaire[] }>(
+      `/api/collections/commentaires/records?filter=${filtre}&sort=-created&perPage=100`
+    )
+    return liste.items
+  },
+  async ajouter(sujet: string, texte: string) {
+    const session = lireSession()
+    if (!session) throw new ErreurCompte('Connectez-vous pour partager.', 'compte/session')
+    return appeler<Commentaire>(
+      '/api/collections/commentaires/records',
+      {
+        method: 'POST',
+        body: JSON.stringify({
+          sujet,
+          user: session.record.id,
+          nom: session.record.name || session.record.email.split('@')[0],
+          texte: texte.trim(),
+        }),
+      },
+      session.token
+    )
+  },
+}
