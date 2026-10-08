@@ -25,6 +25,7 @@ import {
 } from 'src/state/tabs'
 import Back from '~common/Back'
 import ParallelIcon from '~common/ParallelIcon'
+import { compagnonAtom } from '~features/empreinte/compagnon'
 import { rouvrirBarreLateraleAtom } from '~navigation/useWorkspaceRoutePanel'
 import { type SheetRef } from '~common/sheet'
 import Box, {
@@ -109,6 +110,7 @@ const Header = ({
   const setColumnWidth = useSetAtom(parallelColumnWidthAtom)
   const displayMode = useAtomValue(parallelDisplayModeAtom)
   const setDisplayMode = useSetAtom(parallelDisplayModeAtom)
+  const setCompagnon = useSetAtom(compagnonAtom)
   const canGoBackInStack = useCanGoBackInStack()
   const publicShell = usePublicShell()
   const hasBackButton =
@@ -723,9 +725,22 @@ const Header = ({
                       styleVerre(verre, 22),
                       { width: 44, height: 44, opacity: fullScreenOpacity },
                     ]}
-                    onPress={addParallelVersion}
+                    // Empreinte (web) : deux lectures indépendantes, chacune avec sa barre ;
+                    // la comparaison de versions reste dans le menu « Affichage parallèle ».
+                    onPress={
+                      Platform.OS === 'web'
+                        ? () =>
+                            setCompagnon(actuel =>
+                              actuel?.type === 'bible'
+                                ? null
+                                : { type: 'bible', book: book.Numero, chapter, version }
+                            )
+                        : addParallelVersion
+                    }
                     accessibilityRole="button"
-                    accessibilityLabel={t('Affichage parallèle')}
+                    accessibilityLabel={
+                      Platform.OS === 'web' ? t('compagnon.twoReadings') : t('Affichage parallèle')
+                    }
                   >
                     <ParallelIcon color="default" />
                   </TouchableBox>

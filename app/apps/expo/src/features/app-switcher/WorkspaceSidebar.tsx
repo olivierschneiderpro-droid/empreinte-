@@ -8,7 +8,6 @@ import {
   SidebarDragTab,
 } from './SidebarDragDrop'
 import { useCloseWorkspaceTab } from './utils/useCloseWorkspaceTab'
-import { useAllerALaBible } from '~features/empreinte/ouvrirDansLaBible'
 import { resolveThemeColor, colorWithOpacity } from '~themes/colorValues'
 import { useTheme as useStylingTheme } from '~themes/ThemeProvider'
 import { useAtom, useAtomValue, useSetAtom } from 'jotai/react'
@@ -67,7 +66,7 @@ const SECTIONS_NAV: { titre?: string; entrees: EntreeNav[] }[] = [
   {
     entrees: [
       { id: 'home', libelle: 'Accueil', icone: 'home', prefixes: [] },
-      { id: 'bible', libelle: 'Bible', icone: 'book', prefixes: [] },
+      { id: 'bible', libelle: 'Bible', icone: 'book', prefixes: ['/bible-accueil'] },
       {
         id: 'verset',
         libelle: 'Verset du jour',
@@ -243,7 +242,6 @@ const WorkspaceSidebar = ({
   }
 
   const closeTab = useCloseWorkspaceTab()
-  const allerALaBible = useAllerALaBible()
 
   const addTab = () => openInNewTab(undefined, { autoRedirect: true })
 
@@ -314,9 +312,10 @@ const WorkspaceSidebar = ({
                     entree.id === 'home'
                       ? activePage === 'home'
                       : entree.id === 'bible'
-                        ? isContentActive &&
-                          activePage !== 'home' &&
-                          !pathname.startsWith('/empreinte')
+                        ? (isContentActive &&
+                            activePage !== 'home' &&
+                            !pathname.startsWith('/empreinte')) ||
+                          pathname === '/bible-accueil'
                         : entree.id === 'realites'
                           ? pathname.startsWith('/empreinte') && !pathname.includes('verifier')
                           : entree.prefixes.some(prefixe => pathname.startsWith(prefixe))
@@ -324,7 +323,8 @@ const WorkspaceSidebar = ({
                     entree.id === 'home'
                       ? openHome
                       : entree.id === 'bible'
-                        ? allerALaBible
+                        ? // Empreinte : « Bible » ouvre sa page d'accueil ; la lecture se reprend de là.
+                          () => router.push('/bible-accueil' as never)
                         : () => router.push(entree.chemin as never)
                   const compte = entree.id === 'verifier' ? ecartsEmpreinte || undefined : undefined
                   return (

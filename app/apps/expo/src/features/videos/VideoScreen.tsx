@@ -8,7 +8,10 @@ import Box, { HStack } from '~common/ui/Box'
 import { FeatherIcon } from '~common/ui/Icon'
 import Text from '~common/ui/Text'
 import { formatPassageMediaDuration } from '~features/bible/passageMedia'
-import { useOuvrirDansLaBible } from '~features/empreinte/ouvrirDansLaBible'
+import { useAllerALaBible, useOuvrirDansLaBible } from '~features/empreinte/ouvrirDansLaBible'
+import { useSetAtom } from 'jotai'
+import { Platform } from 'react-native'
+import { compagnonAtom } from '~features/empreinte/compagnon'
 import {
   commentairesEmpreinte,
   comptesEmpreinteActifs,
@@ -135,6 +138,8 @@ export default function VideoScreen() {
   const { id } = useLocalSearchParams<{ id?: string }>()
   const [langue] = useLangueVideos()
   const ouvrirDansLaBible = useOuvrirDansLaBible()
+  const allerALaBible = useAllerALaBible()
+  const setCompagnon = useSetAtom(compagnonAtom)
   const { width } = useWindowDimensions()
   const large = width >= 1100
   const video: Video | undefined = id ? trouverVideo(langue, id) : undefined
@@ -174,6 +179,18 @@ export default function VideoScreen() {
             icone="book-open"
             libelle={t('videos.readPassage')}
             onPress={() => ouvrirDansLaBible({ book: video.books[0], chapter: 1 })}
+          />
+        ) : null}
+        {Platform.OS === 'web' ? (
+          <Action
+            icone="columns"
+            libelle={t('compagnon.watchBesideBible')}
+            onPress={() => {
+              // Empreinte · Espace d'étude : la vidéo à droite, la Bible au centre.
+              setCompagnon({ type: 'video', id: video.workId })
+              if (video.books[0]) ouvrirDansLaBible({ book: video.books[0], chapter: 1 })
+              else allerALaBible()
+            }}
           />
         ) : null}
         <Action

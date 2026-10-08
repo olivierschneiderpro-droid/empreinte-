@@ -4,6 +4,10 @@ import Box from '~common/ui/Box'
 import YoutubePlayer from '~helpers/react-native-youtube-iframe'
 
 /** Empreinte (mobile) : le lecteur YouTube ; il s'arrête quand l'écran se ferme. */
+export function CadreYoutube(props: { idYoutube: string; titre: string; autoplay?: boolean }) {
+  return <LecteurVideo {...props} />
+}
+
 export default function LecteurVideo({
   idYoutube,
   autoplay = true,

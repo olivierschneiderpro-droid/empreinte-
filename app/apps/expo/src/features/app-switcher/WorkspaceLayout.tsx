@@ -5,7 +5,7 @@ import { usePathname, useRouter } from 'expo-router'
 import type { ReactNode } from 'react'
 import type { PublicShellMode } from '~features/app/publicShellPolicy'
 import { useEffect, useLayoutEffect, useState } from 'react'
-import { useAtom, useSetAtom } from 'jotai'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { Platform } from 'react-native'
 import { useTranslation } from 'react-i18next'
 import {
@@ -25,6 +25,8 @@ import { useResponsiveWorkspace, WORKSPACE_SIDEBAR_WIDTH } from './utils/useResp
 import { getWorkspacePageForPath, workspacePagePath } from './workspaceRoutes'
 import PorteDeConnexion from '~features/empreinte/PorteDeConnexion'
 import MiniLecteurAudio from '~features/audio/MiniLecteurAudio'
+import PanneauCompagnon from '~features/empreinte/PanneauCompagnon'
+import { compagnonAtom } from '~features/empreinte/compagnon'
 import { PAGES_SANS_COQUE } from '~features/empreinte/compte'
 
 // Pages de lecture : Sommaire (péricopes) et journée de plan, comme le lecteur Bible.
@@ -65,6 +67,8 @@ export default function WorkspaceLayout({
   const isWide = workspaceActive && wideViewport
   // Empreinte : la connexion et l'inscription s'affichent seules, sans barre latérale.
   const sansCoque = PAGES_SANS_COQUE.includes(pathname)
+  // Empreinte · Espace d'étude : une deuxième lecture ou une vidéo, à côté de la Bible.
+  const compagnon = useAtomValue(compagnonAtom)
   const panel = useWorkspaceRoutePanel()
   const showsStudy = workspaceActive && panel.showsStudy
   const [sidebarHidden, setSidebarHidden] = useAtom(workspaceSidebarHiddenAtom)
@@ -229,7 +233,10 @@ export default function WorkspaceLayout({
                   top: 16,
                   bottom: 16,
                   left: 16,
-                  right: (panel.open ? panel.reservedWidth : 0) + 16,
+                  right:
+                    compagnon && Platform.OS === 'web' && !showsStudy
+                      ? ('calc(42% + 32px)' as unknown as number)
+                      : (panel.open ? panel.reservedWidth : 0) + 16,
                 },
               ]}
             >
@@ -239,6 +246,24 @@ export default function WorkspaceLayout({
               </TabContextProvider>
             </Box>
           )}
+          {isWide && compagnon && Platform.OS === 'web' ? (
+            <Box
+              testID="workspace-compagnon"
+              className="absolute overflow-hidden"
+              style={[
+                styleVerre(verre, 28),
+                {
+                  display: isWorkspace && !showsStudy ? 'flex' : 'none',
+                  top: 16,
+                  bottom: 16,
+                  right: 16,
+                  width: '42%',
+                },
+              ]}
+            >
+              <PanneauCompagnon />
+            </Box>
+          ) : null}
           <Box
             testID={showsStudy ? 'workspace-panel-slot' : undefined}
             dataSet={

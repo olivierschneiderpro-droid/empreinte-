@@ -4,17 +4,21 @@ import { useIsFocused } from 'expo-router'
  * Empreinte (web) : le lecteur YouTube intégré. La vidéo vit dans ce cadre : quand la page
  * se ferme ou que l'on change de vidéo, le cadre disparaît et la lecture s'arrête vraiment.
  */
-export default function LecteurVideo({
+type Props = { idYoutube: string; titre: string; autoplay?: boolean }
+
+export default function LecteurVideo(props: Props) {
+  // La page reste en mémoire quand on navigue ailleurs : le lecteur, lui, disparaît.
+  const visible = useIsFocused()
+  return <CadreYoutube {...props} visible={visible} />
+}
+
+/** Le cadre seul, utilisable hors d'une page (panneau à côté de la Bible). */
+export function CadreYoutube({
   idYoutube,
   titre,
   autoplay = true,
-}: {
-  idYoutube: string
-  titre: string
-  autoplay?: boolean
-}) {
-  // La page reste en mémoire quand on navigue ailleurs : le lecteur, lui, disparaît.
-  const visible = useIsFocused()
+  visible = true,
+}: Props & { visible?: boolean }) {
   const parametres = new URLSearchParams({
     autoplay: autoplay ? '1' : '0',
     rel: '0',
