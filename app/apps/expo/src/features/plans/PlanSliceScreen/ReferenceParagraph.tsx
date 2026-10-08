@@ -9,6 +9,10 @@ import Paragraph from '~common/ui/Paragraph'
 import { BcvLanguage, BibleReferenceTarget, parseInlineBibleReferences } from '~helpers/bcvParser'
 import { getBook } from '~helpers/bibleBookCatalog'
 import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
+import { usePathname } from 'expo-router'
+import { useSetAtom } from 'jotai'
+import { parcoursEnCoursAtom } from '~features/empreinte/compagnon'
+import { useOuvrirDansLaBible } from '~features/empreinte/ouvrirDansLaBible'
 
 type ParagraphProps = React.ComponentProps<typeof Paragraph>
 
@@ -49,6 +53,19 @@ const ReferenceText = (
 
 const ReferenceParagraph = ({ children, planLanguage, ...props }: ReferenceParagraphProps) => {
   const pushRouteOnce = usePushRouteOnce()
+  const pathname = usePathname()
+  const setParcours = useSetAtom(parcoursEnCoursAtom)
+  const ouvrirDansLaBible = useOuvrirDansLaBible()
+  // Empreinte (web) : le passage s'ouvre dans la Bible en grand, qui propose ensuite
+  // « Suite du plan » pour revenir à cette étape.
+  const ouvrir = (target: BibleReferenceTarget) => {
+    if (NativeUI.Platform.OS !== 'web') {
+      pushRouteOnce({ pathname: '/bible-view', params: getBibleViewParams(target) })
+      return
+    }
+    setParcours({ retour: `${pathname}${window.location.search}` })
+    ouvrirDansLaBible({ book: target.book, chapter: target.chapter, verse: target.verse })
+  }
   const references = parseInlineBibleReferences(children, planLanguage)
 
   if (!references.length) {
@@ -69,12 +86,7 @@ const ReferenceParagraph = ({ children, planLanguage, ...props }: ReferenceParag
             <ReferenceText
               accessibilityLabel={reference.text}
               accessibilityRole="link"
-              onPress={() =>
-                pushRouteOnce({
-                  pathname: '/bible-view',
-                  params: getBibleViewParams(reference.target),
-                })
-              }
+              onPress={() => ouvrir(reference.target)}
             >
               {reference.text}
             </ReferenceText>

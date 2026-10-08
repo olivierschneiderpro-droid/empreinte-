@@ -26,6 +26,7 @@ import {
 import Back from '~common/Back'
 import ParallelIcon from '~common/ParallelIcon'
 import { compagnonAtom } from '~features/empreinte/compagnon'
+import { joursDeLectureAtom, noterLecture } from '~features/empreinte/SymboleCompte'
 import { rouvrirBarreLateraleAtom } from '~navigation/useWorkspaceRoutePanel'
 import { type SheetRef } from '~common/sheet'
 import Box, {
@@ -111,6 +112,7 @@ const Header = ({
   const displayMode = useAtomValue(parallelDisplayModeAtom)
   const setDisplayMode = useSetAtom(parallelDisplayModeAtom)
   const setCompagnon = useSetAtom(compagnonAtom)
+  const setJoursDeLecture = useSetAtom(joursDeLectureAtom)
   const canGoBackInStack = useCanGoBackInStack()
   const publicShell = usePublicShell()
   const hasBackButton =
@@ -143,6 +145,10 @@ const Header = ({
   const bookNumber = book.Numero
   const bookName = book.Nom
   const isParallel = parallelVersions.length > 0
+  // Empreinte : chaque chapitre ouvert compte comme un jour avec la Parole (le symbole grandit).
+  useEffect(() => {
+    setJoursDeLecture(jours => noterLecture(jours))
+  }, [book.Numero, chapter, setJoursDeLecture])
   const displayVerses = focusVerses
   const downloadStates = useAtomValue(downloadItemStatesAtom)
   const acquisitionPresentation = getBibleModeAcquisitionPresentation(

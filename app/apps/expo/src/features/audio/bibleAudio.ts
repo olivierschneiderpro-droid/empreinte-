@@ -2,6 +2,7 @@ import { atom } from 'jotai'
 import { getDefaultStore } from 'jotai/vanilla'
 import books, { sections } from '~assets/bible_versions/books-desc'
 import { versions } from '~helpers/bibleVersions'
+import { joursDeLectureAtom, noterLecture } from '~features/empreinte/SymboleCompte'
 
 /**
  * Empreinte Audio : la Bible écoutée dans l'app. Une seule lecture pour toute l'app ; elle
@@ -67,6 +68,7 @@ export const jouer = (piste: PisteBible) => {
   lecteur.src = urlAudio(piste)
   lecteur.playbackRate = magasin.get(etatAudioAtom).vitesse
   mettreAJour({ piste, position: 0, duree: 0, erreur: false })
+  magasin.set(joursDeLectureAtom, noterLecture(magasin.get(joursDeLectureAtom)))
   void lecteur.play().catch(() => mettreAJour({ enLecture: false }))
 }
 

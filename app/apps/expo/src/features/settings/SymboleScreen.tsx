@@ -6,12 +6,18 @@ import Container from '~common/ui/Container'
 import ScrollView from '~common/ui/ScrollView'
 import Text from '~common/ui/Text'
 import ChoixSymbole from '~features/empreinte/ChoixSymbole'
-import { DessinSymbole, INFOS_SYMBOLES, symboleCompteAtom } from '~features/empreinte/SymboleCompte'
+import {
+  DessinSymbole,
+  INFOS_SYMBOLES,
+  regulariteAtom,
+  symboleCompteAtom,
+} from '~features/empreinte/SymboleCompte'
 
 /** Empreinte : la page « Mon symbole » des réglages. */
 export default function SymboleScreen() {
   const { t } = useTranslation()
   const symbole = useAtomValue(symboleCompteAtom)
+  const regularite = useAtomValue(regulariteAtom)
   const { nom, sens } = INFOS_SYMBOLES[symbole]
   return (
     <Container>
@@ -32,6 +38,9 @@ export default function SymboleScreen() {
             <Box className="flex-1 gap-[6px]">
               <Text className="text-[20px] font-bold">{nom}</Text>
               <Text className="text-grey text-[14px]">{sens}</Text>
+              <Text className="font-bold text-[13px]">
+                {t('symbole.streak', { count: regularite })}
+              </Text>
               <Text className="text-tertiary text-[12px]">{t('symbole.growth')}</Text>
             </Box>
           </Box>

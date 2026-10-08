@@ -26,6 +26,7 @@ import { getWorkspacePageForPath, workspacePagePath } from './workspaceRoutes'
 import PorteDeConnexion from '~features/empreinte/PorteDeConnexion'
 import MiniLecteurAudio from '~features/audio/MiniLecteurAudio'
 import PanneauCompagnon from '~features/empreinte/PanneauCompagnon'
+import SuiteDuParcours from '~features/empreinte/SuiteDuParcours'
 import { compagnonAtom } from '~features/empreinte/compagnon'
 import { PAGES_SANS_COQUE } from '~features/empreinte/compte'
 
@@ -244,6 +245,7 @@ export default function WorkspaceLayout({
                 <CachedTabScreens />
                 <SharedBibleDOM />
               </TabContextProvider>
+              {Platform.OS === 'web' ? <SuiteDuParcours /> : null}
             </Box>
           )}
           {isWide && compagnon && Platform.OS === 'web' ? (

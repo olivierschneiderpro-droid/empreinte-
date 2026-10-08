@@ -44,8 +44,30 @@ export const INFOS_SYMBOLES: Record<Symbole, { nom: string; sens: string; couleu
 }
 
 export const symboleCompteAtom = atomWithAsyncStorage<Symbole>('empreinte.symbole', 'empreinte')
-/** Jours de lecture d'affilée, pour faire grandir le symbole (0 = début). */
-export const regulariteAtom = atom(0)
+/** Les jours où la personne a lu ou écouté la Parole (AAAA-MM-JJ), gardés dans le compte. */
+export const joursDeLectureAtom = atomWithAsyncStorage<string[]>('empreinte.joursDeLecture', [])
+
+const jour = (date: Date) =>
+  `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`
+
+/** Note qu'aujourd'hui, on a lu ou écouté la Parole. */
+export const noterLecture = (jours: string[]) => {
+  const aujourdhui = jour(new Date())
+  return jours.includes(aujourdhui) ? jours : [...jours, aujourdhui].slice(-400)
+}
+
+/** Jours de lecture d'affilée, jusqu'à aujourd'hui (ou hier, pour ne pas punir le matin). */
+export const regulariteAtom = atom(get => {
+  const jours = new Set(get(joursDeLectureAtom))
+  const curseur = new Date()
+  if (!jours.has(jour(curseur))) curseur.setDate(curseur.getDate() - 1)
+  let total = 0
+  while (jours.has(jour(curseur))) {
+    total += 1
+    curseur.setDate(curseur.getDate() - 1)
+  }
+  return total
+})
 
 export const niveauDeRegularite = (jours: number) =>
   jours >= 30 ? 3 : jours >= 7 ? 2 : jours >= 1 ? 1 : 0

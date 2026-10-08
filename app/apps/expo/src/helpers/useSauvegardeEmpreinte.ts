@@ -1,7 +1,12 @@
 import { getDefaultStore } from 'jotai/vanilla'
 import { useEffect } from 'react'
 import { useDispatch, useStore } from 'react-redux'
-import { symboleCompteAtom, SYMBOLES, type Symbole } from '~features/empreinte/SymboleCompte'
+import {
+  joursDeLectureAtom,
+  symboleCompteAtom,
+  SYMBOLES,
+  type Symbole,
+} from '~features/empreinte/SymboleCompte'
 import * as UserActions from '~redux/modules/user'
 import type { RootState } from '~redux/modules/reducer'
 import { compteEmpreinte } from './compteEmpreinte'
@@ -11,6 +16,7 @@ type Sauvegarde = {
   bible?: Partial<RootState['user']['bible']>
   studies?: RootState['user']['bible']['studies']
   symbole?: Symbole
+  joursDeLecture?: string[]
   version?: number
 }
 
@@ -20,6 +26,7 @@ const extraire = (etat: RootState): Sauvegarde => {
     bible,
     studies,
     symbole: getDefaultStore().get(symboleCompteAtom),
+    joursDeLecture: getDefaultStore().get(joursDeLectureAtom),
     version: 1,
   }
 }
@@ -82,6 +89,18 @@ export default function useSauvegardeEmpreinte() {
           )
           if (serveur.symbole && SYMBOLES.includes(serveur.symbole))
             getDefaultStore().set(symboleCompteAtom, serveur.symbole)
+          if (Array.isArray(serveur.joursDeLecture))
+            getDefaultStore().set(
+              joursDeLectureAtom,
+              [
+                ...new Set([
+                  ...serveur.joursDeLecture,
+                  ...getDefaultStore().get(joursDeLectureAtom),
+                ]),
+              ]
+                .sort()
+                .slice(-400)
+            )
         }
         await envoyer()
       } catch {
@@ -96,11 +115,13 @@ export default function useSauvegardeEmpreinte() {
     }
     const desabonner = store.subscribe(programmer)
     const desabonnerSymbole = getDefaultStore().sub(symboleCompteAtom, programmer)
+    const desabonnerJours = getDefaultStore().sub(joursDeLectureAtom, programmer)
     return () => {
       annule = true
       clearTimeout(minuterie)
       desabonner()
       desabonnerSymbole()
+      desabonnerJours()
     }
   }, [actif, user.id, store, dispatch])
 }

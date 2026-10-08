@@ -10,3 +10,9 @@ export type Compagnon =
   | { type: 'video'; id: string }
 
 export const compagnonAtom = atom<Compagnon | null>(null)
+
+/**
+ * Empreinte · Plan ↔ Bible : quand une étape de plan ouvre un passage dans la Bible, la Bible
+ * garde le chemin du retour pour proposer « Suite du plan ».
+ */
+export const parcoursEnCoursAtom = atom<{ retour: string } | null>(null)
