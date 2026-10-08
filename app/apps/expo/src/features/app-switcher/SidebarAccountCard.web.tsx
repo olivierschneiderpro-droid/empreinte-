@@ -80,11 +80,15 @@ export default function SidebarAccountCard({
               className="flex-row items-center gap-[10px] min-h-[42px] px-[8px] py-[5px] rounded-[8px] hover:bg-light-grey"
               onPress={() => {
                 navigation.close()
-                if (resource.route === 'Studies' && !isLogged) {
-                  toast.info(t('study.loginRequired'))
-                  return
-                }
-                push({ pathname: routeMapping[resource.route] })
+                // Empreinte : ce qui est à soi demande un compte ; on y revient après connexion.
+                push(
+                  isLogged
+                    ? { pathname: routeMapping[resource.route] }
+                    : {
+                        pathname: '/login',
+                        params: { retour: routeMapping[resource.route], raison: 'compte' },
+                      }
+                )
                 onSelectContent?.()
               }}
             >
@@ -95,9 +99,7 @@ export default function SidebarAccountCard({
                 <FeatherIcon name={resource.icon} size={16} color={resource.color} />
               </Box>
               <Text className="flex-1 text-[13px]">{t(resource.label)}</Text>
-              {resource.route === 'Studies' && !isLogged && (
-                <FeatherIcon name="lock" size={12} color="grey" />
-              )}
+              {!isLogged && <FeatherIcon name="lock" size={12} color="grey" />}
             </TouchableBox>
           ))}
           <Box className="h-px bg-border my-[5px] mx-[8px]" />
@@ -107,6 +109,15 @@ export default function SidebarAccountCard({
             onPress={() => {
               navigation.close()
               openAccount()
+            }}
+          />
+          <PanelAction
+            label={t('symbole.title')}
+            icon="award"
+            onPress={() => {
+              navigation.close()
+              push({ pathname: '/symbole' })
+              onSelectContent?.()
             }}
           />
           <PanelAction

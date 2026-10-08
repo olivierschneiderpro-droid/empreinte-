@@ -106,7 +106,7 @@ it('requires confirmation before signing out', async () => {
   expect(mockLogout).toHaveBeenCalledTimes(1)
 })
 
-it('keeps guest resources available while protecting studies and offering login', () => {
+it('sends guests to the login page before their personal resources, then back', () => {
   mockIsLogged = false
   renderCard()
   expect(
@@ -116,8 +116,10 @@ it('keeps guest resources available while protecting studies and offering login'
     .findAllByType('button')
     .find(button => button.findAllByType('span').some(text => text.props.children === 'Études'))!
   act(() => studies.props.onPress())
-  expect(mockInfo).toHaveBeenCalledWith('study.loginRequired')
-  expect(mockPush).not.toHaveBeenCalled()
+  expect(mockPush).toHaveBeenLastCalledWith({
+    pathname: '/login',
+    params: { retour: '/studies', raison: 'compte' },
+  })
   const login = renderer.root
     .findAllByType('a')
     .find(action => action.props.label === 'Se connecter')!
