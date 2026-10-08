@@ -111,19 +111,21 @@ export default function EspaceConnexion({ mode: modeInitial }: { mode: ModeConne
                 {t('auth.heroText')}
               </Text>
             </Box>
-            <Box className="gap-[12px] mt-[26px]">
-              {avantages.map(({ icone, texte }) => (
-                <HStack key={texte} className="items-center gap-[12px]">
-                  <Box
-                    className="w-[34px] h-[34px] rounded-full items-center justify-center"
-                    style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}
-                  >
-                    <FeatherIcon name={icone} size={16} color="white" />
-                  </Box>
-                  <Text className="text-[white] text-[14px] flex-1">{texte}</Text>
-                </HStack>
-              ))}
-            </Box>
+            <div className="ec-avantages">
+              <Box className="gap-[12px] mt-[26px]">
+                {avantages.map(({ icone, texte }) => (
+                  <HStack key={texte} className="items-center gap-[12px]">
+                    <Box
+                      className="w-[34px] h-[34px] rounded-full items-center justify-center"
+                      style={{ backgroundColor: 'rgba(255,255,255,0.14)' }}
+                    >
+                      <FeatherIcon name={icone} size={16} color="white" />
+                    </Box>
+                    <Text className="text-[white] text-[14px] flex-1">{texte}</Text>
+                  </HStack>
+                ))}
+              </Box>
+            </div>
             <div className="ec-image">
               <Image
                 source={illustration}
