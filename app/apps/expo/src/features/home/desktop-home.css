@@ -153,21 +153,21 @@
   gap: 12px;
 }
 
-.bs-home-main [data-home-stats-grid] {
+.bs-home-verset [data-home-stats-grid] {
   display: grid;
   grid-template-columns: repeat(6, minmax(0, 1fr));
   gap: 0 1px;
 }
 
-.bs-home-main [data-home-stats-group] {
+.bs-home-verset [data-home-stats-group] {
   display: contents;
 }
-.bs-home-main [data-home-stats-group] > * {
+.bs-home-verset [data-home-stats-group] > * {
   min-width: 0;
 }
 
 /* Short vertical dividers, with no horizontal separator between rows. */
-.bs-home-main [data-home-stats-group] > *::after {
+.bs-home-verset [data-home-stats-group] > *::after {
   content: '';
   position: absolute;
   top: 16px;
@@ -212,7 +212,7 @@
 }
 
 @container home-main (max-width: 599px) {
-  .bs-home-main [data-home-stats-grid] {
+  .bs-home-verset [data-home-stats-grid] {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .bs-home-tools {
@@ -232,16 +232,16 @@
     height: 100%;
     min-height: 120px;
   }
-  .bs-home-main [data-home-verse-illustration] {
+  .bs-home-verset [data-home-verse-illustration] {
     display: none;
   }
-  .bs-home-main [data-home-verse-header] {
+  .bs-home-verset [data-home-verse-header] {
     flex-wrap: wrap;
   }
 }
 
 @container home-main (max-width: 379px) {
-  .bs-home-main [data-home-stats-grid] {
+  .bs-home-verset [data-home-stats-grid] {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
   .bs-home-tools {
@@ -304,5 +304,113 @@
 @media (prefers-reduced-motion: reduce) {
   .bs-home-discovery-fade {
     animation: none;
+  }
+}
+
+/* Empreinte : le verset du jour en pleine largeur, fusionné avec la barre de ce qu'on a marqué. */
+.bs-home-verset {
+  container: home-main / inline-size;
+  background: color-mix(in srgb, var(--color-reverse) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-reverse) 90%, transparent);
+  border-radius: 28px;
+  box-shadow: 0 8px 24px rgba(17, 17, 19, 0.06);
+  overflow: hidden;
+}
+.bs-home-verset .bs-home-verse-height {
+  box-shadow: none;
+  border-radius: 0;
+}
+.bs-home-verset-stats {
+  border-top: 1px solid var(--color-border);
+  padding: 6px 8px;
+}
+
+/* Bibliothèque · Apprendre : des blocs carrés de même taille, chacun sa couleur. */
+.bs-home-blocs {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+.bs-home-bloc {
+  aspect-ratio: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 24px;
+  border: 1px solid;
+  overflow: hidden;
+  background: var(--color-reverse);
+  box-shadow: 0 8px 24px rgba(17, 17, 19, 0.06);
+}
+.bs-home-bloc > * {
+  min-height: 0;
+}
+.bs-home-bloc-image {
+  height: 52%;
+  min-height: 0;
+  flex-shrink: 0;
+}
+.bs-home-bloc-entree {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  padding: 16px;
+  overflow: hidden;
+}
+.bs-home-bloc-entree > * {
+  flex: 1;
+  min-width: 0;
+}
+
+/* Vos parcours et Empreinte Audio : deux colonnes verticales, hautes. */
+.bs-home-colonnes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+  align-items: stretch;
+}
+.bs-home-parcours {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+  min-height: 560px;
+  border-radius: 28px;
+  background: color-mix(in srgb, var(--color-reverse) 60%, transparent);
+  border: 1px solid color-mix(in srgb, var(--color-reverse) 90%, transparent);
+  box-shadow: 0 8px 24px rgba(17, 17, 19, 0.06);
+}
+.bs-home-audio {
+  min-height: 560px;
+}
+.bs-home-audio-image {
+  margin-top: auto;
+  height: 260px;
+  -webkit-mask-image: radial-gradient(ellipse 75% 100% at 55% 60%, #000 72%, transparent 100%);
+  mask-image: radial-gradient(ellipse 75% 100% at 55% 60%, #000 72%, transparent 100%);
+}
+
+/* Soutenir, FAQ, Suivre, Télécharger. */
+.bs-home-liens {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+}
+
+@container home (max-width: 999px) {
+  .bs-home-blocs,
+  .bs-home-liens {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@container home (max-width: 759px) {
+  .bs-home-colonnes {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+@container home (max-width: 439px) {
+  .bs-home-blocs,
+  .bs-home-liens {
+    grid-template-columns: minmax(0, 1fr);
   }
 }

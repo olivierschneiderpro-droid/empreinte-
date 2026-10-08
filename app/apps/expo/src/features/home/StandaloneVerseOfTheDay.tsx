@@ -23,6 +23,9 @@ import { useImageUrls } from './useImageUrls'
 import { useVerseOfTheDay } from './useVerseOfTheDay'
 import { resolveFontFamily } from '~themes/styleValues'
 import { selectFontFamily } from '~redux/selectors/user'
+import { useQuery } from '@tanstack/react-query'
+import { useResourceAccess } from '~features/resources/resourceAccess'
+import { loadBibleVerseTexts } from '~features/resources/resourceQueries'
 export const VERSE_CARD_HEIGHT = 280
 
 export interface VerseCardProps {
@@ -98,6 +101,56 @@ const SkeletonLines = () => {
   )
 }
 
+/** Empreinte : sur l'accueil bureau, le verset du jour se lit avec son contexte,
+ * le verset qui le précède et les deux qui le suivent, en plus discret. */
+const useContexteDuVerset = (
+  actif: boolean,
+  version: string | undefined,
+  book: number,
+  chapter: number,
+  verse: number
+) => {
+  const resources = useResourceAccess()
+  const avant = verse > 1 ? [verse - 1] : []
+  const apres = [verse + 1, verse + 2]
+  const cles = [...avant, ...apres].map(v => `${book}-${chapter}-${v}`)
+  const { data } = useQuery({
+    queryKey: ['verse-of-the-day-context', version, book, chapter, verse],
+    queryFn: () => loadBibleVerseTexts(resources, version ?? 'LSG', cles),
+    enabled: actif && Boolean(book && chapter && verse),
+    staleTime: Infinity,
+    networkMode: 'always',
+    retry: false,
+  })
+  const lire = (versets: number[]) =>
+    versets.flatMap(v => {
+      const texte = data?.[`${book}-${chapter}-${v}`]
+      return texte ? [{ verset: v, texte: removeBreakLines(texte) }] : []
+    })
+  return { avant: lire(avant), apres: lire(apres) }
+}
+
+const VersetsDeContexte = ({
+  versets,
+  fontFamily,
+}: {
+  versets: { verset: number; texte: string }[]
+  fontFamily?: string
+}) =>
+  versets.length ? (
+    <Text
+      className="text-grey text-[16px] leading-[26px]"
+      style={{ fontFamily, marginVertical: 10 }}
+    >
+      {versets.map(({ verset, texte }) => (
+        <Text key={verset} className="text-grey text-[16px] leading-[26px]" style={{ fontFamily }}>
+          <Text className="text-tertiary text-[11px] font-bold">{`${verset} `}</Text>
+          {`${texte} `}
+        </Text>
+      ))}
+    </Text>
+  ) : null
+
 const StandaloneVerseOfTheDay = ({
   addDay,
   desktop = false,
@@ -112,6 +165,14 @@ const StandaloneVerseOfTheDay = ({
   const bibleFont = useSelector(selectFontFamily)
   const verseOfTheDay = useVerseOfTheDay(addDay)
   const imageUrls = useImageUrls(verseOfTheDay)
+  const resolu = verseOfTheDay && !('error' in verseOfTheDay) ? verseOfTheDay : undefined
+  const contexte = useContexteDuVerset(
+    desktop && Boolean(resolu),
+    resolu?.version,
+    resolu?.book ?? 0,
+    resolu?.chapter ?? 0,
+    resolu?.verse ?? 0
+  )
   const dispatch = useDispatch()
   const imageModalRef = React.useRef<SheetRef>(null)
   const verseOfTheDayTime = useSelector(
@@ -211,17 +272,23 @@ const StandaloneVerseOfTheDay = ({
             })}
         style={{ marginTop: desktop ? 22 : 10 }}
       >
+        {desktop && (
+          <VersetsDeContexte versets={contexte.avant} fontFamily={resolveFontFamily(bibleFont)} />
+        )}
         <Paragraph
           numberOfLines={desktop ? undefined : 3}
           scaleLineHeight={-1}
           style={{
             fontFamily: resolveFontFamily(bibleFont),
             fontWeight: 'normal',
-            ...(desktop ? { fontSize: 23, lineHeight: 34, maxWidth: 600 } : {}),
+            ...(desktop ? { fontSize: 26, lineHeight: 38 } : {}),
           }}
         >
           {removeBreakLines(content)}
         </Paragraph>
+        {desktop && (
+          <VersetsDeContexte versets={contexte.apres} fontFamily={resolveFontFamily(bibleFont)} />
+        )}
         <Text
           className={desktop ? 'text-grey text-[14px] mt-[16px]' : 'text-grey text-[12px] mt-[5px]'}
           numberOfLines={2}
