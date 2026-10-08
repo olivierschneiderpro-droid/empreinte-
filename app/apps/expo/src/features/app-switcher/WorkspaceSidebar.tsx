@@ -99,6 +99,20 @@ const SECTIONS_NAV: { titre?: string; entrees: EntreeNav[] }[] = [
     ],
   },
   {
+    // Empreinte Audio : une section à part, deux entrées qui se rejoignent.
+    titre: 'AUDIO',
+    entrees: [
+      {
+        id: 'audio',
+        libelle: 'Bible audio',
+        icone: 'headph',
+        chemin: '/audio',
+        prefixes: ['/audio'],
+      },
+      { id: 'chants', libelle: 'Chants', icone: 'music', chemin: '/chants', prefixes: ['/chants'] },
+    ],
+  },
+  {
     titre: 'ÉTUDIER',
     entrees: [
       {

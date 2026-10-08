@@ -1,6 +1,7 @@
 import { twMerge } from '~common/ui/classNames'
 import React from 'react'
-import { Linking, TouchableOpacityProps } from 'react-native'
+import { TouchableOpacityProps } from 'react-native'
+import { useRouter } from 'expo-router'
 import { useAtomValue } from 'jotai/react'
 import { useTranslation } from 'react-i18next'
 import { isBibleOverlayOpenAtom, isFullScreenBibleAtom } from 'src/state/app'
@@ -48,6 +49,7 @@ const Chip = ({ children, isActive, ...props }: ChipProps & BoxProps & Touchable
 
 const AudioContainer = ({ children, onReduce, audioMode, onChangeMode }: AudioContainerProps) => {
   const { t } = useTranslation()
+  const router = useRouter()
   const { bottomBarHeight } = useBottomBarHeightInTab()
   const isFullScreenBible = useAtomValue(isFullScreenBibleAtom)
   const isBibleOverlayOpen = useAtomValue(isBibleOverlayOpenAtom)
@@ -92,7 +94,7 @@ const AudioContainer = ({ children, onReduce, audioMode, onChangeMode }: AudioCo
           </>
         )}
         <Chip
-          onPress={() => Linking.openURL('https://click.audibible.app/5nmN/stephane30')}
+          onPress={() => router.push('/audio' as never)}
           accessibilityRole="link"
           accessibilityLabel={t('accessibility.openAudibible')}
         >

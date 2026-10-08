@@ -44,6 +44,7 @@ jest.mock('~features/empreinte/lumiere', () => ({
 jest.mock('~features/bible/SharedBibleDOM', () => 'SharedBibleDOM')
 jest.mock('../CachedTabScreens', () => 'CachedTabScreens')
 jest.mock('../WorkspaceSidebar', () => 'WorkspaceSidebar')
+jest.mock('~features/audio/MiniLecteurAudio', () => 'MiniLecteurAudio')
 jest.mock('../BlocOnglets', () => 'BoutonOnglets')
 jest.mock('~features/empreinte/BarreRecherche', () => 'BarreRecherche')
 jest.mock('../commandPalette/GlobalCommandPalette', () => 'GlobalCommandPalette')

@@ -24,6 +24,7 @@ import { TabContextProvider } from './context/TabContext'
 import { useResponsiveWorkspace, WORKSPACE_SIDEBAR_WIDTH } from './utils/useResponsiveWorkspace'
 import { getWorkspacePageForPath, workspacePagePath } from './workspaceRoutes'
 import PorteDeConnexion from '~features/empreinte/PorteDeConnexion'
+import MiniLecteurAudio from '~features/audio/MiniLecteurAudio'
 import { PAGES_SANS_COQUE } from '~features/empreinte/compte'
 
 // Pages de lecture : Sommaire (péricopes) et journée de plan, comme le lecteur Bible.
@@ -131,6 +132,7 @@ export default function WorkspaceLayout({
     >
       {workspaceActive && <GlobalCommandPalette />}
       {workspaceActive && <PorteDeConnexion />}
+      {workspaceActive && Platform.OS === 'web' && !sansCoque && <MiniLecteurAudio />}
       {workspaceActive && (
         <WorkspaceKeyboardShortcuts
           toggleSidebar={() => {

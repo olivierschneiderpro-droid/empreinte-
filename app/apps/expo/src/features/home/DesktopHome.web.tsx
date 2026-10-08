@@ -23,7 +23,6 @@ import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
 import { Events } from './Events'
 import OfflineNotice from './OfflineNotice'
 import PlanHome from './PlanHome'
-import { useAllerALaBible } from '~features/empreinte/ouvrirDansLaBible'
 import MeditationsHome from './MeditationsHome'
 import ResumeBookmark from './ResumeBookmark'
 import VerseOfTheDay from './VerseOfTheDay'
@@ -93,10 +92,10 @@ function BlocLien({
 /** Empreinte Audio vit dans l'app : la Bible lue à voix haute, sans passer par un store. */
 function BlocAudio() {
   const { t } = useTranslation()
-  const allerALaBible = useAllerALaBible()
+  const pushRoute = usePushRouteOnce()
   return (
     <LinkBox
-      onPress={() => allerALaBible()}
+      onPress={() => pushRoute({ pathname: '/audio' })}
       accessibilityLabel={t('home.audio.title')}
       className="bs-home-audio rounded-[28px] overflow-hidden p-[28px] gap-[16px]"
       style={{ backgroundColor: '#112A4D' }}
