@@ -1,0 +1,65 @@
+/* Empreinte : page de connexion et d'inscription (web). */
+.ec-page {
+  container: ec / inline-size;
+  flex: 1;
+  display: flex;
+  min-height: 100%;
+  overflow: auto;
+  background: var(--color-light-grey);
+}
+.ec-cadre {
+  box-sizing: border-box;
+  margin: auto;
+  width: 100%;
+  max-width: 1080px;
+  padding: 24px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 20px;
+}
+.ec-illustration {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 620px;
+  padding: 32px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: linear-gradient(160deg, #1d3b66 0%, #112a4d 60%, #0c1f3a 100%);
+}
+.ec-image {
+  margin-top: auto;
+  height: 260px;
+}
+.ec-formulaire {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+  padding: 40px;
+  border-radius: 32px;
+  background: var(--color-reverse);
+  box-shadow: 0 8px 24px rgba(17, 17, 19, 0.06);
+}
+.ec-onglets {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  border-radius: 14px;
+  background: var(--color-light-grey);
+}
+@container ec (max-width: 799px) {
+  .ec-cadre {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 16px;
+  }
+  .ec-illustration {
+    min-height: 0;
+  }
+  .ec-image {
+    display: none;
+  }
+  .ec-formulaire {
+    padding: 24px;
+  }
+}

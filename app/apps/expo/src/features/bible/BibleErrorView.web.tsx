@@ -5,13 +5,21 @@ import Box from '~common/ui/Box'
 import Button from '~common/ui/Button'
 import type { BibleError } from '~helpers/bibleErrors'
 import { resourceQueryKeys } from '~helpers/resourceQueryKeys'
+import useConnection from '~helpers/useConnection'
 const BibleErrorView = ({ error: _error }: { error: BibleError }) => {
   const { t } = useTranslation()
   const queryClient = useQueryClient()
+  const isOnline = useConnection()
 
   return (
     <Box className="overflow-hidden border-continuous flex-[1]">
-      <Empty message={t('resource.web.connectionRequired')}>
+      <Empty
+        message={
+          isOnline
+            ? t('resource.action.temporarilyUnavailable')
+            : t('resource.web.connectionRequired')
+        }
+      >
         <Box className="overflow-hidden border-continuous mt-[20px]">
           <Button
             onPress={() =>
