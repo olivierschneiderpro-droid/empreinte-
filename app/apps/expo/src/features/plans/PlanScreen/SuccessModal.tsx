@@ -1,4 +1,4 @@
-import Lottie from 'lottie-react-native'
+import { SymboleDeParcours } from '~features/empreinte/SymboleCompte'
 import React from 'react'
 import { SheetView, type SheetRef } from '~common/sheet'
 import Sheet from '~common/ModalSheet'
@@ -24,18 +24,7 @@ const SuccessModal = ({ modalRef, isPlanCompleted, onClose }: Props) => {
     <Sheet modalTitle={t('Félicitations')} ref={modalRef} onDismiss={onClose} dismissible={false}>
       <SheetView className="pt-[40px] pb-[10px] px-[20px]">
         <Box className="overflow-hidden border-continuous items-center justify-center">
-          <Lottie
-            autoPlay
-            style={{
-              width: '100%',
-              height: 280,
-            }}
-            source={
-              isPlanCompleted
-                ? require('../../../assets/images/crown.json')
-                : require('../../../assets/images/medal.json')
-            }
-          />
+          <SymboleDeParcours taille={200} complet={isPlanCompleted} />
         </Box>
         <Box
           className="overflow-hidden border-continuous bg-reverse rounded-[30px] mb-[30px] p-[20px]"

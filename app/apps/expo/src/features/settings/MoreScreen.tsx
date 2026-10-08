@@ -65,10 +65,7 @@ export const LinkItem = (
 const SITE_EMPREINTE = '/'
 
 const shareMessage = () => {
-  const appUrl =
-    Platform.OS === 'ios'
-      ? SITE_EMPREINTE
-      : SITE_EMPREINTE
+  const appUrl = Platform.OS === 'ios' ? SITE_EMPREINTE : SITE_EMPREINTE
   return `Empreinte ${appUrl}`
 }
 
@@ -193,6 +190,12 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
                 <FeatherIcon name="chevron-right" size={20} color="grey" />
               </CardLinkItem>
 
+              <CardLinkItem route="Symbole">
+                <UserAvatar size={36} />
+                <Text className="flex-[1] text-[15px]">{t('symbole.title')}</Text>
+                <FeatherIcon name="chevron-right" size={20} color="grey" />
+              </CardLinkItem>
+
               <CardLinkItem onPress={promptLogout} isLast>
                 <IconCircle bg="rgba(239, 68, 68, 0.1)">
                   <FeatherIcon name="log-out" size={20} color="quart" />
@@ -201,12 +204,19 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
               </CardLinkItem>
             </>
           ) : (
-            <CardLinkItem route="Login" isLast>
-              <IconCircle bg="lightPrimary">
-                <FeatherIcon name="log-in" size={20} color="primary" />
-              </IconCircle>
-              <Text className="text-primary text-[15px]">{t('Se connecter')}</Text>
-            </CardLinkItem>
+            <>
+              <CardLinkItem route="Symbole">
+                <UserAvatar size={36} />
+                <Text className="flex-[1] text-[15px]">{t('symbole.title')}</Text>
+                <FeatherIcon name="chevron-right" size={20} color="grey" />
+              </CardLinkItem>
+              <CardLinkItem route="Login" isLast>
+                <IconCircle bg="lightPrimary">
+                  <FeatherIcon name="log-in" size={20} color="primary" />
+                </IconCircle>
+                <Text className="text-primary text-[15px]">{t('Se connecter')}</Text>
+              </CardLinkItem>
+            </>
           )}
         </SectionCard>
 
@@ -406,9 +416,7 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
             <Text className="flex-[1] text-[15px]">{t('Nous suivre sur facebook')}</Text>
             <FeatherIcon name="chevron-right" size={20} color="grey" />
           </CardLinkItem>
-          <CardLinkItem
-            href={SITE_EMPREINTE}
-          >
+          <CardLinkItem href={SITE_EMPREINTE}>
             <IconCircle bg="rgba(251, 191, 36, 0.1)">
               <FeatherIcon name="star" size={20} color="secondary" />
             </IconCircle>
@@ -423,9 +431,7 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
             <FeatherIcon name="chevron-right" size={20} color="grey" />
           </CardLinkItem>
           {!appleIsReviewing && (
-            <CardLinkItem
-              href={SITE_EMPREINTE}
-            >
+            <CardLinkItem href={SITE_EMPREINTE}>
               <IconCircle bg="rgba(236, 72, 153, 0.1)">
                 <FeatherIcon name="heart" size={20} color="color2" />
               </IconCircle>
@@ -436,16 +442,10 @@ export const More = ({ closeMenu, inWorkspace = false, pageTab = false }: MorePr
         </SectionCard>
 
         <Box className="overflow-hidden border-continuous px-[20px] py-[8px]">
-          <LinkItem
-            style={{ paddingVertical: 10, paddingHorizontal: 0 }}
-            href={SITE_EMPREINTE}
-          >
+          <LinkItem style={{ paddingVertical: 10, paddingHorizontal: 0 }} href={SITE_EMPREINTE}>
             <Text className="text-[14px] text-grey">{t('Politique de confidentialité')}</Text>
           </LinkItem>
-          <LinkItem
-            style={{ paddingVertical: 10, paddingHorizontal: 0 }}
-            href={SITE_EMPREINTE}
-          >
+          <LinkItem style={{ paddingVertical: 10, paddingHorizontal: 0 }} href={SITE_EMPREINTE}>
             <Text className="text-[14px] text-grey">{t("Conditions d'utilisation")}</Text>
           </LinkItem>
           {isLogged && (

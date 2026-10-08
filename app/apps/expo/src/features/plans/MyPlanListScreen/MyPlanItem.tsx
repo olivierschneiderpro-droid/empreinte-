@@ -1,7 +1,7 @@
 import { twMerge } from '~common/ui/classNames'
 import { resolveFontFamily } from '~themes/styleValues'
 import { useTheme as useStylingTheme } from '~themes/ThemeProvider'
-import Lottie from 'lottie-react-native'
+import { SymboleDeParcours } from '~features/empreinte/SymboleCompte'
 import React from 'react'
 import { ComputedPlanItem } from 'src/common/types'
 import Link from '~common/Link'
@@ -69,15 +69,7 @@ const PlanItem = ({
         className="overflow-hidden border-continuous px-[13px] py-[10px] rounded-[35px] bg-reverse items-center justify-center flex-row"
       >
         {isPlanCompleted ? (
-          <Lottie
-            autoPlay
-            loop={false}
-            style={{
-              width: 40,
-              height: 40,
-            }}
-            source={require('../../../assets/images/crown.json')}
-          />
+          <SymboleDeParcours taille={40} complet={true} />
         ) : (
           <></>
           // <ProgressCircle

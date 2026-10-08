@@ -18,6 +18,8 @@ import { useTranslation } from 'react-i18next'
 import { usePathname, useRouter } from 'expo-router'
 import { Icone, type NomIcone } from '~features/empreinte/icones'
 import { useEmpreinte } from '~features/empreinte/registreEmpreinte'
+import { exigeCompte } from '~features/empreinte/compte'
+import useLogin from '~helpers/useLogin'
 import { Platform, ScrollView } from 'react-native'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import type { SheetRef } from '~common/sheet'
@@ -193,6 +195,7 @@ const WorkspaceSidebar = ({
   const pathname = usePathname()
   const verre = useVerre()
   const { anomalies } = useEmpreinte()
+  const { isLogged } = useLogin()
   const ecartsEmpreinte = anomalies.filter(a => a.gravite !== 'info').length
   const insets = useSafeAreaInsets()
   const { colorScheme } = useCurrentThemeSelector()
@@ -332,6 +335,10 @@ const WorkspaceSidebar = ({
                       >
                         {entree.libelle}
                       </Text>
+                      {!isLogged && entree.chemin && exigeCompte(entree.chemin) ? (
+                        // Empreinte : ce qui est à soi demande un compte ; le cadenas le dit.
+                        <FeatherIcon name="lock" size={12} color="grey" />
+                      ) : null}
                       {compte ? (
                         <Text
                           style={{

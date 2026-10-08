@@ -179,6 +179,7 @@ export type MainStackProps = {
   More: MoreScreenProps
   Home: HomeScreenProps
   Profile: undefined
+  Symbole: undefined
   BibleSelect: BibleSelectScreenProps
   VersionSelector: VersionSelectorProps
   BibleVerseDetail: BibleVerseDetailScreenProps

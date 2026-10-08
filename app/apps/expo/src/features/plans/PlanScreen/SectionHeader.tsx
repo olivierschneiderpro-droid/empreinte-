@@ -1,7 +1,7 @@
 import { resolveFontFamily } from '~themes/styleValues'
 import { useTheme as useStylingTheme, useTheme } from '~themes/ThemeProvider'
 import { AnimatedProgressCircle } from '@convective/react-native-reanimated-progress'
-import Lottie from 'lottie-react-native'
+import { SymboleDeParcours } from '~features/empreinte/SymboleCompte'
 import type { ComponentPropsWithRef as UIComponentProps } from 'react'
 import { twMerge } from '~common/ui/classNames'
 
@@ -59,15 +59,7 @@ const Section = ({
     <Link onPress={() => toggle(id)}>
       <Box className="overflow-hidden border-continuous flex-row pl-[20px] py-[20px] bg-reverse">
         {isSectionCompleted ? (
-          <Lottie
-            autoPlay
-            loop={false}
-            style={{
-              width: 40,
-              height: 40,
-            }}
-            source={require('../../../assets/images/medal.json')}
-          />
+          <SymboleDeParcours taille={40} complet={false} />
         ) : (
           <AnimatedProgressCircle
             size={38}

@@ -23,6 +23,8 @@ import { styleVerre, useVerre } from '~features/empreinte/lumiere'
 import { TabContextProvider } from './context/TabContext'
 import { useResponsiveWorkspace, WORKSPACE_SIDEBAR_WIDTH } from './utils/useResponsiveWorkspace'
 import { getWorkspacePageForPath, workspacePagePath } from './workspaceRoutes'
+import PorteDeConnexion from '~features/empreinte/PorteDeConnexion'
+import { PAGES_SANS_COQUE } from '~features/empreinte/compte'
 
 // Pages de lecture : Sommaire (péricopes) et journée de plan, comme le lecteur Bible.
 const PAGES_EN_PANNEAU = [
@@ -60,6 +62,8 @@ export default function WorkspaceLayout({
   }, [pathname])
   const wideViewport = useResponsiveWorkspace()
   const isWide = workspaceActive && wideViewport
+  // Empreinte : la connexion et l'inscription s'affichent seules, sans barre latérale.
+  const sansCoque = PAGES_SANS_COQUE.includes(pathname)
   const panel = useWorkspaceRoutePanel()
   const showsStudy = workspaceActive && panel.showsStudy
   const [sidebarHidden, setSidebarHidden] = useAtom(workspaceSidebarHiddenAtom)
@@ -69,7 +73,7 @@ export default function WorkspaceLayout({
   useLayoutEffect(() => {
     if (Platform.OS === 'web') setSidebarDocked(panel.sidebarDocked)
   }, [panel.sidebarDocked, setSidebarDocked])
-  const sidebarVisible = isWide && (overlayMode ? overlayOpen : !sidebarHidden)
+  const sidebarVisible = isWide && !sansCoque && (overlayMode ? overlayOpen : !sidebarHidden)
   const setRouvrir = useSetAtom(rouvrirBarreLateraleAtom)
   useEffect(() => {
     setRouvrir(
@@ -88,17 +92,19 @@ export default function WorkspaceLayout({
       '--workspace-restore-inset',
       // Empreinte : barre fermée, le bouton de réouverture est en haut à gauche des pages ;
       // dans la Bible, il est intégré à l'en-tête, avant le bouton du livre.
-      isWide && !sidebarVisible && pathname !== '/' && !panel.showsStudy ? '52px' : '0px'
+      isWide && !sansCoque && !sidebarVisible && pathname !== '/' && !panel.showsStudy
+        ? '52px'
+        : '0px'
     )
     document.documentElement.style.setProperty(
       '--workspace-content-left',
-      `${isWide && !overlayMode && !sidebarHidden ? WORKSPACE_SIDEBAR_WIDTH : 0}px`
+      `${isWide && !sansCoque && !overlayMode && !sidebarHidden ? WORKSPACE_SIDEBAR_WIDTH : 0}px`
     )
     return () => {
       document.documentElement.style.removeProperty('--workspace-content-left')
       document.documentElement.style.removeProperty('--workspace-restore-inset')
     }
-  }, [isWide, overlayMode, sidebarHidden, sidebarVisible, pathname, panel.showsStudy])
+  }, [isWide, sansCoque, overlayMode, sidebarHidden, sidebarVisible, pathname, panel.showsStudy])
 
   const isWorkspace = pathname === '/'
   // Empreinte : les pages de lecture reposent dans un panneau arrondi, comme la Bible ;
@@ -124,6 +130,7 @@ export default function WorkspaceLayout({
       style={{ display: mode === 'pending' ? 'none' : 'flex' }}
     >
       {workspaceActive && <GlobalCommandPalette />}
+      {workspaceActive && <PorteDeConnexion />}
       {workspaceActive && (
         <WorkspaceKeyboardShortcuts
           toggleSidebar={() => {
@@ -134,7 +141,7 @@ export default function WorkspaceLayout({
           }}
         />
       )}
-      {isWide && (
+      {isWide && !sansCoque && (
         <Box
           testID="workspace-sidebar-motion"
           pointerEvents={sidebarVisible ? 'auto' : 'none'}
@@ -179,7 +186,7 @@ export default function WorkspaceLayout({
           </Box>
         </Box>
       )}
-      {isWide && overlayMode && (
+      {isWide && overlayMode && !sansCoque && (
         <TouchableBox
           testID="workspace-sidebar-backdrop"
           pointerEvents={sidebarVisible ? 'auto' : 'none'}
@@ -192,7 +199,7 @@ export default function WorkspaceLayout({
         />
       )}
       <Box testID="workspace-main-surface" className="flex-1 min-w-0">
-        {isWide && !sidebarVisible && !isWorkspace && !showsStudy ? (
+        {isWide && !sansCoque && !sidebarVisible && !isWorkspace && !showsStudy ? (
           // Empreinte : barre fermée, le bouton pour la rouvrir est en haut à gauche des pages.
           <Box className="absolute left-[16px] top-[10px] bg-transparent" style={{ zIndex: 1000 }}>
             <TouchableBox
