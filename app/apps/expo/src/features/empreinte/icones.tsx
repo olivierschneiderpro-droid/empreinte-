@@ -70,6 +70,8 @@ export const ICONES = {
   headph:
     '<path d="M4 15v-3a8 8 0 0 1 16 0v3"/><rect x="3" y="14" width="4" height="7" rx="1.5"/><rect x="17" y="14" width="4" height="7" rx="1.5"/>',
   pause: '<path d="M8 5v14M16 5v14"/>',
+  music:
+    '<path d="M9 18V5l11-2v13"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/>',
   compare: '<path d="M8 3v18M16 3v18M3 7h5M16 17h5"/>',
   hash: '<path d="M5 9h14M5 15h14M10 3 8 21M16 3l-2 18"/>',
   sparkle: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>',

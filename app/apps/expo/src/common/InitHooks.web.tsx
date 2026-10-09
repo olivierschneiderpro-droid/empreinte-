@@ -5,6 +5,7 @@ import { canStartRemoteHydration } from '~helpers/accountEntry'
 import { useAccountMigrations } from '~helpers/useAccountMigrations'
 import useInitFireAuth from '~helpers/useInitFireAuth'
 import useLiveUpdates from '~helpers/useLiveUpdates'
+import useSauvegardeEmpreinte from '~helpers/useSauvegardeEmpreinte'
 import useLogin from '~helpers/useLogin'
 import type { RootState } from '~redux/modules/reducer'
 import { useTabGroupsSync } from '~state/useTabGroupsSync'
@@ -24,6 +25,7 @@ const InitHooks = () => {
     runBeforeSync: accountMigrations.runBeforeSync,
     resumeToken: accountMigrations.resumeToken,
   })
+  useSauvegardeEmpreinte()
   useTabGroupsSync({
     incomingEnabled: hydrationEnabled && accountMigrations.isAccountSyncReady,
     outgoingEnabled: hydrationEnabled && accountMigrations.isAccountWriteReady,

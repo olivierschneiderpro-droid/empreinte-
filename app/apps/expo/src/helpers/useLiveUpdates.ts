@@ -104,6 +104,8 @@ const useLiveUpdates = ({ enabled, runBeforeSync, resumeToken }: AccountMigratio
   )
 
   useEffect(() => {
+    // Empreinte : les comptes Empreinte se synchronisent par leur sauvegarde, pas par Firestore.
+    if (user.provider === 'empreinte') return
     if (!enabled || !isLogged || !user.id || connectionStatus !== 'internet') return
     firestoreSyncOutbox.resumeReplay(user.id)
     void firestoreSyncOutbox.replay(user.id)
@@ -120,7 +122,13 @@ const useLiveUpdates = ({ enabled, runBeforeSync, resumeToken }: AccountMigratio
     const authoritativeSubcollections = new Set<string>()
 
     const setupListeners = async () => {
-      if (!enabled || !isLogged || isLoading !== false || !user.id) {
+      if (
+        !enabled ||
+        !isLogged ||
+        isLoading !== false ||
+        !user.id ||
+        user.provider === 'empreinte'
+      ) {
         return
       }
       const userId = user.id

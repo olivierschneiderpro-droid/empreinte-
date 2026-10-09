@@ -13,7 +13,11 @@ jest.mock('react-native', () => ({
   Platform: { OS: 'web' },
   useWindowDimensions: () => ({ width: 1600 }),
 }))
-jest.mock('jotai', () => ({ useAtom: () => [false, jest.fn()], useSetAtom: () => jest.fn() }))
+jest.mock('jotai', () => ({
+  useAtom: () => [false, jest.fn()],
+  useAtomValue: () => null,
+  useSetAtom: () => jest.fn(),
+}))
 jest.mock('react-i18next', () => ({ useTranslation: () => ({ t: (key: string) => key }) }))
 jest.mock('~navigation/pageTransition', () => ({
   finishPageTransition: jest.fn(),
@@ -44,6 +48,10 @@ jest.mock('~features/empreinte/lumiere', () => ({
 jest.mock('~features/bible/SharedBibleDOM', () => 'SharedBibleDOM')
 jest.mock('../CachedTabScreens', () => 'CachedTabScreens')
 jest.mock('../WorkspaceSidebar', () => 'WorkspaceSidebar')
+jest.mock('~features/audio/MiniLecteurAudio', () => 'MiniLecteurAudio')
+jest.mock('~features/empreinte/PanneauCompagnon', () => 'PanneauCompagnon')
+jest.mock('~features/empreinte/SuiteDuParcours', () => 'SuiteDuParcours')
+jest.mock('~features/empreinte/compagnon', () => ({ compagnonAtom: {} }))
 jest.mock('../BlocOnglets', () => 'BoutonOnglets')
 jest.mock('~features/empreinte/BarreRecherche', () => 'BarreRecherche')
 jest.mock('../commandPalette/GlobalCommandPalette', () => 'GlobalCommandPalette')

@@ -9,7 +9,7 @@ import BibleOptionsMenu from './BibleOptionsMenu'
 import { useEffect, useRef, useState } from 'react'
 import { MenuView, type MenuAction } from '~common/ui/MenuView'
 import { useRouter } from 'expo-router'
-import { useAtomValue, useSetAtom } from 'jotai/react'
+import { useAtom, useAtomValue, useSetAtom } from 'jotai/react'
 import { getDefaultStore, PrimitiveAtom } from 'jotai/vanilla'
 import { useTranslation } from 'react-i18next'
 import { FadeIn, FadeOut } from 'react-native-reanimated'
@@ -25,6 +25,8 @@ import {
 } from 'src/state/tabs'
 import Back from '~common/Back'
 import ParallelIcon from '~common/ParallelIcon'
+import { compagnonAtom } from '~features/empreinte/compagnon'
+import { joursDeLectureAtom, noterLecture } from '~features/empreinte/SymboleCompte'
 import { rouvrirBarreLateraleAtom } from '~navigation/useWorkspaceRoutePanel'
 import { type SheetRef } from '~common/sheet'
 import Box, {
@@ -109,6 +111,8 @@ const Header = ({
   const setColumnWidth = useSetAtom(parallelColumnWidthAtom)
   const displayMode = useAtomValue(parallelDisplayModeAtom)
   const setDisplayMode = useSetAtom(parallelDisplayModeAtom)
+  const [compagnon, setCompagnon] = useAtom(compagnonAtom)
+  const setJoursDeLecture = useSetAtom(joursDeLectureAtom)
   const canGoBackInStack = useCanGoBackInStack()
   const publicShell = usePublicShell()
   const hasBackButton =
@@ -141,6 +145,10 @@ const Header = ({
   const bookNumber = book.Numero
   const bookName = book.Nom
   const isParallel = parallelVersions.length > 0
+  // Empreinte : chaque chapitre ouvert compte comme un jour avec la Parole (le symbole grandit).
+  useEffect(() => {
+    setJoursDeLecture(jours => noterLecture(jours))
+  }, [book.Numero, chapter, setJoursDeLecture])
   const displayVerses = focusVerses
   const downloadStates = useAtomValue(downloadItemStatesAtom)
   const acquisitionPresentation = getBibleModeAcquisitionPresentation(
@@ -723,11 +731,41 @@ const Header = ({
                       styleVerre(verre, 22),
                       { width: 44, height: 44, opacity: fullScreenOpacity },
                     ]}
-                    onPress={addParallelVersion}
+                    // Empreinte (web) : deux lectures indépendantes, chacune avec sa barre ;
+                    // la comparaison de versions reste dans le menu « Affichage parallèle ».
+                    onPress={
+                      Platform.OS === 'web'
+                        ? () =>
+                            setCompagnon(
+                              compagnon?.type === 'bible'
+                                ? null
+                                : { type: 'bible', book: book.Numero, chapter, version }
+                            )
+                        : addParallelVersion
+                    }
                     accessibilityRole="button"
-                    accessibilityLabel={t('Affichage parallèle')}
+                    accessibilityLabel={
+                      Platform.OS === 'web' ? t('compagnon.twoReadings') : t('Affichage parallèle')
+                    }
                   >
                     <ParallelIcon color="default" />
+                  </TouchableBox>
+                )}
+                {/* Empreinte (web) : « Autour du passage » — vidéos, écoute, plans liés au chapitre. */}
+                {!isSmall && !isParallel && Platform.OS === 'web' && (
+                  <TouchableBox
+                    className="overflow-hidden border-continuous items-center justify-center"
+                    style={[
+                      styleVerre(verre, 22),
+                      { width: 44, height: 44, opacity: fullScreenOpacity },
+                    ]}
+                    onPress={() =>
+                      setCompagnon(compagnon?.type === 'autour' ? null : { type: 'autour' })
+                    }
+                    accessibilityRole="button"
+                    accessibilityLabel={t('compagnon.around')}
+                  >
+                    <FeatherIcon name="compass" size={19} />
                   </TouchableBox>
                 )}
                 {!isSmall && (

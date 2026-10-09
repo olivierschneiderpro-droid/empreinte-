@@ -16,6 +16,9 @@ import { constants, createBrotliCompress, createGzip } from 'node:zlib'
 import { dirname, extname, join, normalize, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { Readable } from 'node:stream'
+import { spawn, execFileSync } from 'node:child_process'
+import { existsSync, mkdirSync } from 'node:fs'
+import { homedir } from 'node:os'
 
 const racine = resolve(process.argv[2] ?? 'empreinte-web')
 const site = resolve(
@@ -26,8 +29,68 @@ const API = process.env.EMPREINTE_API ?? 'https://api.bible-strong.app'
 // YouVersion : la clé reste sur le serveur (variable YOUVERSION_KEY), jamais dans le navigateur.
 const YOUVERSION = 'https://api.youversion.com'
 const CLE_YOUVERSION = process.env.YOUVERSION_KEY ?? ''
-// Annonce le relais à l'app (lu dans resourceAccess.web.tsx).
-const ANNONCE = '<script>window.__EMPREINTE_RELAIS__=location.origin</script>'
+// Annonce le relais à l'app (lu dans resourceAccess.web.tsx) et, quand la base de comptes
+// tourne, l'adresse des comptes Empreinte (lue dans compteEmpreinte.ts).
+const annonce = () =>
+  `<script>window.__EMPREINTE_RELAIS__=location.origin${
+    comptesPrets ? ";window.__EMPREINTE_COMPTES__=location.origin+'/comptes'" : ''
+  }</script>`
+
+// Comptes Empreinte : PocketBase, téléchargé, lancé et surveillé par ce serveur.
+const POCKETBASE_VERSION = '0.22.55'
+const DOSSIER_COMPTES = process.env.EMPREINTE_COMPTES ?? join(homedir(), 'empreinte-comptes')
+const PORT_COMPTES = 8090
+const COMPTES = `http://127.0.0.1:${PORT_COMPTES}`
+const MIGRATIONS = join(dirname(fileURLToPath(import.meta.url)), '..', 'comptes', 'pb_migrations')
+let comptesPrets = false
+const installerPocketBase = async () => {
+  const binaire = join(DOSSIER_COMPTES, 'pocketbase')
+  if (existsSync(binaire)) return binaire
+  mkdirSync(DOSSIER_COMPTES, { recursive: true })
+  const arch = process.arch === 'arm64' ? 'arm64' : 'amd64'
+  const url = `https://github.com/pocketbase/pocketbase/releases/download/v${POCKETBASE_VERSION}/pocketbase_${POCKETBASE_VERSION}_linux_${arch}.zip`
+  const reponse = await fetch(url)
+  if (!reponse.ok) throw new Error(`téléchargement de PocketBase impossible (${reponse.status})`)
+  const zip = join(DOSSIER_COMPTES, 'pocketbase.zip')
+  await pipeline(Readable.fromWeb(reponse.body), createWriteStream(zip))
+  execFileSync('python3', ['-m', 'zipfile', '-e', zip, DOSSIER_COMPTES])
+  execFileSync('chmod', ['+x', binaire])
+  await unlink(zip).catch(() => {})
+  return binaire
+}
+const lancerComptes = async () => {
+  if (process.env.EMPREINTE_SANS_COMPTES) return
+  try {
+    const binaire = await installerPocketBase()
+    const processus = spawn(
+      binaire,
+      ['serve', `--http=127.0.0.1:${PORT_COMPTES}`, `--dir=${join(DOSSIER_COMPTES, 'pb_data')}`, `--migrationsDir=${MIGRATIONS}`],
+      { stdio: 'inherit' }
+    )
+    // Quand le serveur s'arrête (mise à jour), la base de comptes s'arrête avec lui.
+    process.once('exit', () => processus.kill())
+    for (const signal of ['SIGTERM', 'SIGINT'])
+      process.once(signal, () => {
+        processus.kill()
+        process.exit(0)
+      })
+    processus.on('exit', code => {
+      comptesPrets = false
+      console.log(`Comptes Empreinte arrêtés (${code}) : relance dans 5 s.`)
+      setTimeout(lancerComptes, 5000)
+    })
+  } catch (erreur) {
+    console.log(`Comptes Empreinte indisponibles : ${erreur.message}. Nouvel essai dans 60 s.`)
+    setTimeout(lancerComptes, 60000)
+  }
+}
+setInterval(async () => {
+  try {
+    comptesPrets = (await fetch(`${COMPTES}/api/health`)).ok
+  } catch {
+    comptesPrets = false
+  }
+}, 5000)
 // Écran d'attente, visible dès les premiers octets, remplacé par l'app quand elle démarre.
 const ATTENTE = `<div id="empreinte-attente" style="position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:#f4f4f2;font:600 15px system-ui,sans-serif;color:#111113;z-index:0">
 <svg width="44" height="44" viewBox="0 0 32 32" fill="none" stroke="#111113" stroke-width="2" stroke-linecap="round" style="animation:empreinte-souffle 1.6s ease-in-out infinite alternate"><path d="M8 25c-2-2.6-3-5.6-3-9a11 11 0 0 1 22 0"/><path d="M12 27c-1.6-2.4-2.6-5.6-2.6-9.6a6.6 6.6 0 0 1 13.2 0c0 3-.5 5.6-1.6 8"/><path d="M16 28c-1-2.6-1.8-6.2-1.8-10.6a1.8 1.8 0 0 1 3.6 0c0 3.4-.2 6-.8 8.6"/></svg>
@@ -190,6 +253,13 @@ const envoyer = (req, res, chemin, cache, statut = 200, transformer) => {
 
 createServer((req, res) => {
   if ((req.url ?? '').startsWith('/v1/')) return void relayer(req, res)
+  // /comptes/… → la base de comptes Empreinte. Sa console d'administration (/comptes/_/)
+  // n'est ouverte que depuis le serveur lui-même.
+  if ((req.url ?? '').startsWith('/comptes/')) {
+    const local = ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(req.socket.remoteAddress ?? '')
+    if ((req.url ?? '').startsWith('/comptes/_/') && !local) return void res.writeHead(403).end()
+    return void relayer(req, res, COMPTES + req.url.slice('/comptes'.length))
+  }
   // /youversion/v1/… → api.youversion.com/v1/… avec la clé de l'app.
   if ((req.url ?? '').startsWith('/youversion/')) {
     if (!CLE_YOUVERSION) return void res.writeHead(503).end('Clé YouVersion absente (YOUVERSION_KEY).')
@@ -213,7 +283,7 @@ createServer((req, res) => {
     if (trouve && !trouve.endsWith('index.html'))
       return void envoyer(req, res, trouve, url.startsWith('/app/_expo/') || url.startsWith('/app/assets/'))
     return void envoyer(req, res, trouve ?? join(racine, 'index.html'), false, 200, html =>
-      html.replace('<head>', `<head>${ANNONCE}`).replace('<div id="root"></div>', `<div id="root">${ATTENTE}</div>`)
+      html.replace('<head>', `<head>${annonce()}`).replace('<div id="root"></div>', `<div id="root">${ATTENTE}</div>`)
     )
   }
 
@@ -242,6 +312,7 @@ createServer((req, res) => {
     process.exit(0)
   })
   void preparerDossier(racine)
+  void lancerComptes()
   console.log(
     `Empreinte sur http://0.0.0.0:${port} : site ${site}, app ${racine} (sous /app), API relayée : ${API}`
   )

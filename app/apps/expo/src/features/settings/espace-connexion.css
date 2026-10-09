@@ -9,39 +9,40 @@
 }
 .ec-cadre {
   box-sizing: border-box;
-  margin: auto;
+  display: flex;
+  flex: 1;
   width: 100%;
-  max-width: 1080px;
-  padding: 24px;
+  min-height: 100%;
 }
-/* Empreinte : un seul bloc, la partie bleue et la partie blanche réunies. */
+/* Empreinte : la connexion occupe toute la page, la partie bleue et la partie blanche
+   côte à côte, d'un bord à l'autre. */
 .ec-bloc {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-  border-radius: 32px;
-  overflow: hidden;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  flex: 1;
+  min-height: 100vh;
   background: var(--color-reverse);
-  box-shadow: 0 18px 50px rgba(17, 17, 19, 0.1);
 }
 .ec-illustration {
   position: relative;
   display: flex;
   flex-direction: column;
-  min-height: 620px;
-  padding: 36px;
+  min-height: 0;
+  padding: 56px 64px;
   overflow: hidden;
   background: linear-gradient(160deg, #1d3b66 0%, #112a4d 60%, #0c1f3a 100%);
 }
 .ec-image {
   margin-top: auto;
-  height: 260px;
+  height: 340px;
 }
 .ec-formulaire {
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 20px;
-  padding: 40px;
+  padding: 48px max(48px, calc((100% - 460px) / 2));
+  overflow-y: auto;
 }
 .ec-onglets {
   display: flex;
@@ -51,19 +52,23 @@
   background: var(--color-light-grey);
 }
 @container ec (max-width: 799px) {
-  .ec-cadre {
-    padding: 16px;
-  }
   .ec-bloc {
-    grid-template-columns: minmax(0, 1fr);
+    display: flex;
+    flex-direction: column;
   }
   .ec-illustration {
-    min-height: 0;
+    flex-shrink: 0;
   }
+  .ec-illustration {
+    padding: 32px 24px 28px;
+  }
+  .ec-avantages,
   .ec-image {
     display: none;
   }
   .ec-formulaire {
+    justify-content: flex-start;
     padding: 24px;
+    overflow: visible;
   }
 }
