@@ -10,8 +10,12 @@ import { joursDeLectureAtom, noterLecture } from '~features/empreinte/SymboleCom
  */
 export type PisteBible = { version: string; book: number; chapter: number }
 
+/** Une piste hors Bible (un chapitre de livre lu par LibriVox…), dans une liste. */
+export type PisteLibre = { titre: string; sousTitre: string; url: string; retour: string }
+
 export type EtatAudio = {
   piste: PisteBible | null
+  libre: { pistes: PisteLibre[]; index: number } | null
   enLecture: boolean
   position: number
   duree: number
@@ -21,6 +25,7 @@ export type EtatAudio = {
 
 export const etatAudioAtom = atom<EtatAudio>({
   piste: null,
+  libre: null,
   enLecture: false,
   position: 0,
   duree: 0,
@@ -67,14 +72,26 @@ export const jouer = (piste: PisteBible) => {
   if (!lecteur) return
   lecteur.src = urlAudio(piste)
   lecteur.playbackRate = magasin.get(etatAudioAtom).vitesse
-  mettreAJour({ piste, position: 0, duree: 0, erreur: false })
+  mettreAJour({ piste, libre: null, position: 0, duree: 0, erreur: false })
   magasin.set(joursDeLectureAtom, noterLecture(magasin.get(joursDeLectureAtom)))
+  void lecteur.play().catch(() => mettreAJour({ enLecture: false }))
+}
+
+/** Lit une piste d'une liste (livre écouté) ; la suivante s'enchaîne seule. */
+export const jouerLibre = (pistes: PisteLibre[], index: number) => {
+  const lecteur = audio()
+  const piste = pistes[index]
+  if (!lecteur || !piste) return
+  lecteur.src = piste.url
+  lecteur.playbackRate = magasin.get(etatAudioAtom).vitesse
+  mettreAJour({ piste: null, libre: { pistes, index }, position: 0, duree: 0, erreur: false })
   void lecteur.play().catch(() => mettreAJour({ enLecture: false }))
 }
 
 export const basculer = () => {
   const lecteur = audio()
-  if (!lecteur || !magasin.get(etatAudioAtom).piste) return
+  const { piste, libre } = magasin.get(etatAudioAtom)
+  if (!lecteur || (!piste && !libre)) return
   if (lecteur.paused) void lecteur.play().catch(() => {})
   else lecteur.pause()
 }
@@ -82,7 +99,7 @@ export const basculer = () => {
 export const arreter = () => {
   element?.pause()
   if (element) element.removeAttribute('src')
-  mettreAJour({ piste: null, enLecture: false, position: 0, duree: 0 })
+  mettreAJour({ piste: null, libre: null, enLecture: false, position: 0, duree: 0 })
 }
 
 export const chercher = (secondes: number) => {
@@ -105,14 +122,23 @@ const voisin = (piste: PisteBible, sens: 1 | -1): PisteBible | null => {
 }
 
 export const suivant = () => {
-  const { piste } = magasin.get(etatAudioAtom)
+  const { piste, libre } = magasin.get(etatAudioAtom)
+  if (libre) {
+    if (libre.index + 1 < libre.pistes.length) jouerLibre(libre.pistes, libre.index + 1)
+    else arreter()
+    return
+  }
   const prochaine = piste && voisin(piste, 1)
   if (prochaine) jouer(prochaine)
   else arreter()
 }
 
 export const precedent = () => {
-  const { piste } = magasin.get(etatAudioAtom)
+  const { piste, libre } = magasin.get(etatAudioAtom)
+  if (libre) {
+    if (libre.index > 0) jouerLibre(libre.pistes, libre.index - 1)
+    return
+  }
   const avant = piste && voisin(piste, -1)
   if (avant) jouer(avant)
 }

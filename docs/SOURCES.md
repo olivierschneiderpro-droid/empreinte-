@@ -73,10 +73,18 @@ Règles d'Empreinte appliquées à cet inventaire :
 | Source | Apport | Licence | État |
 |---|---|---|---|
 | [Christian Classics Ethereal Library (CCEL)](https://ccel.org) | Classiques chrétiens (Augustin, Calvin, Bunyan, Spurgeon…) | Domaine public pour la plupart | 🟢 |
-| [Project Gutenberg](https://gutenberg.org/ebooks/42657) | Livres anciens en ePub (Spurgeon, Bunyan…) | Domaine public (États-Unis) | 🟢 |
-| [LibriVox](https://librivox.org/author/4196) | Livres audio lus par des bénévoles (Bunyan, Spurgeon…) | Domaine public (États-Unis) | 🟢 |
+| [Project Gutenberg](https://gutenberg.org/ebooks/42657) | Livres anciens en ePub (Spurgeon, Bunyan…) | Domaine public (États-Unis) | ✅ (page Livres : texte) |
+| [LibriVox](https://librivox.org/author/4196) | Livres audio lus par des bénévoles (Bunyan, Spurgeon…) | Domaine public (États-Unis) | ✅ (page Livres : écoute) |
 | [Monergism](https://www.monergism.com) / [Classic Christian Library](https://classicchristianlibrary.com/) | Ebooks réformés gratuits, commentaires anciens | Gratuits ; droits par livre | 🟡 |
 | Wikisource FR, Gallica (BnF) | Textes chrétiens anciens en français (Calvin, Pascal…) | Domaine public | 🟢 |
+
+**Branché (page Livres).** Le catalogue choisi à la main est dans
+`app/apps/expo/src/features/livres/catalogue.json` (11 livres FR/EN). Le serveur du HP
+(`scripts/livres-empreinte.mjs`) trouve chaque livre sur Gutenberg par
+[Gutendex](https://gutendex.com) et sa version lue sur LibriVox. Il le découpe en parties
+selon ses titres et le garde dans `~/empreinte-livres`. Les couvertures sont typographiques :
+aucune image ne représente le Christ. Prochaine étape possible : Wikisource FR pour les
+classiques français absents de Gutenberg (Calvin, Bossuet…).
 
 ## 8. Jeunesse et images
 

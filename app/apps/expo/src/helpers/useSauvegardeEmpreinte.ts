@@ -7,6 +7,7 @@ import {
   SYMBOLES,
   type Symbole,
 } from '~features/empreinte/SymboleCompte'
+import { progressionLivresAtom } from '~features/livres/livres'
 import * as UserActions from '~redux/modules/user'
 import type { RootState } from '~redux/modules/reducer'
 import { compteEmpreinte } from './compteEmpreinte'
@@ -17,6 +18,7 @@ type Sauvegarde = {
   studies?: RootState['user']['bible']['studies']
   symbole?: Symbole
   joursDeLecture?: string[]
+  livres?: Record<string, { chapitre: number }>
   version?: number
 }
 
@@ -27,6 +29,7 @@ const extraire = (etat: RootState): Sauvegarde => {
     studies,
     symbole: getDefaultStore().get(symboleCompteAtom),
     joursDeLecture: getDefaultStore().get(joursDeLectureAtom),
+    livres: getDefaultStore().get(progressionLivresAtom),
     version: 1,
   }
 }
@@ -101,6 +104,11 @@ export default function useSauvegardeEmpreinte() {
                 .sort()
                 .slice(-400)
             )
+          if (estObjet(serveur.livres))
+            getDefaultStore().set(progressionLivresAtom, {
+              ...(serveur.livres as Sauvegarde['livres']),
+              ...getDefaultStore().get(progressionLivresAtom),
+            })
         }
         await envoyer()
       } catch {
@@ -116,12 +124,14 @@ export default function useSauvegardeEmpreinte() {
     const desabonner = store.subscribe(programmer)
     const desabonnerSymbole = getDefaultStore().sub(symboleCompteAtom, programmer)
     const desabonnerJours = getDefaultStore().sub(joursDeLectureAtom, programmer)
+    const desabonnerLivres = getDefaultStore().sub(progressionLivresAtom, programmer)
     return () => {
       annule = true
       clearTimeout(minuterie)
       desabonner()
       desabonnerSymbole()
       desabonnerJours()
+      desabonnerLivres()
     }
   }, [actif, user.id, store, dispatch])
 }

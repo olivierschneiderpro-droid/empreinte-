@@ -171,6 +171,13 @@ export default function BibleAccueilScreen() {
               onPress={() => pushRoute({ pathname: '/plans' })}
             />
             <Entree
+              icone="book"
+              titre={t('livres.title')}
+              texte={t('livres.intro')}
+              couleur="#7A2E12"
+              onPress={() => pushRoute({ pathname: '/livres' })}
+            />
+            <Entree
               icone="sun"
               titre={t('dailyReading.title')}
               texte={t('bibleAccueil.verseText')}

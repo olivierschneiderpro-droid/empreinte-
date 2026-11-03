@@ -148,6 +148,8 @@ const SECTIONS_NAV: { titre?: string; entrees: EntreeNav[] }[] = [
   {
     titre: 'BIBLIOTHÈQUE',
     entrees: [
+      // Empreinte : les classiques chrétiens du domaine public, ouverts à tous.
+      { id: 'livres', libelle: 'Livres', icone: 'book', chemin: '/livres', prefixes: ['/livre'] },
       {
         id: 'etudes',
         libelle: 'Études',

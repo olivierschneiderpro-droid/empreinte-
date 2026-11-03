@@ -15,6 +15,8 @@ import {
   getPassageMediaForChapter,
   type ResolvedPassageMedia,
 } from '~features/bible/passageMedia'
+import LectureLivre from '~features/livres/LectureLivre'
+import { ficheLivre } from '~features/livres/livres'
 import { chargerCatalogueLocal } from '~features/plans/catalogueLocal'
 import { useResourceAccess } from '~features/resources/resourceAccess'
 import { loadBibleVerseTexts } from '~features/resources/resourceQueries'
@@ -404,7 +406,14 @@ export default function PanneauCompagnon() {
         }),
     },
   ]
-  // L'onglet Vidéo n'apparaît que lorsqu'une vidéo est ouverte à côté.
+  // Les onglets Vidéo et Livre n'apparaissent que lorsqu'ils sont ouverts à côté.
+  if (compagnon.type === 'livre')
+    onglets.push({
+      type: 'livre',
+      libelle: ficheLivre(compagnon.id)?.titre ?? t('livres.title'),
+      icone: 'book-open',
+      ouvrir: () => {},
+    })
   if (compagnon.type === 'video')
     onglets.push({
       type: 'video',
@@ -452,6 +461,8 @@ export default function PanneauCompagnon() {
         />
       ) : compagnon.type === 'video' ? (
         <VideoACote id={compagnon.id} />
+      ) : compagnon.type === 'livre' ? (
+        <LectureLivre id={compagnon.id} compact />
       ) : (
         <AutourDuPassage />
       )}

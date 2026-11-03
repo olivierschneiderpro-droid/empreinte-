@@ -17,8 +17,9 @@ import { dirname, extname, join, normalize, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { Readable } from 'node:stream'
 import { spawn, execFileSync } from 'node:child_process'
-import { existsSync, mkdirSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { homedir } from 'node:os'
+import { creerLivres } from './livres-empreinte.mjs'
 
 const racine = resolve(process.argv[2] ?? 'empreinte-web')
 const site = resolve(
@@ -43,6 +44,17 @@ const PORT_COMPTES = 8090
 const COMPTES = `http://127.0.0.1:${PORT_COMPTES}`
 const MIGRATIONS = join(dirname(fileURLToPath(import.meta.url)), '..', 'comptes', 'pb_migrations')
 let comptesPrets = false
+
+// Livres chrétiens du domaine public (Gutenberg + LibriVox), mis en cache sur le HP.
+const livres = creerLivres({
+  catalogue: JSON.parse(
+    readFileSync(
+      join(dirname(fileURLToPath(import.meta.url)), '..', 'app/apps/expo/src/features/livres/catalogue.json'),
+      'utf8'
+    )
+  ),
+  dossier: process.env.EMPREINTE_LIVRES ?? join(homedir(), 'empreinte-livres'),
+})
 const installerPocketBase = async () => {
   const binaire = join(DOSSIER_COMPTES, 'pocketbase')
   if (existsSync(binaire)) return binaire
@@ -260,6 +272,7 @@ createServer((req, res) => {
     if ((req.url ?? '').startsWith('/comptes/_/') && !local) return void res.writeHead(403).end()
     return void relayer(req, res, COMPTES + req.url.slice('/comptes'.length))
   }
+  if ((req.url ?? '').startsWith('/livres/api/')) return void livres(req, res)
   // /youversion/v1/… → api.youversion.com/v1/… avec la clé de l'app.
   if ((req.url ?? '').startsWith('/youversion/')) {
     if (!CLE_YOUVERSION) return void res.writeHead(503).end('Clé YouVersion absente (YOUVERSION_KEY).')
