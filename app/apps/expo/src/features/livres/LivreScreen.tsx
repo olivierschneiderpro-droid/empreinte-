@@ -1,6 +1,7 @@
 import { useAtom, useAtomValue, useSetAtom } from 'jotai'
 import { useLocalSearchParams, useRouter } from 'expo-router'
-import { useRef, useState } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Linking, Platform, ScrollView } from 'react-native'
 import { useDispatch, useSelector } from 'react-redux'
@@ -23,6 +24,7 @@ import {
 import { Couverture } from './Couverture'
 import {
   ficheLivre,
+  prechargerChapitre,
   progressionLivresAtom,
   titreChapitre,
   useChapitre,
@@ -30,6 +32,7 @@ import {
   type Livre,
 } from './livres'
 import TexteLivre from './TexteLivre'
+import { Volet } from '~features/empreinte/vitrine/Volet'
 
 type Panneau = 'chapitres' | 'ecouter' | 'fiche' | 'aa' | null
 
@@ -52,44 +55,6 @@ function BoutonVerre({
     >
       {children}
     </TouchableBox>
-  )
-}
-
-/** Un volet qui s'ouvre par-dessus la lecture (chapitres, écoute, fiche, réglages). */
-function Volet({
-  titre,
-  onFermer,
-  children,
-}: React.PropsWithChildren<{ titre: string; onFermer: () => void }>) {
-  const { t } = useTranslation()
-  const verre = useVerre()
-  return (
-    <Box className="absolute inset-0" style={{ zIndex: 20 }}>
-      <TouchableBox
-        className="absolute inset-0"
-        style={{ backgroundColor: 'rgba(17,17,19,0.25)' }}
-        onPress={onFermer}
-        accessibilityLabel={t('compagnon.close')}
-      />
-      <Box
-        className="self-center mt-[72px] w-full max-w-[720px] rounded-[26px] overflow-hidden bg-reverse"
-        style={[styleVerre(verre, 26), { maxHeight: '78%' }]}
-      >
-        <HStack className="items-center justify-between px-[20px] pt-[16px] pb-[8px]">
-          <Text style={{ fontFamily: police(POLICES.titre), fontSize: 17 }}>{titre}</Text>
-          <LinkBox
-            onPress={onFermer}
-            accessibilityLabel={t('compagnon.close')}
-            className="w-[34px] h-[34px] rounded-full items-center justify-center bg-light-grey"
-          >
-            <FeatherIcon name="x" size={16} />
-          </LinkBox>
-        </HStack>
-        <ScrollView contentContainerStyle={{ padding: 20, paddingTop: 8, gap: 6 }}>
-          {children}
-        </ScrollView>
-      </Box>
-    </Box>
   )
 }
 
@@ -287,6 +252,10 @@ export default function LivreScreen() {
   const total = livre.data?.chapitres.length ?? 0
   const numero = Math.min(progression[id]?.chapitre ?? 0, Math.max(0, total - 1))
   const chapitre = useChapitre(id, numero)
+  const client = useQueryClient()
+  useEffect(() => {
+    if (chapitre.data && numero + 1 < total) void prechargerChapitre(client, id, numero + 1)
+  }, [chapitre.data, client, id, numero, total])
   const aller = (n: number) => {
     if (n < 0 || n >= total) return
     setProgression({ ...progression, [id]: { chapitre: n } })

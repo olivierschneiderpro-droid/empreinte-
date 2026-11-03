@@ -7,9 +7,7 @@ import { LinkBox } from '~common/Link'
 import Box, { HStack } from '~common/ui/Box'
 import { FeatherIcon } from '~common/ui/Icon'
 import Text from '~common/ui/Text'
-import { resolveFontFamily } from '~themes/styleValues'
-import { useTheme } from '~themes/ThemeProvider'
-import { Couverture } from './Couverture'
+import { CarteImagee, Rangee, Vedette } from '~features/empreinte/vitrine/Rangee'
 import {
   adresseLivres,
   catalogueLivres,
@@ -17,40 +15,45 @@ import {
   langueLivresAtom,
   progressionLivresAtom,
   THEMES,
+  type FicheLivre,
 } from './livres'
 
 /**
- * Empreinte · Livres : les classiques chrétiens du domaine public, à lire et à écouter
- * comme la Bible, rangés par thème.
+ * Empreinte · Livres : une vitrine. En haut, le livre en cours (ou un livre à découvrir) ;
+ * dessous, une rangée par thème, qui défile.
  */
 export default function LivresScreen() {
   const { t } = useTranslation()
-  const theme = useTheme()
-  const titre = resolveFontFamily(theme.fontFamily.title)
   const router = useRouter()
   const [langue, setLangue] = useAtom(langueLivresAtom)
   const progression = useAtomValue(progressionLivresAtom)
   const livres = catalogueLivres.filter(livre => langue === 'tous' || livre.langue === langue)
   const enCours = Object.keys(progression)
     .map(ficheLivre)
-    .filter(livre => livre !== undefined)
+    .filter((livre): livre is FicheLivre => livre !== undefined)
   const ouvrir = (id: string) => router.push({ pathname: '/livre', params: { id } } as never)
+  const vedette = enCours[0] ?? livres[0] ?? catalogueLivres[0]
+  const partie = (id: string) => (progression[id]?.chapitre ?? 0) + 1
 
   return (
     <Box className="flex-1">
       <Header hasBackButton title={t('livres.title')} />
-      <ScrollView contentContainerStyle={{ paddingBottom: 48 }}>
-        <Box className="px-[24px] gap-[28px] w-full max-w-[1300px] self-center">
-          <Box className="gap-[8px]">
-            <Text className="text-[30px]" style={{ fontFamily: titre }}>
-              {t('livres.heading')}
-            </Text>
-            <Text className="text-grey text-[14px] leading-[21px] max-w-[640px]">
-              {t('livres.intro')}
-            </Text>
-          </Box>
+      <ScrollView contentContainerStyle={{ paddingBottom: 56 }}>
+        <Box className="px-[24px] gap-[30px] w-full max-w-[1300px] self-center">
+          <Vedette
+            scene={vedette.scene}
+            surtitre={enCours[0] ? t('livres.continue') : t('livres.discover')}
+            titre={vedette.titre}
+            texte={
+              enCours[0]
+                ? `${vedette.auteur} · ${t('livres.atPart', { part: partie(vedette.id) })}`
+                : vedette.resume
+            }
+            action={enCours[0] ? t('livres.resume') : t('livres.start')}
+            onPress={() => ouvrir(vedette.id)}
+          />
 
-          <HStack className="gap-[8px] flex-wrap">
+          <HStack className="gap-[8px] flex-wrap items-center">
             {(['tous', 'fr', 'en'] as const).map(choix => (
               <LinkBox
                 key={choix}
@@ -74,59 +77,38 @@ export default function LivresScreen() {
             </Box>
           ) : null}
 
-          {enCours.length ? (
-            <Box className="gap-[14px]">
-              <Text className="text-[20px]" style={{ fontFamily: titre }}>
-                {t('livres.continue')}
-              </Text>
-              <HStack className="gap-[14px] flex-wrap">
-                {enCours.map(livre => (
-                  <LinkBox
-                    key={livre.id}
-                    onPress={() => ouvrir(livre.id)}
-                    accessibilityLabel={livre.titre}
-                    className="flex-row items-center gap-[14px] rounded-[20px] p-[12px] pr-[20px] bg-reverse"
-                  >
-                    <Couverture livre={livre} largeur={56} />
-                    <Box className="gap-[4px]">
-                      <Text className="font-bold text-[14px]">{livre.titre}</Text>
-                      <Text className="text-grey text-[12px]">
-                        {t('livres.atPart', { part: (progression[livre.id]?.chapitre ?? 0) + 1 })}
-                      </Text>
-                    </Box>
-                  </LinkBox>
-                ))}
-              </HStack>
-            </Box>
+          {enCours.length > 1 ? (
+            <Rangee titre={t('livres.continue')}>
+              {enCours.map(livre => (
+                <CarteImagee
+                  key={livre.id}
+                  scene={livre.scene}
+                  titre={livre.titre}
+                  sousTitre={t('livres.atPart', { part: partie(livre.id) })}
+                  onPress={() => ouvrir(livre.id)}
+                />
+              ))}
+            </Rangee>
           ) : null}
 
-          {THEMES.map(themeLivres => {
-            const duTheme = livres.filter(livre => livre.theme === themeLivres)
+          {THEMES.map(theme => {
+            const duTheme = livres.filter(livre => livre.theme === theme)
             if (!duTheme.length) return null
             return (
-              <Box key={themeLivres} className="gap-[14px]">
-                <Text className="text-[20px]" style={{ fontFamily: titre }}>
-                  {t(`livres.theme.${themeLivres}`)}
-                </Text>
-                <HStack className="gap-[18px] flex-wrap">
-                  {duTheme.map(livre => (
-                    <LinkBox
-                      key={livre.id}
-                      onPress={() => ouvrir(livre.id)}
-                      accessibilityLabel={livre.titre}
-                      className="gap-[8px] w-[150px]"
-                    >
-                      <Couverture livre={livre} />
-                      <Text className="font-bold text-[13px]" numberOfLines={2}>
-                        {livre.titre}
-                      </Text>
-                      <Text className="text-grey text-[12px]" numberOfLines={1}>
-                        {`${livre.auteur} · ${livre.annee}`}
-                      </Text>
-                    </LinkBox>
-                  ))}
-                </HStack>
-              </Box>
+              <Rangee key={theme} titre={t(`livres.theme.${theme}`)}>
+                {duTheme.map(livre => (
+                  <CarteImagee
+                    key={livre.id}
+                    scene={livre.scene}
+                    titre={livre.titre}
+                    sousTitre={`${livre.auteur} · ${livre.annee}`}
+                    badge={livre.langue.toUpperCase()}
+                    largeur={240}
+                    hauteur={140}
+                    onPress={() => ouvrir(livre.id)}
+                  />
+                ))}
+              </Rangee>
             )
           })}
 

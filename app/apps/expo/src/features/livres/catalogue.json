@@ -10,7 +10,8 @@
       "theme": "apologetique",
       "resume": "Les fragments d'une défense de la foi chrétienne : la misère et la grandeur de l'homme, le pari, le Dieu caché.",
       "recherche": "pensées pascal",
-      "librivox": "Pensées"
+      "librivox": "Pensées",
+      "scene": "lumiere"
     },
     {
       "id": "imitation-fr",
@@ -22,7 +23,8 @@
       "theme": "vie-interieure",
       "resume": "Quatre livres de méditations brèves sur l'humilité, la vie intérieure et la suite du Christ.",
       "recherche": "imitation jésus-christ",
-      "librivox": "L'Imitation de Jésus-Christ"
+      "librivox": "L'Imitation de Jésus-Christ",
+      "scene": "lampe"
     },
     {
       "id": "vie-devote",
@@ -34,7 +36,8 @@
       "theme": "vie-interieure",
       "resume": "Un guide pratique de la vie chrétienne au quotidien, écrit pour ceux qui vivent dans le monde.",
       "recherche": "introduction à la vie dévote",
-      "librivox": "Introduction à la vie dévote"
+      "librivox": "Introduction à la vie dévote",
+      "scene": "jardin"
     },
     {
       "id": "confessions-fr",
@@ -46,7 +49,8 @@
       "theme": "temoignage",
       "resume": "Le récit d'une conversion, adressé à Dieu : « Tu nous as faits pour toi, et notre cœur est sans repos tant qu'il ne repose en toi. »",
       "recherche": "confessions augustin",
-      "librivox": "Les Confessions"
+      "librivox": "Les Confessions",
+      "scene": "nuit"
     },
     {
       "id": "pilgrims-progress",
@@ -58,7 +62,8 @@
       "theme": "recit",
       "resume": "Le voyage de Chrétien, de la Cité de la destruction à la Cité céleste : l'allégorie de la vie chrétienne la plus lue.",
       "recherche": "pilgrim's progress bunyan",
-      "librivox": "The Pilgrim's Progress"
+      "librivox": "The Pilgrim's Progress",
+      "scene": "chemin"
     },
     {
       "id": "imitation-en",
@@ -70,7 +75,8 @@
       "theme": "vie-interieure",
       "resume": "Quatre livres de méditations brèves sur l'humilité, la vie intérieure et la suite du Christ.",
       "recherche": "imitation of christ kempis",
-      "librivox": "The Imitation of Christ"
+      "librivox": "The Imitation of Christ",
+      "scene": "lampe"
     },
     {
       "id": "confessions-en",
@@ -82,7 +88,8 @@
       "theme": "temoignage",
       "resume": "Le récit d'une conversion, adressé à Dieu, dans la traduction anglaise classique.",
       "recherche": "confessions augustine",
-      "librivox": "The Confessions of Saint Augustine"
+      "librivox": "The Confessions of Saint Augustine",
+      "scene": "nuit"
     },
     {
       "id": "presence-of-god",
@@ -94,7 +101,8 @@
       "theme": "priere",
       "resume": "Les entretiens et lettres d'un frère cuisinier qui apprit à vivre chaque instant avec Dieu.",
       "recherche": "practice of the presence of god",
-      "librivox": "The Practice of the Presence of God"
+      "librivox": "The Practice of the Presence of God",
+      "scene": "aube"
     },
     {
       "id": "all-of-grace",
@@ -106,7 +114,8 @@
       "theme": "evangile",
       "resume": "Une explication simple et chaleureuse du salut par grâce, écrite pour ceux qui cherchent.",
       "recherche": "all of grace spurgeon",
-      "librivox": "All of Grace"
+      "librivox": "All of Grace",
+      "scene": "riviere"
     },
     {
       "id": "abide-in-christ",
@@ -118,7 +127,8 @@
       "theme": "priere",
       "resume": "Trente et une méditations sur Jean 15 : demeurer en Christ, jour après jour.",
       "recherche": "abide in christ murray",
-      "librivox": "Abide in Christ"
+      "librivox": "Abide in Christ",
+      "scene": "ble"
     },
     {
       "id": "orthodoxy",
@@ -130,7 +140,8 @@
       "theme": "apologetique",
       "resume": "Comment un sceptique découvrit que la foi chrétienne répondait mieux que tout à l'énigme du monde.",
       "recherche": "orthodoxy chesterton",
-      "librivox": "Orthodoxy"
+      "librivox": "Orthodoxy",
+      "scene": "montagne"
     }
   ]
 }
