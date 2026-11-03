@@ -27,7 +27,14 @@ import PorteDeConnexion from '~features/empreinte/PorteDeConnexion'
 import MiniLecteurAudio from '~features/audio/MiniLecteurAudio'
 import PanneauCompagnon from '~features/empreinte/PanneauCompagnon'
 import SuiteDuParcours from '~features/empreinte/SuiteDuParcours'
-import { compagnonAtom } from '~features/empreinte/compagnon'
+import {
+  compagnonAtom,
+  espaceAGaucheAtom,
+  espaceAgrandiAtom,
+  largeurEspaceAtom,
+} from '~features/empreinte/compagnon'
+import BarreEspace from '~features/empreinte/BarreEspace'
+import PoigneeEspace from '~features/empreinte/PoigneeEspace'
 import { PAGES_SANS_COQUE } from '~features/empreinte/compte'
 
 // Pages de lecture : Sommaire (péricopes) et journée de plan, comme le lecteur Bible.
@@ -72,6 +79,9 @@ export default function WorkspaceLayout({
   const compagnon = useAtomValue(compagnonAtom)
   const panel = useWorkspaceRoutePanel()
   const showsStudy = workspaceActive && panel.showsStudy
+  const largeurEspace = useAtomValue(largeurEspaceAtom)
+  const espaceAGauche = useAtomValue(espaceAGaucheAtom)
+  const espaceAgrandi = useAtomValue(espaceAgrandiAtom)
   const [sidebarHidden, setSidebarHidden] = useAtom(workspaceSidebarHiddenAtom)
   const [overlayOpen, setOverlayOpen] = useState(false)
   const setSidebarDocked = useSetAtom(workspaceSidebarDockedAtom)
@@ -122,6 +132,29 @@ export default function WorkspaceLayout({
       navigateWithPageTransition(workspacePagePath[page], () =>
         router.push(workspacePagePath[page])
       )
+  }
+
+  // Empreinte · Espace d'étude : un seul cadre pour les volets et pour l'outil d'étude
+  // ouvert depuis le texte ; même largeur (poignée), même côté (⇄), même entrée en douceur.
+  const espaceOuvert =
+    isWide && Platform.OS === 'web' && (showsStudy || Boolean(compagnon && isWorkspace))
+  const partEspace = `${largeurEspace * 100}%`
+  const cotePresEspace = `calc(${partEspace} + 8px)`
+  const cadreEspace = {
+    position: 'absolute',
+    top: 16,
+    bottom: 16,
+    ...(espaceAgrandi
+      ? { left: 16, right: 16 }
+      : { [espaceAGauche ? 'left' : 'right']: 16, width: `calc(${partEspace} - 24px)` }),
+    animationKeyframes: [
+      {
+        from: { opacity: 0, transform: [{ translateX: espaceAGauche ? -24 : 24 }] },
+        to: { opacity: 1, transform: [{ translateX: 0 }] },
+      },
+    ],
+    animationDuration: '220ms',
+    animationTimingFunction: 'ease-out',
   }
 
   return (
@@ -230,14 +263,19 @@ export default function WorkspaceLayout({
                 // Empreinte : le lecteur repose dans un grand panneau de verre (maquette bureau).
                 styleVerre(verre, 28),
                 {
-                  display: isWorkspace || showsStudy ? 'flex' : 'none',
+                  display:
+                    (isWorkspace || showsStudy) && !(espaceOuvert && espaceAgrandi)
+                      ? 'flex'
+                      : 'none',
                   top: 16,
                   bottom: 16,
-                  left: 16,
+                  left: espaceOuvert && espaceAGauche ? (cotePresEspace as unknown as number) : 16,
                   right:
-                    compagnon && Platform.OS === 'web' && !showsStudy
-                      ? ('calc(42% + 32px)' as unknown as number)
-                      : (panel.open ? panel.reservedWidth : 0) + 16,
+                    espaceOuvert && !espaceAGauche
+                      ? (cotePresEspace as unknown as number)
+                      : !espaceOuvert && panel.open
+                        ? panel.reservedWidth + 16
+                        : 16,
                 },
               ]}
             >
@@ -248,19 +286,15 @@ export default function WorkspaceLayout({
               {Platform.OS === 'web' ? <SuiteDuParcours /> : null}
             </Box>
           )}
+          {espaceOuvert && !espaceAgrandi ? <PoigneeEspace aGauche={espaceAGauche} /> : null}
           {isWide && compagnon && Platform.OS === 'web' ? (
             <Box
               testID="workspace-compagnon"
               className="absolute overflow-hidden"
               style={[
                 styleVerre(verre, 28),
-                {
-                  display: isWorkspace && !showsStudy ? 'flex' : 'none',
-                  top: 16,
-                  bottom: 16,
-                  right: 16,
-                  width: '42%',
-                },
+                cadreEspace as object,
+                { display: isWorkspace && !showsStudy ? 'flex' : 'none' },
               ]}
             >
               <PanneauCompagnon />
@@ -279,21 +313,16 @@ export default function WorkspaceLayout({
               {
                 display: isWide && isWorkspace ? 'none' : 'flex',
                 ...(showsStudy
-                  ? {
-                      // Empreinte : le panneau d'étude est une page de lecture, arrondi comme
-                      // le lecteur, avec le même écart de 16 px.
-                      position: 'absolute',
-                      top: 16,
-                      bottom: 16,
-                      right: 16,
-                      width: panel.reservedWidth - 16,
-                    }
+                  ? // Empreinte : l'outil d'étude ouvert depuis le texte prend place dans le
+                    // même cadre que les volets de l'Espace d'étude.
+                    (cadreEspace as object)
                   : enPanneau
                     ? { position: 'absolute', top: 16, bottom: 16, left: 16, right: 16 }
                     : undefined),
               },
             ]}
           >
+            {showsStudy && Platform.OS === 'web' ? <BarreEspace etudeOuverte /> : null}
             {children}
           </Box>
         </Box>

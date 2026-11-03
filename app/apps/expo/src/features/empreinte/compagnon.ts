@@ -48,8 +48,27 @@ export const compagnonAtom = atom(
     )
     if (valeur) suivants[id] = valeur
     set(compagnonsParOngletAtom, suivants)
+    if (valeur) set(dernierCompagnonAtom, valeur)
   }
 )
+
+/** Le dernier volet ouvert : le bouton « Espace d'étude » le rouvre tel quel. */
+export const dernierCompagnonAtom = atomWithAsyncStorage<Compagnon>('empreinte.espace.dernier', {
+  type: 'autour',
+})
+
+/** La part de l'écran donnée à l'Espace d'étude (de 30 à 60 %), réglée à la poignée. */
+export const LARGEUR_ESPACE = { min: 0.3, max: 0.6, defaut: 0.42 }
+export const largeurEspaceAtom = atomWithAsyncStorage<number>(
+  'empreinte.espace.largeur',
+  LARGEUR_ESPACE.defaut
+)
+
+/** L'Espace d'étude à gauche de la Bible plutôt qu'à droite (bouton ⇄). */
+export const espaceAGaucheAtom = atomWithAsyncStorage<boolean>('empreinte.espace.gauche', false)
+
+/** L'Espace d'étude en grand, la Bible masquée le temps de la consultation. */
+export const espaceAgrandiAtom = atom(false)
 
 /**
  * Empreinte · Plan ↔ Bible : quand une étape de plan ouvre un passage dans la Bible, la Bible
