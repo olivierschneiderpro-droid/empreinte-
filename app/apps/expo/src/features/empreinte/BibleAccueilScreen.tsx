@@ -9,14 +9,15 @@ import { LinkBox } from '~common/Link'
 import Box, { HStack } from '~common/ui/Box'
 import { FeatherIcon } from '~common/ui/Icon'
 import Text from '~common/ui/Text'
-import { Pochette } from '~features/audio/Pochette'
 import { commandPaletteOpenAtom } from '~features/app-switcher/commandPalette/state'
 import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
 import { activeTabIndexAtom, tabsAtomsAtom, type BibleTab } from '~state/tabs'
-import { resolveFontFamily } from '~themes/styleValues'
-import { useTheme } from '~themes/ThemeProvider'
 import { compagnonAtom } from './compagnon'
+import { POLICES, police } from './lumiere'
 import { useAllerALaBible, useOuvrirDansLaBible } from './ouvrirDansLaBible'
+import { CarteImagee, Rangee, Vedette } from './vitrine/Rangee'
+import type { NomScene } from './vitrine/Scene'
+import { Volet } from './vitrine/Volet'
 
 /** La lecture en cours : l'onglet Bible actif, sinon le premier (sans en créer pendant l'affichage). */
 const lectureEnCours = () => {
@@ -29,46 +30,30 @@ const lectureEnCours = () => {
   return bible?.data ?? null
 }
 
-function Entree({
-  icone,
-  titre,
-  texte,
-  couleur,
-  onPress,
-}: {
-  icone: React.ComponentProps<typeof FeatherIcon>['name']
-  titre: string
-  texte: string
-  couleur: string
-  onPress: () => void
-}) {
-  return (
-    <LinkBox
-      onPress={onPress}
-      accessibilityLabel={titre}
-      className="flex-1 min-w-[220px] rounded-[22px] p-[18px] gap-[10px] bg-reverse"
-    >
-      <Box
-        className="w-[42px] h-[42px] rounded-[14px] items-center justify-center"
-        style={{ backgroundColor: `${couleur}1A` }}
-      >
-        <FeatherIcon name={icone} size={20} color={couleur} />
-      </Box>
-      <Text className="font-bold text-[15px]">{titre}</Text>
-      <Text className="text-grey text-[13px] leading-[19px]">{texte}</Text>
-    </LinkBox>
-  )
-}
+/** Une illustration par famille de livres (les livres canoniques seulement). */
+const FAMILLES: { index: number; scene: NomScene }[] = [
+  { index: 0, scene: 'desert' },
+  { index: 1, scene: 'ville' },
+  { index: 2, scene: 'nuit' },
+  { index: 3, scene: 'montagne' },
+  { index: 4, scene: 'riviere' },
+  { index: 7, scene: 'chemin' },
+  { index: 8, scene: 'mer' },
+  { index: 9, scene: 'rouleau' },
+  { index: 10, scene: 'lampe' },
+  { index: 11, scene: 'lumiere' },
+]
+
+export const sceneDuLivre = (numero: number): NomScene =>
+  FAMILLES.find(famille => sections[famille.index]?.data.some(book => book.Numero === numero))
+    ?.scene ?? 'rouleau'
 
 /**
- * Empreinte : la page d'accueil de la Bible. On n'arrive pas sur un passage déjà ouvert : on
- * reprend sa lecture, on cherche un passage, on choisit un livre, ou l'on entre par une autre
- * porte (deux lectures, écouter, vidéos, plans, verset du jour, chronologie).
+ * Empreinte : l'accueil de la Bible, en vitrine. La lecture en cours en grand, les portes
+ * d'entrée sur une rangée, puis les livres rangés par famille, chacune sur sa rangée.
  */
 export default function BibleAccueilScreen() {
   const { t } = useTranslation()
-  const theme = useTheme()
-  const titre = resolveFontFamily(theme.fontFamily.title)
   const pushRoute = usePushRouteOnce()
   const allerALaBible = useAllerALaBible()
   const ouvrirDansLaBible = useOuvrirDansLaBible()
@@ -76,173 +61,185 @@ export default function BibleAccueilScreen() {
   const setCompagnon = useSetAtom(compagnonAtom)
   useAtomValue(tabsAtomsAtom)
   const enCours = lectureEnCours()
-  const [livreChoisi, setLivreChoisi] = useState<number | null>(null)
-  const testaments = [
+  const [livreChoisi, setLivreChoisi] = useState<{
+    numero: number
+    nom: string
+    chapitres: number
+  } | null>(null)
+
+  const portes: { scene: NomScene; titre: string; texte: string; ouvrir: () => void }[] = [
+    ...(Platform.OS === 'web' && enCours
+      ? [
+          {
+            scene: 'rouleau' as NomScene,
+            titre: t('compagnon.twoReadings'),
+            texte: t('bibleAccueil.twoReadingsShort'),
+            ouvrir: () => {
+              setCompagnon({
+                type: 'bible',
+                book: enCours.selectedBook.Numero,
+                chapter: enCours.selectedChapter,
+                version: enCours.selectedVersion,
+              })
+              allerALaBible()
+            },
+          },
+        ]
+      : []),
     {
-      titre: t('audio.oldTestament'),
-      livres: sections.slice(0, 5).flatMap(section => section.data),
+      scene: 'nuit',
+      titre: t('audio.title'),
+      texte: t('bibleAccueil.listenShort'),
+      ouvrir: () => pushRoute({ pathname: '/audio' }),
     },
     {
-      titre: t('audio.newTestament'),
-      livres: sections.slice(7, 12).flatMap(section => section.data),
+      scene: 'montagne',
+      titre: t('videos.title'),
+      texte: t('bibleAccueil.videosShort'),
+      ouvrir: () => pushRoute({ pathname: '/(library)/passage-media' }),
+    },
+    {
+      scene: 'chemin',
+      titre: t('Plans'),
+      texte: t('bibleAccueil.plansShort'),
+      ouvrir: () => pushRoute({ pathname: '/plans' }),
+    },
+    {
+      scene: 'lampe',
+      titre: t('livres.title'),
+      texte: t('bibleAccueil.booksShort'),
+      ouvrir: () => pushRoute({ pathname: '/livres' }),
+    },
+    {
+      scene: 'aube',
+      titre: t('dailyReading.title'),
+      texte: t('bibleAccueil.verseShort'),
+      ouvrir: () => pushRoute({ pathname: '/daily-verse' }),
+    },
+    {
+      scene: 'ville',
+      titre: t('home.desktop.timeline'),
+      texte: t('bibleAccueil.timelineShort'),
+      ouvrir: () => pushRoute({ pathname: '/(library)/timeline-home' }),
     },
   ]
 
   return (
     <Box className="flex-1">
       <Header hasBackButton title={t('bibleAccueil.title')} />
-      <ScrollView contentContainerStyle={{ paddingBottom: 48 }}>
-        <Box className="px-[24px] gap-[28px] w-full max-w-[1300px] self-center">
-          <HStack className="flex-wrap gap-[16px]">
-            {enCours ? (
-              <LinkBox
-                onPress={allerALaBible}
-                accessibilityLabel={t('bibleAccueil.resume')}
-                className="flex-row items-center gap-[18px] rounded-[26px] p-[22px] flex-[2] min-w-[300px]"
-                style={{ backgroundColor: '#112A4D' }}
-              >
-                <Pochette book={enCours.selectedBook.Numero} taille={96} />
-                <Box className="flex-1 gap-[6px]">
-                  <Text className="text-[white] text-[12px] font-bold uppercase tracking-[1.5px] opacity-[0.7]">
-                    {t('bibleAccueil.resume')}
-                  </Text>
-                  <Text className="text-[white] text-[28px]" style={{ fontFamily: titre }}>
-                    {`${t(enCours.selectedBook.Nom)} ${enCours.selectedChapter}`}
-                  </Text>
-                  <Text className="text-[white] text-[13px] opacity-[0.75]">
-                    {enCours.selectedVersion}
-                  </Text>
-                </Box>
-                <FeatherIcon name="arrow-right" size={22} color="white" />
-              </LinkBox>
-            ) : null}
-            <LinkBox
-              onPress={() => ouvrirRecherche(true)}
-              accessibilityLabel={t('bibleAccueil.search')}
-              className="flex-row items-center gap-[14px] rounded-[26px] p-[22px] flex-1 min-w-[260px] bg-reverse"
-            >
-              <Box className="w-[48px] h-[48px] rounded-[16px] items-center justify-center bg-light-grey">
-                <FeatherIcon name="search" size={22} />
-              </Box>
-              <Box className="flex-1 gap-[4px]">
-                <Text className="font-bold text-[16px]">{t('bibleAccueil.search')}</Text>
-                <Text className="text-grey text-[13px]">{t('bibleAccueil.searchHint')}</Text>
-              </Box>
-            </LinkBox>
-          </HStack>
+      <ScrollView contentContainerStyle={{ paddingBottom: 56 }}>
+        <Box className="px-[24px] gap-[30px] w-full max-w-[1300px] self-center">
+          {enCours ? (
+            <Vedette
+              scene={sceneDuLivre(enCours.selectedBook.Numero)}
+              surtitre={t('bibleAccueil.resume')}
+              titre={`${t(enCours.selectedBook.Nom)} ${enCours.selectedChapter}`}
+              texte={enCours.selectedVersion}
+              action={t('bibleAccueil.read')}
+              onPress={allerALaBible}
+            />
+          ) : (
+            <Vedette
+              scene="chemin"
+              surtitre={t('bibleAccueil.start')}
+              titre={t('bibleAccueil.startTitle')}
+              texte={t('bibleAccueil.startText')}
+              action={t('bibleAccueil.read')}
+              onPress={() => ouvrirDansLaBible({ book: 43, chapter: 1 })}
+            />
+          )}
 
-          <HStack className="flex-wrap gap-[14px]">
-            {Platform.OS === 'web' && enCours ? (
-              <Entree
-                icone="columns"
-                titre={t('compagnon.twoReadings')}
-                texte={t('bibleAccueil.twoReadingsText')}
-                couleur="#1D4ED8"
-                onPress={() => {
-                  setCompagnon({
-                    type: 'bible',
-                    book: enCours.selectedBook.Numero,
-                    chapter: enCours.selectedChapter,
-                    version: enCours.selectedVersion,
-                  })
-                  allerALaBible()
-                }}
+          <LinkBox
+            onPress={() => ouvrirRecherche(true)}
+            accessibilityLabel={t('bibleAccueil.search')}
+            className="flex-row items-center gap-[12px] rounded-full px-[18px] h-[52px] bg-reverse"
+          >
+            <FeatherIcon name="search" size={18} color="grey" />
+            <Text className="text-grey text-[14px] flex-1">{t('bibleAccueil.searchHint')}</Text>
+          </LinkBox>
+
+          <Rangee titre={t('bibleAccueil.doors')}>
+            {portes.map(porte => (
+              <CarteImagee
+                key={porte.titre}
+                scene={porte.scene}
+                titre={porte.titre}
+                sousTitre={porte.texte}
+                largeur={210}
+                hauteur={124}
+                onPress={porte.ouvrir}
               />
-            ) : null}
-            <Entree
-              icone="headphones"
-              titre={t('audio.title')}
-              texte={t('bibleAccueil.listenText')}
-              couleur="#C2410C"
-              onPress={() => pushRoute({ pathname: '/audio' })}
-            />
-            <Entree
-              icone="play-circle"
-              titre={t('videos.title')}
-              texte={t('bibleAccueil.videosText')}
-              couleur="#7C3AED"
-              onPress={() => pushRoute({ pathname: '/(library)/passage-media' })}
-            />
-            <Entree
-              icone="calendar"
-              titre={t('Plans')}
-              texte={t('bibleAccueil.plansText')}
-              couleur="#0F766E"
-              onPress={() => pushRoute({ pathname: '/plans' })}
-            />
-            <Entree
-              icone="book"
-              titre={t('livres.title')}
-              texte={t('livres.intro')}
-              couleur="#7A2E12"
-              onPress={() => pushRoute({ pathname: '/livres' })}
-            />
-            <Entree
-              icone="sun"
-              titre={t('dailyReading.title')}
-              texte={t('bibleAccueil.verseText')}
-              couleur="#A16207"
-              onPress={() => pushRoute({ pathname: '/daily-verse' })}
-            />
-            <Entree
-              icone="clock"
-              titre={t('home.desktop.timeline')}
-              texte={t('bibleAccueil.timelineText')}
-              couleur="#334155"
-              onPress={() => pushRoute({ pathname: '/(library)/timeline-home' })}
-            />
-          </HStack>
+            ))}
+          </Rangee>
 
-          {testaments.map(testament => (
-            <Box key={testament.titre} className="gap-[14px]">
-              <Text className="text-[20px]" style={{ fontFamily: titre }}>
-                {testament.titre}
-              </Text>
-              <Box className="flex-row flex-wrap gap-[10px]">
-                {testament.livres.map(book => (
-                  <LinkBox
+          {FAMILLES.map(({ index, scene }) => {
+            const section = sections[index]
+            if (!section) return null
+            return (
+              <Rangee
+                key={index}
+                titre={t(section.title)}
+                sousTitre={t('bibleAccueil.booksCount', { count: section.data.length })}
+              >
+                {section.data.map(book => (
+                  <CarteImagee
                     key={book.Numero}
-                    onPress={() => setLivreChoisi(livreChoisi === book.Numero ? null : book.Numero)}
-                    accessibilityLabel={t(book.Nom)}
-                    accessibilityState={{ expanded: livreChoisi === book.Numero }}
-                  >
-                    <Pochette book={book.Numero} taille={110} />
-                  </LinkBox>
-                ))}
-              </Box>
-              {livreChoisi && testament.livres.some(book => book.Numero === livreChoisi) ? (
-                <Box className="rounded-[20px] p-[18px] bg-reverse gap-[12px]">
-                  <Text className="font-bold text-[15px]">
-                    {t('audio.chooseChapter', {
-                      book: t(
-                        testament.livres.find(book => book.Numero === livreChoisi)?.Nom ?? ''
-                      ),
-                    })}
-                  </Text>
-                  <Box className="flex-row flex-wrap gap-[8px]">
-                    {Array.from(
-                      {
-                        length:
-                          testament.livres.find(book => book.Numero === livreChoisi)?.Chapitres ??
-                          0,
-                      },
-                      (_, i) => i + 1
-                    ).map(chapter => (
-                      <LinkBox
-                        key={chapter}
-                        onPress={() => ouvrirDansLaBible({ book: livreChoisi, chapter })}
-                        className="w-[44px] h-[44px] rounded-[12px] items-center justify-center bg-light-grey"
+                    scene={scene}
+                    titre={t(book.Nom)}
+                    sousTitre={t('bibleAccueil.chaptersCount', { count: book.Chapitres })}
+                    largeur={176}
+                    hauteur={112}
+                    onPress={() =>
+                      setLivreChoisi({
+                        numero: book.Numero,
+                        nom: t(book.Nom),
+                        chapitres: book.Chapitres,
+                      })
+                    }
+                    titreSurImage
+                    surImage={
+                      <Text
+                        className="text-[white]"
+                        style={{
+                          fontFamily: police(POLICES.titre),
+                          fontSize: 18,
+                          textShadowColor: 'rgba(0,0,0,0.45)',
+                          textShadowRadius: 8,
+                        }}
+                        numberOfLines={2}
                       >
-                        <Text className="text-[14px] font-bold">{chapter}</Text>
-                      </LinkBox>
-                    ))}
-                  </Box>
-                </Box>
-              ) : null}
-            </Box>
-          ))}
+                        {t(book.Nom)}
+                      </Text>
+                    }
+                  />
+                ))}
+              </Rangee>
+            )
+          })}
         </Box>
       </ScrollView>
+
+      {livreChoisi ? (
+        <Volet
+          titre={t('audio.chooseChapter', { book: livreChoisi.nom })}
+          onFermer={() => setLivreChoisi(null)}
+        >
+          <HStack className="flex-wrap gap-[8px]">
+            {Array.from({ length: livreChoisi.chapitres }, (_, i) => i + 1).map(chapter => (
+              <LinkBox
+                key={chapter}
+                onPress={() => {
+                  setLivreChoisi(null)
+                  ouvrirDansLaBible({ book: livreChoisi.numero, chapter })
+                }}
+                className="w-[48px] h-[48px] rounded-[14px] items-center justify-center bg-light-grey"
+              >
+                <Text style={{ fontFamily: police(POLICES.points), fontSize: 18 }}>{chapter}</Text>
+              </LinkBox>
+            ))}
+          </HStack>
+        </Volet>
+      ) : null}
     </Box>
   )
 }

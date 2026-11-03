@@ -1,5 +1,6 @@
-import { useQuery } from '@tanstack/react-query'
+import { useQuery, type QueryClient } from '@tanstack/react-query'
 import { Platform } from 'react-native'
+import type { NomScene } from '~features/empreinte/vitrine/Scene'
 import atomWithAsyncStorage from '~helpers/atomWithAsyncStorage'
 
 /**
@@ -15,6 +16,7 @@ export type FicheLivre = {
   langue: 'fr' | 'en'
   theme: string
   resume: string
+  scene: NomScene
 }
 
 export type PisteLivre = {
@@ -82,6 +84,16 @@ export const useChapitre = (id: string, numero: number) =>
     staleTime: Infinity,
     retry: 1,
   })
+
+/** Charge la partie suivante pendant qu'on lit celle-ci : le passage est immédiat. */
+export const prechargerChapitre = (client: QueryClient, id: string, numero: number) =>
+  adresseLivres()
+    ? client.prefetchQuery({
+        queryKey: ['livre', id, numero],
+        queryFn: () => lire<Chapitre>(`${id}/${numero}`),
+        staleTime: Infinity,
+      })
+    : undefined
 
 /** Où chacun en est dans chaque livre (gardé dans la sauvegarde du compte). */
 export const progressionLivresAtom = atomWithAsyncStorage<Record<string, { chapitre: number }>>(
