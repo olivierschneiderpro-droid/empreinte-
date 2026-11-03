@@ -7,10 +7,12 @@ La feature Audio offre deux modes de lecture audio pour la Bible : Text-to-Speec
 ## Fonctionnalités principales
 
 ### Deux modes de lecture
+
 - **Mode TTS** : Synthèse vocale native avec Expo Speech
 - **Mode URL** : Lecture de fichiers audio MP3 distants
 
 ### Contrôles avancés
+
 - Lecture/Pause avec synchronisation texte
 - Contrôle de vitesse (0.5x à 2x)
 - Répétition (verset, chapitre, livre)
@@ -19,6 +21,7 @@ La feature Audio offre deux modes de lecture audio pour la Bible : Text-to-Speec
 - Mode plein écran
 
 ### Synchronisation
+
 - Suivi du verset en cours de lecture
 - Navigation automatique entre chapitres
 - Défilement automatique du texte
@@ -48,12 +51,12 @@ audio/
 
 ```typescript
 interface AudioSettings {
-  speed: number           // 0.5 à 2.0
-  voice?: string          // ID de la voix TTS
-  pitch: number          // 0.5 à 2.0
-  repeat: RepeatMode     // 'verse' | 'chapter' | 'book'
-  sleepTimer?: number    // Minutes avant arrêt
-  isExpanded: boolean    // Mode plein écran
+  speed: number // 0.5 à 2.0
+  voice?: string // ID de la voix TTS
+  pitch: number // 0.5 à 2.0
+  repeat: RepeatMode // 'verse' | 'chapter' | 'book'
+  sleepTimer?: number // Minutes avant arrêt
+  isExpanded: boolean // Mode plein écran
 }
 
 type RepeatMode = 'verse' | 'chapter' | 'book' | 'off'
@@ -74,7 +77,7 @@ const speak = async (text: string, options: SpeechOptions) => {
     rate: settings.speed,
     voice: settings.voice,
     onDone: () => nextVerse(),
-    onError: (error) => handleError(error)
+    onError: error => handleError(error),
   })
 }
 ```
@@ -84,10 +87,11 @@ const speak = async (text: string, options: SpeechOptions) => {
 ```typescript
 // Hack pour activer l'audio en mode silencieux
 const enableAudioInSilentMode = async () => {
-  const { sound } = await Audio.Sound.createAsync(
-    require('./silence.mp3'),
-    { shouldPlay: true, isLooping: true, volume: 0 }
-  )
+  const { sound } = await Audio.Sound.createAsync(require('./silence.mp3'), {
+    shouldPlay: true,
+    isLooping: true,
+    volume: 0,
+  })
   // Garde la référence pour cleanup
 }
 ```
@@ -97,7 +101,7 @@ const enableAudioInSilentMode = async () => {
 ```typescript
 const playNextVerse = () => {
   const nextVerse = getNextVerse(currentVerse)
-  
+
   if (!nextVerse && settings.repeat === 'chapter') {
     // Recommencer le chapitre
     playVerse(firstVerseOfChapter)
@@ -124,8 +128,8 @@ await TrackPlayer.setupPlayer({
     Capability.Pause,
     Capability.SkipToNext,
     Capability.SkipToPrevious,
-    Capability.SeekTo
-  ]
+    Capability.SeekTo,
+  ],
 })
 
 // Ajout des pistes
@@ -133,7 +137,7 @@ const tracks = chapters.map(chapter => ({
   id: `${book}-${chapter}`,
   url: getAudioUrl(book, chapter, version),
   title: `${bookName} ${chapter}`,
-  artist: 'Bible Audio'
+  artist: 'Bible Audio',
 }))
 ```
 
@@ -141,10 +145,10 @@ const tracks = chapters.map(chapter => ({
 
 ```typescript
 // Listener de progression
-TrackPlayer.addEventListener(Event.PlaybackProgress, (data) => {
+TrackPlayer.addEventListener(Event.PlaybackProgress, data => {
   const currentTime = data.position
   const currentVerse = findVerseAtTime(currentTime, timestamps)
-  
+
   if (currentVerse !== activeVerse) {
     highlightVerse(currentVerse)
     scrollToVerse(currentVerse)
@@ -158,10 +162,8 @@ TrackPlayer.addEventListener(Event.PlaybackProgress, (data) => {
 // Charger tous les chapitres d'un livre
 const loadBookAudio = async (book: number) => {
   const chapters = getBookChapters(book)
-  const tracks = await Promise.all(
-    chapters.map(ch => createTrack(book, ch))
-  )
-  
+  const tracks = await Promise.all(chapters.map(ch => createTrack(book, ch)))
+
   await TrackPlayer.reset()
   await TrackPlayer.add(tracks)
   await TrackPlayer.skip(currentChapter - 1)
@@ -204,14 +206,17 @@ const loadBookAudio = async (book: number) => {
 
 ```typescript
 const startSleepTimer = (minutes: number) => {
-  const timer = setTimeout(() => {
-    pauseAudio()
-    showNotification('Audio arrêté')
-  }, minutes * 60 * 1000)
-  
+  const timer = setTimeout(
+    () => {
+      pauseAudio()
+      showNotification('Audio arrêté')
+    },
+    minutes * 60 * 1000
+  )
+
   setSleepTimer(timer)
   setRemainingTime(minutes * 60)
-  
+
   // Update countdown
   const countdown = setInterval(() => {
     setRemainingTime(prev => {
@@ -230,9 +235,9 @@ const startSleepTimer = (minutes: number) => {
 ```typescript
 enum RepeatMode {
   OFF = 'off',
-  VERSE = 'verse',      // Répète le verset actuel
-  CHAPTER = 'chapter',  // Répète le chapitre
-  BOOK = 'book'        // Continue dans le livre
+  VERSE = 'verse', // Répète le verset actuel
+  CHAPTER = 'chapter', // Répète le chapitre
+  BOOK = 'book', // Continue dans le livre
 }
 
 const handleRepeat = () => {
@@ -259,10 +264,7 @@ const handleRepeat = () => {
 ```typescript
 // Avec AsyncStorage
 const saveAudioSettings = async (settings: AudioSettings) => {
-  await AsyncStorage.setItem(
-    '@audio_settings',
-    JSON.stringify(settings)
-  )
+  await AsyncStorage.setItem('@audio_settings', JSON.stringify(settings))
 }
 
 // Restauration au démarrage
@@ -280,12 +282,12 @@ const audioTabAtom = atom<string | null>(null)
 
 const activateAudio = (tabId: string) => {
   const currentActive = get(audioTabAtom)
-  
+
   if (currentActive && currentActive !== tabId) {
     // Stopper l'audio de l'ancien onglet
     stopAudio(currentActive)
   }
-  
+
   set(audioTabAtom, tabId)
 }
 ```
@@ -293,12 +295,14 @@ const activateAudio = (tabId: string) => {
 ## Performance
 
 ### Optimisations
+
 - Préchargement des voix TTS au démarrage
 - Cache des URLs audio
 - Debounce sur les changements de vitesse
 - Cleanup des ressources audio inactives
 
 ### Gestion mémoire
+
 ```typescript
 // Cleanup
 useEffect(() => {
@@ -313,6 +317,7 @@ useEffect(() => {
 ## Configuration
 
 ### Sources audio
+
 ```typescript
 const AUDIO_SOURCES = {
   LSG: 'https://audio.bible.com/fr/LSG/',
@@ -322,6 +327,7 @@ const AUDIO_SOURCES = {
 ```
 
 ### Voix TTS disponibles
+
 - Détection automatique des voix système
 - Filtrage par langue
 - Voix par défaut selon la plateforme
@@ -329,6 +335,7 @@ const AUDIO_SOURCES = {
 ## Points d'extension
 
 Pour ajouter de nouvelles fonctionnalités :
+
 1. Bookmarks audio avec timestamps
 2. Vitesse variable par section
 3. Égaliseur audio

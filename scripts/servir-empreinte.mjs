@@ -17,8 +17,9 @@ import { dirname, extname, join, normalize, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { Readable } from 'node:stream'
 import { spawn, execFileSync } from 'node:child_process'
-import { existsSync, mkdirSync } from 'node:fs'
+import { existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { homedir } from 'node:os'
+import { creerLivres } from './livres-empreinte.mjs'
 
 const racine = resolve(process.argv[2] ?? 'empreinte-web')
 const site = resolve(
@@ -43,6 +44,17 @@ const PORT_COMPTES = 8090
 const COMPTES = `http://127.0.0.1:${PORT_COMPTES}`
 const MIGRATIONS = join(dirname(fileURLToPath(import.meta.url)), '..', 'comptes', 'pb_migrations')
 let comptesPrets = false
+
+// Livres chrétiens du domaine public (Gutenberg + LibriVox), mis en cache sur le HP.
+const livres = creerLivres({
+  catalogue: JSON.parse(
+    readFileSync(
+      join(dirname(fileURLToPath(import.meta.url)), '..', 'app/apps/expo/src/features/livres/catalogue.json'),
+      'utf8'
+    )
+  ),
+  dossier: process.env.EMPREINTE_LIVRES ?? join(homedir(), 'empreinte-livres'),
+})
 const installerPocketBase = async () => {
   const binaire = join(DOSSIER_COMPTES, 'pocketbase')
   if (existsSync(binaire)) return binaire
@@ -256,10 +268,15 @@ createServer((req, res) => {
   // /comptes/… → la base de comptes Empreinte. Sa console d'administration (/comptes/_/)
   // n'est ouverte que depuis le serveur lui-même.
   if ((req.url ?? '').startsWith('/comptes/')) {
-    const local = ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(req.socket.remoteAddress ?? '')
+    // Derrière un relais HTTPS (Caddy sur le VPS), toute demande arrive de 127.0.0.1 :
+    // une demande relayée (X-Forwarded-For) n'est donc jamais considérée comme locale.
+    const local =
+      ['127.0.0.1', '::1', '::ffff:127.0.0.1'].includes(req.socket.remoteAddress ?? '') &&
+      !req.headers['x-forwarded-for']
     if ((req.url ?? '').startsWith('/comptes/_/') && !local) return void res.writeHead(403).end()
     return void relayer(req, res, COMPTES + req.url.slice('/comptes'.length))
   }
+  if ((req.url ?? '').startsWith('/livres/api/')) return void livres(req, res)
   // /youversion/v1/… → api.youversion.com/v1/… avec la clé de l'app.
   if ((req.url ?? '').startsWith('/youversion/')) {
     if (!CLE_YOUVERSION) return void res.writeHead(503).end('Clé YouVersion absente (YOUVERSION_KEY).')
@@ -304,7 +321,8 @@ createServer((req, res) => {
   const introuvable = fichier(join(site, '404.html')) ?? fichier(join(site, 'index.html'))
   if (!introuvable) return void res.writeHead(404).end()
   envoyer(req, res, introuvable, false, 404)
-}).listen(port, '0.0.0.0', () => {
+// HOTE=127.0.0.1 sur le VPS : seul Caddy (HTTPS) parle au serveur.
+}).listen(port, process.env.HOTE ?? '0.0.0.0', () => {
   // Mise à jour automatique : si ce script change (git pull), on s'arrête et systemd
   // relance aussitôt la nouvelle version (Restart=always).
   watchFile(new URL(import.meta.url), { interval: 5000 }, () => {
@@ -314,6 +332,6 @@ createServer((req, res) => {
   void preparerDossier(racine)
   void lancerComptes()
   console.log(
-    `Empreinte sur http://0.0.0.0:${port} : site ${site}, app ${racine} (sous /app), API relayée : ${API}`
+    `Empreinte sur http://${process.env.HOTE ?? "0.0.0.0"}:${port} : site ${site}, app ${racine} (sous /app), API relayée : ${API}`
   )
 })

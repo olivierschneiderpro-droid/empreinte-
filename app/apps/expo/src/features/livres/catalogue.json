@@ -1,0 +1,136 @@
+{
+  "livres": [
+    {
+      "id": "pensees-pascal",
+      "titre": "Pensées",
+      "auteur": "Blaise Pascal",
+      "auteurCle": "pascal",
+      "annee": 1670,
+      "langue": "fr",
+      "theme": "apologetique",
+      "resume": "Les fragments d'une défense de la foi chrétienne : la misère et la grandeur de l'homme, le pari, le Dieu caché.",
+      "recherche": "pensées pascal",
+      "librivox": "Pensées"
+    },
+    {
+      "id": "imitation-fr",
+      "titre": "L'Imitation de Jésus-Christ",
+      "auteur": "Thomas a Kempis (attribué)",
+      "auteurCle": "thomas",
+      "annee": 1427,
+      "langue": "fr",
+      "theme": "vie-interieure",
+      "resume": "Quatre livres de méditations brèves sur l'humilité, la vie intérieure et la suite du Christ.",
+      "recherche": "imitation jésus-christ",
+      "librivox": "L'Imitation de Jésus-Christ"
+    },
+    {
+      "id": "vie-devote",
+      "titre": "Introduction à la vie dévote",
+      "auteur": "François de Sales",
+      "auteurCle": "sales",
+      "annee": 1609,
+      "langue": "fr",
+      "theme": "vie-interieure",
+      "resume": "Un guide pratique de la vie chrétienne au quotidien, écrit pour ceux qui vivent dans le monde.",
+      "recherche": "introduction à la vie dévote",
+      "librivox": "Introduction à la vie dévote"
+    },
+    {
+      "id": "confessions-fr",
+      "titre": "Les Confessions",
+      "auteur": "Augustin d'Hippone",
+      "auteurCle": "augustin",
+      "annee": 400,
+      "langue": "fr",
+      "theme": "temoignage",
+      "resume": "Le récit d'une conversion, adressé à Dieu : « Tu nous as faits pour toi, et notre cœur est sans repos tant qu'il ne repose en toi. »",
+      "recherche": "confessions augustin",
+      "librivox": "Les Confessions"
+    },
+    {
+      "id": "pilgrims-progress",
+      "titre": "The Pilgrim's Progress",
+      "auteur": "John Bunyan",
+      "auteurCle": "bunyan",
+      "annee": 1678,
+      "langue": "en",
+      "theme": "recit",
+      "resume": "Le voyage de Chrétien, de la Cité de la destruction à la Cité céleste : l'allégorie de la vie chrétienne la plus lue.",
+      "recherche": "pilgrim's progress bunyan",
+      "librivox": "The Pilgrim's Progress"
+    },
+    {
+      "id": "imitation-en",
+      "titre": "The Imitation of Christ",
+      "auteur": "Thomas a Kempis",
+      "auteurCle": "kempis",
+      "annee": 1427,
+      "langue": "en",
+      "theme": "vie-interieure",
+      "resume": "Quatre livres de méditations brèves sur l'humilité, la vie intérieure et la suite du Christ.",
+      "recherche": "imitation of christ kempis",
+      "librivox": "The Imitation of Christ"
+    },
+    {
+      "id": "confessions-en",
+      "titre": "The Confessions",
+      "auteur": "Augustine of Hippo",
+      "auteurCle": "augustine",
+      "annee": 400,
+      "langue": "en",
+      "theme": "temoignage",
+      "resume": "Le récit d'une conversion, adressé à Dieu, dans la traduction anglaise classique.",
+      "recherche": "confessions augustine",
+      "librivox": "The Confessions of Saint Augustine"
+    },
+    {
+      "id": "presence-of-god",
+      "titre": "The Practice of the Presence of God",
+      "auteur": "Brother Lawrence",
+      "auteurCle": "lawrence",
+      "annee": 1692,
+      "langue": "en",
+      "theme": "priere",
+      "resume": "Les entretiens et lettres d'un frère cuisinier qui apprit à vivre chaque instant avec Dieu.",
+      "recherche": "practice of the presence of god",
+      "librivox": "The Practice of the Presence of God"
+    },
+    {
+      "id": "all-of-grace",
+      "titre": "All of Grace",
+      "auteur": "Charles H. Spurgeon",
+      "auteurCle": "spurgeon",
+      "annee": 1886,
+      "langue": "en",
+      "theme": "evangile",
+      "resume": "Une explication simple et chaleureuse du salut par grâce, écrite pour ceux qui cherchent.",
+      "recherche": "all of grace spurgeon",
+      "librivox": "All of Grace"
+    },
+    {
+      "id": "abide-in-christ",
+      "titre": "Abide in Christ",
+      "auteur": "Andrew Murray",
+      "auteurCle": "murray",
+      "annee": 1864,
+      "langue": "en",
+      "theme": "priere",
+      "resume": "Trente et une méditations sur Jean 15 : demeurer en Christ, jour après jour.",
+      "recherche": "abide in christ murray",
+      "librivox": "Abide in Christ"
+    },
+    {
+      "id": "orthodoxy",
+      "titre": "Orthodoxy",
+      "auteur": "G. K. Chesterton",
+      "auteurCle": "chesterton",
+      "annee": 1908,
+      "langue": "en",
+      "theme": "apologetique",
+      "resume": "Comment un sceptique découvrit que la foi chrétienne répondait mieux que tout à l'énigme du monde.",
+      "recherche": "orthodoxy chesterton",
+      "librivox": "Orthodoxy"
+    }
+  ]
+}

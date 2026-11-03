@@ -7,12 +7,14 @@ import { indexOngletBible } from './ouvrirDansLaBible'
  * Empreinte · Espace d'étude : ce qui s'ouvre à côté de la Bible, sans la remplacer.
  * - une deuxième lecture indépendante (sa propre barre : livre, chapitre, version) ;
  * - une vidéo, qui se regarde tranquillement à côté du texte ;
- * - « Autour du passage » : ce qui accompagne le chapitre lu (vidéos, écoute, plans).
+ * - « Autour du passage » : ce qui accompagne le chapitre lu (vidéos, écoute, plans) ;
+ * - un livre chrétien, lu à côté de l'Écriture.
  */
 export type Compagnon =
   | { type: 'bible'; book: number; chapter: number; version: string }
   | { type: 'video'; id: string }
   | { type: 'autour' }
+  | { type: 'livre'; id: string }
 
 /**
  * Chaque onglet Bible garde son propre compagnon : un onglet « Romains + Galates », un autre

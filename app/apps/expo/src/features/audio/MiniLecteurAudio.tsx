@@ -14,8 +14,9 @@ export default function MiniLecteurAudio() {
   const etat = useAtomValue(etatAudioAtom)
   const pathname = usePathname()
   const router = useRouter()
-  if (!etat.piste || pathname === '/audio') return null
-  const { piste } = etat
+  const { piste, libre } = etat
+  const pisteLibre = libre?.pistes[libre.index]
+  if ((!piste && !pisteLibre) || (piste && pathname === '/audio')) return null
   return (
     <Box
       className="absolute right-[24px] bottom-[24px] rounded-[20px] p-[10px] pr-[14px]"
@@ -29,14 +30,24 @@ export default function MiniLecteurAudio() {
     >
       <HStack className="items-center gap-[12px]">
         <LinkBox
-          onPress={() => router.push('/audio' as never)}
-          accessibilityLabel={t('audio.title')}
+          onPress={() => router.push((pisteLibre?.retour ?? '/audio') as never)}
+          accessibilityLabel={pisteLibre ? pisteLibre.sousTitre : t('audio.title')}
         >
-          <Pochette book={piste.book} chapter={piste.chapter} taille={52} />
+          {piste ? (
+            <Pochette book={piste.book} chapter={piste.chapter} taille={52} />
+          ) : (
+            <Box className="w-[52px] h-[52px] rounded-[14px] items-center justify-center bg-[#C2410C]">
+              <FeatherIcon name="book-open" size={22} color="white" />
+            </Box>
+          )}
         </LinkBox>
-        <Box className="gap-[2px] min-w-[120px]">
-          <Text className="text-[white] font-bold text-[14px]">{`${livre(piste.book)?.Nom} ${piste.chapter}`}</Text>
-          <Text className="text-[white] text-[11px] opacity-[0.7]">{t('audio.title')}</Text>
+        <Box className="gap-[2px] min-w-[120px] max-w-[220px]">
+          <Text className="text-[white] font-bold text-[14px]" numberOfLines={1}>
+            {piste ? `${livre(piste.book)?.Nom} ${piste.chapter}` : pisteLibre?.titre}
+          </Text>
+          <Text className="text-[white] text-[11px] opacity-[0.7]" numberOfLines={1}>
+            {piste ? t('audio.title') : pisteLibre?.sousTitre}
+          </Text>
         </Box>
         <LinkBox
           onPress={basculer}
