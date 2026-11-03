@@ -29,6 +29,7 @@ export type Livre = {
   id: string
   chapitres: { titre: string }[]
   audio: PisteLivre[]
+  audioEnCours?: boolean
   source: { gutenberg: number; url: string; titre: string; auteurs: string[] }
 }
 
@@ -69,6 +70,8 @@ export const useLivre = (id: string) =>
     enabled: Boolean(id && adresseLivres()),
     staleTime: Infinity,
     retry: 1,
+    // La voix (LibriVox) arrive après le texte : on redemande tant qu'elle est cherchée.
+    refetchInterval: query => (query.state.data?.audioEnCours ? 8000 : false),
   })
 
 export const useChapitre = (id: string, numero: number) =>

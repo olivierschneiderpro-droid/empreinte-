@@ -6,8 +6,7 @@ import { LinkBox } from '~common/Link'
 import Box, { HStack } from '~common/ui/Box'
 import { FeatherIcon } from '~common/ui/Icon'
 import Text from '~common/ui/Text'
-import { resolveFontFamily } from '~themes/styleValues'
-import { useTheme } from '~themes/ThemeProvider'
+import TexteLivre from './TexteLivre'
 import { progressionLivresAtom, titreChapitre, useChapitre, useLivre } from './livres'
 
 function Bouton({
@@ -41,7 +40,6 @@ function Bouton({
  */
 export default function LectureLivre({ id, compact }: { id: string; compact?: boolean }) {
   const { t } = useTranslation()
-  const theme = useTheme()
   const [progression, setProgression] = useAtom(progressionLivresAtom)
   const [sommaire, setSommaire] = useState(false)
   const livre = useLivre(id)
@@ -113,26 +111,12 @@ export default function LectureLivre({ id, compact }: { id: string; compact?: bo
             maxWidth: 760,
           }}
         >
-          <Text
-            className="text-[24px]"
-            style={{ fontFamily: resolveFontFamily(theme.fontFamily.title) }}
-          >
-            {titre}
-          </Text>
           {chapitre.isError ? (
             <Text className="text-grey">{t('livres.unavailable')}</Text>
           ) : !chapitre.data ? (
             <Text className="text-grey">…</Text>
           ) : (
-            chapitre.data.paragraphes.map((paragraphe, n) => (
-              <Text
-                key={n}
-                className="text-[17px] leading-[30px]"
-                style={{ fontFamily: resolveFontFamily(theme.fontFamily.paragraph) }}
-              >
-                {paragraphe}
-              </Text>
-            ))
+            <TexteLivre titre={titre} paragraphes={chapitre.data.paragraphes} />
           )}
           {chapitre.data && numero < total - 1 ? (
             <LinkBox

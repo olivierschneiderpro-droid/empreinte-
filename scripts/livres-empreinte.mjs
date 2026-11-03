@@ -120,27 +120,68 @@ export const decouperGutenberg = (html) => {
 const normaliser = (texte) =>
   (texte ?? "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
-const json = async (url, fetchImpl) => {
-  const reponse = await fetchImpl(url, { headers: AGENT });
+const json = async (url, fetchImpl, ms = 25000) => {
+  const reponse = await fetchImpl(url, {
+    headers: AGENT,
+    signal: AbortSignal.timeout(ms),
+  });
   if (!reponse.ok) throw new Error(`${new URL(url).host} : ${reponse.status}`);
   return reponse.json();
 };
 
+const avecHtml = (livre) =>
+  Object.keys(livre.formats ?? {}).some((type) => type.startsWith("text/html"));
+
+/**
+ * Secours quand Gutendex ne répond pas : la recherche officielle de Gutenberg (OPDS).
+ * On garde le premier résultat ; la recherche porte sur le titre et l'auteur.
+ */
+const chercherOpds = async (fiche, fetchImpl) => {
+  const reponse = await fetchImpl(
+    `https://www.gutenberg.org/ebooks/search.opds/?query=${encodeURIComponent(fiche.recherche)}`,
+    { headers: AGENT, signal: AbortSignal.timeout(25000) },
+  );
+  if (!reponse.ok) return undefined;
+  const xml = await reponse.text();
+  const entree = xml
+    .split("<entry>")
+    .slice(1)
+    .find((bloc) => /\/ebooks\/\d+</.test(bloc));
+  if (!entree) return undefined;
+  const id = Number(entree.match(/\/ebooks\/(\d+)</)[1]);
+  const titre = texteSeul(
+    entree.match(/<title[^>]*>(.*?)<\/title>/s)?.[1] ?? "",
+  );
+  return {
+    id,
+    title: titre,
+    authors: [],
+    formats: {
+      "text/html": `https://www.gutenberg.org/ebooks/${id}.html.images`,
+    },
+  };
+};
+
 /** Le livre Gutenberg qui correspond à la fiche : bonne langue, bon auteur, en HTML. */
 const trouverGutenberg = async (fiche, fetchImpl) => {
-  if (fiche.gutenberg) return json(`${GUTENDEX}/${fiche.gutenberg}`, fetchImpl);
-  const { results = [] } = await json(
-    `${GUTENDEX}?languages=${fiche.langue}&search=${encodeURIComponent(fiche.recherche)}`,
-    fetchImpl,
-  );
-  const auteur = normaliser(fiche.auteurCle);
-  return results.find(
-    (livre) =>
-      livre.authors?.some((a) => normaliser(a.name).includes(auteur)) &&
-      Object.keys(livre.formats ?? {}).some((type) =>
-        type.startsWith("text/html"),
-      ),
-  );
+  try {
+    if (fiche.gutenberg)
+      return await json(`${GUTENDEX}/${fiche.gutenberg}`, fetchImpl);
+    const { results = [] } = await json(
+      `${GUTENDEX}?languages=${fiche.langue}&search=${encodeURIComponent(fiche.recherche)}`,
+      fetchImpl,
+    );
+    const auteur = normaliser(fiche.auteurCle);
+    const trouve = results.find(
+      (livre) =>
+        livre.authors?.some((a) => normaliser(a.name).includes(auteur)) &&
+        avecHtml(livre),
+    );
+    if (trouve) return trouve;
+  } catch {
+    // Gutendex lent ou hors service : on passe par la recherche de Gutenberg.
+  }
+  return chercherOpds(fiche, fetchImpl);
 };
 
 /** La version LibriVox (même langue), chapitre par chapitre. Facultative. */
@@ -150,12 +191,12 @@ const trouverLibrivox = async (fiche, fetchImpl) => {
     const { books = [] } = await json(
       `${LIBRIVOX}/?format=json&extended=1&title=${encodeURIComponent(`^${fiche.librivox}`)}`,
       fetchImpl,
+      60000,
     );
     const langue = { fr: "french", en: "english" }[fiche.langue];
-    const livre =
-      books.find(
-        (b) => normaliser(b.language) === langue && b.sections?.length,
-      ) ?? undefined;
+    const livre = books.find(
+      (b) => normaliser(b.language) === langue && b.sections?.length,
+    );
     return (livre?.sections ?? [])
       .filter((section) => section.listen_url)
       .map((section) => ({
@@ -173,36 +214,63 @@ const trouverLibrivox = async (fiche, fetchImpl) => {
 export const creerLivres = ({ catalogue, dossier, fetchImpl = fetch }) => {
   const fiches = new Map(catalogue.livres.map((fiche) => [fiche.id, fiche]));
   const enCours = new Map();
+  const audioEnCours = new Set();
   mkdirSync(dossier, { recursive: true });
+
+  // La voix (LibriVox, souvent lent) se cherche à part : le texte n'attend pas.
+  const chercherAudio = (livre) => {
+    if (livre.audioCherche || audioEnCours.has(livre.id)) return;
+    audioEnCours.add(livre.id);
+    void trouverLibrivox(fiches.get(livre.id), fetchImpl)
+      .then(async (audio) => {
+        livre.audio = audio;
+        livre.audioCherche = true;
+        await writeFile(
+          join(dossier, `${livre.id}.json`),
+          JSON.stringify(livre),
+        );
+      })
+      .catch(() => {})
+      .finally(() => audioEnCours.delete(livre.id));
+  };
 
   const charger = (id) => {
     if (enCours.has(id)) return enCours.get(id);
     const promesse = (async () => {
       const fichier = join(dossier, `${id}.json`);
+      let livre;
       if (existsSync(fichier))
-        return JSON.parse(await readFile(fichier, "utf8"));
-      const fiche = fiches.get(id);
-      const gutenberg = await trouverGutenberg(fiche, fetchImpl);
-      if (!gutenberg)
-        throw new Error("livre introuvable sur le Projet Gutenberg");
-      const adresse = Object.entries(gutenberg.formats).find(([type]) =>
-        type.startsWith("text/html"),
-      )[1];
-      const page = await fetchImpl(adresse, { headers: AGENT });
-      if (!page.ok) throw new Error(`gutenberg.org : ${page.status}`);
-      const livre = {
-        id,
-        chapitres: decouperGutenberg(await page.text()),
-        audio: await trouverLibrivox(fiche, fetchImpl),
-        source: {
-          gutenberg: gutenberg.id,
-          url: `https://www.gutenberg.org/ebooks/${gutenberg.id}`,
-          titre: gutenberg.title,
-          auteurs: gutenberg.authors?.map((a) => a.name) ?? [],
-        },
-        recupereLe: new Date().toISOString(),
-      };
-      await writeFile(fichier, JSON.stringify(livre));
+        livre = JSON.parse(await readFile(fichier, "utf8"));
+      else {
+        const gutenberg = await trouverGutenberg(fiches.get(id), fetchImpl);
+        if (!gutenberg)
+          throw new Error("livre introuvable sur le Projet Gutenberg");
+        const adresse = Object.entries(gutenberg.formats).find(([type]) =>
+          type.startsWith("text/html"),
+        )[1];
+        const page = await fetchImpl(adresse, {
+          headers: AGENT,
+          signal: AbortSignal.timeout(60000),
+        });
+        if (!page.ok) throw new Error(`gutenberg.org : ${page.status}`);
+        livre = {
+          id,
+          chapitres: decouperGutenberg(await page.text()),
+          audio: [],
+          audioCherche: false,
+          source: {
+            gutenberg: gutenberg.id,
+            url: `https://www.gutenberg.org/ebooks/${gutenberg.id}`,
+            titre: gutenberg.title,
+            auteurs: gutenberg.authors?.map((a) => a.name) ?? [],
+          },
+          recupereLe: new Date().toISOString(),
+        };
+        await writeFile(fichier, JSON.stringify(livre));
+      }
+      // Anciennes entrées du cache : l'audio y était déjà cherché.
+      if (livre.audioCherche === undefined) livre.audioCherche = true;
+      chercherAudio(livre);
       return livre;
     })();
     enCours.set(id, promesse);
@@ -210,15 +278,15 @@ export const creerLivres = ({ catalogue, dossier, fetchImpl = fetch }) => {
     return promesse;
   };
 
-  const repondre = (res, statut, corps) => {
+  const repondre = (res, statut, corps, cache = statut === 200) => {
     res.writeHead(statut, {
       "Content-Type": "application/json; charset=utf-8",
-      "Cache-Control": statut === 200 ? "public, max-age=3600" : "no-store",
+      "Cache-Control": cache ? "public, max-age=3600" : "no-store",
     });
     res.end(JSON.stringify(corps));
   };
 
-  return async (req, res) => {
+  const gerer = async (req, res) => {
     const [, id, numero] =
       (req.url ?? "")
         .split("?")[0]
@@ -228,12 +296,18 @@ export const creerLivres = ({ catalogue, dossier, fetchImpl = fetch }) => {
     try {
       const livre = await charger(id);
       if (numero === undefined)
-        return repondre(res, 200, {
-          id,
-          chapitres: livre.chapitres.map((c) => ({ titre: c.titre })),
-          audio: livre.audio,
-          source: livre.source,
-        });
+        return repondre(
+          res,
+          200,
+          {
+            id,
+            chapitres: livre.chapitres.map((c) => ({ titre: c.titre })),
+            audio: livre.audio,
+            audioEnCours: !livre.audioCherche,
+            source: livre.source,
+          },
+          livre.audioCherche,
+        );
       const chapitre = livre.chapitres[Number(numero)];
       if (!chapitre) return repondre(res, 404, { erreur: "chapitre inconnu" });
       return repondre(res, 200, chapitre);
@@ -241,4 +315,20 @@ export const creerLivres = ({ catalogue, dossier, fetchImpl = fetch }) => {
       return repondre(res, 502, { erreur: erreur.message });
     }
   };
+
+  /** Prépare tous les livres du catalogue, un par un : ensuite chaque ouverture est immédiate. */
+  gerer.prechauffer = async () => {
+    for (const id of fiches.keys()) {
+      try {
+        await charger(id);
+      } catch (erreur) {
+        console.log(
+          `Livre « ${id} » pas encore disponible : ${erreur.message}`,
+        );
+      }
+    }
+    console.log("Livres prêts.");
+  };
+
+  return gerer;
 };
