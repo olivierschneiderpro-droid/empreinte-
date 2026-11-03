@@ -127,7 +127,7 @@ export default function LivreScreen() {
   return (
     <Box className="flex-1">
       <Header hasBackButton title={fiche.titre} />
-      <ScrollView contentContainerStyle={{ paddingBottom: 48 }} stickyHeaderIndices={[1]}>
+      <ScrollView contentContainerStyle={{ paddingBottom: 48 }}>
         <HStack className="px-[24px] gap-[24px] flex-wrap w-full max-w-[1100px] self-center pb-[20px]">
           <Couverture livre={fiche} largeur={140} />
           <Box className="flex-1 min-w-[260px] gap-[8px]">
@@ -167,7 +167,7 @@ export default function LivreScreen() {
           </Box>
         </HStack>
 
-        <HStack className="px-[24px] gap-[8px] w-full max-w-[1100px] self-center py-[10px] bg-default">
+        <HStack className="px-[24px] gap-[8px] w-full max-w-[1100px] self-center py-[10px]">
           {onglets.map(item => (
             <LinkBox
               key={item.id}
