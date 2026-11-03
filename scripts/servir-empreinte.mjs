@@ -331,6 +331,8 @@ createServer((req, res) => {
   })
   void preparerDossier(racine)
   void lancerComptes()
+  // Les livres se préparent en arrière-plan : la première ouverture n'attend plus.
+  setTimeout(() => void livres.prechauffer(), 5000)
   console.log(
     `Empreinte sur http://${process.env.HOTE ?? "0.0.0.0"}:${port} : site ${site}, app ${racine} (sous /app), API relayée : ${API}`
   )

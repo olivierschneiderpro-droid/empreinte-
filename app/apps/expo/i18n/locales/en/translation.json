@@ -2782,5 +2782,15 @@
   "livres.tab.read": "Read",
   "livres.tab.listen": "Listen",
   "livres.tab.source": "Source",
-  "livres.besideBible": "Read beside the Bible"
+  "livres.besideBible": "Read beside the Bible",
+  "livres.back": "Back",
+  "livres.settings": "Reading settings",
+  "livres.about": "About this book",
+  "livres.smaller": "Smaller text",
+  "livres.larger": "Larger text",
+  "livres.lineHeight.small": "Tight",
+  "livres.lineHeight.normal": "Normal",
+  "livres.lineHeight.large": "Airy",
+  "livres.sharedSettings": "These settings are shared with the Bible.",
+  "livres.audioLoading": "Looking for the audio version…"
 }

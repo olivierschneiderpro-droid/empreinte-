@@ -2810,5 +2810,15 @@
   "livres.tab.read": "Lire",
   "livres.tab.listen": "Écouter",
   "livres.tab.source": "Source",
-  "livres.besideBible": "Lire à côté de la Bible"
+  "livres.besideBible": "Lire à côté de la Bible",
+  "livres.back": "Retour",
+  "livres.settings": "Réglages de lecture",
+  "livres.about": "À propos du livre",
+  "livres.smaller": "Texte plus petit",
+  "livres.larger": "Texte plus grand",
+  "livres.lineHeight.small": "Serré",
+  "livres.lineHeight.normal": "Normal",
+  "livres.lineHeight.large": "Aéré",
+  "livres.sharedSettings": "Ces réglages sont les mêmes que pour la Bible.",
+  "livres.audioLoading": "La version lue est en cours de recherche…"
 }
