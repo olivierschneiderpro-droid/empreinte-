@@ -51,7 +51,14 @@ jest.mock('../WorkspaceSidebar', () => 'WorkspaceSidebar')
 jest.mock('~features/audio/MiniLecteurAudio', () => 'MiniLecteurAudio')
 jest.mock('~features/empreinte/PanneauCompagnon', () => 'PanneauCompagnon')
 jest.mock('~features/empreinte/SuiteDuParcours', () => 'SuiteDuParcours')
-jest.mock('~features/empreinte/compagnon', () => ({ compagnonAtom: {} }))
+jest.mock('~features/empreinte/compagnon', () => ({
+  compagnonAtom: {},
+  espaceAGaucheAtom: {},
+  espaceAgrandiAtom: {},
+  largeurEspaceAtom: {},
+}))
+jest.mock('~features/empreinte/BarreEspace', () => 'BarreEspace')
+jest.mock('~features/empreinte/PoigneeEspace', () => 'PoigneeEspace')
 jest.mock('../BlocOnglets', () => 'BoutonOnglets')
 jest.mock('~features/empreinte/BarreRecherche', () => 'BarreRecherche')
 jest.mock('../commandPalette/GlobalCommandPalette', () => 'GlobalCommandPalette')

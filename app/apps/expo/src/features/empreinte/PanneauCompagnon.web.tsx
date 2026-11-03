@@ -16,7 +16,6 @@ import {
   type ResolvedPassageMedia,
 } from '~features/bible/passageMedia'
 import LectureLivre from '~features/livres/LectureLivre'
-import { ficheLivre } from '~features/livres/livres'
 import { chargerCatalogueLocal } from '~features/plans/catalogueLocal'
 import { useResourceAccess } from '~features/resources/resourceAccess'
 import { loadBibleVerseTexts } from '~features/resources/resourceQueries'
@@ -27,6 +26,7 @@ import useLanguage from '~helpers/useLanguage'
 import { activeTabIndexAtom, tabsAtom, type BibleTab } from '~state/tabs'
 import { resolveFontFamily } from '~themes/styleValues'
 import { useTheme } from '~themes/ThemeProvider'
+import BarreEspace from './BarreEspace'
 import { compagnonAtom } from './compagnon'
 
 const LIVRES_CANON = books.filter(book => book.Numero <= 66)
@@ -374,85 +374,11 @@ function AutourDuPassage() {
  * et y ajoute une deuxième lecture ou une vidéo, chacune avec ses commandes.
  */
 export default function PanneauCompagnon() {
-  const { t } = useTranslation()
-  const [compagnon, setCompagnon] = useAtom(compagnonAtom)
-  const lecture = useLecturePrincipale()
+  const compagnon = useAtomValue(compagnonAtom)
   if (!compagnon) return null
-  type Onglet = {
-    type: NonNullable<typeof compagnon>['type']
-    libelle: string
-    icone: React.ComponentProps<typeof FeatherIcon>['name']
-    ouvrir: () => void
-  }
-  const onglets: Onglet[] = [
-    {
-      type: 'autour',
-      libelle: t('compagnon.around'),
-      icone: 'compass',
-      ouvrir: () => setCompagnon({ type: 'autour' }),
-    },
-    {
-      type: 'bible',
-      libelle: t('compagnon.bibleTitle'),
-      icone: 'columns',
-      ouvrir: () =>
-        compagnon.type !== 'bible' &&
-        lecture &&
-        setCompagnon({
-          type: 'bible',
-          book: lecture.selectedBook.Numero,
-          chapter: lecture.selectedChapter,
-          version: lecture.selectedVersion,
-        }),
-    },
-  ]
-  // Les onglets Vidéo et Livre n'apparaissent que lorsqu'ils sont ouverts à côté.
-  if (compagnon.type === 'livre')
-    onglets.push({
-      type: 'livre',
-      libelle: ficheLivre(compagnon.id)?.titre ?? t('livres.title'),
-      icone: 'book-open',
-      ouvrir: () => {},
-    })
-  if (compagnon.type === 'video')
-    onglets.push({
-      type: 'video',
-      libelle: t('compagnon.videoTitle'),
-      icone: 'play-circle',
-      ouvrir: () => {},
-    })
   return (
     <Box className="flex-1">
-      <HStack className="items-center justify-between px-[16px] pt-[14px] gap-[8px]">
-        <HStack className="items-center gap-[6px] flex-wrap">
-          {onglets.map(onglet => {
-            const actif = onglet.type === compagnon.type
-            return (
-              <LinkBox
-                key={onglet.type}
-                onPress={onglet.ouvrir}
-                accessibilityLabel={onglet.libelle}
-                accessibilityState={{ selected: actif }}
-                className={`flex-row items-center gap-[6px] rounded-full px-[12px] h-[32px] ${
-                  actif ? 'bg-primary' : 'bg-light-grey'
-                }`}
-              >
-                <FeatherIcon name={onglet.icone} size={14} color={actif ? 'reverse' : 'default'} />
-                <Text className={`text-[12px] font-bold ${actif ? 'text-reverse' : ''}`}>
-                  {onglet.libelle}
-                </Text>
-              </LinkBox>
-            )
-          })}
-        </HStack>
-        <LinkBox
-          onPress={() => setCompagnon(null)}
-          accessibilityLabel={t('compagnon.close')}
-          className="w-[34px] h-[34px] rounded-full items-center justify-center bg-light-grey"
-        >
-          <FeatherIcon name="x" size={16} />
-        </LinkBox>
-      </HStack>
+      <BarreEspace />
       {compagnon.type === 'bible' ? (
         <DeuxiemeLecture
           book={compagnon.book}

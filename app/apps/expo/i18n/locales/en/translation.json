@@ -2814,5 +2814,18 @@
   "bibleAccueil.chaptersCount": "{{count}} chapter",
   "bibleAccueil.chaptersCount_plural": "{{count}} chapters",
   "symbole.streak": "{{count}} day in a row with the Word",
-  "symbole.streak_plural": "{{count}} days in a row with the Word"
+  "symbole.streak_plural": "{{count}} days in a row with the Word",
+  "espace.title": "Study space",
+  "espace.bible": "Bible",
+  "espace.swap": "Swap sides",
+  "espace.expand": "Expand",
+  "espace.reduce": "Shrink",
+  "espace.resize": "Drag to widen or narrow (double-click: normal size)",
+  "espace.tool.strong": "Lexicon",
+  "espace.tool.dictionary": "Dictionary",
+  "espace.tool.nave": "Topics",
+  "espace.tool.commentary": "Commentaries",
+  "espace.tool.timeline": "Timeline",
+  "espace.tool.concordance": "Concordance",
+  "espace.tool.study": "Study"
 }

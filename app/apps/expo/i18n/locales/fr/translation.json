@@ -2842,5 +2842,18 @@
   "bibleAccueil.chaptersCount": "{{count}} chapitre",
   "bibleAccueil.chaptersCount_plural": "{{count}} chapitres",
   "symbole.streak": "{{count}} jour d'affilée avec la Parole",
-  "symbole.streak_plural": "{{count}} jours d'affilée avec la Parole"
+  "symbole.streak_plural": "{{count}} jours d'affilée avec la Parole",
+  "espace.title": "Espace d'étude",
+  "espace.bible": "Bible",
+  "espace.swap": "Échanger les côtés",
+  "espace.expand": "Agrandir",
+  "espace.reduce": "Réduire",
+  "espace.resize": "Tirer pour élargir ou réduire (double-clic : taille normale)",
+  "espace.tool.strong": "Lexique",
+  "espace.tool.dictionary": "Dictionnaire",
+  "espace.tool.nave": "Thèmes",
+  "espace.tool.commentary": "Commentaires",
+  "espace.tool.timeline": "Chronologie",
+  "espace.tool.concordance": "Concordance",
+  "espace.tool.study": "Étude"
 }

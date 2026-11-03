@@ -25,7 +25,7 @@ import {
 } from 'src/state/tabs'
 import Back from '~common/Back'
 import ParallelIcon from '~common/ParallelIcon'
-import { compagnonAtom } from '~features/empreinte/compagnon'
+import { compagnonAtom, dernierCompagnonAtom } from '~features/empreinte/compagnon'
 import { joursDeLectureAtom, noterLecture } from '~features/empreinte/SymboleCompte'
 import { rouvrirBarreLateraleAtom } from '~navigation/useWorkspaceRoutePanel'
 import { type SheetRef } from '~common/sheet'
@@ -724,48 +724,36 @@ const Header = ({
                   </MenuView>
                 )}
 
+                {/* Empreinte (web) : une seule porte vers l'Espace d'étude, qui rouvre le dernier
+                    volet (deuxième lecture, autour du passage, vidéo, livre). Sur téléphone, le
+                    bouton garde l'affichage parallèle des versions. */}
                 {!isSmall && !isParallel && (
                   <TouchableBox
                     className="overflow-hidden border-continuous items-center justify-center"
                     style={[
                       styleVerre(verre, 22),
                       { width: 44, height: 44, opacity: fullScreenOpacity },
+                      Platform.OS === 'web' && compagnon ? { backgroundColor: verre.actif } : null,
                     ]}
-                    // Empreinte (web) : deux lectures indépendantes, chacune avec sa barre ;
-                    // la comparaison de versions reste dans le menu « Affichage parallèle ».
                     onPress={
                       Platform.OS === 'web'
                         ? () =>
                             setCompagnon(
-                              compagnon?.type === 'bible'
-                                ? null
-                                : { type: 'bible', book: book.Numero, chapter, version }
+                              compagnon ? null : getDefaultStore().get(dernierCompagnonAtom)
                             )
                         : addParallelVersion
                     }
                     accessibilityRole="button"
+                    accessibilityState={{ selected: Boolean(compagnon) }}
                     accessibilityLabel={
-                      Platform.OS === 'web' ? t('compagnon.twoReadings') : t('Affichage parallèle')
+                      Platform.OS === 'web' ? t('espace.title') : t('Affichage parallèle')
                     }
                   >
-                    <ParallelIcon color="default" />
-                  </TouchableBox>
-                )}
-                {/* Empreinte (web) : « Autour du passage » — vidéos, écoute, plans liés au chapitre. */}
-                {!isSmall && !isParallel && Platform.OS === 'web' && (
-                  <TouchableBox
-                    className="overflow-hidden border-continuous items-center justify-center"
-                    style={[
-                      styleVerre(verre, 22),
-                      { width: 44, height: 44, opacity: fullScreenOpacity },
-                    ]}
-                    onPress={() =>
-                      setCompagnon(compagnon?.type === 'autour' ? null : { type: 'autour' })
-                    }
-                    accessibilityRole="button"
-                    accessibilityLabel={t('compagnon.around')}
-                  >
-                    <FeatherIcon name="compass" size={19} />
+                    {Platform.OS === 'web' ? (
+                      <FeatherIcon name="layout" size={19} />
+                    ) : (
+                      <ParallelIcon color="default" />
+                    )}
                   </TouchableBox>
                 )}
                 {!isSmall && (
