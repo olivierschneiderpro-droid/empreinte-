@@ -62,11 +62,18 @@ Règles d'Empreinte appliquées à cet inventaire :
 
 ## 6. Chants et musique
 
+Le catalogue des chants (`app/apps/expo/src/features/chants/catalogue.json`) ne retient que des
+cantiques du domaine public (paroles et mélodie). Le serveur (`scripts/chants-empreinte.mjs`)
+cherche leurs enregistrements libres et n'en garde aucun sans licence libre. Les chants de
+louange récents (JEM, Hillsong, Exo…) sont protégés : ils ne sont pas repris.
+
 | Source | Apport | Licence | État |
 |---|---|---|---|
 | [Hymnary.org](https://en.wikipedia.org/wiki/Hymnary.org) (Calvin University, CCEL) | 1 million de cantiques ; textes complets quand ils sont libres | Domaine public par chant | 🟢 pour les chants libres |
 | Recueils francophones anciens (*Sur les ailes de la foi*, 1928…) | Cantiques en français | Selon la date de décès de chaque auteur | 🟡 chant par chant |
 | Musique libre (Creative Commons, Musopen, Free Music Archive) | Musique douce pour la méditation et la prière | CC selon chaque morceau | 🟢 |
+| [Wikimedia Commons](https://commons.wikimedia.org) | Enregistrements de cantiques et d'œuvres sacrées | Licence lue pour chaque fichier (domaine public, CC0, CC BY…) | ✅ (page Chants, via le serveur) |
+| [Internet Archive](https://archive.org) | Enregistrements anciens et libres de cantiques | Licence déclarée par chaque élément (domaine public ou CC) | ✅ (page Chants, via le serveur) |
 
 ## 7. Livres chrétiens
 
