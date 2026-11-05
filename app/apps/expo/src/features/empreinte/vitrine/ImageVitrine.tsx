@@ -2,16 +2,15 @@ import { useState } from 'react'
 import { Image, StyleSheet } from 'react-native'
 import Box from '~common/ui/Box'
 import Text from '~common/ui/Text'
-import { Illustration, type DefIllustration } from './Illustration'
+import type { DefIllustration } from './Illustration'
 import { adressePhoto, type Photo } from './photos'
 
 /**
- * Empreinte · L'image d'une carte de vitrine : la photo quand elle est là, sinon (hors ligne,
- * photo introuvable) l'illustration dessinée, pour qu'une carte ne reste jamais vide.
+ * Empreinte · L'image d'une carte de vitrine : la photo. Si elle ne charge pas (hors ligne),
+ * un simple fond sombre la remplace — jamais les anciens dessins.
  */
 export function ImageVitrine({
   photo,
-  secours,
   largeur,
   hauteur,
   avecCredit,
@@ -25,7 +24,13 @@ export function ImageVitrine({
 }) {
   // L'échec retient la photo en cause : une autre photo (autre livre) retente sa chance.
   const [echec, setEchec] = useState<string | null>(null)
-  if (!photo || echec === photo.photo) return <Illustration def={secours} />
+  const fond = (
+    <Box
+      className="absolute inset-0"
+      style={{ backgroundImage: 'linear-gradient(135deg, #2a3350 0%, #121827 100%)' } as object}
+    />
+  )
+  if (!photo || echec === photo.photo) return fond
   return (
     <Box className="absolute inset-0" style={{ backgroundColor: '#1b2233' }}>
       <Image
