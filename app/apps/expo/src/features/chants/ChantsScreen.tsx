@@ -17,6 +17,9 @@ import {
   chantDuJour,
   degradeTheme,
   langueChantsAtom,
+  ficheChant,
+  mesChantsAtom,
+  supprimerListe,
   useDecouvertes,
   type Enregistrement,
   type FicheChant,
@@ -29,6 +32,7 @@ const ICONES: Record<ThemeChant, React.ComponentProps<typeof FeatherIcon>['name'
   priere: 'feather',
   paques: 'sunrise',
   noel: 'star',
+  enfants: 'smile',
   meditation: 'music',
 }
 
@@ -96,6 +100,10 @@ export default function ChantsScreen() {
   const router = useRouter()
   const [langue, setLangue] = useAtom(langueChantsAtom)
   const decouvertes = useDecouvertes()
+  const [mes, setMes] = useAtom(mesChantsAtom)
+  const favoris = mes.favoris.map(ficheChant).filter((c): c is FicheChant => Boolean(c))
+  const chanterListe = (liste: string) =>
+    router.push({ pathname: '/chanter', params: { liste } } as never)
   const ouvrir = (id: string) => router.push({ pathname: '/chant', params: { id } } as never)
   const visibles = catalogueChants.filter(
     chant => langue === 'tous' || chant.langue === langue || chant.langue === 'tous'
@@ -147,9 +155,9 @@ export default function ChantsScreen() {
                 </Text>
                 <HStack className="mt-[8px]">
                   <Box className="flex-row items-center gap-[8px] rounded-full px-[18px] h-[42px] bg-[white]">
-                    <FeatherIcon name="play" size={16} color="#111113" />
+                    <FeatherIcon name="music" size={16} color="#111113" />
                     <Text className="font-bold text-[14px]" style={{ color: '#111113' }}>
-                      {t('chants.listen')}
+                      {t('chants.open')}
                     </Text>
                   </Box>
                 </HStack>
@@ -196,6 +204,69 @@ export default function ChantsScreen() {
               <Text className="text-grey text-[13px] flex-1">{t('chants.serverOnly')}</Text>
             </Box>
           ) : null}
+
+          {favoris.length ? (
+            <Rangee
+              titre={t('chants.favorites')}
+              sousTitre={t('chants.count', { count: favoris.length })}
+            >
+              {favoris.map(chant => (
+                <CarteChant
+                  key={chant.id}
+                  theme={chant.theme}
+                  icone="heart"
+                  titre={chant.titre}
+                  sousTitre={sousTitreDe(chant)}
+                  onPress={() => ouvrir(chant.id)}
+                />
+              ))}
+            </Rangee>
+          ) : null}
+
+          {mes.listes.map(liste => {
+            const chants = liste.chants.map(ficheChant).filter((c): c is FicheChant => Boolean(c))
+            return (
+              <Box key={liste.id} className="gap-[10px]">
+                <Rangee titre={liste.nom} sousTitre={t('chants.count', { count: chants.length })}>
+                  {chants.length ? (
+                    chants.map(chant => (
+                      <CarteChant
+                        key={chant.id}
+                        theme={chant.theme}
+                        titre={chant.titre}
+                        sousTitre={sousTitreDe(chant)}
+                        onPress={() => ouvrir(chant.id)}
+                      />
+                    ))
+                  ) : (
+                    <Text className="text-grey text-[13px]">{t('chants.emptyList')}</Text>
+                  )}
+                </Rangee>
+                <HStack className="gap-[8px]">
+                  {chants.length ? (
+                    <LinkBox
+                      onPress={() => chanterListe(liste.id)}
+                      className="flex-row items-center gap-[6px] rounded-full px-[14px] h-[34px] bg-primary"
+                    >
+                      <FeatherIcon name="maximize-2" size={13} color="reverse" />
+                      <Text className="text-reverse font-bold text-[13px]">
+                        {t('chants.singList')}
+                      </Text>
+                    </LinkBox>
+                  ) : null}
+                  <LinkBox
+                    onPress={() => setMes(supprimerListe(mes, liste.id))}
+                    className="flex-row items-center gap-[6px] rounded-full px-[14px] h-[34px] bg-light-grey"
+                  >
+                    <FeatherIcon name="trash-2" size={13} color="grey" />
+                    <Text className="text-grey font-bold text-[13px]">
+                      {t('chants.deleteList')}
+                    </Text>
+                  </LinkBox>
+                </HStack>
+              </Box>
+            )
+          })}
 
           {THEMES_CHANTS.map(theme => {
             const duTheme = visibles.filter(chant => chant.theme === theme)

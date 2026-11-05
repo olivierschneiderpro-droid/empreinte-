@@ -29,7 +29,21 @@
           "Ma vie et ma gloire : non, je ne crains rien !"
         ]
       ],
-      "refrain": ["À toi la gloire, Ô Ressuscité !", "À toi la victoire pour l'éternité !"]
+      "refrain": ["À toi la gloire, Ô Ressuscité !", "À toi la victoire pour l'éternité !"],
+      "versets": [
+        {
+          "livre": 40,
+          "chapitre": 28,
+          "verset": 6
+        },
+        {
+          "livre": 46,
+          "chapitre": 15,
+          "verset": 55
+        }
+      ],
+      "histoire": "Le pasteur vaudois Edmond Budry écrit ces paroles en 1884 sur un chœur de l'oratorio Judas Macchabée de Haendel. Le chant fait ensuite le tour du monde, en anglais sous le titre « Thine Be the Glory ».",
+      "traduction": "thine-be-the-glory"
     },
     {
       "id": "c-est-un-rempart",
@@ -52,7 +66,15 @@
           "Que pourrait l'adversaire ?",
           "L'Éternel détourne ses coups."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 46
+        }
+      ],
+      "histoire": "Martin Luther compose ce chant vers 1529 à partir du Psaume 46. Il devient l'hymne de la Réforme.",
+      "traduction": "a-mighty-fortress"
     },
     {
       "id": "grand-dieu-nous-te-benissons",
@@ -72,7 +94,14 @@
           "Et prosternés devant toi,",
           "Nous t'adorons, ô grand Roi !"
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 145
+        }
+      ],
+      "traduction": "holy-god-we-praise"
     },
     {
       "id": "mon-dieu-plus-pres-de-toi",
@@ -94,7 +123,21 @@
           "Tiens-moi plus près de toi,",
           "Plus près de toi !"
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 1,
+          "chapitre": 28,
+          "verset": 12
+        },
+        {
+          "livre": 59,
+          "chapitre": 4,
+          "verset": 8
+        }
+      ],
+      "histoire": "Sarah Flower Adams l'écrit en 1841 en méditant le songe de Jacob et l'échelle qui monte vers le ciel (Genèse 28).",
+      "traduction": "nearer-my-god"
     },
     {
       "id": "quel-ami-fidele",
@@ -104,7 +147,21 @@
       "auteur": "Joseph Scriven · trad. française",
       "annee": "1855",
       "recherche": "What a Friend We Have in Jesus",
-      "autresRecherches": ["Quel ami fidele et tendre"]
+      "autresRecherches": ["Quel ami fidele et tendre"],
+      "versets": [
+        {
+          "livre": 43,
+          "chapitre": 15,
+          "verset": 15
+        },
+        {
+          "livre": 50,
+          "chapitre": 4,
+          "verset": 6
+        }
+      ],
+      "histoire": "Joseph Scriven écrit ce poème vers 1855 pour consoler sa mère, restée en Irlande alors qu'il vit au Canada.",
+      "traduction": "what-a-friend"
     },
     {
       "id": "les-anges-dans-nos-campagnes",
@@ -123,7 +180,16 @@
           "Redit ce chant mélodieux :"
         ]
       ],
-      "refrain": ["Gloria in excelsis Deo !", "Gloria in excelsis Deo !"]
+      "refrain": ["Gloria in excelsis Deo !", "Gloria in excelsis Deo !"],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 14
+        }
+      ],
+      "histoire": "Noël populaire français du XVIIIᵉ siècle ; le refrain reprend en latin le chant des anges de Luc 2.",
+      "traduction": "angels-we-have-heard"
     },
     {
       "id": "il-est-ne",
@@ -147,6 +213,13 @@
         "Jouez hautbois, résonnez musettes !",
         "Il est né, le divin Enfant,",
         "Chantons tous son avènement !"
+      ],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 11
+        }
       ]
     },
     {
@@ -169,7 +242,15 @@
           "Peuple, à genoux, attends ta délivrance !",
           "Noël ! Noël ! Voici le Rédempteur !"
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 10
+        }
+      ],
+      "histoire": "Placide Cappeau, poète de Roquemaure, écrit le texte en 1847 à la demande de son curé ; Adolphe Adam le met en musique la même année."
     },
     {
       "id": "douce-nuit",
@@ -179,7 +260,16 @@
       "auteur": "Joseph Mohr · musique Franz Gruber",
       "annee": "1818",
       "recherche": "Stille Nacht",
-      "autresRecherches": ["Silent Night Gruber", "Douce nuit"]
+      "autresRecherches": ["Silent Night Gruber", "Douce nuit"],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 7
+        }
+      ],
+      "histoire": "Joseph Mohr, jeune prêtre autrichien, écrit le poème ; l'instituteur Franz Gruber compose la mélodie, chantée pour la première fois à Oberndorf la nuit de Noël 1818, à la guitare.",
+      "traduction": "silent-night"
     },
     {
       "id": "amazing-grace",
@@ -214,7 +304,20 @@
           "He will my shield and portion be,",
           "As long as life endures."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 49,
+          "chapitre": 2,
+          "verset": 8
+        },
+        {
+          "livre": 42,
+          "chapitre": 15,
+          "verset": 24
+        }
+      ],
+      "histoire": "John Newton, ancien capitaine de navire négrier devenu pasteur, l'écrit en 1772 à Olney, en Angleterre, pour le sermon du jour de l'An. Il y raconte sa propre conversion."
     },
     {
       "id": "holy-holy-holy",
@@ -232,7 +335,20 @@
           "Holy, holy, holy! merciful and mighty!",
           "God in three Persons, blessed Trinity!"
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 23,
+          "chapitre": 6,
+          "verset": 3
+        },
+        {
+          "livre": 66,
+          "chapitre": 4,
+          "verset": 8
+        }
+      ],
+      "histoire": "Reginald Heber, évêque anglican, l'écrit pour le dimanche de la Trinité ; il est publié en 1826, après sa mort."
     },
     {
       "id": "abide-with-me",
@@ -256,7 +372,15 @@
           "Change and decay in all around I see;",
           "O Thou who changest not, abide with me."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 24,
+          "verset": 29
+        }
+      ],
+      "histoire": "Henry F. Lyte, pasteur à Brixham, l'écrit en 1847, quelques semaines avant sa mort, en pensant aux disciples d'Emmaüs : « Reste avec nous, car le soir approche »."
     },
     {
       "id": "it-is-well",
@@ -274,7 +398,15 @@
           "It is well, it is well with my soul."
         ]
       ],
-      "refrain": ["It is well with my soul,", "It is well, it is well with my soul."]
+      "refrain": ["It is well with my soul,", "It is well, it is well with my soul."],
+      "versets": [
+        {
+          "livre": 50,
+          "chapitre": 4,
+          "verset": 7
+        }
+      ],
+      "histoire": "Horatio Spafford l'écrit en 1873, après avoir perdu ses quatre filles dans le naufrage du Ville-du-Havre, au moment où son bateau passe à l'endroit où elles ont disparu."
     },
     {
       "id": "rock-of-ages",
@@ -293,7 +425,20 @@
           "Be of sin the double cure,",
           "Save from wrath and make me pure."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 2,
+          "chapitre": 33,
+          "verset": 22
+        },
+        {
+          "livre": 46,
+          "chapitre": 10,
+          "verset": 4
+        }
+      ],
+      "histoire": "Augustus Toplady le publie en 1776. Selon une tradition, il aurait trouvé l'image en s'abritant d'un orage dans la fente d'un rocher."
     },
     {
       "id": "what-a-friend",
@@ -314,7 +459,21 @@
           "All because we do not carry",
           "Everything to God in prayer."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 43,
+          "chapitre": 15,
+          "verset": 15
+        },
+        {
+          "livre": 50,
+          "chapitre": 4,
+          "verset": 6
+        }
+      ],
+      "histoire": "Joseph Scriven écrit ce poème vers 1855 pour consoler sa mère, restée en Irlande alors qu'il vit au Canada.",
+      "traduction": "quel-ami-fidele"
     },
     {
       "id": "joy-to-the-world",
@@ -333,7 +492,14 @@
           "And heaven and nature sing,",
           "And heaven, and heaven, and nature sing."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 98
+        }
+      ],
+      "histoire": "Isaac Watts publie en 1719 une paraphrase du Psaume 98 ; elle devient l'un des chants de Noël les plus chantés."
     },
     {
       "id": "silent-night",
@@ -353,7 +519,16 @@
           "Sleep in heavenly peace,",
           "Sleep in heavenly peace."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 7
+        }
+      ],
+      "histoire": "Joseph Mohr, jeune prêtre autrichien, écrit le poème ; l'instituteur Franz Gruber compose la mélodie, chantée pour la première fois à Oberndorf la nuit de Noël 1818, à la guitare.",
+      "traduction": "douce-nuit"
     },
     {
       "id": "o-come-all-ye-faithful",
@@ -376,6 +551,13 @@
         "O come, let us adore Him,",
         "O come, let us adore Him,",
         "Christ the Lord."
+      ],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 15
+        }
       ]
     },
     {
@@ -394,6 +576,18 @@
           "Raise your joys and triumphs high, Alleluia!",
           "Sing, ye heavens, and earth, reply, Alleluia!"
         ]
+      ],
+      "versets": [
+        {
+          "livre": 40,
+          "chapitre": 28,
+          "verset": 6
+        },
+        {
+          "livre": 46,
+          "chapitre": 15,
+          "verset": 20
+        }
       ]
     },
     {
@@ -416,6 +610,13 @@
           "And hail Him as thy matchless King",
           "Through all eternity."
         ]
+      ],
+      "versets": [
+        {
+          "livre": 66,
+          "chapitre": 19,
+          "verset": 12
+        }
       ]
     },
     {
@@ -433,7 +634,15 @@
           "Streams of mercy, never ceasing,",
           "Call for songs of loudest praise."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 9,
+          "chapitre": 7,
+          "verset": 12
+        }
+      ],
+      "histoire": "Robert Robinson l'écrit à 22 ans, en 1758, peu après sa conversion. Le mot « Ebenezer » renvoie à la pierre dressée par Samuel (1 Samuel 7.12)."
     },
     {
       "id": "nearer-my-god",
@@ -451,7 +660,21 @@
           "Still all my song shall be, nearer, my God, to Thee.",
           "Nearer, my God, to Thee, nearer to Thee!"
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 1,
+          "chapitre": 28,
+          "verset": 12
+        },
+        {
+          "livre": 59,
+          "chapitre": 4,
+          "verset": 8
+        }
+      ],
+      "histoire": "Sarah Flower Adams l'écrit en 1841 en méditant le songe de Jacob et l'échelle qui monte vers le ciel (Genèse 28).",
+      "traduction": "mon-dieu-plus-pres-de-toi"
     },
     {
       "id": "a-mighty-fortress",
@@ -474,7 +697,15 @@
           "And, armed with cruel hate,",
           "On earth is not his equal."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 46
+        }
+      ],
+      "histoire": "Martin Luther compose ce chant vers 1529 à partir du Psaume 46. Il devient l'hymne de la Réforme.",
+      "traduction": "c-est-un-rempart"
     },
     {
       "id": "all-hail-the-power",
@@ -492,6 +723,13 @@
           "Bring forth the royal diadem,",
           "And crown Him Lord of all."
         ]
+      ],
+      "versets": [
+        {
+          "livre": 50,
+          "chapitre": 2,
+          "verset": 10
+        }
       ]
     },
     {
@@ -513,7 +751,14 @@
           "Praise Him above, ye heavenly host;",
           "Praise Father, Son, and Holy Ghost."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 150
+        }
+      ],
+      "histoire": "Thomas Ken écrit cette strophe pour conclure ses hymnes du matin et du soir, vers 1674, destinés aux élèves de Winchester."
     },
     {
       "id": "be-still-my-soul",
@@ -533,7 +778,14 @@
           "Be still, my soul: thy best, thy heavenly Friend",
           "Through thorny ways leads to a joyful end."
         ]
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 46
+        }
+      ],
+      "histoire": "Hymne allemand de Katharina von Schlegel (1752), traduit par Jane Borthwick en 1855 ; on le chante sur Finlandia de Jean Sibelius."
     },
     {
       "id": "how-firm-a-foundation",
@@ -550,13 +802,25 @@
           "What more can He say than to you He hath said,",
           "To you who for refuge to Jesus have fled?"
         ]
+      ],
+      "versets": [
+        {
+          "livre": 23,
+          "chapitre": 41,
+          "verset": 10
+        },
+        {
+          "livre": 58,
+          "chapitre": 13,
+          "verset": 5
+        }
       ]
     },
     {
       "id": "jesus-loves-me",
       "titre": "Jesus Loves Me",
       "langue": "en",
-      "theme": "confiance",
+      "theme": "enfants",
       "auteur": "Anna B. Warner · musique William Bradbury",
       "annee": "1860",
       "recherche": "Jesus Loves Me",
@@ -573,7 +837,20 @@
         "Yes, Jesus loves me!",
         "Yes, Jesus loves me!",
         "The Bible tells me so."
-      ]
+      ],
+      "versets": [
+        {
+          "livre": 41,
+          "chapitre": 10,
+          "verset": 14
+        },
+        {
+          "livre": 62,
+          "chapitre": 4,
+          "verset": 19
+        }
+      ],
+      "histoire": "Anna Warner écrit ces vers en 1860 pour un roman ; William Bradbury les met en musique en 1862. C'est souvent l'un des premiers chants appris par les enfants."
     },
     {
       "id": "jesus-que-ma-joie",
@@ -583,7 +860,15 @@
       "auteur": "Jean-Sébastien Bach (BWV 147)",
       "annee": "1723",
       "recherche": "Jesu Joy of Man's Desiring",
-      "autresRecherches": ["Bach BWV 147 Jesus bleibet meine Freude"]
+      "autresRecherches": ["Bach BWV 147 Jesus bleibet meine Freude"],
+      "versets": [
+        {
+          "livre": 43,
+          "chapitre": 15,
+          "verset": 11
+        }
+      ],
+      "histoire": "Choral de la cantate BWV 147 de Jean-Sébastien Bach (1723), l'une des pages les plus connues de la musique sacrée."
     },
     {
       "id": "brebis-paissent",
@@ -593,7 +878,13 @@
       "auteur": "Jean-Sébastien Bach (BWV 208)",
       "annee": "1713",
       "recherche": "Sheep May Safely Graze",
-      "autresRecherches": ["Bach BWV 208 Schafe konnen sicher weiden"]
+      "autresRecherches": ["Bach BWV 208 Schafe konnen sicher weiden"],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 23
+        }
+      ]
     },
     {
       "id": "reveillez-vous",
@@ -603,7 +894,14 @@
       "auteur": "Jean-Sébastien Bach (BWV 140)",
       "annee": "1731",
       "recherche": "Wachet auf ruft uns die Stimme",
-      "autresRecherches": ["Sleepers Wake Bach BWV 140"]
+      "autresRecherches": ["Sleepers Wake Bach BWV 140"],
+      "versets": [
+        {
+          "livre": 40,
+          "chapitre": 25,
+          "verset": 6
+        }
+      ]
     },
     {
       "id": "alleluia-haendel",
@@ -613,7 +911,20 @@
       "auteur": "Georg Friedrich Haendel",
       "annee": "1741",
       "recherche": "Hallelujah Chorus Messiah",
-      "autresRecherches": ["Handel Messiah Hallelujah"]
+      "autresRecherches": ["Handel Messiah Hallelujah"],
+      "versets": [
+        {
+          "livre": 66,
+          "chapitre": 19,
+          "verset": 6
+        },
+        {
+          "livre": 66,
+          "chapitre": 11,
+          "verset": 15
+        }
+      ],
+      "histoire": "Chœur de l'oratorio Le Messie, composé par Haendel en 1741 en quelques semaines."
     },
     {
       "id": "ave-verum",
@@ -622,7 +933,14 @@
       "theme": "meditation",
       "auteur": "Wolfgang Amadeus Mozart (K. 618)",
       "annee": "1791",
-      "recherche": "Ave verum corpus Mozart"
+      "recherche": "Ave verum corpus Mozart",
+      "versets": [
+        {
+          "livre": 43,
+          "chapitre": 6,
+          "verset": 51
+        }
+      ]
     },
     {
       "id": "largo-haendel",
@@ -633,6 +951,684 @@
       "annee": "1738",
       "recherche": "Handel Largo",
       "autresRecherches": ["Ombra mai fu"]
+    },
+    {
+      "id": "thine-be-the-glory",
+      "titre": "Thine Be the Glory",
+      "langue": "en",
+      "theme": "paques",
+      "auteur": "Edmond Budry · trad. Richard Hoyle",
+      "annee": "1923",
+      "recherche": "Thine Be the Glory",
+      "autresRecherches": ["Judas Maccabaeus See the conquering hero"],
+      "paroles": [
+        [
+          "Thine be the glory, risen, conquering Son;",
+          "Endless is the victory Thou o'er death hast won;",
+          "Angels in bright raiment rolled the stone away,",
+          "Kept the folded grave-clothes where Thy body lay."
+        ]
+      ],
+      "refrain": [
+        "Thine be the glory, risen, conquering Son,",
+        "Endless is the victory Thou o'er death hast won."
+      ],
+      "versets": [
+        {
+          "livre": 40,
+          "chapitre": 28,
+          "verset": 6
+        },
+        {
+          "livre": 46,
+          "chapitre": 15,
+          "verset": 55
+        }
+      ],
+      "histoire": "Traduction anglaise, par Richard Hoyle, du cantique « À toi la gloire » d'Edmond Budry, sur la musique de Haendel.",
+      "traduction": "a-toi-la-gloire"
+    },
+    {
+      "id": "angels-we-have-heard",
+      "titre": "Angels We Have Heard on High",
+      "langue": "en",
+      "theme": "noel",
+      "auteur": "Noël français · trad. James Chadwick",
+      "annee": "1862",
+      "recherche": "Angels We Have Heard on High",
+      "paroles": [
+        [
+          "Angels we have heard on high,",
+          "Sweetly singing o'er the plains,",
+          "And the mountains in reply",
+          "Echoing their joyous strains."
+        ]
+      ],
+      "refrain": ["Gloria in excelsis Deo!", "Gloria in excelsis Deo!"],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 14
+        }
+      ],
+      "histoire": "Traduction anglaise du noël français « Les anges dans nos campagnes ».",
+      "traduction": "les-anges-dans-nos-campagnes"
+    },
+    {
+      "id": "holy-god-we-praise",
+      "titre": "Holy God, We Praise Thy Name",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "Ignaz Franz · trad. Clarence Walworth",
+      "annee": "1858",
+      "recherche": "Holy God We Praise Thy Name",
+      "autresRecherches": ["Grosser Gott wir loben dich"],
+      "paroles": [
+        [
+          "Holy God, we praise Thy name;",
+          "Lord of all, we bow before Thee!",
+          "All on earth Thy sceptre claim,",
+          "All in heaven above adore Thee;",
+          "Infinite Thy vast domain,",
+          "Everlasting is Thy reign."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 145
+        }
+      ],
+      "traduction": "grand-dieu-nous-te-benissons"
+    },
+    {
+      "id": "all-people",
+      "titre": "All People That on Earth Do Dwell",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "William Kethe · mélodie genevoise",
+      "annee": "1561",
+      "recherche": "All People That on Earth Do Dwell",
+      "autresRecherches": ["Old Hundredth"],
+      "paroles": [
+        [
+          "All people that on earth do dwell,",
+          "Sing to the Lord with cheerful voice;",
+          "Him serve with fear, His praise forth tell;",
+          "Come ye before Him and rejoice."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 100
+        }
+      ],
+      "histoire": "Version anglaise du Psaume 100 par William Kethe, en 1561, sur la mélodie genevoise « Old Hundredth ».",
+      "traduction": "vous-qui-sur-la-terre"
+    },
+    {
+      "id": "vous-qui-sur-la-terre",
+      "titre": "Vous qui sur la terre habitez",
+      "langue": "fr",
+      "theme": "louange",
+      "auteur": "Psautier de Genève (Psaume 100)",
+      "annee": "1551",
+      "recherche": "Old Hundredth",
+      "autresRecherches": ["Psaume 100 Geneve", "Vous qui sur la terre habitez"],
+      "paroles": [
+        [
+          "Vous qui sur la terre habitez,",
+          "Chantez à pleine voix, chantez,",
+          "Réjouissez-vous au Seigneur,",
+          "Égayez-vous à son honneur."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 100
+        }
+      ],
+      "histoire": "Psaume 100 du Psautier de Genève, au XVIᵉ siècle ; sa mélodie est devenue en anglais « Old Hundredth ».",
+      "traduction": "all-people"
+    },
+    {
+      "id": "comme-un-cerf",
+      "titre": "Comme un cerf altéré brame",
+      "langue": "fr",
+      "theme": "priere",
+      "auteur": "Psautier de Genève (Psaume 42)",
+      "annee": "1551",
+      "recherche": "Psaume 42 Geneve",
+      "autresRecherches": ["As pants the hart Genevan Psalm 42", "Comme un cerf altere brame"],
+      "paroles": [
+        [
+          "Comme un cerf altéré brame",
+          "Après le courant des eaux,",
+          "Ainsi soupire mon âme,",
+          "Seigneur, après tes ruisseaux."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 42
+        }
+      ],
+      "histoire": "Psaume du Psautier de Genève, au XVIᵉ siècle, chanté par les protestants francophones."
+    },
+    {
+      "id": "que-dieu-se-montre",
+      "titre": "Que Dieu se montre seulement",
+      "langue": "fr",
+      "theme": "confiance",
+      "auteur": "Psautier de Genève (Psaume 68)",
+      "annee": "1562",
+      "recherche": "Psaume 68 Geneve",
+      "autresRecherches": ["Que Dieu se montre seulement", "Psaume des batailles huguenot"],
+      "paroles": [
+        [
+          "Que Dieu se montre seulement",
+          "Et l'on verra soudainement",
+          "Abandonner la place ;",
+          "Le camp des ennemis épars,",
+          "Épouvanté de toutes parts,",
+          "Fuira devant sa face."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 68
+        }
+      ],
+      "histoire": "Psaume 68 du Psautier de Genève, au XVIᵉ siècle ; les huguenots l'appelaient « le psaume des batailles »."
+    },
+    {
+      "id": "venez-divin-messie",
+      "titre": "Venez, divin Messie",
+      "langue": "fr",
+      "theme": "noel",
+      "auteur": "Abbé Simon-Joseph Pellegrin",
+      "annee": "XVIIIᵉ s.",
+      "recherche": "Venez divin Messie",
+      "autresRecherches": ["O Come Divine Messiah"],
+      "paroles": [
+        [
+          "Ah ! descendez, hâtez vos pas,",
+          "Sauvez les hommes du trépas,",
+          "Secourez-nous, ne tardez pas.",
+          "Dans une peine extrême",
+          "Gémissent nos cœurs malheureux :",
+          "Seigneur, vous-même,",
+          "Comblez nos vœux !"
+        ]
+      ],
+      "refrain": [
+        "Venez, divin Messie,",
+        "Sauver nos jours infortunés ;",
+        "Venez, source de vie,",
+        "Venez, venez, venez !"
+      ],
+      "versets": [
+        {
+          "livre": 23,
+          "chapitre": 45,
+          "verset": 8
+        },
+        {
+          "livre": 66,
+          "chapitre": 22,
+          "verset": 20
+        }
+      ]
+    },
+    {
+      "id": "entre-le-boeuf",
+      "titre": "Entre le bœuf et l'âne gris",
+      "langue": "fr",
+      "theme": "noel",
+      "auteur": "Noël traditionnel français",
+      "annee": "XVIᵉ s.",
+      "recherche": "Entre le boeuf et l'ane gris",
+      "paroles": [
+        [
+          "Entre le bœuf et l'âne gris",
+          "Dort, dort, dort le petit fils ;",
+          "Mille anges divins, mille séraphins",
+          "Volent à l'entour de ce grand Dieu d'amour."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 7
+        },
+        {
+          "livre": 23,
+          "chapitre": 1,
+          "verset": 3
+        }
+      ],
+      "histoire": "Noël traditionnel français, sans doute du XVIᵉ siècle, chanté comme une berceuse."
+    },
+    {
+      "id": "o-little-town",
+      "titre": "O Little Town of Bethlehem",
+      "langue": "en",
+      "theme": "noel",
+      "auteur": "Phillips Brooks · musique Lewis Redner",
+      "annee": "1868",
+      "recherche": "O Little Town of Bethlehem",
+      "paroles": [
+        [
+          "O little town of Bethlehem,",
+          "How still we see thee lie!",
+          "Above thy deep and dreamless sleep",
+          "The silent stars go by;",
+          "Yet in thy dark streets shineth",
+          "The everlasting Light;",
+          "The hopes and fears of all the years",
+          "Are met in thee tonight."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 33,
+          "chapitre": 5
+        }
+      ],
+      "histoire": "Phillips Brooks l'écrit en 1868 pour les enfants de sa paroisse de Philadelphie, quelques années après un voyage à Bethléem."
+    },
+    {
+      "id": "hark-the-herald",
+      "titre": "Hark! The Herald Angels Sing",
+      "langue": "en",
+      "theme": "noel",
+      "auteur": "Charles Wesley · musique Felix Mendelssohn",
+      "annee": "1739",
+      "recherche": "Hark the Herald Angels Sing",
+      "paroles": [
+        [
+          "Hark! the herald angels sing,",
+          "\"Glory to the new-born King;",
+          "Peace on earth, and mercy mild,",
+          "God and sinners reconciled!\"",
+          "Joyful, all ye nations, rise,",
+          "Join the triumph of the skies;",
+          "With th'angelic host proclaim,",
+          "\"Christ is born in Bethlehem!\""
+        ]
+      ],
+      "refrain": ["Hark! the herald angels sing,", "\"Glory to the new-born King!\""],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 14
+        }
+      ],
+      "histoire": "Charles Wesley l'écrit en 1739 ; la mélodie vient d'une œuvre de Felix Mendelssohn."
+    },
+    {
+      "id": "away-in-a-manger",
+      "titre": "Away in a Manger",
+      "langue": "en",
+      "theme": "enfants",
+      "auteur": "Chant de Noël américain · musique William Kirkpatrick",
+      "annee": "1885",
+      "recherche": "Away in a Manger",
+      "paroles": [
+        [
+          "Away in a manger, no crib for a bed,",
+          "The little Lord Jesus laid down His sweet head.",
+          "The stars in the bright sky looked down where He lay,",
+          "The little Lord Jesus asleep on the hay."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 42,
+          "chapitre": 2,
+          "verset": 7
+        }
+      ]
+    },
+    {
+      "id": "all-things-bright",
+      "titre": "All Things Bright and Beautiful",
+      "langue": "en",
+      "theme": "enfants",
+      "auteur": "Cecil F. Alexander",
+      "annee": "1848",
+      "recherche": "All Things Bright and Beautiful",
+      "paroles": [
+        [
+          "Each little flower that opens,",
+          "Each little bird that sings,",
+          "He made their glowing colours,",
+          "He made their tiny wings."
+        ]
+      ],
+      "refrain": [
+        "All things bright and beautiful,",
+        "All creatures great and small,",
+        "All things wise and wonderful,",
+        "The Lord God made them all."
+      ],
+      "versets": [
+        {
+          "livre": 1,
+          "chapitre": 1,
+          "verset": 31
+        }
+      ]
+    },
+    {
+      "id": "this-is-my-fathers-world",
+      "titre": "This Is My Father's World",
+      "langue": "en",
+      "theme": "enfants",
+      "auteur": "Maltbie D. Babcock",
+      "annee": "1901",
+      "recherche": "This Is My Father's World",
+      "paroles": [
+        [
+          "This is my Father's world,",
+          "And to my listening ears",
+          "All nature sings, and round me rings",
+          "The music of the spheres."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 24
+        }
+      ]
+    },
+    {
+      "id": "fairest-lord-jesus",
+      "titre": "Fairest Lord Jesus",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "Hymne allemand · trad. Richard S. Willis",
+      "annee": "1850",
+      "recherche": "Fairest Lord Jesus",
+      "autresRecherches": ["Schonster Herr Jesu", "Crusaders Hymn"],
+      "paroles": [
+        [
+          "Fairest Lord Jesus,",
+          "Ruler of all nature,",
+          "O Thou of God and man the Son,",
+          "Thee will I cherish,",
+          "Thee will I honor,",
+          "Thou, my soul's glory, joy and crown."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 51,
+          "chapitre": 1,
+          "verset": 16
+        }
+      ]
+    },
+    {
+      "id": "praise-to-the-lord",
+      "titre": "Praise to the Lord, the Almighty",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "Joachim Neander · trad. Catherine Winkworth",
+      "annee": "1863",
+      "recherche": "Praise to the Lord the Almighty",
+      "autresRecherches": ["Lobe den Herren"],
+      "paroles": [
+        [
+          "Praise to the Lord, the Almighty, the King of creation!",
+          "O my soul, praise Him, for He is thy health and salvation!",
+          "All ye who hear, now to His temple draw near;",
+          "Praise Him in glad adoration."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 103
+        }
+      ]
+    },
+    {
+      "id": "be-thou-my-vision",
+      "titre": "Be Thou My Vision",
+      "langue": "en",
+      "theme": "priere",
+      "auteur": "Hymne irlandais · trad. Mary Byrne et Eleanor Hull",
+      "annee": "1912",
+      "recherche": "Be Thou My Vision",
+      "autresRecherches": ["Slane hymn"],
+      "paroles": [
+        [
+          "Be Thou my Vision, O Lord of my heart;",
+          "Naught be all else to me, save that Thou art;",
+          "Thou my best Thought, by day or by night,",
+          "Waking or sleeping, Thy presence my light."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 49,
+          "chapitre": 1,
+          "verset": 18
+        }
+      ]
+    },
+    {
+      "id": "when-i-survey",
+      "titre": "When I Survey the Wondrous Cross",
+      "langue": "en",
+      "theme": "paques",
+      "auteur": "Isaac Watts",
+      "annee": "1707",
+      "recherche": "When I Survey the Wondrous Cross",
+      "paroles": [
+        [
+          "When I survey the wondrous cross",
+          "On which the Prince of glory died,",
+          "My richest gain I count but loss,",
+          "And pour contempt on all my pride."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 48,
+          "chapitre": 6,
+          "verset": 14
+        }
+      ],
+      "histoire": "Isaac Watts l'écrit en 1707 pour le repas du Seigneur ; on y entend Galates 6.14."
+    },
+    {
+      "id": "blessed-assurance",
+      "titre": "Blessed Assurance",
+      "langue": "en",
+      "theme": "confiance",
+      "auteur": "Fanny Crosby · musique Phoebe Knapp",
+      "annee": "1873",
+      "recherche": "Blessed Assurance",
+      "paroles": [
+        [
+          "Blessed assurance, Jesus is mine!",
+          "O what a foretaste of glory divine!",
+          "Heir of salvation, purchase of God,",
+          "Born of His Spirit, washed in His blood."
+        ]
+      ],
+      "refrain": [
+        "This is my story, this is my song,",
+        "Praising my Saviour all the day long;",
+        "This is my story, this is my song,",
+        "Praising my Saviour all the day long."
+      ],
+      "versets": [
+        {
+          "livre": 58,
+          "chapitre": 10,
+          "verset": 22
+        }
+      ],
+      "histoire": "Fanny Crosby, aveugle depuis l'enfance, l'écrit en 1873 en écoutant la mélodie que lui joue son amie Phoebe Knapp."
+    },
+    {
+      "id": "lead-kindly-light",
+      "titre": "Lead, Kindly Light",
+      "langue": "en",
+      "theme": "priere",
+      "auteur": "John Henry Newman · musique John B. Dykes",
+      "annee": "1833",
+      "recherche": "Lead Kindly Light",
+      "paroles": [
+        [
+          "Lead, kindly Light, amid th'encircling gloom,",
+          "Lead Thou me on!",
+          "The night is dark, and I am far from home;",
+          "Lead Thou me on!",
+          "Keep Thou my feet; I do not ask to see",
+          "The distant scene; one step enough for me."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 119,
+          "verset": 105
+        }
+      ],
+      "histoire": "John Henry Newman l'écrit en 1833, immobilisé en mer près de la Sardaigne, malade et loin de chez lui."
+    },
+    {
+      "id": "the-lords-my-shepherd",
+      "titre": "The Lord's My Shepherd",
+      "langue": "en",
+      "theme": "confiance",
+      "auteur": "Psautier écossais (Psaume 23)",
+      "annee": "1650",
+      "recherche": "The Lord's My Shepherd",
+      "autresRecherches": ["Crimond hymn"],
+      "paroles": [
+        [
+          "The Lord's my shepherd, I'll not want;",
+          "He makes me down to lie",
+          "In pastures green; He leadeth me",
+          "The quiet waters by."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 23
+        }
+      ]
+    },
+    {
+      "id": "o-worship-the-king",
+      "titre": "O Worship the King",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "Robert Grant",
+      "annee": "1833",
+      "recherche": "O Worship the King",
+      "autresRecherches": ["Hanover hymn"],
+      "paroles": [
+        [
+          "O worship the King, all glorious above,",
+          "And gratefully sing His wonderful love;",
+          "Our Shield and Defender, the Ancient of Days,",
+          "Pavilioned in splendor and girded with praise."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 104
+        }
+      ]
+    },
+    {
+      "id": "jesus-lover",
+      "titre": "Jesus, Lover of My Soul",
+      "langue": "en",
+      "theme": "priere",
+      "auteur": "Charles Wesley",
+      "annee": "1740",
+      "recherche": "Jesus Lover of My Soul",
+      "autresRecherches": ["Aberystwyth hymn"],
+      "paroles": [
+        [
+          "Jesus, lover of my soul,",
+          "Let me to Thy bosom fly,",
+          "While the nearer waters roll,",
+          "While the tempest still is high."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 19,
+          "chapitre": 91
+        }
+      ]
+    },
+    {
+      "id": "just-as-i-am",
+      "titre": "Just As I Am",
+      "langue": "en",
+      "theme": "priere",
+      "auteur": "Charlotte Elliott · musique William Bradbury",
+      "annee": "1835",
+      "recherche": "Just As I Am",
+      "paroles": [
+        [
+          "Just as I am, without one plea,",
+          "But that Thy blood was shed for me,",
+          "And that Thou bidd'st me come to Thee,",
+          "O Lamb of God, I come, I come."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 43,
+          "chapitre": 6,
+          "verset": 37
+        }
+      ],
+      "histoire": "Charlotte Elliott, souvent alitée par la maladie, l'écrit en 1835 en se souvenant de l'invitation qui l'avait conduite à la foi : venir telle qu'elle est."
+    },
+    {
+      "id": "sweet-hour-of-prayer",
+      "titre": "Sweet Hour of Prayer",
+      "langue": "en",
+      "theme": "priere",
+      "auteur": "William Walford · musique William Bradbury",
+      "annee": "1845",
+      "recherche": "Sweet Hour of Prayer",
+      "paroles": [
+        [
+          "Sweet hour of prayer! sweet hour of prayer!",
+          "That calls me from a world of care,",
+          "And bids me at my Father's throne",
+          "Make all my wants and wishes known."
+        ]
+      ],
+      "versets": [
+        {
+          "livre": 40,
+          "chapitre": 6,
+          "verset": 6
+        }
+      ]
     }
   ]
 }

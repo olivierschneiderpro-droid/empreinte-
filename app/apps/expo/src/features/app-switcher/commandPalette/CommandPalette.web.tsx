@@ -10,6 +10,7 @@ import { parseBibleReferenceInput } from '~helpers/bcvParser'
 import { paletteScopes, isPassageScope, type PaletteScope } from './scopes'
 import CatalogSuggestions from './CatalogSuggestions.web'
 import VideoSuggestions from './VideoSuggestions.web'
+import ChantSuggestions from './ChantSuggestions.web'
 import PassageSuggestions from './PassageSuggestions.web'
 import { getReferenceSearchItemsFromSegments } from '~features/search/shared/searchItems'
 import ContentSuggestions from './ContentSuggestions.web'
@@ -430,6 +431,15 @@ export default function CommandPalette({
                   onSelect={openTab}
                 />
               )}
+            {showSuggestions && !scope && query.trim().length >= 2 && (
+              <ChantSuggestions
+                query={query}
+                onSelect={chant => {
+                  onDone?.()
+                  router.push({ pathname: '/chant', params: { id: chant.id } } as never)
+                }}
+              />
+            )}
             {showSuggestions && !scope && query.trim().length >= 2 && (
               <VideoSuggestions
                 query={query}
