@@ -7,7 +7,8 @@ import { FeatherIcon } from '~common/ui/Icon'
 import Text from '~common/ui/Text'
 import { Icone } from '../icones'
 import { POLICES, police, styleVerre, useVerre } from '../lumiere'
-import { Scene, type NomScene } from './Scene'
+import { Illustration, type DefIllustration } from './Illustration'
+import { SCENES_NOMMEES, type NomScene } from './Scene'
 
 /**
  * Empreinte · Une rangée qui défile, comme une vitrine : quelques cartes visibles, les
@@ -86,6 +87,7 @@ export function Rangee({
 /** Une carte imagée : l'illustration, un titre, une ligne d'information. */
 export function CarteImagee({
   scene,
+  illustration,
   titre,
   sousTitre,
   badge,
@@ -96,6 +98,8 @@ export function CarteImagee({
   titreSurImage,
 }: {
   scene: NomScene
+  /** Une illustration précise (un livre de la Bible) à la place de la scène nommée. */
+  illustration?: DefIllustration
   titre: string
   sousTitre?: string
   badge?: string
@@ -119,7 +123,7 @@ export function CarteImagee({
           { width: largeur, height: hauteur, boxShadow: '0 8px 22px rgba(17,17,19,0.12)' } as object
         }
       >
-        <Scene nom={scene} />
+        <Illustration def={illustration ?? SCENES_NOMMEES[scene]} />
         {surImage ? <Box className="absolute inset-0 p-[12px] justify-end">{surImage}</Box> : null}
         {badge ? (
           <Box
@@ -149,6 +153,7 @@ export function CarteImagee({
 /** La grande carte du haut : l'illustration en fond, le texte posé dessus. */
 export function Vedette({
   scene,
+  illustration,
   surtitre,
   titre,
   texte,
@@ -157,6 +162,7 @@ export function Vedette({
   extra,
 }: {
   scene: NomScene
+  illustration?: DefIllustration
   surtitre: string
   titre: string
   texte?: string
@@ -171,17 +177,24 @@ export function Vedette({
       className="rounded-[28px] overflow-hidden w-full"
       style={{ height: 240, boxShadow: '0 16px 40px rgba(17,17,19,0.16)' } as object}
     >
-      <Scene nom={scene} />
+      {/* L'illustration garde ses proportions, à droite ; le texte repose sur un fond sombre
+          qui se fond dans l'image (comme une affiche). */}
+      <Box className="absolute inset-0" style={{ backgroundColor: '#121827' }} />
       <Box
-        className="absolute inset-0"
-        style={
-          {
-            backgroundImage:
-              'linear-gradient(90deg, rgba(10,14,26,0.72) 0%, rgba(10,14,26,0.35) 55%, rgba(10,14,26,0) 100%)',
-            backgroundColor: Platform.OS === 'web' ? undefined : 'rgba(10,14,26,0.4)',
-          } as object
-        }
-      />
+        className="absolute top-0 bottom-0 right-0"
+        style={{ width: 240 * 1.75, maxWidth: '100%' }}
+      >
+        <Illustration def={illustration ?? SCENES_NOMMEES[scene]} />
+        <Box
+          className="absolute inset-0"
+          style={
+            {
+              backgroundImage:
+                'linear-gradient(90deg, rgba(18,24,39,1) 0%, rgba(18,24,39,0.55) 22%, rgba(18,24,39,0) 50%)',
+            } as object
+          }
+        />
+      </Box>
       <Box className="absolute inset-0 p-[28px] justify-end gap-[8px] max-w-[620px]">
         <Text className="text-[white] text-[12px] font-bold uppercase tracking-[1.5px] opacity-[0.8]">
           {surtitre}

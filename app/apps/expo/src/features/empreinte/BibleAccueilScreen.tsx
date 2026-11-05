@@ -18,6 +18,7 @@ import { useAllerALaBible, useOuvrirDansLaBible } from './ouvrirDansLaBible'
 import { CarteImagee, Rangee, Vedette } from './vitrine/Rangee'
 import type { NomScene } from './vitrine/Scene'
 import { Volet } from './vitrine/Volet'
+import { illustrationDuLivre } from './vitrine/illustrationsBible'
 
 /** La lecture en cours : l'onglet Bible actif, sinon le premier (sans en créer pendant l'affichage). */
 const lectureEnCours = () => {
@@ -132,6 +133,7 @@ export default function BibleAccueilScreen() {
           {enCours ? (
             <Vedette
               scene={sceneDuLivre(enCours.selectedBook.Numero)}
+              illustration={illustrationDuLivre(enCours.selectedBook.Numero)}
               surtitre={t('bibleAccueil.resume')}
               titre={`${t(enCours.selectedBook.Nom)} ${enCours.selectedChapter}`}
               texte={enCours.selectedVersion}
@@ -185,6 +187,7 @@ export default function BibleAccueilScreen() {
                   <CarteImagee
                     key={book.Numero}
                     scene={scene}
+                    illustration={illustrationDuLivre(book.Numero)}
                     titre={t(book.Nom)}
                     sousTitre={t('bibleAccueil.chaptersCount', { count: book.Chapitres })}
                     largeur={176}
