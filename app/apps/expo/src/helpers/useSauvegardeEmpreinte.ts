@@ -7,6 +7,7 @@ import {
   SYMBOLES,
   type Symbole,
 } from '~features/empreinte/SymboleCompte'
+import { mesChantsAtom, type MesChants } from '~features/chants/chants'
 import { progressionLivresAtom } from '~features/livres/livres'
 import * as UserActions from '~redux/modules/user'
 import type { RootState } from '~redux/modules/reducer'
@@ -19,6 +20,7 @@ type Sauvegarde = {
   symbole?: Symbole
   joursDeLecture?: string[]
   livres?: Record<string, { chapitre: number }>
+  chants?: MesChants
   version?: number
 }
 
@@ -30,6 +32,7 @@ const extraire = (etat: RootState): Sauvegarde => {
     symbole: getDefaultStore().get(symboleCompteAtom),
     joursDeLecture: getDefaultStore().get(joursDeLectureAtom),
     livres: getDefaultStore().get(progressionLivresAtom),
+    chants: getDefaultStore().get(mesChantsAtom),
     version: 1,
   }
 }
@@ -109,6 +112,21 @@ export default function useSauvegardeEmpreinte() {
               ...(serveur.livres as Sauvegarde['livres']),
               ...getDefaultStore().get(progressionLivresAtom),
             })
+          if (estObjet(serveur.chants)) {
+            const ici = getDefaultStore().get(mesChantsAtom)
+            const la = serveur.chants as Partial<MesChants>
+            getDefaultStore().set(mesChantsAtom, {
+              favoris: [
+                ...new Set([...ici.favoris, ...(Array.isArray(la.favoris) ? la.favoris : [])]),
+              ],
+              listes: [
+                ...ici.listes,
+                ...(Array.isArray(la.listes) ? la.listes : []).filter(
+                  liste => !ici.listes.some(l => l.id === liste.id)
+                ),
+              ],
+            })
+          }
         }
         await envoyer()
       } catch {
@@ -125,6 +143,7 @@ export default function useSauvegardeEmpreinte() {
     const desabonnerSymbole = getDefaultStore().sub(symboleCompteAtom, programmer)
     const desabonnerJours = getDefaultStore().sub(joursDeLectureAtom, programmer)
     const desabonnerLivres = getDefaultStore().sub(progressionLivresAtom, programmer)
+    const desabonnerChants = getDefaultStore().sub(mesChantsAtom, programmer)
     return () => {
       annule = true
       clearTimeout(minuterie)
@@ -132,6 +151,7 @@ export default function useSauvegardeEmpreinte() {
       desabonnerSymbole()
       desabonnerJours()
       desabonnerLivres()
+      desabonnerChants()
     }
   }, [actif, user.id, store, dispatch])
 }
