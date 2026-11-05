@@ -18,7 +18,9 @@ import { useAllerALaBible, useOuvrirDansLaBible } from './ouvrirDansLaBible'
 import { CarteImagee, Rangee, Vedette } from './vitrine/Rangee'
 import type { NomScene } from './vitrine/Scene'
 import { Volet } from './vitrine/Volet'
+import { CreditsPhotos } from './vitrine/CreditsPhotos'
 import { illustrationDuLivre } from './vitrine/illustrationsBible'
+import { photoDuLivre } from './vitrine/photos'
 
 /** La lecture en cours : l'onglet Bible actif, sinon le premier (sans en créer pendant l'affichage). */
 const lectureEnCours = () => {
@@ -134,6 +136,7 @@ export default function BibleAccueilScreen() {
             <Vedette
               scene={sceneDuLivre(enCours.selectedBook.Numero)}
               illustration={illustrationDuLivre(enCours.selectedBook.Numero)}
+              photo={photoDuLivre(enCours.selectedBook.Numero)}
               surtitre={t('bibleAccueil.resume')}
               titre={`${t(enCours.selectedBook.Nom)} ${enCours.selectedChapter}`}
               texte={enCours.selectedVersion}
@@ -188,6 +191,7 @@ export default function BibleAccueilScreen() {
                     key={book.Numero}
                     scene={scene}
                     illustration={illustrationDuLivre(book.Numero)}
+                    photo={photoDuLivre(book.Numero)}
                     titre={t(book.Nom)}
                     sousTitre={t('bibleAccueil.chaptersCount', { count: book.Chapitres })}
                     largeur={176}
@@ -219,6 +223,8 @@ export default function BibleAccueilScreen() {
               </Rangee>
             )
           })}
+
+          <CreditsPhotos />
         </Box>
       </ScrollView>
 

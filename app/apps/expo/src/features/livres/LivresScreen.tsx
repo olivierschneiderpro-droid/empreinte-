@@ -7,6 +7,8 @@ import { LinkBox } from '~common/Link'
 import Box, { HStack } from '~common/ui/Box'
 import { FeatherIcon } from '~common/ui/Icon'
 import Text from '~common/ui/Text'
+import { CreditsPhotos } from '~features/empreinte/vitrine/CreditsPhotos'
+import { photoDuLivreChretien } from '~features/empreinte/vitrine/photos'
 import { CarteImagee, Rangee, Vedette } from '~features/empreinte/vitrine/Rangee'
 import {
   adresseLivres,
@@ -42,6 +44,7 @@ export default function LivresScreen() {
         <Box className="px-[24px] gap-[30px] w-full max-w-[1300px] self-center">
           <Vedette
             scene={vedette.scene}
+            photo={photoDuLivreChretien(vedette.id)}
             surtitre={enCours[0] ? t('livres.continue') : t('livres.discover')}
             titre={vedette.titre}
             texte={
@@ -83,6 +86,7 @@ export default function LivresScreen() {
                 <CarteImagee
                   key={livre.id}
                   scene={livre.scene}
+                  photo={photoDuLivreChretien(livre.id)}
                   titre={livre.titre}
                   sousTitre={t('livres.atPart', { part: partie(livre.id) })}
                   onPress={() => ouvrir(livre.id)}
@@ -100,6 +104,7 @@ export default function LivresScreen() {
                   <CarteImagee
                     key={livre.id}
                     scene={livre.scene}
+                    photo={photoDuLivreChretien(livre.id)}
                     titre={livre.titre}
                     sousTitre={`${livre.auteur} · ${livre.annee}`}
                     badge={livre.langue.toUpperCase()}
@@ -113,6 +118,7 @@ export default function LivresScreen() {
           })}
 
           <Text className="text-grey text-[12px] leading-[18px]">{t('livres.credit')}</Text>
+          <CreditsPhotos />
         </Box>
       </ScrollView>
     </Box>
