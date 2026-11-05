@@ -85,7 +85,7 @@ Dans la console, réglez :
 |---|---|
 | Voir les journaux | `journalctl -u empreinte -f` |
 | Voir les mises à jour | `journalctl -u empreinte-maj -f` |
-| Voir les chants trouvés | `journalctl -u empreinte | grep Chants` (enregistrements libres trouvés au démarrage) |
+| Voir les chants trouvés | `journalctl -u empreinte \| grep Chants` (enregistrements libres trouvés au démarrage) |
 | Redémarrer | `systemctl restart empreinte` |
 | Sauvegarder maintenant | `systemctl start empreinte-sauvegarde` |
 | Ajouter la clé YouVersion | `nano /home/empreinte/.empreinte-cles` (`YOUVERSION_KEY=…`), puis `systemctl restart empreinte` |
