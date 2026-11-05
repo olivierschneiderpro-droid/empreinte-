@@ -11,12 +11,15 @@ import { adressePhoto, type Photo } from './photos'
  */
 export function ImageVitrine({
   photo,
+  uri,
   largeur,
   hauteur,
   avecCredit,
 }: {
   photo?: Photo
-  secours: DefIllustration
+  /** Une image déjà hébergée (couverture d'un plan) à la place d'une photo Unsplash. */
+  uri?: string | null
+  secours?: DefIllustration
   largeur: number
   hauteur: number
   /** Écrit l'auteur de la photo dans le coin (grande carte). */
@@ -30,17 +33,18 @@ export function ImageVitrine({
       style={{ backgroundImage: 'linear-gradient(135deg, #2a3350 0%, #121827 100%)' } as object}
     />
   )
-  if (!photo || echec === photo.photo) return fond
+  const adresse = uri ?? (photo ? adressePhoto(photo, largeur, hauteur) : null)
+  if (!adresse || echec === adresse) return fond
   return (
     <Box className="absolute inset-0" style={{ backgroundColor: '#1b2233' }}>
       <Image
-        source={{ uri: adressePhoto(photo, largeur, hauteur) }}
+        source={{ uri: adresse }}
         style={StyleSheet.absoluteFill}
         resizeMode="cover"
-        onError={() => setEchec(photo.photo)}
+        onError={() => setEchec(adresse)}
         accessibilityIgnoresInvertColors
       />
-      {avecCredit ? (
+      {avecCredit && photo && !uri ? (
         <Text
           className="absolute bottom-[8px] right-[14px] text-[10px] opacity-[0.7]"
           style={{ color: 'white', zIndex: 1 }}

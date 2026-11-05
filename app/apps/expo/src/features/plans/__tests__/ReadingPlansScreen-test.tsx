@@ -37,6 +37,7 @@ jest.mock('react-i18next', () => ({
 jest.mock('expo-router', () => ({ useRouter: () => ({ push: () => {} }) }))
 jest.mock('expo-image', () => ({ Image: () => null }))
 jest.mock('../plan.hooks', () => ({ useFireStorage: () => undefined }))
+jest.mock('~features/empreinte/vitrine/Rangee', () => ({ Vedette: () => null }))
 jest.mock('react-native', () => ({
   ActivityIndicator: () => null,
   ScrollView: ({ children }: React.PropsWithChildren) => children,

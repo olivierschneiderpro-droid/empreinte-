@@ -181,6 +181,7 @@ export function Vedette({
   scene,
   illustration,
   photo,
+  imageUri,
   surtitre,
   titre,
   texte,
@@ -191,6 +192,8 @@ export function Vedette({
   scene: NomScene
   illustration?: DefIllustration
   photo?: Photo
+  /** Une image hébergée (couverture d'un plan) ; null = encore en chargement. */
+  imageUri?: string | null
   surtitre: string
   titre: string
   texte?: string
@@ -198,7 +201,7 @@ export function Vedette({
   onPress: () => void
   extra?: ReactNode
 }) {
-  const image = photoDe(scene, photo, illustration)
+  const image = imageUri !== undefined ? undefined : photoDe(scene, photo, illustration)
   const secours = illustration ?? SCENES_NOMMEES[scene]
   return (
     <LinkBox
@@ -208,10 +211,17 @@ export function Vedette({
       style={{ height: 240, boxShadow: '0 16px 40px rgba(17,17,19,0.16)' } as object}
     >
       <Box className="absolute inset-0" style={{ backgroundColor: '#121827' }} />
-      {image ? (
+      {image || imageUri !== undefined ? (
         // La photo couvre toute la carte ; un voile sombre à gauche porte le texte.
         <>
-          <ImageVitrine photo={image} secours={secours} largeur={1200} hauteur={240} avecCredit />
+          <ImageVitrine
+            photo={image}
+            uri={imageUri}
+            secours={secours}
+            largeur={1200}
+            hauteur={240}
+            avecCredit
+          />
           <Box
             className="absolute inset-0"
             style={

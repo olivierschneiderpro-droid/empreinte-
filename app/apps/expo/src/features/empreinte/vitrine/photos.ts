@@ -102,9 +102,9 @@ export const PHOTOS_BIBLE: Record<number, Photo> = {
   41: { photo: 'photo-1613412984420-1300edb8219f', auteur: 'Sylvain Brison', pseudo: 'sbrison' }, // lac et collines
   42: { photo: 'photo-1692961888969-373530a74860', auteur: 'Jean Vella', pseudo: 'jean_vella' }, // brebis au-dessus d'un lac
   43: { photo: 'photo-1528351655744-27cc30462816', auteur: 'Paolo Nicolello', pseudo: 'paul_nic' }, // petite flamme dans la nuit
-  44: { photo: 'photo-1672421186707-fd1339a0d9a7', auteur: 'Ahmad Ajmi', pseudo: 'ahmadajmi' }, // plage et eau
+  44: { photo: 'photo-1600352978235-b0175bb4fc01', auteur: 'Ilse Orsel', pseudo: 'beertje60' }, // voilier en mer
   45: { photo: 'photo-1478641300939-0ec5188d3802', auteur: 'Clark Young', pseudo: 'cbyoung' }, // encrier sur un bureau
-  46: { photo: 'photo-1586765501508-cffc1fe200c8', auteur: 'Tommaso Urli', pseudo: 'tunnuz' }, // pain sur table de bois
+  46: { photo: 'photo-1586765501019-cbe3973ef8fa', auteur: 'Tommaso Urli', pseudo: 'tunnuz' }, // pains au levain
   47: { photo: 'photo-1551127481-43279ba6dec4', auteur: 'Pierre Bamin', pseudo: 'bamin' }, // plume et papier
   48: { photo: 'photo-1785097565450-eab5283e3640', auteur: 'Remedy', pseudo: 'remeedy' }, // chemin au coucher du soleil
   49: { photo: 'photo-1777830801220-17fa8f94400e', auteur: 'Stock Birken', pseudo: 'stockbirken' }, // pierres et arches antiques
@@ -159,37 +159,37 @@ export const PHOTOS_SCENES: Record<NomScene, Photo> = {
     auteur: 'Peggy Anke',
     pseudo: 'instagramfotografin',
   }, // chameau, nuages
-  ville: { photo: 'photo-1768133571447-8a332c020825', auteur: 'George', pseudo: 'geox3' }, // murs de pierre et arbres
-  nuit: { photo: 'photo-1654330352875-1f86a5b011cf', auteur: 'Yuheng Mei', pseudo: 'march4mei' }, // nuit étoilée sur le désert
-  montagne: {
-    photo: 'photo-1760301269447-fbc82b5a8d14',
-    auteur: 'Gantavya Bhatt',
-    pseudo: 'gbhatt_2',
-  }, // sommet au lever du soleil
+  ville: { photo: 'photo-1607644546432-45b4e524dd3d', auteur: 'Thomas Ten', pseudo: 'ten_ax' }, // rochers rouges du désert
+  nuit: { photo: 'photo-1528353518104-dbd48bee7bc4', auteur: 'Chan Hoi', pseudo: 'jokerhoi' }, // voie lactée sur les montagnes
+  montagne: { photo: 'photo-1557401622-cfc0aa5d146c', auteur: 'Mathew Schwartz', pseudo: 'cadop' }, // aigle en vol
   riviere: {
     photo: 'photo-1706810693459-25f649381663',
     auteur: 'Fouad Abou-Rizk',
     pseudo: 'fouadabourizkfa',
   }, // ruisseau dans la verdure
-  chemin: { photo: 'photo-1592205644721-2fe5214762ae', auteur: 'Hongru Wang', pseudo: 'whongru' }, // chemin dans les prés
+  chemin: { photo: 'photo-1561728130-afd430af0493', auteur: 'Michael Held', pseudo: 'michaelheld' }, // bateau sur l'océan
   mer: { photo: 'photo-1672421186707-fd1339a0d9a7', auteur: 'Ahmad Ajmi', pseudo: 'ahmadajmi' }, // plage et eau
   rouleau: {
-    photo: 'photo-1580501170888-80668882ca0c',
-    auteur: 'Taylor Flowe',
-    pseudo: 'taypaigey',
-  }, // rouleau de la Torah déployé
+    photo: 'photo-1595520519880-a86c48ea536c',
+    auteur: 'Joshua Woroniecki',
+    pseudo: 'joshuaworoniecki',
+  }, // ciel étoilé d'été
   lampe: {
-    photo: 'photo-1605455021703-13b57dcb9efa',
-    auteur: 'Ritabrata Das',
-    pseudo: 'ritabrata123',
-  }, // flamme sur table de bois
-  lumiere: { photo: 'photo-1514519273132-6a1abd48302c', auteur: 'Diego PH', pseudo: 'jdiegoph' }, // rayons dans les nuages
+    photo: 'photo-1628703117067-fb7c9c20946e',
+    auteur: 'Ingo Doerrie',
+    pseudo: 'ingodoerrie',
+  }, // aigle sur un rocher
+  lumiere: {
+    photo: 'photo-1719859061194-04c67413a472',
+    auteur: 'Brandon Griggs',
+    pseudo: 'paralitik',
+  }, // nuit pleine d'étoiles
   ble: { photo: 'photo-1595444042058-f038c7e0e778', auteur: 'Nick Fewings', pseudo: 'jannerboy62' }, // blé mûr
   jardin: {
-    photo: 'photo-1515778767554-42d4b373f2b3',
-    auteur: 'Nacho Domínguez Argenta',
-    pseudo: 'nachoargenta',
-  }, // grappes
+    photo: 'photo-1597337726353-26512fbe80c6',
+    auteur: 'jose alfonso sierra',
+    pseudo: 'utielanias',
+  }, // raisins verts et bruns
 }
 
 /** Les livres chrétiens de la bibliothèque. */
@@ -199,42 +199,38 @@ export const PHOTOS_LIVRES: Record<string, Photo> = {
     auteur: 'Gopal Krishna',
     pseudo: 'x_7',
   }, // désert au couchant
-  'imitation-fr': {
-    photo: 'photo-1528351655744-27cc30462816',
-    auteur: 'Paolo Nicolello',
-    pseudo: 'paul_nic',
-  }, // petite flamme dans la nuit
+  'imitation-fr': { photo: 'photo-1587977706287-86d257db113f', auteur: 'V', pseudo: 's3vr' }, // barque sur l'eau
   'imitation-en': {
-    photo: 'photo-1518528802892-ec2191995c99',
-    auteur: 'Jarl Schmidt',
-    pseudo: 'jarl_schmidt',
-  }, // bougie allumée
+    photo: 'photo-1633555442524-533869f78371',
+    auteur: 'Hector John Periquin',
+    pseudo: 'hectorjp',
+  }, // navire près d'une falaise
   'vie-devote': {
     photo: 'photo-1657626625832-2c0851cdaa9b',
     auteur: 'Benoît Deschasaux',
     pseudo: 'benowa',
   }, // blé au couchant
   'confessions-fr': {
-    photo: 'photo-1768765985289-0e53ecd9e765',
-    auteur: 'George',
-    pseudo: 'geox3',
-  }, // mur de pierre antique et ville
+    photo: 'photo-1614845372050-3f6a1c94293c',
+    auteur: 'Zdeněk Macháček',
+    pseudo: 'zmachacek',
+  }, // arc-en-ciel sur la prairie
   'confessions-en': {
-    photo: 'photo-1768765985554-d94de1af1aa7',
-    auteur: 'George',
-    pseudo: 'geox3',
-  }, // ville sur une colline
+    photo: 'photo-1605999358548-c8593e96cb83',
+    auteur: 'Michael Jerrard',
+    pseudo: 'michaeljerrard',
+  }, // grand voilier
   'pilgrims-progress': {
-    photo: 'photo-1785097565450-eab5283e3640',
-    auteur: 'Remedy',
-    pseudo: 'remeedy',
-  }, // chemin au coucher du soleil
+    photo: 'photo-1552410260-0fd9b577afa6',
+    auteur: 'Mika Brandt',
+    pseudo: 'mikabr',
+  }, // vieux lion
   'presence-of-god': { photo: 'photo-1547978059-2639fd612c66', auteur: 'DDP', pseudo: 'moino007' }, // pain cuit
   'all-of-grace': {
-    photo: 'photo-1662495711132-773db951a270',
-    auteur: 'Paul Crook',
-    pseudo: 'goldenplover31',
-  }, // ruisseau sous la montagne
+    photo: 'photo-1686154596696-d6f594a98af9',
+    auteur: 'Ben Stein',
+    pseudo: 'benostein',
+  }, // pain aux graines
   'abide-in-christ': {
     photo: 'photo-1515778767554-42d4b373f2b3',
     auteur: 'Nacho Domínguez Argenta',
