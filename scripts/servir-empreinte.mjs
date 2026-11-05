@@ -20,6 +20,7 @@ import { spawn, execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readFileSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { creerLivres } from './livres-empreinte.mjs'
+import { creerChants } from './chants-empreinte.mjs'
 
 const racine = resolve(process.argv[2] ?? 'empreinte-web')
 const site = resolve(
@@ -54,6 +55,16 @@ const livres = creerLivres({
     )
   ),
   dossier: process.env.EMPREINTE_LIVRES ?? join(homedir(), 'empreinte-livres'),
+})
+// Chants : cantiques du domaine public, enregistrements libres (Commons, Internet Archive).
+const chants = creerChants({
+  catalogue: JSON.parse(
+    readFileSync(
+      join(dirname(fileURLToPath(import.meta.url)), '..', 'app/apps/expo/src/features/chants/catalogue.json'),
+      'utf8'
+    )
+  ),
+  dossier: process.env.EMPREINTE_CHANTS ?? join(homedir(), 'empreinte-chants'),
 })
 const installerPocketBase = async () => {
   const binaire = join(DOSSIER_COMPTES, 'pocketbase')
@@ -277,6 +288,7 @@ createServer((req, res) => {
     return void relayer(req, res, COMPTES + req.url.slice('/comptes'.length))
   }
   if ((req.url ?? '').startsWith('/livres/api/')) return void livres(req, res)
+  if ((req.url ?? '').startsWith('/chants/api/')) return void chants(req, res)
   // /youversion/v1/… → api.youversion.com/v1/… avec la clé de l'app.
   if ((req.url ?? '').startsWith('/youversion/')) {
     if (!CLE_YOUVERSION) return void res.writeHead(503).end('Clé YouVersion absente (YOUVERSION_KEY).')
@@ -333,6 +345,7 @@ createServer((req, res) => {
   void lancerComptes()
   // Les livres se préparent en arrière-plan : la première ouverture n'attend plus.
   setTimeout(() => void livres.prechauffer(), 5000)
+  setTimeout(() => void chants.prechauffer(), 20000)
   console.log(
     `Empreinte sur http://${process.env.HOTE ?? "0.0.0.0"}:${port} : site ${site}, app ${racine} (sous /app), API relayée : ${API}`
   )

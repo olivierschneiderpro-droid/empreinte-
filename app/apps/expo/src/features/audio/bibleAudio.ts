@@ -1,4 +1,5 @@
 import { atom } from 'jotai'
+import atomWithAsyncStorage from '~helpers/atomWithAsyncStorage'
 import { getDefaultStore } from 'jotai/vanilla'
 import books, { sections } from '~assets/bible_versions/books-desc'
 import { versions } from '~helpers/bibleVersions'
@@ -33,7 +34,16 @@ export const etatAudioAtom = atom<EtatAudio>({
   erreur: false,
 })
 
+/** Les derniers chapitres écoutés (le plus récent d'abord), pour « Reprendre l'écoute ». */
+export const ecoutesAtom = atomWithAsyncStorage<PisteBible[]>('empreinte.ecoutes', [])
+
 const magasin = getDefaultStore()
+
+const noterEcoute = (piste: PisteBible) => {
+  const avant = (magasin.get(ecoutesAtom) as PisteBible[] | undefined) ?? []
+  const reste = avant.filter(e => e.book !== piste.book)
+  magasin.set(ecoutesAtom, [piste, ...reste].slice(0, 12))
+}
 const mettreAJour = (partiel: Partial<EtatAudio>) =>
   magasin.set(etatAudioAtom, { ...magasin.get(etatAudioAtom), ...partiel })
 
@@ -74,6 +84,7 @@ export const jouer = (piste: PisteBible) => {
   lecteur.playbackRate = magasin.get(etatAudioAtom).vitesse
   mettreAJour({ piste, libre: null, position: 0, duree: 0, erreur: false })
   magasin.set(joursDeLectureAtom, noterLecture(magasin.get(joursDeLectureAtom)))
+  noterEcoute(piste)
   void lecteur.play().catch(() => mettreAJour({ enLecture: false }))
 }
 

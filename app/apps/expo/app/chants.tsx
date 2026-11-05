@@ -1,1 +1,1 @@
-export { default } from '~features/audio/ChantsScreen'
+export { default } from '~features/chants/ChantsScreen'

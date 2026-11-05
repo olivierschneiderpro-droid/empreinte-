@@ -1,0 +1,638 @@
+{
+  "chants": [
+    {
+      "id": "a-toi-la-gloire",
+      "titre": "À toi la gloire",
+      "langue": "fr",
+      "theme": "paques",
+      "auteur": "Edmond Budry · musique G. F. Haendel",
+      "annee": "1884",
+      "recherche": "Thine Be the Glory",
+      "autresRecherches": ["A toi la gloire", "Judas Maccabaeus See the conquering hero"],
+      "paroles": [
+        [
+          "À toi la gloire, Ô Ressuscité !",
+          "À toi la victoire pour l'éternité !",
+          "Brillant de lumière, l'ange est descendu,",
+          "Il roule la pierre du tombeau vaincu."
+        ],
+        [
+          "Vois-le paraître : c'est lui, c'est Jésus,",
+          "Ton Sauveur, ton Maître ! Oh ! ne doute plus ;",
+          "Sois dans l'allégresse, peuple du Seigneur,",
+          "Et redis sans cesse que Christ est vainqueur !"
+        ],
+        [
+          "Craindrais-je encore ? Il vit à jamais,",
+          "Celui que j'adore, le Prince de paix ;",
+          "Il est ma victoire, mon puissant soutien,",
+          "Ma vie et ma gloire : non, je ne crains rien !"
+        ]
+      ],
+      "refrain": ["À toi la gloire, Ô Ressuscité !", "À toi la victoire pour l'éternité !"]
+    },
+    {
+      "id": "c-est-un-rempart",
+      "titre": "C'est un rempart que notre Dieu",
+      "langue": "fr",
+      "theme": "confiance",
+      "auteur": "Martin Luther · trad. Henri Lutteroth",
+      "annee": "1529",
+      "recherche": "A Mighty Fortress Is Our God",
+      "autresRecherches": ["Ein feste Burg ist unser Gott"],
+      "paroles": [
+        [
+          "C'est un rempart que notre Dieu,",
+          "Une invincible armure,",
+          "Notre délivrance en tout lieu,",
+          "Notre défense sûre.",
+          "L'ennemi contre nous",
+          "Redouble de courroux :",
+          "Vaine colère !",
+          "Que pourrait l'adversaire ?",
+          "L'Éternel détourne ses coups."
+        ]
+      ]
+    },
+    {
+      "id": "grand-dieu-nous-te-benissons",
+      "titre": "Grand Dieu, nous te bénissons",
+      "langue": "fr",
+      "theme": "louange",
+      "auteur": "D'après le Te Deum (Ignaz Franz)",
+      "annee": "1771",
+      "recherche": "Holy God We Praise Thy Name",
+      "autresRecherches": ["Grosser Gott wir loben dich"],
+      "paroles": [
+        [
+          "Grand Dieu, nous te bénissons,",
+          "Nous célébrons tes louanges !",
+          "Éternel, nous t'exaltons,",
+          "De concert avec les anges,",
+          "Et prosternés devant toi,",
+          "Nous t'adorons, ô grand Roi !"
+        ]
+      ]
+    },
+    {
+      "id": "mon-dieu-plus-pres-de-toi",
+      "titre": "Mon Dieu, plus près de toi",
+      "langue": "fr",
+      "theme": "priere",
+      "auteur": "Sarah F. Adams · trad. française",
+      "annee": "1841",
+      "recherche": "Nearer My God to Thee",
+      "autresRecherches": ["Mon Dieu plus pres de toi"],
+      "paroles": [
+        [
+          "Mon Dieu, plus près de toi,",
+          "Plus près de toi !",
+          "C'est le cri de ma foi :",
+          "Plus près de toi !",
+          "Dans les jours où l'épreuve",
+          "Déborde comme un fleuve,",
+          "Tiens-moi plus près de toi,",
+          "Plus près de toi !"
+        ]
+      ]
+    },
+    {
+      "id": "quel-ami-fidele",
+      "titre": "Quel ami fidèle et tendre",
+      "langue": "fr",
+      "theme": "priere",
+      "auteur": "Joseph Scriven · trad. française",
+      "annee": "1855",
+      "recherche": "What a Friend We Have in Jesus",
+      "autresRecherches": ["Quel ami fidele et tendre"]
+    },
+    {
+      "id": "les-anges-dans-nos-campagnes",
+      "titre": "Les anges dans nos campagnes",
+      "langue": "fr",
+      "theme": "noel",
+      "auteur": "Noël traditionnel français",
+      "annee": "XVIIIᵉ s.",
+      "recherche": "Angels We Have Heard on High",
+      "autresRecherches": ["Les anges dans nos campagnes", "Gloria in excelsis Deo carol"],
+      "paroles": [
+        [
+          "Les anges dans nos campagnes",
+          "Ont entonné l'hymne des cieux,",
+          "Et l'écho de nos montagnes",
+          "Redit ce chant mélodieux :"
+        ]
+      ],
+      "refrain": ["Gloria in excelsis Deo !", "Gloria in excelsis Deo !"]
+    },
+    {
+      "id": "il-est-ne",
+      "titre": "Il est né, le divin Enfant",
+      "langue": "fr",
+      "theme": "noel",
+      "auteur": "Noël traditionnel français",
+      "annee": "XIXᵉ s.",
+      "recherche": "Il est ne le divin enfant",
+      "autresRecherches": ["He is born the divine Christ child"],
+      "paroles": [
+        [
+          "Depuis plus de quatre mille ans",
+          "Nous le promettaient les prophètes,",
+          "Depuis plus de quatre mille ans",
+          "Nous attendions cet heureux temps."
+        ]
+      ],
+      "refrain": [
+        "Il est né, le divin Enfant,",
+        "Jouez hautbois, résonnez musettes !",
+        "Il est né, le divin Enfant,",
+        "Chantons tous son avènement !"
+      ]
+    },
+    {
+      "id": "minuit-chretiens",
+      "titre": "Minuit, chrétiens",
+      "langue": "fr",
+      "theme": "noel",
+      "auteur": "Placide Cappeau · musique Adolphe Adam",
+      "annee": "1847",
+      "recherche": "Minuit Chretiens",
+      "autresRecherches": ["O Holy Night Adam", "Cantique de Noel Adam"],
+      "paroles": [
+        [
+          "Minuit, chrétiens, c'est l'heure solennelle",
+          "Où l'Homme-Dieu descendit jusqu'à nous",
+          "Pour effacer la tache originelle",
+          "Et de son Père arrêter le courroux.",
+          "Le monde entier tressaille d'espérance",
+          "En cette nuit qui lui donne un Sauveur.",
+          "Peuple, à genoux, attends ta délivrance !",
+          "Noël ! Noël ! Voici le Rédempteur !"
+        ]
+      ]
+    },
+    {
+      "id": "douce-nuit",
+      "titre": "Douce nuit (Stille Nacht)",
+      "langue": "fr",
+      "theme": "noel",
+      "auteur": "Joseph Mohr · musique Franz Gruber",
+      "annee": "1818",
+      "recherche": "Stille Nacht",
+      "autresRecherches": ["Silent Night Gruber", "Douce nuit"]
+    },
+    {
+      "id": "amazing-grace",
+      "titre": "Amazing Grace",
+      "langue": "en",
+      "theme": "confiance",
+      "auteur": "John Newton",
+      "annee": "1779",
+      "recherche": "Amazing Grace",
+      "paroles": [
+        [
+          "Amazing grace! How sweet the sound",
+          "That saved a wretch like me!",
+          "I once was lost, but now am found;",
+          "Was blind, but now I see."
+        ],
+        [
+          "'Twas grace that taught my heart to fear,",
+          "And grace my fears relieved;",
+          "How precious did that grace appear",
+          "The hour I first believed!"
+        ],
+        [
+          "Through many dangers, toils and snares,",
+          "I have already come;",
+          "'Tis grace hath brought me safe thus far,",
+          "And grace will lead me home."
+        ],
+        [
+          "The Lord has promised good to me,",
+          "His word my hope secures;",
+          "He will my shield and portion be,",
+          "As long as life endures."
+        ]
+      ]
+    },
+    {
+      "id": "holy-holy-holy",
+      "titre": "Holy, Holy, Holy",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "Reginald Heber · musique John B. Dykes",
+      "annee": "1826",
+      "recherche": "Holy Holy Holy Lord God Almighty",
+      "autresRecherches": ["Nicaea hymn"],
+      "paroles": [
+        [
+          "Holy, holy, holy! Lord God Almighty!",
+          "Early in the morning our song shall rise to Thee;",
+          "Holy, holy, holy! merciful and mighty!",
+          "God in three Persons, blessed Trinity!"
+        ]
+      ]
+    },
+    {
+      "id": "abide-with-me",
+      "titre": "Abide with Me",
+      "langue": "en",
+      "theme": "priere",
+      "auteur": "Henry F. Lyte · musique W. H. Monk",
+      "annee": "1847",
+      "recherche": "Abide with Me",
+      "autresRecherches": ["Eventide hymn Monk"],
+      "paroles": [
+        [
+          "Abide with me; fast falls the eventide;",
+          "The darkness deepens; Lord, with me abide.",
+          "When other helpers fail and comforts flee,",
+          "Help of the helpless, O abide with me."
+        ],
+        [
+          "Swift to its close ebbs out life's little day;",
+          "Earth's joys grow dim; its glories pass away;",
+          "Change and decay in all around I see;",
+          "O Thou who changest not, abide with me."
+        ]
+      ]
+    },
+    {
+      "id": "it-is-well",
+      "titre": "It Is Well with My Soul",
+      "langue": "en",
+      "theme": "confiance",
+      "auteur": "Horatio Spafford · musique Philip Bliss",
+      "annee": "1873",
+      "recherche": "It Is Well with My Soul",
+      "paroles": [
+        [
+          "When peace like a river attendeth my way,",
+          "When sorrows like sea billows roll;",
+          "Whatever my lot, Thou hast taught me to say,",
+          "It is well, it is well with my soul."
+        ]
+      ],
+      "refrain": ["It is well with my soul,", "It is well, it is well with my soul."]
+    },
+    {
+      "id": "rock-of-ages",
+      "titre": "Rock of Ages",
+      "langue": "en",
+      "theme": "confiance",
+      "auteur": "Augustus Toplady",
+      "annee": "1776",
+      "recherche": "Rock of Ages",
+      "paroles": [
+        [
+          "Rock of Ages, cleft for me,",
+          "Let me hide myself in Thee;",
+          "Let the water and the blood,",
+          "From Thy wounded side which flowed,",
+          "Be of sin the double cure,",
+          "Save from wrath and make me pure."
+        ]
+      ]
+    },
+    {
+      "id": "what-a-friend",
+      "titre": "What a Friend We Have in Jesus",
+      "langue": "en",
+      "theme": "priere",
+      "auteur": "Joseph Scriven · musique Charles Converse",
+      "annee": "1855",
+      "recherche": "What a Friend We Have in Jesus",
+      "paroles": [
+        [
+          "What a friend we have in Jesus,",
+          "All our sins and griefs to bear!",
+          "What a privilege to carry",
+          "Everything to God in prayer!",
+          "O what peace we often forfeit,",
+          "O what needless pain we bear,",
+          "All because we do not carry",
+          "Everything to God in prayer."
+        ]
+      ]
+    },
+    {
+      "id": "joy-to-the-world",
+      "titre": "Joy to the World",
+      "langue": "en",
+      "theme": "noel",
+      "auteur": "Isaac Watts",
+      "annee": "1719",
+      "recherche": "Joy to the World",
+      "paroles": [
+        [
+          "Joy to the world, the Lord is come!",
+          "Let earth receive her King;",
+          "Let every heart prepare Him room,",
+          "And heaven and nature sing,",
+          "And heaven and nature sing,",
+          "And heaven, and heaven, and nature sing."
+        ]
+      ]
+    },
+    {
+      "id": "silent-night",
+      "titre": "Silent Night",
+      "langue": "en",
+      "theme": "noel",
+      "auteur": "Joseph Mohr · trad. John F. Young",
+      "annee": "1859",
+      "recherche": "Silent Night",
+      "autresRecherches": ["Stille Nacht"],
+      "paroles": [
+        [
+          "Silent night, holy night,",
+          "All is calm, all is bright",
+          "Round yon virgin mother and child.",
+          "Holy infant so tender and mild,",
+          "Sleep in heavenly peace,",
+          "Sleep in heavenly peace."
+        ]
+      ]
+    },
+    {
+      "id": "o-come-all-ye-faithful",
+      "titre": "O Come, All Ye Faithful",
+      "langue": "en",
+      "theme": "noel",
+      "auteur": "John F. Wade · trad. Frederick Oakeley",
+      "annee": "1841",
+      "recherche": "O Come All Ye Faithful",
+      "autresRecherches": ["Adeste Fideles"],
+      "paroles": [
+        [
+          "O come, all ye faithful, joyful and triumphant,",
+          "O come ye, O come ye to Bethlehem;",
+          "Come and behold Him, born the King of angels;"
+        ]
+      ],
+      "refrain": [
+        "O come, let us adore Him,",
+        "O come, let us adore Him,",
+        "O come, let us adore Him,",
+        "Christ the Lord."
+      ]
+    },
+    {
+      "id": "christ-the-lord-is-risen",
+      "titre": "Christ the Lord Is Risen Today",
+      "langue": "en",
+      "theme": "paques",
+      "auteur": "Charles Wesley",
+      "annee": "1739",
+      "recherche": "Christ the Lord Is Risen Today",
+      "autresRecherches": ["Easter Hymn Lyra Davidica"],
+      "paroles": [
+        [
+          "Christ the Lord is risen today, Alleluia!",
+          "Sons of men and angels say, Alleluia!",
+          "Raise your joys and triumphs high, Alleluia!",
+          "Sing, ye heavens, and earth, reply, Alleluia!"
+        ]
+      ]
+    },
+    {
+      "id": "crown-him",
+      "titre": "Crown Him with Many Crowns",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "Matthew Bridges · musique George J. Elvey",
+      "annee": "1851",
+      "recherche": "Crown Him with Many Crowns",
+      "autresRecherches": ["Diademata hymn"],
+      "paroles": [
+        [
+          "Crown Him with many crowns,",
+          "The Lamb upon His throne;",
+          "Hark! how the heavenly anthem drowns",
+          "All music but its own!",
+          "Awake, my soul, and sing",
+          "Of Him who died for thee,",
+          "And hail Him as thy matchless King",
+          "Through all eternity."
+        ]
+      ]
+    },
+    {
+      "id": "come-thou-fount",
+      "titre": "Come, Thou Fount of Every Blessing",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "Robert Robinson",
+      "annee": "1758",
+      "recherche": "Come Thou Fount of Every Blessing",
+      "paroles": [
+        [
+          "Come, Thou Fount of every blessing,",
+          "Tune my heart to sing Thy grace;",
+          "Streams of mercy, never ceasing,",
+          "Call for songs of loudest praise."
+        ]
+      ]
+    },
+    {
+      "id": "nearer-my-god",
+      "titre": "Nearer, My God, to Thee",
+      "langue": "en",
+      "theme": "priere",
+      "auteur": "Sarah F. Adams · musique Lowell Mason",
+      "annee": "1841",
+      "recherche": "Nearer My God to Thee",
+      "autresRecherches": ["Bethany hymn Mason"],
+      "paroles": [
+        [
+          "Nearer, my God, to Thee, nearer to Thee!",
+          "E'en though it be a cross that raiseth me,",
+          "Still all my song shall be, nearer, my God, to Thee.",
+          "Nearer, my God, to Thee, nearer to Thee!"
+        ]
+      ]
+    },
+    {
+      "id": "a-mighty-fortress",
+      "titre": "A Mighty Fortress Is Our God",
+      "langue": "en",
+      "theme": "confiance",
+      "auteur": "Martin Luther · trad. Frederick H. Hedge",
+      "annee": "1853",
+      "recherche": "A Mighty Fortress Is Our God",
+      "autresRecherches": ["Ein feste Burg"],
+      "paroles": [
+        [
+          "A mighty fortress is our God,",
+          "A bulwark never failing;",
+          "Our helper He, amid the flood",
+          "Of mortal ills prevailing:",
+          "For still our ancient foe",
+          "Doth seek to work us woe;",
+          "His craft and power are great,",
+          "And, armed with cruel hate,",
+          "On earth is not his equal."
+        ]
+      ]
+    },
+    {
+      "id": "all-hail-the-power",
+      "titre": "All Hail the Power of Jesus' Name",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "Edward Perronet",
+      "annee": "1779",
+      "recherche": "All Hail the Power of Jesus Name",
+      "autresRecherches": ["Coronation hymn Holden"],
+      "paroles": [
+        [
+          "All hail the power of Jesus' name!",
+          "Let angels prostrate fall;",
+          "Bring forth the royal diadem,",
+          "And crown Him Lord of all."
+        ]
+      ]
+    },
+    {
+      "id": "doxology",
+      "titre": "Praise God, from Whom All Blessings Flow",
+      "langue": "en",
+      "theme": "louange",
+      "auteur": "Thomas Ken · mélodie Old Hundredth",
+      "annee": "1674",
+      "recherche": "Old Hundredth",
+      "autresRecherches": [
+        "Doxology Praise God from whom all blessings flow",
+        "All People That on Earth Do Dwell"
+      ],
+      "paroles": [
+        [
+          "Praise God, from whom all blessings flow;",
+          "Praise Him, all creatures here below;",
+          "Praise Him above, ye heavenly host;",
+          "Praise Father, Son, and Holy Ghost."
+        ]
+      ]
+    },
+    {
+      "id": "be-still-my-soul",
+      "titre": "Be Still, My Soul",
+      "langue": "en",
+      "theme": "confiance",
+      "auteur": "K. von Schlegel · trad. Jane Borthwick · musique Sibelius",
+      "annee": "1855",
+      "recherche": "Be Still My Soul",
+      "autresRecherches": ["Finlandia hymn"],
+      "paroles": [
+        [
+          "Be still, my soul: the Lord is on thy side.",
+          "Bear patiently the cross of grief or pain.",
+          "Leave to thy God to order and provide;",
+          "In every change He faithful will remain.",
+          "Be still, my soul: thy best, thy heavenly Friend",
+          "Through thorny ways leads to a joyful end."
+        ]
+      ]
+    },
+    {
+      "id": "how-firm-a-foundation",
+      "titre": "How Firm a Foundation",
+      "langue": "en",
+      "theme": "confiance",
+      "auteur": "Recueil de John Rippon",
+      "annee": "1787",
+      "recherche": "How Firm a Foundation",
+      "paroles": [
+        [
+          "How firm a foundation, ye saints of the Lord,",
+          "Is laid for your faith in His excellent Word!",
+          "What more can He say than to you He hath said,",
+          "To you who for refuge to Jesus have fled?"
+        ]
+      ]
+    },
+    {
+      "id": "jesus-loves-me",
+      "titre": "Jesus Loves Me",
+      "langue": "en",
+      "theme": "confiance",
+      "auteur": "Anna B. Warner · musique William Bradbury",
+      "annee": "1860",
+      "recherche": "Jesus Loves Me",
+      "paroles": [
+        [
+          "Jesus loves me! This I know,",
+          "For the Bible tells me so;",
+          "Little ones to Him belong;",
+          "They are weak, but He is strong."
+        ]
+      ],
+      "refrain": [
+        "Yes, Jesus loves me!",
+        "Yes, Jesus loves me!",
+        "Yes, Jesus loves me!",
+        "The Bible tells me so."
+      ]
+    },
+    {
+      "id": "jesus-que-ma-joie",
+      "titre": "Jésus, que ma joie demeure",
+      "langue": "tous",
+      "theme": "meditation",
+      "auteur": "Jean-Sébastien Bach (BWV 147)",
+      "annee": "1723",
+      "recherche": "Jesu Joy of Man's Desiring",
+      "autresRecherches": ["Bach BWV 147 Jesus bleibet meine Freude"]
+    },
+    {
+      "id": "brebis-paissent",
+      "titre": "Les brebis paissent en paix",
+      "langue": "tous",
+      "theme": "meditation",
+      "auteur": "Jean-Sébastien Bach (BWV 208)",
+      "annee": "1713",
+      "recherche": "Sheep May Safely Graze",
+      "autresRecherches": ["Bach BWV 208 Schafe konnen sicher weiden"]
+    },
+    {
+      "id": "reveillez-vous",
+      "titre": "Réveillez-vous, la voix nous appelle",
+      "langue": "tous",
+      "theme": "meditation",
+      "auteur": "Jean-Sébastien Bach (BWV 140)",
+      "annee": "1731",
+      "recherche": "Wachet auf ruft uns die Stimme",
+      "autresRecherches": ["Sleepers Wake Bach BWV 140"]
+    },
+    {
+      "id": "alleluia-haendel",
+      "titre": "Alléluia (Le Messie)",
+      "langue": "tous",
+      "theme": "meditation",
+      "auteur": "Georg Friedrich Haendel",
+      "annee": "1741",
+      "recherche": "Hallelujah Chorus Messiah",
+      "autresRecherches": ["Handel Messiah Hallelujah"]
+    },
+    {
+      "id": "ave-verum",
+      "titre": "Ave verum corpus",
+      "langue": "tous",
+      "theme": "meditation",
+      "auteur": "Wolfgang Amadeus Mozart (K. 618)",
+      "annee": "1791",
+      "recherche": "Ave verum corpus Mozart"
+    },
+    {
+      "id": "largo-haendel",
+      "titre": "Largo (Ombra mai fù)",
+      "langue": "tous",
+      "theme": "meditation",
+      "auteur": "Georg Friedrich Haendel",
+      "annee": "1738",
+      "recherche": "Handel Largo",
+      "autresRecherches": ["Ombra mai fu"]
+    }
+  ]
+}
