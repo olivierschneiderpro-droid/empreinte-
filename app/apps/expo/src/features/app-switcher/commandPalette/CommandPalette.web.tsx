@@ -9,6 +9,7 @@ import { resolveUniverseColors } from '~themes/universeColors'
 import { parseBibleReferenceInput } from '~helpers/bcvParser'
 import { paletteScopes, isPassageScope, type PaletteScope } from './scopes'
 import CatalogSuggestions from './CatalogSuggestions.web'
+import VideoSuggestions from './VideoSuggestions.web'
 import PassageSuggestions from './PassageSuggestions.web'
 import { getReferenceSearchItemsFromSegments } from '~features/search/shared/searchItems'
 import ContentSuggestions from './ContentSuggestions.web'
@@ -429,6 +430,15 @@ export default function CommandPalette({
                   onSelect={openTab}
                 />
               )}
+            {showSuggestions && !scope && query.trim().length >= 2 && (
+              <VideoSuggestions
+                query={query}
+                onSelect={video => {
+                  onDone?.()
+                  router.push({ pathname: '/video', params: { id: video.workId } } as never)
+                }}
+              />
+            )}
             {!scope && query.trim() && (
               <Command.Group heading={t('Rechercher')}>
                 <Command.Item value="search:free" onSelect={() => openSearch()}>

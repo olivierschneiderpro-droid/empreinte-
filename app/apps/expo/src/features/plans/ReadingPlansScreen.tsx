@@ -23,6 +23,31 @@ import { DOMAINES, FORMATS, domaineDuPlan, formatsDuPlan, type FormatPlan } from
 import { Icone } from '~features/empreinte/icones'
 import { useTheme } from '~themes/ThemeProvider'
 import { POLICES, police, styleVerre, useVerre } from '~features/empreinte/lumiere'
+import { Vedette } from '~features/empreinte/vitrine/Rangee'
+
+/** Empreinte : la grande carte du haut, comme sur les pages Bible et Livres. */
+const VedettePlan = ({ plan, active }: { plan: OnlinePlan; active: boolean }) => {
+  const { t } = useTranslation()
+  const router = useRouter()
+  const image = useFireStorage(plan.image)
+  return (
+    <Box className="mb-[28px]">
+      <Vedette
+        scene="chemin"
+        imageUri={image || null}
+        surtitre={t(active ? 'readingPlans.yours' : 'readingPlans.explore')}
+        titre={plan.title}
+        texte={
+          plan.duration
+            ? t('readingPlans.duration', { count: plan.duration })
+            : t('readingPlans.journey')
+        }
+        action={t(active ? 'readingPlans.continue' : 'readingPlans.discover')}
+        onPress={() => router.push({ pathname: '/plan', params: { planId: plan.id } })}
+      />
+    </Box>
+  )
+}
 
 const ReadingPlanCard = ({ plan, active }: { plan: OnlinePlan; active: boolean }) => {
   const { t } = useTranslation()
@@ -208,6 +233,9 @@ const ReadingPlansScreen = ({ filters }: { filters: ReadingPlanFilters }) => {
     <ScrollView
       contentContainerStyle={[pageContentStyle, { maxWidth: 1180, padding: 24, paddingBottom: 48 }]}
     >
+      {active[0] || discoverable[0] ? (
+        <VedettePlan plan={(active[0] ?? discoverable[0])!} active={Boolean(active[0])} />
+      ) : null}
       {!!active.length && (
         <Text className="text-default font-bold text-[18px] mb-[16px]">
           {t('readingPlans.yours')}

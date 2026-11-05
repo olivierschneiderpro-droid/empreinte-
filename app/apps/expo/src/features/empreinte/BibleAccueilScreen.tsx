@@ -7,9 +7,7 @@ import { sections } from '~assets/bible_versions/books-desc'
 import Header from '~common/Header'
 import { LinkBox } from '~common/Link'
 import Box, { HStack } from '~common/ui/Box'
-import { FeatherIcon } from '~common/ui/Icon'
 import Text from '~common/ui/Text'
-import { commandPaletteOpenAtom } from '~features/app-switcher/commandPalette/state'
 import { usePushRouteOnce } from '~navigation/usePushRouteOnce'
 import { activeTabIndexAtom, tabsAtomsAtom, type BibleTab } from '~state/tabs'
 import { compagnonAtom } from './compagnon'
@@ -60,7 +58,6 @@ export default function BibleAccueilScreen() {
   const pushRoute = usePushRouteOnce()
   const allerALaBible = useAllerALaBible()
   const ouvrirDansLaBible = useOuvrirDansLaBible()
-  const ouvrirRecherche = useSetAtom(commandPaletteOpenAtom)
   const setCompagnon = useSetAtom(compagnonAtom)
   useAtomValue(tabsAtomsAtom)
   const enCours = lectureEnCours()
@@ -153,15 +150,6 @@ export default function BibleAccueilScreen() {
               onPress={() => ouvrirDansLaBible({ book: 43, chapter: 1 })}
             />
           )}
-
-          <LinkBox
-            onPress={() => ouvrirRecherche(true)}
-            accessibilityLabel={t('bibleAccueil.search')}
-            className="flex-row items-center gap-[12px] rounded-full px-[18px] h-[52px] bg-reverse"
-          >
-            <FeatherIcon name="search" size={18} color="grey" />
-            <Text className="text-grey text-[14px] flex-1">{t('bibleAccueil.searchHint')}</Text>
-          </LinkBox>
 
           <Rangee titre={t('bibleAccueil.doors')}>
             {portes.map(porte => (
