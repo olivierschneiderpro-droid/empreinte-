@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "tech.laverite.empreinte",
+      "sha256_cert_fingerprints": [
+        "73:51:E6:23:EB:EA:43:45:74:28:A0:85:A0:19:59:72:4C:3E:9C:4B:43:F2:68:82:73:1F:F4:4A:E4:1D:47:9B"
+      ]
+    }
+  }
+]

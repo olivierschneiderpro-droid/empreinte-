@@ -1,0 +1,20 @@
+{
+  "id": "/app/",
+  "name": "Empreinte",
+  "short_name": "Empreinte",
+  "description": "La Bible pour lire, écouter, étudier et chanter : traductions, Strong, plans de lecture, Bible audio, livres chrétiens et cantiques.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "/app/",
+  "scope": "/app/",
+  "display": "standalone",
+  "orientation": "any",
+  "background_color": "#F4F4F2",
+  "theme_color": "#F4F4F2",
+  "categories": ["books", "education", "lifestyle"],
+  "icons": [
+    { "src": "/app/icone-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/app/icone-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/app/icone-masquable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

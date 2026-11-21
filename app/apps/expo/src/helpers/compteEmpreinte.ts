@@ -177,6 +177,21 @@ export const compteEmpreinte = {
     return record
   },
 
+  /**
+   * Supprime le compte et tout ce qui lui est lié (sauvegarde, commentaires : suppression en
+   * cascade côté serveur). Demandé par le Google Play Store pour toute app avec comptes.
+   */
+  async supprimer() {
+    const session = lireSession()
+    if (!session) throw new ErreurCompte('Vous n’êtes pas connecté.', 'compte/session')
+    await appeler(
+      `${UTILISATEURS}/records/${session.record.id}`,
+      { method: 'DELETE' },
+      session.token
+    )
+    ecrireSession(null)
+  },
+
   /** La sauvegarde du compte : tout ce que la personne a écrit et marqué. */
   async lireSauvegarde(): Promise<{ id: string; donnees: unknown } | null> {
     const session = lireSession()
