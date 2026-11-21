@@ -1,0 +1,31 @@
+# Empreinte · Mise en ligne par MakeOne.
+# À chaque fusion sur main (ou à la demande), l'exécuteur « sites » installé sur le serveur
+# par scripts/relier-makeone.sh lance aussitôt la mise à jour d'Empreinte, sans attendre le
+# minuteur de 30 secondes, et rapporte ce qui a été mis en ligne.
+name: Mise en ligne
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: mise-en-ligne
+  cancel-in-progress: false
+
+jobs:
+  empreinte:
+    runs-on: sites
+    steps:
+      - name: Mettre à jour Empreinte
+        run: sudo systemctl start empreinte-maj.service
+      - name: Ce qui a été fait
+        run: sudo journalctl -u empreinte-maj.service --since "-2min" --no-pager -o cat | tail -20
+      - name: Le site répond
+        run: |
+          for i in 1 2 3 4 5 6; do
+            code=$(curl -s -o /dev/null -w '%{http_code}' https://xn--lavrit-dvad.tech/app/) || true
+            echo "lavérité.tech/app/ → $code"
+            [ "$code" = 200 ] && exit 0
+            sleep 5
+          done
+          exit 1
