@@ -36,7 +36,22 @@ const CLE_YOUVERSION = process.env.YOUVERSION_KEY ?? ''
 const annonce = () =>
   `<script>window.__EMPREINTE_RELAIS__=location.origin${
     comptesPrets ? ";window.__EMPREINTE_COMPTES__=location.origin+'/comptes'" : ''
-  }</script>`
+  }</script>${INSTALLABLE}`
+
+// App installable (Android, ordinateur) : manifeste, icônes et service worker, servis depuis
+// deploiement/pwa (indépendants de l'archive de l'app). Le Play Store l'emballe en app Android.
+const PWA = join(dirname(fileURLToPath(import.meta.url)), '..', 'deploiement', 'pwa')
+const INSTALLABLE =
+  '<link rel="manifest" href="/app/manifest.webmanifest">' +
+  '<meta name="theme-color" content="#F4F4F2">' +
+  '<link rel="apple-touch-icon" href="/app/icone-apple-180.png">' +
+  "<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'})})</script>"
+// Le lien de confiance entre l'app Android et le domaine (Digital Asset Links). Le fichier du
+// VPS (~/empreinte-assetlinks.json) passe avant celui du dépôt.
+const ASSETLINKS = [
+  process.env.EMPREINTE_ASSETLINKS ?? join(homedir(), 'empreinte-assetlinks.json'),
+  join(PWA, 'assetlinks.json'),
+]
 
 // Comptes Empreinte : PocketBase, téléchargé, lancé et surveillé par ce serveur.
 const POCKETBASE_VERSION = '0.22.55'
@@ -151,6 +166,7 @@ const TYPES = {
   '.js': 'text/javascript; charset=utf-8',
   '.css': 'text/css; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
+  '.webmanifest': 'application/manifest+json; charset=utf-8',
   '.txt': 'text/plain; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
@@ -302,6 +318,21 @@ createServer((req, res) => {
   } catch {
     res.writeHead(400).end()
     return
+  }
+
+  if (url === '/.well-known/assetlinks.json') {
+    const liens = ASSETLINKS.map(fichier).find(Boolean)
+    if (!liens) return void res.writeHead(404).end()
+    return void envoyer(req, res, liens, false)
+  }
+
+  // Les fichiers de l'app installable (manifeste, icônes, service worker).
+  if (/^\/app\/(manifest\.webmanifest|sw\.js|hors-ligne\.html|icone-[a-z0-9-]+\.png)$/.test(url)) {
+    const trouve = fichier(join(PWA, url.slice('/app/'.length)))
+    if (trouve) {
+      if (url === '/app/sw.js') res.setHeader('Service-Worker-Allowed', '/app/')
+      return void envoyer(req, res, trouve, false)
+    }
   }
 
   // L'app web, sous /app.

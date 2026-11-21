@@ -6,7 +6,7 @@ import { twMerge } from '~common/ui/classNames'
 
 import { SheetFooter, SheetHeader, SheetTextInput, SheetView, type SheetRef } from '~common/sheet'
 import Sheet from '~common/ModalSheet'
-import { deleteCurrentAuthUser, getCurrentAuthUser } from '~helpers/firebaseAuthRuntime'
+import { deleteCurrentAuthUser, hasDeletableAccount } from '~helpers/firebaseAuthRuntime'
 import type { Theme as AppTheme } from '~themes'
 import { useTheme } from '~themes/ThemeProvider'
 
@@ -43,8 +43,7 @@ const DeleteAccountModal = ({ modalRef }: DeleteAccountModalProps) => {
   const handleDelete = async () => {
     if (!isValid) return
 
-    const authUser = getCurrentAuthUser()
-    if (!authUser) return
+    if (!hasDeletableAccount()) return
 
     setIsLoading(true)
     try {

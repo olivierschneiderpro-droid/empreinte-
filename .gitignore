@@ -2,3 +2,15 @@ node_modules/
 .empreinte/
 *.log
 __pycache__/
+
+# Copies compressées préparées par le serveur
+deploiement/pwa/*.br
+
+# Clés de signature Android : jamais dans le dépôt
+*.keystore
+*.jks
+*.keystore.base64
+android/.gradle/
+android/app/build/
+android/build/
+android/local.properties

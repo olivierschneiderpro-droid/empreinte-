@@ -78,7 +78,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   web: {
     bundler: 'metro',
     output: 'single',
-    favicon: './assets/images/icon-2.png',
+    favicon: './assets/images/icone-empreinte.png',
   },
   plugins: [
     'expo-sharing',

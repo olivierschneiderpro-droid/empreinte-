@@ -5,3 +5,5 @@ export const deleteCurrentAuthUser = async () => {
   const user = getCurrentAuthUser()
   if (user) await deleteUser(user)
 }
+
+export const hasDeletableAccount = () => Boolean(getCurrentAuthUser())
