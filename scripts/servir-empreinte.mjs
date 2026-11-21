@@ -48,6 +48,8 @@ const INSTALLABLE =
   "<script>if('serviceWorker' in navigator)addEventListener('load',function(){navigator.serviceWorker.register('/app/sw.js',{scope:'/app/'})})</script>"
 // Le lien de confiance entre l'app Android et le domaine (Digital Asset Links). Le fichier du
 // VPS (~/empreinte-assetlinks.json) passe avant celui du dépôt.
+// Les fichiers de l'app Android compilés sur le VPS (scripts/compiler-android.sh).
+const TELECHARGEMENTS = join(homedir(), 'empreinte-telechargements')
 const ASSETLINKS = [
   process.env.EMPREINTE_ASSETLINKS ?? join(homedir(), 'empreinte-assetlinks.json'),
   join(PWA, 'assetlinks.json'),
@@ -167,6 +169,8 @@ const TYPES = {
   '.css': 'text/css; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
   '.webmanifest': 'application/manifest+json; charset=utf-8',
+  '.apk': 'application/vnd.android.package-archive',
+  '.aab': 'application/octet-stream',
   '.txt': 'text/plain; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
@@ -318,6 +322,13 @@ createServer((req, res) => {
   } catch {
     res.writeHead(400).end()
     return
+  }
+
+  if (/^\/telechargements\/[a-z0-9.-]+\.(aab|apk)$/.test(url)) {
+    const trouve = fichier(join(TELECHARGEMENTS, url.slice('/telechargements/'.length)))
+    if (!trouve) return void res.writeHead(404).end()
+    res.setHeader('Content-Disposition', `attachment; filename="${url.split('/').pop()}"`)
+    return void envoyer(req, res, trouve, false)
   }
 
   if (url === '/.well-known/assetlinks.json') {
