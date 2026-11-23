@@ -25,20 +25,28 @@ dire() { printf '\n\033[1m▸ %s\033[0m\n' "$*"; }
 [ "$(id -u)" = 0 ] || { echo "Lancez ce script avec sudo."; exit 1; }
 mkdir -p "$CLES" && chmod 700 "$CLES"
 
-# --- Empreinte de la clé de Google : le lien de confiance app ↔ domaine -------------------
+# --- Lien de confiance app ↔ domaine (/.well-known/assetlinks.json) -----------------------
+# Ajoute une empreinte SHA-256 à celles que le serveur publie (fichier de la maison
+# d'empreinte s'il existe déjà, sinon celui du dépôt).
+ajouter_empreinte() {
+  local liens=$MAISON/empreinte-assetlinks.json
+  python3 - "$ICI/deploiement/pwa/assetlinks.json" "$1" "$liens" <<'EOF'
+import json, os, sys
+depot, nouvelle, sortie = sys.argv[1], sys.argv[2].strip().upper(), sys.argv[3]
+liens = json.load(open(sortie if os.path.exists(sortie) else depot))
+empreintes = liens[0]["target"]["sha256_cert_fingerprints"]
+if nouvelle not in empreintes:
+    empreintes.append(nouvelle)
+json.dump(liens, open(sortie, "w"), indent=2)
+print("Empreintes publiées :", ", ".join(empreintes))
+EOF
+  chown empreinte: "$liens"
+}
+
+# Empreinte de la clé de Google (Play Console → Intégrité de l'application).
 if [ "${1:-}" = "--cle-google" ]; then
   GOOGLE=${2:?"Indiquez l'empreinte SHA-256, par exemple AA:BB:CC:…"}
-  python3 - "$ICI/deploiement/pwa/assetlinks.json" "$GOOGLE" "$MAISON/empreinte-assetlinks.json" <<'EOF'
-import json, sys
-depot, google, sortie = sys.argv[1], sys.argv[2].strip().upper(), sys.argv[3]
-liens = json.load(open(depot))
-empreintes = liens[0]["target"]["sha256_cert_fingerprints"]
-if google not in empreintes:
-    empreintes.append(google)
-json.dump(liens, open(sortie, "w"), indent=2)
-print("Empreintes :", ", ".join(empreintes))
-EOF
-  chown empreinte: "$MAISON/empreinte-assetlinks.json"
+  ajouter_empreinte "$GOOGLE"
   echo "✔ https://lavérité.tech/.well-known/assetlinks.json contient maintenant la clé de Google."
   exit 0
 fi
@@ -73,9 +81,28 @@ yes | "$SDK/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null 2>&1 || t
 dire "Clé d'envoi"
 CLE=$CLES/empreinte-upload.keystore
 if [ ! -s "$CLE" ]; then
-  echo "Collez le contenu du fichier empreinte-upload.keystore.base64, puis appuyez sur Entrée :"
+  echo "Aucune clé d'envoi sur ce serveur."
+  echo "  - Pour reprendre une clé existante, collez le contenu de empreinte-upload.keystore.base64."
+  echo "  - Pour en créer une nouvelle ici (possible tant que rien n'a été envoyé à Google),"
+  echo "    appuyez simplement sur Entrée."
   read -r BASE64
-  printf '%s' "$BASE64" | tr -d ' \r\n' | base64 -d > "$CLE"
+  if [ -n "${BASE64// /}" ]; then
+    printf '%s' "$BASE64" | tr -d ' \r\n' | base64 -d > "$CLE"
+  else
+    # Nouvelle clé : mot de passe tiré au hasard, rien ne quitte le serveur.
+    MDP=$(head -c 32 /dev/urandom | base64 | tr -dc 'A-Za-z0-9' | cut -c1-28)
+    keytool -genkeypair -keystore "$CLE" -alias empreinte -keyalg RSA -keysize 4096 \
+      -validity 10000 -storepass "$MDP" -keypass "$MDP" \
+      -dname "CN=Empreinte, O=Empreinte, C=FR" >/dev/null 2>&1
+    printf '%s' "$MDP" > "$CLES/mot-de-passe"
+    unset MDP
+    chmod 600 "$CLE" "$CLES/mot-de-passe"
+    EMPREINTE_CLE=$(keytool -list -v -keystore "$CLE" -storepass "$(cat "$CLES/mot-de-passe")" \
+      -alias empreinte 2>/dev/null | sed -n 's/^[[:space:]]*SHA256:[[:space:]]*//p' | head -1)
+    ajouter_empreinte "$EMPREINTE_CLE"
+    echo "✔ Nouvelle clé créée dans $CLES (lisible par root seulement)."
+    echo "  Gardez-en une copie hors du serveur : sans elle, plus de mise à jour possible."
+  fi
 fi
 if [ ! -s "$CLES/mot-de-passe" ]; then
   read -rsp "Mot de passe de la clé (contenu de mot-de-passe.txt) : " MDP && echo
