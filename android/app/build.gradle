@@ -57,7 +57,7 @@ android {
         applicationId "tech.laverite.empreinte"
         minSdkVersion 24
         targetSdkVersion 36
-        // Chaque envoi au Play Store demande un numéro plus grand : le workflow GitHub le fournit.
+        // Chaque envoi au Play Store demande un numéro plus grand : scripts/compiler-android.sh le fournit.
         versionCode((System.getenv('ANDROID_VERSION_CODE') ?: '1').toInteger())
         versionName "1.0.0"
 
@@ -151,8 +151,8 @@ android {
 
         
     }
-    // La clé d'envoi (upload key) n'est jamais dans le dépôt : le workflow GitHub la reçoit par
-    // ses secrets (ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD).
+    // La clé d'envoi (upload key) n'est jamais dans le dépôt : scripts/compiler-android.sh la
+    // lit dans /root/empreinte-cle sur le VPS.
     signingConfigs {
         release {
             def cle = System.getenv('ANDROID_KEYSTORE_PATH')

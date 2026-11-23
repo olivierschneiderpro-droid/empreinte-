@@ -24,7 +24,7 @@ if git -C "$ICI" rev-parse --git-dir >/dev/null 2>&1; then
 fi
 
 # 2. Version web. Deux sources, la plus récemment changée l'emporte :
-#    - la version « web-latest » compilée par GitHub Actions ;
+#    - l'ancienne version « web-latest » publiée sur GitHub (plus mise à jour) ;
 #    - l'archive livrée dans le dépôt (deploiement/empreinte-web.tar.gz), mise à jour par git pull.
 MEMOIRE=${MEMOIRE:-$HOME/.empreinte-maj}
 mkdir -p "$MEMOIRE"

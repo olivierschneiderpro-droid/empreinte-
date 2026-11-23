@@ -8,7 +8,7 @@ Chromebook, et chaque mise à jour du site arrive dans l'app sans republier.
 |---|---|
 | Projet Android (généré avec Bubblewrap) | `android/` |
 | Identifiant de l'app | `tech.laverite.empreinte` |
-| Compilation (.aab et .apk) | sur le VPS : `scripts/compiler-android.sh` (ou GitHub Actions) |
+| Compilation (.aab et .apk) | sur le VPS : `scripts/compiler-android.sh` |
 | Manifeste, icônes, service worker | `deploiement/pwa/` (servis sous `/app/` par le serveur) |
 | Lien de confiance app ↔ domaine | `/.well-known/assetlinks.json` (`deploiement/pwa/assetlinks.json`) |
 | Textes et images de la fiche | `deploiement/play-store/` |
@@ -34,8 +34,8 @@ sudo bash /home/empreinte/empreinte-/scripts/compiler-android.sh 1.0.0
   pour essayer sur un téléphone (`https://lavérité.tech/telechargements/…`).
 - Le numéro de version interne (versionCode) augmente tout seul à chaque compilation.
 
-Le workflow GitHub « App Android (Play Store) » fait la même chose quand GitHub Actions
-fonctionne (secrets `ANDROID_KEYSTORE_BASE64` et `ANDROID_KEYSTORE_PASSWORD`).
+Sans les fichiers de clé, appuyez sur Entrée sans rien coller : le script crée une clé neuve
+sur le VPS (possible tant que rien n'a été envoyé à Google).
 
 ## 2. La clé de Google (une seule fois)
 

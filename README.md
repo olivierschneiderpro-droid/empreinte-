@@ -98,9 +98,10 @@ docs/VISION.md            la vision d'origine
 
 ## Déployer sur le serveur HP (mises à jour automatiques)
 
-À chaque mise à jour de `main`, GitHub compile la version web et la publie dans la version
-[`web-latest`](../../releases/tag/web-latest) (`.github/workflows/version-web-hp.yml`).
-Le serveur HP vérifie toutes les 30 secondes et installe la nouvelle version tout seul.
+La version web compilée est livrée dans le dépôt (`deploiement/empreinte-web.tar.gz`, construite
+par `scripts/construire-archive.sh`). Le serveur vérifie toutes les 30 secondes et installe la
+nouvelle version tout seul ; avec MakeOne, chaque fusion sur `main` la met en ligne aussitôt
+(voir `deploiement/MAKEONE.md`). Plus aucun GitHub Actions.
 
 Installation, une seule fois, sur le serveur (Linux, Node 20 ou plus) :
 
