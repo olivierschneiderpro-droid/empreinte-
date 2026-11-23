@@ -29,8 +29,9 @@ const cles = {}
 const fichierCles = option('--cles')
 if (fichierCles) {
   for (const ligne of readFileSync(fichierCles.replace(/^~/, process.env.HOME), 'utf8').split('\n')) {
-    const m = ligne.match(/^\s*([A-Z_]+)\s*=\s*(.+?)\s*$/)
-    if (m) cles[m[1]] = m[2]
+    // Tolère « export », les guillemets, les minuscules et les espaces autour du « = ».
+    const m = ligne.match(/^\s*(?:export\s+)?([A-Za-z_]+)\s*[=:]\s*["']?(.+?)["']?\s*$/)
+    if (m) cles[m[1].toUpperCase()] = m[2]
   }
 }
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN || cles.GITHUB_TOKEN
@@ -43,7 +44,13 @@ const PROPRIETAIRE = option('--proprietaire')
 const SEULEMENT = option('--seulement')?.split(',').map(s => s.trim().toLowerCase())
 
 if (!GITHUB_TOKEN || !MAKEONE_TOKEN) {
-  console.error('Il manque GITHUB_TOKEN ou MAKEONE_TOKEN (variables ou fichier --cles).')
+  const manque = [!GITHUB_TOKEN && 'GITHUB_TOKEN', !MAKEONE_TOKEN && 'MAKEONE_TOKEN'].filter(Boolean)
+  console.error(`Il manque ${manque.join(' et ')}.`)
+  if (fichierCles) {
+    const noms = Object.keys(cles)
+    console.error(`Dans ${fichierCles}, je trouve : ${noms.length ? noms.join(', ') : 'aucune ligne NOM=valeur'}.`)
+    console.error('Attendu, une ligne chacun :  GITHUB_TOKEN=…  et  MAKEONE_TOKEN=…')
+  }
   process.exit(1)
 }
 
