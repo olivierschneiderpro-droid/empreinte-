@@ -3,6 +3,7 @@ import { useAtom, useAtomValue } from 'jotai/react'
 import React, { useEffect, useRef } from 'react'
 import Box from '~common/ui/Box'
 import BottomTabBar from '~features/app-switcher/BottomTabBar/BottomTabBar'
+import ChantsScreen from '~features/chants/ChantsScreen'
 import RealitesScreen from '~features/empreinte/RealitesScreen'
 import { Home } from '~features/home/HomeScreen'
 import { More } from '~features/settings/MoreScreen'
@@ -17,9 +18,9 @@ import TabGroupPager from './TabGroupPager'
 export const TAB_PREVIEW_SCALE = 0.6
 
 /**
- * Espace de travail sur téléphone.
+ * Interface mobile + tablette (en dessous de 1024 px ; le desktop a sa propre coque).
  *
- * Empreinte : Accueil, Plus et Réalités ne s'ouvrent plus en tiroir sur le côté.
+ * Empreinte : Accueil, Chants, Plus et Réalités ne s'ouvrent plus en tiroir sur le côté.
  * Ce sont des pages pleines posées sur les onglets, et la barre flottante du bas
  * reste toujours visible pour passer d'une page à l'autre, sans croix ni retour.
  */
@@ -60,6 +61,7 @@ const AppSwitcherScreenWrapper = () => {
           <Box className="absolute inset-0 bg-light-grey" testID={`compact-page-${page}`}>
             {page === 'home' && <Home closeHome={fermer} inWorkspace />}
             {page === 'menu' && <More closeMenu={fermer} inWorkspace={false} pageTab />}
+            {page === 'chants' && <ChantsScreen />}
             {page === 'realites' && <RealitesScreen />}
           </Box>
         ) : null}

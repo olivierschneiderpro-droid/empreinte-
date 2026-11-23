@@ -28,7 +28,8 @@ import { useRouter } from 'expo-router'
 import { Events } from './Events'
 import ProfileStats from '~features/profile/components/ProfileStats'
 import PassageMediaLibraryWidget from './PassageMediaLibraryWidget'
-import AccueilLumiere, { Micro } from '~features/empreinte/AccueilLumiere'
+import { Micro } from '~features/empreinte/AccueilLumiere'
+import AccueilBible from '~features/mobile/AccueilBible'
 // local react props
 type HomeProps = {
   closeHome: () => void
@@ -47,7 +48,8 @@ export const Home = ({ closeHome, inWorkspace = false }: HomeProps) => {
   return (
     <Box className="overflow-hidden border-continuous bg-light-grey flex-[1]">
       <HomeScrollView showsVerticalScrollIndicator={false}>
-        <AccueilLumiere />
+        {/* Interface mobile + tablette : la Bible au centre, Réalités vit dans son espace. */}
+        <AccueilBible />
         <Events />
         <UserWidget />
         <ProfileStats />

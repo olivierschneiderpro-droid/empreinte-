@@ -1,7 +1,7 @@
 # Home layouts
 
 `HomeScreen` keeps the existing layout on native platforms and Web windows below
-768 CSS pixels. From 768 pixels on Web, `DesktopHome.web.tsx` renders a two-column dashboard
+1024 CSS pixels. From 1024 pixels on Web, `DesktopHome.web.tsx` renders a two-column dashboard
 home inside the existing workspace navigation. Its illustrations are bundled in
 `src/assets/images/home/illustrations/`. Surface colors derive from the active
 theme; personal library counters keep neutral icons. The main column contains the
@@ -50,7 +50,7 @@ Browser regression scenario (CSS container layout needs a real browser, not Jest
 4. Hide/show the sidebar with the panel open. Random words and the selected day
    must stay unchanged; the columns adjust to the new allocation.
 5. Close the panel: the original two-column desktop design returns. Below the
-   768px viewport gate, the existing compact home still renders.
+   1024px viewport gate, the existing compact home still renders.
 
 Resume reading opens the current location and stored version of the latest
 **added** bookmark, selected using `createdAt`, falling back to `date` for older
