@@ -96,6 +96,16 @@ if [ ! -f "$CONFIG" ]; then
   sed -i -E 's/^(\s*capacity:).*/\1 1/' "$CONFIG"
   chown "$UTILISATEUR": "$CONFIG"
 fi
+# Les étiquettes se lisent dans le fichier de configuration (act_runner ignore celles de la
+# ligne de commande). On remplace celles par défaut, qui exigent Docker, par « sites » : les
+# tâches tournent directement sur ce serveur.
+awk -v etiquette="$ETIQUETTE:host" '
+  /^  labels:/ { print "  labels:"; print "    - \"" etiquette "\""; saute = 1; next }
+  saute && /^    -/ { next }
+  { saute = 0; print }
+' "$CONFIG" > "$CONFIG.tmp" && mv "$CONFIG.tmp" "$CONFIG"
+chown "$UTILISATEUR": "$CONFIG"
+grep -A2 '^  labels:' "$CONFIG" | sed 's/^/  /'
 if [ ! -s "$MAISON/.runner" ]; then
   read -rsp "Jeton d'inscription MakeOne (Organisation → Paramètres → Actions → Exécuteurs) : " JETON && echo
   (cd "$MAISON" && sudo -u "$UTILISATEUR" "$BINAIRE" register --no-interactive \
@@ -191,6 +201,7 @@ if systemctl is-active -q makeone-executeur; then
   Journal : journalctl -u makeone-executeur -f
 EOF
 else
-  echo "✘ L'exécuteur ne démarre pas : journalctl -u makeone-executeur -n 50"
+  echo "✘ L'exécuteur ne démarre pas. Ses derniers messages :"
+  journalctl -u makeone-executeur -n 25 --no-pager -o cat | sed 's/^/  /'
   exit 1
 fi
