@@ -55,7 +55,7 @@ android {
     namespace "tech.laverite.empreinte"
     defaultConfig {
         applicationId "tech.laverite.empreinte"
-        minSdkVersion 21
+        minSdkVersion 24
         targetSdkVersion 36
         // Chaque envoi au Play Store demande un numéro plus grand : le workflow GitHub le fournit.
         versionCode((System.getenv('ANDROID_VERSION_CODE') ?: '1').toInteger())
