@@ -2,8 +2,8 @@ import { atom } from 'jotai/vanilla'
 import type { TabItem } from '~state/tabs'
 import type { AnalyticsEvent, AnalyticsParameters } from '~helpers/analyticsCore'
 
-// Page pleine affichée au-dessus des onglets sur téléphone (Empreinte : plus de tiroirs).
-export type CompactWorkspacePage = 'home' | 'menu' | 'realites'
+// Page pleine affichée au-dessus des onglets sur téléphone et tablette (Empreinte : plus de tiroirs).
+export type CompactWorkspacePage = 'home' | 'menu' | 'chants' | 'realites'
 export const compactWorkspaceDrawerAtom = atom<CompactWorkspacePage | null>(null)
 
 // IDs are used only for local deduplication, never included in event parameters.

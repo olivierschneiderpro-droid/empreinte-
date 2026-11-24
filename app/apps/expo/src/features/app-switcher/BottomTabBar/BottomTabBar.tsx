@@ -1,6 +1,6 @@
 import { useAtomValue, useSetAtom } from 'jotai/react'
 import { useRouter } from 'expo-router'
-import { Pressable, View } from 'react-native'
+import { Pressable, View, useWindowDimensions } from 'react-native'
 import { GestureDetector } from 'react-native-gesture-handler'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { useTranslation } from 'react-i18next'
@@ -23,7 +23,6 @@ import { FLOATING_BAR_BOTTOM, FLOATING_BAR_HEIGHT } from '../utils/constants'
 import { useTabAnimations } from '../utils/useTabAnimations'
 import type { CompactWorkspacePage } from '../workspaceViewTracking'
 import AddTabButton from './Buttons/AddTabButton'
-import useSearchButtonPress from './Buttons/useSearchButton'
 import useTabButtonPress from './Buttons/useTabButtonPress'
 import GroupTitleButton from './GroupTitleButton'
 import useBottomTabBar from './useBottomTabBar'
@@ -121,7 +120,8 @@ const BottomTabBar = ({ openMenu, openHome, page = null, onPage }: BottomTabBarP
   const insets = useSafeAreaInsets()
   const isFullScreenBible = useAtomValue(isFullScreenBibleAtom)
 
-  // Mêmes actions que les boutons d’Empreinte (Accueil, Recherche, Bible, Onglets, Menu).
+  // Interface mobile + tablette. Espace Bible : Accueil · Bible · Chants · Plus.
+  // La recherche et le menu des espaces sont en haut de l’accueil ; Réalités a sa propre barre.
   const tabs = useAtomValue(tabsAtom)
   const tabsCount = useAtomValue(tabsCountAtom)
   const activeTabIndex = useAtomValue(activeTabIndexAtom)
@@ -129,9 +129,9 @@ const BottomTabBar = ({ openMenu, openHome, page = null, onPage }: BottomTabBarP
   const setActiveTabIndex = useSetAtom(activeTabIndexAtom)
   const defaultVersion = useSelector((state: RootState) => getDefaultBibleVersionFromState(state))
   const { slideToIndex } = useTabAnimations()
-  const { onPress: ouvrirRecherche } = useSearchButtonPress()
   const { onPress: ouvrirOnglets } = useTabButtonPress()
   const typeActif = page ? undefined : tabs[activeTabIndex]?.type
+  const espaceRealites = page === 'realites'
   const versOnglets = (action: () => void) => () => {
     onPage?.(null)
     action()
@@ -148,6 +148,18 @@ const BottomTabBar = ({ openMenu, openHome, page = null, onPage }: BottomTabBarP
     }
   }
 
+  // Bible : un toucher ouvre la lecture ; un second toucher, déjà dans la Bible, montre les onglets.
+  const toucherBible = () => {
+    if (!page && typeActif === 'bible') {
+      ouvrirOnglets()
+      return
+    }
+    versOnglets(ouvrirBible)()
+  }
+
+  // Sur tablette, la barre garde une largeur de téléphone, centrée.
+  const { width: largeur } = useWindowDimensions()
+  const marge = Math.max(16, (largeur - 560) / 2)
   const bas = FLOATING_BAR_BOTTOM + insets.bottom
   const masque = FLOATING_BAR_HEIGHT + bas + 20
 
@@ -165,7 +177,10 @@ const BottomTabBar = ({ openMenu, openHome, page = null, onPage }: BottomTabBarP
       <GestureDetector gesture={panGesture}>
         <AnimatedBox
           className="absolute left-[16px] right-[16px] flex-row items-center"
-          style={[{ bottom: bas, height: FLOATING_BAR_HEIGHT, gap: 10 }, viewStyles]}
+          style={[
+            { bottom: bas, height: FLOATING_BAR_HEIGHT, gap: 10, left: marge, right: marge },
+            viewStyles,
+          ]}
           accessibilityElementsHidden={!isViewMode}
           importantForAccessibility={isViewMode ? 'auto' : 'no-hide-descendants'}
           key="view"
@@ -183,70 +198,87 @@ const BottomTabBar = ({ openMenu, openHome, page = null, onPage }: BottomTabBarP
               },
             ]}
           >
-            <Element
-              icone="home"
-              libelle={t('Accueil')}
-              actif={page === 'home'}
-              onPress={openHome}
-            />
-            <Element
-              icone="book"
-              libelle={t('tabs.bible')}
-              actif={typeActif === 'bible'}
-              onPress={versOnglets(ouvrirBible)}
-            />
-            <Element
-              icone="search"
-              libelle="Chercher"
-              accessibilityLabel={t('tabs.search')}
-              actif={typeActif === 'search'}
-              onPress={versOnglets(ouvrirRecherche)}
-            />
-            <Element
-              icone="tabs"
-              libelle="Onglets"
-              accessibilityLabel={t('accessibility.tabs', { count: tabsCount })}
-              pastille={tabsCount}
-              onPress={versOnglets(ouvrirOnglets)}
-            />
-            <Element
-              icone="layers"
-              libelle="Réalités"
-              actif={page === 'realites'}
-              onPress={() => (onPage ? onPage('realites') : router.push('/empreinte'))}
-            />
-            <Element
-              icone="more"
-              libelle="Plus"
-              accessibilityLabel={t('accessibility.mainMenu')}
-              actif={page === 'menu'}
-              onPress={openMenu}
-            />
+            {espaceRealites ? (
+              <>
+                <Element
+                  icone="book"
+                  libelle={t('tabs.bible')}
+                  accessibilityLabel="Revenir à la Bible"
+                  onPress={() => onPage?.('home')}
+                />
+                <Element icone="layers" libelle="Réalités" actif onPress={() => {}} />
+                <Element
+                  icone="check"
+                  libelle="Vérifier"
+                  onPress={() => router.push('/empreinte/verifier')}
+                />
+              </>
+            ) : (
+              <>
+                <Element
+                  icone="home"
+                  libelle={t('Accueil')}
+                  actif={page === 'home'}
+                  onPress={openHome}
+                />
+                <Element
+                  icone="book"
+                  libelle={t('tabs.bible')}
+                  accessibilityLabel={
+                    tabsCount > 1
+                      ? `${t('tabs.bible')}, ${t('accessibility.tabs', { count: tabsCount })}`
+                      : undefined
+                  }
+                  actif={typeActif !== undefined}
+                  pastille={tabsCount > 1 ? tabsCount : undefined}
+                  onPress={toucherBible}
+                />
+                <Element
+                  icone="music"
+                  libelle="Chants"
+                  actif={page === 'chants'}
+                  onPress={() => onPage?.('chants')}
+                />
+                <Element
+                  icone="more"
+                  libelle="Plus"
+                  accessibilityLabel={t('accessibility.mainMenu')}
+                  actif={page === 'menu'}
+                  onPress={openMenu}
+                />
+              </>
+            )}
           </View>
-          <Pressable
-            onPress={() => router.push('/empreinte/capturer')}
-            accessibilityRole="button"
-            accessibilityLabel="Capturer une réalité"
-            style={{
-              width: FLOATING_BAR_HEIGHT,
-              height: FLOATING_BAR_HEIGHT,
-              borderRadius: FLOATING_BAR_HEIGHT / 2,
-              backgroundColor: theme.colors.default,
-              alignItems: 'center',
-              justifyContent: 'center',
-              shadowColor: '#111113',
-              shadowOpacity: 0.28,
-              shadowRadius: 26,
-              shadowOffset: { width: 0, height: 12 },
-            }}
-          >
-            <Icone nom="scan" taille={26} couleur={theme.colors.reverse} trait={2} />
-          </Pressable>
+          {espaceRealites ? (
+            <Pressable
+              onPress={() => router.push('/empreinte/capturer')}
+              accessibilityRole="button"
+              accessibilityLabel="Capturer une réalité"
+              style={{
+                width: FLOATING_BAR_HEIGHT,
+                height: FLOATING_BAR_HEIGHT,
+                borderRadius: FLOATING_BAR_HEIGHT / 2,
+                backgroundColor: theme.colors.default,
+                alignItems: 'center',
+                justifyContent: 'center',
+                shadowColor: '#111113',
+                shadowOpacity: 0.28,
+                shadowRadius: 26,
+                shadowOffset: { width: 0, height: 12 },
+              }}
+            >
+              <Icone nom="scan" taille={26} couleur={theme.colors.reverse} trait={2} />
+            </Pressable>
+          ) : null}
         </AnimatedBox>
       </GestureDetector>
       <AnimatedBox
         className="absolute left-[16px] right-[16px] flex-row items-center px-[10px]"
-        style={[styleVerre(v, 31), { bottom: bas, height: FLOATING_BAR_HEIGHT }, listStyles]}
+        style={[
+          styleVerre(v, 31),
+          { bottom: bas, height: FLOATING_BAR_HEIGHT, left: marge, right: marge },
+          listStyles,
+        ]}
         accessibilityElementsHidden={isViewMode}
         importantForAccessibility={isViewMode ? 'no-hide-descendants' : 'auto'}
         key="list"

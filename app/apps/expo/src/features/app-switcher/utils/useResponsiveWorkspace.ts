@@ -1,7 +1,8 @@
 import { useWindowDimensions } from 'react-native'
 
-// Share the tablet layout across platforms; narrower windows use mobile navigation.
-export const WORKSPACE_SIDEBAR_BREAKPOINT = 768
+// Deux interfaces : en dessous de 1024 px, téléphone et tablette partagent l'interface mobile
+// (barre flottante en bas) ; à partir de 1024 px, l'interface desktop (barre latérale).
+export const WORKSPACE_SIDEBAR_BREAKPOINT = 1024
 export const WORKSPACE_SIDEBAR_WIDTH = 260
 
 export const useResponsiveWorkspace = () =>
